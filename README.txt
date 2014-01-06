@@ -35,12 +35,12 @@ and given notes are considered, is very large.
 I made a choice to create a framework where the correctness of a given question
 is automatically computed, without having to enter individual answers during
 question creation. A framework for adding various grading strategies for each
-exercises is also in place, and is currently used for the scale writing exercise
+exercise is also in place, and is currently used for the scale writing exercise
 (currently allowing either an "all-or-nothing" grading strategy, or a "partial
 grade" approach where each correct note is given partial credit).
 
 This new plugin was developed with the hope of creating a music question type
-that would support a wide range of music theory exercises, using a singe
+that would support a wide range of music theory exercises, using a single
 graphical user interface that is flexible enough to support such exercises. It
 is hoped that it will facilitate further development and Moodle server
 maintenance.
