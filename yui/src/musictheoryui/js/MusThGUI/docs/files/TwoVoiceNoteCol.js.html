@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>TwoVoiceNoteCol.js</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="../assets/css/logo.png" title=""></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: </em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="../classes/Control.Controller.html">Control.Controller</a></li>
+            
+                <li><a href="../classes/Control.InputDialog.html">Control.InputDialog</a></li>
+            
+                <li><a href="../classes/GUIState.FiguredBass.html">GUIState.FiguredBass</a></li>
+            
+                <li><a href="../classes/GUIState.FiguredBassRend.html">GUIState.FiguredBassRend</a></li>
+            
+                <li><a href="../classes/GUIState.FiguredBassRow.html">GUIState.FiguredBassRow</a></li>
+            
+                <li><a href="../classes/GUIState.KeySign.html">GUIState.KeySign</a></li>
+            
+                <li><a href="../classes/GUIState.KeySignAcc.html">GUIState.KeySignAcc</a></li>
+            
+                <li><a href="../classes/GUIState.Note.html">GUIState.Note</a></li>
+            
+                <li><a href="../classes/GUIState.NoteCol.html">GUIState.NoteCol</a></li>
+            
+                <li><a href="../classes/GUIState.Staff.html">GUIState.Staff</a></li>
+            
+                <li><a href="../classes/GUIState.StaffSystem.html">GUIState.StaffSystem</a></li>
+            
+                <li><a href="../classes/GUIState.State.html">GUIState.State</a></li>
+            
+                <li><a href="../classes/GUIState.TextInput.html">GUIState.TextInput</a></li>
+            
+                <li><a href="../classes/GUIState.Toolbar.html">GUIState.Toolbar</a></li>
+            
+                <li><a href="../classes/GUIState.ToolbarBtn.html">GUIState.ToolbarBtn</a></li>
+            
+                <li><a href="../classes/GUIState.TwoVoiceNoteCol.html">GUIState.TwoVoiceNoteCol</a></li>
+            
+                <li><a href="../classes/MusThGUI.html">MusThGUI</a></li>
+            
+                <li><a href="../classes/Render.CoordManager.html">Render.CoordManager</a></li>
+            
+                <li><a href="../classes/Render.GlyphProvider.html">Render.GlyphProvider</a></li>
+            
+                <li><a href="../classes/Render.KeySignRend.html">Render.KeySignRend</a></li>
+            
+                <li><a href="../classes/Render.NoteColRend.html">Render.NoteColRend</a></li>
+            
+                <li><a href="../classes/Render.NoteRend.html">Render.NoteRend</a></li>
+            
+                <li><a href="../classes/Render.Renderer.html">Render.Renderer</a></li>
+            
+                <li><a href="../classes/Render.StaffRend.html">Render.StaffRend</a></li>
+            
+                <li><a href="../classes/Render.StaffSystemRend.html">Render.StaffSystemRend</a></li>
+            
+                <li><a href="../classes/Render.ToolbarBtnRend.html">Render.ToolbarBtnRend</a></li>
+            
+                <li><a href="../classes/Render.ToolbarRend.html">Render.ToolbarRend</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+                <li><a href="../modules/MusThGUI.html">MusThGUI</a></li>
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: TwoVoiceNoteCol.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+/* Copyright (c) 2013 Eric Brisson
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the &quot;Software&quot;), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ THE SOFTWARE. */
+
+/**
+ * The TwoVoiceNoteCol object represents a note column on a staff,
+ * specifically designed to handle a voice-leading context where two voices are
+ * shown in the column, with stems in opposite direction.
+ *
+ * @class TwoVoiceNoteCol
+ * @namespace GUIState
+ * @extends GUIState.NoteCol
+ *
+ * @constructor
+ * @param {GUIState.FiguredBass} figBass The note column&#x27;s figured
+ * bass indication.
+ * @param {GUIState.TextInput} textInput The text input associated
+ * with the note column (null if no text input is present).
+ * @return {undefined}
+ */
+MusThGUI.GUIState.TwoVoiceNoteCol = function(figBass, textInput) {
+
+  MusThGUI.GUIState.NoteCol.call(this, 2, textInput);
+  this.superclass = MusThGUI.GUIState.NoteCol.prototype;
+  this.figBass = figBass;
+
+};
+
+MusThGUI.GUIState.TwoVoiceNoteCol.prototype = new MusThGUI.GUIState.NoteCol();
+MusThGUI.GUIState.TwoVoiceNoteCol.prototype.constructor =
+    MusThGUI.GUIState.TwoVoiceNoteCol;
+
+/**
+ * Adds a note to the note column. Once the note is added, rearranges note stems
+ * so that they are in the opposite direction.
+ *
+ * @method addNote
+ * @param {GUIState.Note} note The note to be added.
+ * @return {undefined}
+ */
+MusThGUI.GUIState.TwoVoiceNoteCol.prototype.addNote = function(note) {
+
+  this.superclass.addNote.call(this, note);
+  this.rearrangeStems();
+
+};
+
+/**
+ * Removes a note from the note column. No action taken if the given note isn&#x27;t
+ * in the column. If two notes are in unison in the column, both notes are
+ * removed. Once the note is removed, rearranges note stems so that they are in
+ * the opposite direction.
+ *
+ * @method removeNote
+ * @param {GUIState.Note} note The note to be removed.
+ * @return {undefined}
+ */
+MusThGUI.GUIState.TwoVoiceNoteCol.prototype.removeNote = function(note) {
+
+  var letter = note.letter;
+  var register = note.register;
+  var firstRemoval = null;
+  var removalCnt = 0;
+  var i;
+  for (i = 0; i &lt; this.notes.length; i++) {
+    if (this.notes[i].letter === letter &amp;&amp;
+        this.notes[i].register === register &amp;&amp;
+        this.notes[i].editable) {
+      if (firstRemoval === null) {
+        firstRemoval = i;
+      }
+      removalCnt += 1;
+    }
+  }
+
+  this.notes.splice(firstRemoval, removalCnt);
+  this.rearrangeStems();
+
+};
+
+/**
+ * Removes the ghost note from the column, if present. It is assumed that there
+ * can be at most one ghost note in the column at any given time. Once the ghost
+ * note is removed, rearranges note stems so that they are in the opposite
+ * direction.
+ *
+ * @method removeGhostNote
+ * @return {undefined}
+ */
+MusThGUI.GUIState.TwoVoiceNoteCol.prototype.removeGhostNote = function() {
+
+  var i;
+  for (i = 0; i &lt; this.notes.length; i++) {
+    if (this.notes[i].isGhost) {
+      break;
+    }
+  }
+  this.notes.splice(i, 1);
+  this.rearrangeStems();
+
+};
+
+/**
+ * Rearranges the note stems, as needed, so that they are in opposite direction.
+ *
+ * @method rearrangeStems
+ * @return {undefined}
+ */
+MusThGUI.GUIState.TwoVoiceNoteCol.prototype.rearrangeStems = function() {
+
+  // It is assumed that this function will only be called on
+  // note columns of type &#x27;two-voice&#x27; and that the maximum number
+  // of notes in the column is 2. It is also assumed that any ghost note
+  // will be sorted ahead of another note with same letter and register.
+
+
+  var n0 = (typeof this.notes[0] !== &#x27;undefined&#x27;) ? this.notes[0] : null;
+  var n1 = (typeof this.notes[1] !== &#x27;undefined&#x27;) ? this.notes[1] : null;
+
+  if (n0 !== null &amp;&amp; n1 !== null) {
+    if (n1.isGhost &amp;&amp; n0.letter === n1.letter &amp;&amp;
+        n0.register === n1.register) {
+      var n = n1;
+      n1 = n0;
+      n0 = n;
+    }
+  }
+
+  // 2 notes in column
+  if (n0 !== null &amp;&amp; n1 !== null) {
+    if (n0.editable &amp;&amp; n1.editable) {
+      n0.noteValue = &#x27;quarter_stem_up&#x27;;
+      n1.noteValue = &#x27;quarter_stem_down&#x27;;
+    }
+    else if (n0.editable) {
+      if (n1.noteValue === &#x27;quarter_stem_up&#x27;) {
+        n0.noteValue = &#x27;quarter_stem_down&#x27;;
+      }
+      else {
+        n0.noteValue = &#x27;quarter_stem_up&#x27;;
+      }
+    }
+    else if (n1.editable) {
+      if (n0.noteValue === &#x27;quarter_stem_up&#x27;) {
+        n1.noteValue = &#x27;quarter_stem_down&#x27;;
+      }
+      else {
+        n1.noteValue = &#x27;quarter_stem_up&#x27;;
+      }
+    }
+  }
+  // 1 note in column - audomatic stem up
+  else if (n0 !== null) {
+    if (n0.editable) {
+      n0.noteValue = &#x27;quarter_stem_up&#x27;;
+    }
+  }
+  else if (n1 !== null) {
+    if (n1.editable) {
+      n1.noteValue = &#x27;quarter_stem_up&#x27;;
+    }
+  }
+
+};
+
+/**
+ * Indicates whether the given note can be added to the column.
+ *
+ * @method noteAddible
+ * @param {GUIState.Note} potentialNote The note to consider adding.
+ * @return {Boolean} Returns true if the note can be added to the column.
+ */
+MusThGUI.GUIState.TwoVoiceNoteCol.prototype.noteAddible =
+    function(potentialNote) {
+
+      if (this.isFull()) {
+        return false;
+      }
+      else if (this.lengthWithoutGhost() === 0) {
+        return true;
+      }
+      else {
+        var firstNonGhost = this.getFirstNonGhost();
+        if (!(firstNonGhost.editable)) {
+          var comp = MusThGUI.GUIState.Note.compare(potentialNote,
+              firstNonGhost);
+          if (firstNonGhost.noteValue === &#x27;quarter_stem_up&#x27;) {
+            return (comp &lt;= 0);
+          }
+          else {
+            return (comp &gt;= 0);
+          }
+        }
+        else {
+          return true;
+        }
+      }
+
+    };
+
+/**
+ * Indicates whether the given note can be removed from the column.
+ *
+ * @method noteRemovable
+ * @param {GUIState.Note} note The note to consider removing.
+ * @return {Boolean} Returns true if the note can be removed from the column.
+ */
+MusThGUI.GUIState.TwoVoiceNoteCol.prototype.noteRemovable = function(note) {
+
+  var noteClicked = this.inColumn(note);
+  if (noteClicked !== null) {
+    return true;
+  }
+  else {
+    return false;
+  }
+
+};
+
+/**
+ * Provides the number of notes currently in the column, excluding the ghost
+ * note.
+ *
+ * @method lengthWithoutGhost
+ * @return {Number} Returns the number of non-ghost notes in the column.
+ */
+MusThGUI.GUIState.TwoVoiceNoteCol.prototype.lengthWithoutGhost = function() {
+
+  var count = 0;
+  var i;
+  for (i = 0; i &lt; this.notes; i++) {
+    if (!(this.notes[i].isGhost)) {
+      count += 1;
+    }
+  }
+  return count;
+
+};
+
+/**
+ * Provides the first non-ghost note in the column.
+ *
+ * @method getFirstNonGhost
+ * @return {GUIState.Note | null} Returns the first non-ghost note in
+ * the column. If the column doesn&#x27;t have non-ghost notes, returns null.
+ */
+MusThGUI.GUIState.TwoVoiceNoteCol.prototype.getFirstNonGhost = function() {
+
+  var i;
+  for (i = 0; i &lt; this.notes.length; i++) {
+    if (!(this.notes[i].isGhost)) {
+      return this.notes[i];
+    }
+  }
+  return null;
+
+};
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

@@ -1,0 +1,260 @@
+<?xml version="1.0"?>
+
+<xs:schema version="1.0"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified">
+
+  <!-- ELEMENTS -->
+
+  <xs:element name="options">
+    <xs:complexType>
+      <xs:choice>
+        <xs:element name="keysignature-write" type="keysignature-write-identify" />
+        <xs:element name="keysignature-write-random" type="keysignature-write-identify-random" />
+        <xs:element name="keysignature-identify" type="keysignature-write-identify" />
+        <xs:element name="keysignature-identify-random" type="keysignature-write-identify-random" />
+        <xs:element name="interval-write" type="interval-write-identify" />
+        <xs:element name="interval-write-random" type="interval-write-random" />
+        <xs:element name="interval-identify" type="interval-write-identify" />
+        <xs:element name="interval-identify-random" type="interval-identify-random" />
+        <xs:element name="scale-write" type="scale-write" />
+        <xs:element name="scale-write-random" type="scale-write-random" />
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- TYPES -->
+
+  <!-- Complex types -->
+
+  <xs:complexType name="keysignature-write-identify">
+    <xs:all>
+      <xs:element name="key" type="key" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="clef" type="clef" minOccurs="1" maxOccurs="1" />
+    </xs:all>
+  </xs:complexType>
+
+  <xs:complexType name="keysignature-write-identify-random">
+    <xs:all>
+      <xs:element name="mode-random" type="mode-random-choice" minOccurs="1" maxOccurs="1">
+        <xs:unique name="unique-keysign-mode">
+          <xs:selector xpath="mode"/>
+          <xs:field xpath="."/>
+        </xs:unique>
+      </xs:element>
+      <xs:element name="clef-random" type="clef-random-choice" minOccurs="1" maxOccurs="1">
+        <xs:unique name="unique-keysign-clef">
+          <xs:selector xpath="clef"/>
+          <xs:field xpath="."/>
+        </xs:unique>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+
+  <xs:complexType name="interval-write-identify">
+    <xs:all>
+      <xs:element name="givennote" type="notereg" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="direction" type="direction" minOccurs="1" maxOccurs="1" />
+      <xs:element name="quality" type="quality" minOccurs="1" maxOccurs="1" />
+      <xs:element name="size" type="size" minOccurs="1" maxOccurs="1" />
+      <xs:element name="clef" type="clef" minOccurs="1" maxOccurs="1" />
+    </xs:all>
+  </xs:complexType>
+
+  <xs:complexType name="interval-write-random">
+    <xs:all>
+      <xs:element name="clef-random" type="clef-random-choice" minOccurs="1" maxOccurs="1">
+        <xs:unique name="unique-interval-clef">
+          <xs:selector xpath="clef"/>
+          <xs:field xpath="."/>
+        </xs:unique>
+      </xs:element>
+      <xs:element name="direction-random" type="direction-random-choice" minOccurs="1" maxOccurs="1">
+        <xs:unique name="unique-interval-write-direction">
+          <xs:selector xpath="direction"/>
+          <xs:field xpath="."/>
+        </xs:unique>
+      </xs:element>
+      <xs:element name="size-random" type="size-random-choice" minOccurs="1" maxOccurs="1">
+        <xs:unique name="unique-interval-write-size">
+          <xs:selector xpath="size"/>
+          <xs:field xpath="."/>
+        </xs:unique>
+      </xs:element>
+      <xs:element name="quality-random" type="quality-random-choice" minOccurs="1" maxOccurs="1">
+        <xs:unique name="unique-interval-write-quality">
+          <xs:selector xpath="quality"/>
+          <xs:field xpath="."/>
+        </xs:unique>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+
+  <xs:complexType name="interval-identify-random">
+    <xs:all>
+      <xs:element name="clef-random" type="clef-random-choice" minOccurs="1" maxOccurs="1">
+        <xs:unique name="unique-interval-identify-clef">
+          <xs:selector xpath="clef"/>
+          <xs:field xpath="."/>
+        </xs:unique>
+      </xs:element>
+      <xs:element name="size-random" type="size-random-choice" minOccurs="1" maxOccurs="1">
+        <xs:unique name="unique-interval-identify-size">
+          <xs:selector xpath="size"/>
+          <xs:field xpath="."/>
+        </xs:unique>
+      </xs:element>
+      <xs:element name="quality-random" type="quality-random-choice" minOccurs="1" maxOccurs="1">
+        <xs:unique name="unique-interval-identify-quality">
+          <xs:selector xpath="quality"/>
+          <xs:field xpath="."/>
+        </xs:unique>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+
+  <xs:complexType name="scale-write">
+    <xs:all>
+      <xs:element name="clef" type="clef" minOccurs="1" maxOccurs="1" />
+      <xs:element name="tonic" type="notereg" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="displaykeysignature" type="xs:boolean" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="scaletype" type="scaletype" minOccurs="1" maxOccurs="1" />
+    </xs:all>
+  </xs:complexType>
+
+  <xs:complexType name="scale-write-random">
+    <xs:all>
+      <xs:element name="displaykeysignature" type="xs:boolean" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="clef-random" type="clef-random-choice" minOccurs="1" maxOccurs="1">
+        <xs:unique name="unique-scale-clef">
+          <xs:selector xpath="clef"/>
+          <xs:field xpath="."/>
+        </xs:unique>
+      </xs:element>
+      <xs:element name="scaletype-random" type="scaletype-random-choice" minOccurs="1" maxOccurs="1">
+        <xs:unique name="unique-scale-scaletype">
+          <xs:selector xpath="scaletype"/>
+          <xs:field xpath="."/>
+        </xs:unique>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+
+  <xs:complexType name="note">
+    <xs:sequence>
+      <xs:element name="letter" type="lettername"/>
+      <xs:element name="accidental" type="accidental"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="notereg">
+    <xs:complexContent>
+      <xs:extension base="note">
+        <xs:sequence>
+          <xs:element name="register" type="register"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="mode-random-choice">
+    <xs:sequence>
+      <xs:element name="mode" type="mode" minOccurs="1" maxOccurs="2" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="clef-random-choice">
+    <xs:sequence>
+      <xs:element name="clef" type="clef" minOccurs="1" maxOccurs="4" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="direction-random-choice">
+    <xs:sequence>
+      <xs:element name="direction" type="direction" minOccurs="1" maxOccurs="2" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="size-random-choice">
+    <xs:sequence>
+      <xs:element name="size" type="size" minOccurs="1" maxOccurs="12" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="quality-random-choice">
+    <xs:sequence>
+      <xs:element name="quality" type="quality" minOccurs="1" maxOccurs="5" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="scaletype-random-choice">
+    <xs:sequence>
+      <xs:element name="scaletype" type="scaletype" minOccurs="1" maxOccurs="4" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- Simple types -->
+
+  <xs:simpleType name="lettername">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[A-G]"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="accidental">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="n|#|b|x|bb"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="register">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="1"/>
+      <xs:maxInclusive value="6"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="clef">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="treble|bass|alto|tenor"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="mode">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="M|m"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="key">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="CnM|GnM|DnM|AnM|EnM|BnM|F\#M|C\#M|FnM|BbM|EbM|AbM|DbM|GbM|CbM|Anm|Enm|Bnm|F\#m|C\#m|G\#m|D\#m|A\#m|Dnm|Gnm|Cnm|Fnm|Bbm|Ebm|Abm"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="direction">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="above|below"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="quality">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="M|m|P|A|D"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="size">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="2"/>
+      <xs:maxInclusive value="8"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="scaletype">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="major|natural|harmonic|melodic"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+</xs:schema>

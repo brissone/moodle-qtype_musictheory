@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>GlyphProvider.js</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="../assets/css/logo.png" title=""></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: </em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="../classes/Control.Controller.html">Control.Controller</a></li>
+            
+                <li><a href="../classes/Control.InputDialog.html">Control.InputDialog</a></li>
+            
+                <li><a href="../classes/GUIState.FiguredBass.html">GUIState.FiguredBass</a></li>
+            
+                <li><a href="../classes/GUIState.FiguredBassRend.html">GUIState.FiguredBassRend</a></li>
+            
+                <li><a href="../classes/GUIState.FiguredBassRow.html">GUIState.FiguredBassRow</a></li>
+            
+                <li><a href="../classes/GUIState.KeySign.html">GUIState.KeySign</a></li>
+            
+                <li><a href="../classes/GUIState.KeySignAcc.html">GUIState.KeySignAcc</a></li>
+            
+                <li><a href="../classes/GUIState.Note.html">GUIState.Note</a></li>
+            
+                <li><a href="../classes/GUIState.NoteCol.html">GUIState.NoteCol</a></li>
+            
+                <li><a href="../classes/GUIState.Staff.html">GUIState.Staff</a></li>
+            
+                <li><a href="../classes/GUIState.StaffSystem.html">GUIState.StaffSystem</a></li>
+            
+                <li><a href="../classes/GUIState.State.html">GUIState.State</a></li>
+            
+                <li><a href="../classes/GUIState.TextInput.html">GUIState.TextInput</a></li>
+            
+                <li><a href="../classes/GUIState.Toolbar.html">GUIState.Toolbar</a></li>
+            
+                <li><a href="../classes/GUIState.ToolbarBtn.html">GUIState.ToolbarBtn</a></li>
+            
+                <li><a href="../classes/GUIState.TwoVoiceNoteCol.html">GUIState.TwoVoiceNoteCol</a></li>
+            
+                <li><a href="../classes/MusThGUI.html">MusThGUI</a></li>
+            
+                <li><a href="../classes/Render.CoordManager.html">Render.CoordManager</a></li>
+            
+                <li><a href="../classes/Render.GlyphProvider.html">Render.GlyphProvider</a></li>
+            
+                <li><a href="../classes/Render.KeySignRend.html">Render.KeySignRend</a></li>
+            
+                <li><a href="../classes/Render.NoteColRend.html">Render.NoteColRend</a></li>
+            
+                <li><a href="../classes/Render.NoteRend.html">Render.NoteRend</a></li>
+            
+                <li><a href="../classes/Render.Renderer.html">Render.Renderer</a></li>
+            
+                <li><a href="../classes/Render.StaffRend.html">Render.StaffRend</a></li>
+            
+                <li><a href="../classes/Render.StaffSystemRend.html">Render.StaffSystemRend</a></li>
+            
+                <li><a href="../classes/Render.ToolbarBtnRend.html">Render.ToolbarBtnRend</a></li>
+            
+                <li><a href="../classes/Render.ToolbarRend.html">Render.ToolbarRend</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+                <li><a href="../modules/MusThGUI.html">MusThGUI</a></li>
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: GlyphProvider.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+/* Copyright (c) 2013 Eric Brisson
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the &quot;Software&quot;), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ THE SOFTWARE. */
+
+/**
+ * The GlyphProvider object takes care of loading and returning
+ * image objects to be drawn on the canvas.
+ *
+ * @class GlyphProvider
+ * @namespace Render
+ *
+ * @constructor
+ * @param {Function} imagesLoadedCallback Function to callback once all images
+ * have been loaded.
+ * @return {undefined}
+ */
+MusThGUI.Render.GlyphProvider = function(imagesLoadedCallback) {
+
+  this.imagesLoadedCallback = imagesLoadedCallback;
+  this.numImagesLoaded = 0;
+  var parent = this;
+
+  this.wholeNote = new Image();
+  this.wholeNote.src = &#x27;data:image/png;base64, &#x27; +
+      &#x27;iVBORw0KGgoAAAANSUhEUgAAABEAAAAKCAQAAAD4dX0pAAAAv0lEQVQY01XNPUpDQRQG0PMe&#x27; +
+      &#x27;koASxUbEJiCCWLgBm5QWLsNScBGCYpc6G5C0QXegnUrAxs7Cn8agjbFTb4p383jeab755sxM&#x27; +
+      &#x27;oZoNew6s2rKg682NkVuveap04VMYaIGedyFMDCqwYiyEP+35Hdsi14cWJ7m505zDGg35yvjw&#x27; +
+      &#x27;j7S9zFFZl7s6DfJjnOm31K/r4wYJ00xXLLvPJyd2si7wJIRHS9W/Z4mmeon6QjjVqXwhrDmy&#x27; +
+      &#x27;r2vdtWebFl069w0ziIFGBFp4rmoAAAAASUVORK5CYII=&#x27;;
+  this.wholeNote.onload = function() {
+    parent.imgLoaded();
+  };
+
+  this.wholeNoteColor = new Image();
+  this.wholeNoteColor.src = &#x27;data:image/png;base64, &#x27; +
+      &#x27;iVBORw0KGgoAAAANSUhEUgAAABEAAAAKCAYAAABSfLWiAAABHElEQVQoz3XSv0tWURgH8M+9&#x27; +
+      &#x27;RFAgUaciW8IQokFoinCJOyn0BzjI3QSHUAz/B3UI3B07bkIQuZ9AN0FXXUM3b0PooJRvy3nh&#x27; +
+      &#x27;dvD9jt9fz+E5T6WHpu2eYxof8BCTuIMXOMM+vuEgxXA6zFU5XGMbszm8haUUw3XW32MHT3Lu&#x27; +
+      &#x27;HF9TDItQNW33AD/wJhsGuJdiuCpe+QrH/scvjNdY7RXAYVkAKYYTLBT0I3yp8akQ7hqNbZwW&#x27; +
+      &#x27;3Fx9i3GqabuxESV/cFRwf2ts3mJeHlEywEXB7db4jMNCWGna7nWx2CrFcIN3PfoY83WK4Xe+&#x27; +
+      &#x27;jfWe+BgH+WuHix00bbeJiUyt4W2K4bLqTRk0bfcUHzGTD+wZ9vATL3Ef37GRYrgcDvgHQYtR&#x27; +
+      &#x27;/HvclQsAAAAASUVORK5CYII=&#x27;;
+  this.wholeNoteColor.onload = function() {
+    parent.imgLoaded();
+  };
+
+  this.qNoteStemUp = new Image();
+  this.qNoteStemUp.src = &#x27;data:image/png;base64, &#x27; +
+      &#x27;iVBORw0KGgoAAAANSUhEUgAAAAsAAAAkCAQAAAD1XwhOAAAAgklEQVQoz+3OoQ0CQRAF0McG&#x27; +
+      &#x27;dwJBgkEQFF0gKAB1kgJQNIWCDlCECjgJCoNBEAwGzCIIlyO7JdwfM3n5mQxpBk4ZNRSDbFpu&#x27; +
+      &#x27;+S/deutZmXrZ2P+oby3WcxWhcG/gdxTOCb6ZJxjdgmXmkR1V7kRwTLozGHs0mhcT6GBkoRQc&#x27; +
+      &#x27;bFWe8AGFfUDrkMtAfAAAAABJRU5ErkJggg==&#x27;;
+  this.qNoteStemUp.onload = function() {
+    parent.imgLoaded();
+  };
+
+  this.qNoteStemUpColor = new Image();
+  this.qNoteStemUpColor.src = &#x27;data:image/png;base64, &#x27; +
+      &#x27;iVBORw0KGgoAAAANSUhEUgAAAAsAAAAkCAYAAABfVsDFAAAAtElEQVQ4y+3UMU7DQBAF0OcV&#x27; +
+      &#x27;qVIgYSkFFOkCp0AyuUJKTE3FIThB7uAKbkC1AlEDR0BIKa2koEFu0tiIwsAeYKd+M9r5I20h&#x27; +
+      &#x27;oaq6neEpSKsJTlMxyDjjjDPGwcjvc4gbnOMLd4hQ/EAl1rgcGbrBSdHDKT5w9Oebe/jyH0QX&#x27; +
+      &#x27;sMQiYb9twHViGA8Bxwmwi015FfCagC+Go9xi9wt6x1lsyufvnKu6nff5rvoBj7jHW2zKz6Fz&#x27; +
+      &#x27;DxqCIyfsYg9VAAAAAElFTkSuQmCC&#x27;;
+  this.qNoteStemUpColor.onload = function() {
+    parent.imgLoaded();
+  };
+
+  this.qNoteStemUpToolbar = new Image();
+  this.qNoteStemUpToolbar.src = &#x27;data:image/png;base64, &#x27; +
+      &#x27;iVBORw0KGgoAAAANSUhEUgAAAAkAAAAbCAQAAAAEhm0LAAAAcklEQVQoz+3IsRHBcBjG4UeS&#x27; +
+      &#x27;1pnApTGLAVhFZ4uUBjBBdApqhQFUHKXeXbhPQZF/cmcCv6/53oe0zKUjcpHp9acf1C+K7zNW&#x27; +
+      &#x27;Gnq4fWZhZu3q6a4WDCy8ROtMkxmCbQc2nBI4m7Bswd6c3FFjpHGwUtnxBmZsNrKFQDp/AAAA&#x27; +
+      &#x27;AElFTkSuQmCC&#x27;;
+  this.qNoteStemUpToolbar.onload = function() {
+    parent.imgLoaded();
+  };
+
+  this.qNoteStemDown = new Image();
+  this.qNoteStemDown.src = &#x27;data:image/png;base64, &#x27; +
+      &#x27;iVBORw0KGgoAAAANSUhEUgAAAAsAAAAkCAQAAAD1XwhOAAAAgUlEQVQoz+3OsQkCQRAF0HcX&#x27; +
+      &#x27;CIIaiQ2YWYFgFRZwFRymNmNmFZqYWIJgBWtmYOIlgmewIKe7Hej/2WOYmULM0Fxl5mFv4xJx&#x27; +
+      &#x27;IWjfvZvAskOxR6aahNtSre87V27prJUMnsnxGJqPNVujuD7oqR3srLvHg0HyiVI2f/5dLvJ8&#x27; +
+      &#x27;8kz5Beo8SqCGCGcrAAAAAElFTkSuQmCC&#x27;;
+  this.qNoteStemDown.onload = function() {
+    parent.imgLoaded();
+  };
+
+  this.qNoteStemDownColor = new Image();
+  this.qNoteStemDownColor.src = &#x27;data:image/png;base64, &#x27; +
+      &#x27;iVBORw0KGgoAAAANSUhEUgAAAAsAAAAkCAYAAABfVsDFAAAAtUlEQVQ4y+3RMWoCURSG0fMG&#x27; +
+      &#x27;m0DEYkqraJcVCEJgliCppwmkyi7cgqXlq9LY2ziNO7DIBrRzAjYKBkKaBCRB89KG+erD5Ycb&#x27; +
+      &#x27;nFSUdRsDlLjFG+aYVjHfhBM4xDO6frbHTfiEI8xcbhmKsu5jhatfsAxPKRDbDA/SGmfoJMCX&#x27; +
+      &#x27;KuaTLPHq3dfmA3ZnUESnivkWWnhFD4+4xxELTKqYH3z72roo6+uULambG9zgBv97HP6CV3hP&#x27; +
+      &#x27;wR/6KieA6EyktQAAAABJRU5ErkJggg==&#x27;;
+  this.qNoteStemDownColor.onload = function() {
+    parent.imgLoaded();
+  };
+
+  this.qNoteStemDownToolbar = new Image();
+  this.qNoteStemDownToolbar.src = &#x27;data:image/png;base64, &#x27; +
+      &#x27;iVBORw0KGgoAAAANSUhEUgAAAAkAAAAcCAQAAAAZg12zAAAAXklEQVQoz2NggIAchoMM9xiO&#x27; +
+      &#x27;MRRBuOoMvxj+w2E5A4MUEhcCGdahCfxiZPjNwMKADOIZ0NScYWBgYPjO8A/K/cswBaLwLAMD&#x27; +
+      &#x27;Qy3DdIYIhN6zDGiAiYFhVIgGQs/QhQAJby5DVGAeeQAAAABJRU5ErkJggg==&#x27;;
+  this.qNoteStemDownToolbar.onload = function() {
+    parent.imgLoaded();
+  };
+
+  this.tClef = new Image();
+  this.tClef.src = &#x27;data:image/png;base64, &#x27; +
+      &#x27;iVBORw0KGgoAAAANSUhEUgAAABwAAABKCAYAAACo2jR+AAAFQElEQVRo3r2Zf2iVVRjHP7t3&#x27; +
+      &#x27;6q5m5DRjtcpZK3HSpB9Ds2TpSjPsh5SYKRhIRFBmRf9EVNSKSowKs5KKjFLoB6UWVAtaP9yW&#x27; +
+      &#x27;RjHtd+lgZqZbuWXbnbV7+6PvW4fDOe99773v9sBh5915zvm+z3Oe9/l1kxRHC4AlwDdAH0NM&#x27; +
+      &#x27;1wJpIAt8CUwcSrCLJVHWGE8CpUMBNgY4aoEFY+5QAL7jAcsC7wMj4wRbHAIWjFlxArY5AF4H&#x27; +
+      &#x27;bgfWS9VtcYHNBboNoD6gXoZSIp5ntXai75BEHoAXAuWa/wEsBz4E/hYIwDYgAywtVrpjgDcN&#x27; +
+      &#x27;6R708NVIrc3FAlYALQLryqGFo0Cnz1qjqvQ44BTN7w/hO0P3mTTUXxDgCCCl+VshfPUCKwOq&#x27; +
+      &#x27;izWaBPAb0OFZnwBMl4QJYHQxgIGafs8hXSBVGvjOxRTV2XZJsp8868cCy4BRes4ItGCaAHwE&#x27; +
+      &#x27;7PGsz7G8z7fFfvhdwPcejZTKw9gusGi6TW+fMu41sFrbv14aB+BCYFDqs1/CHD1xOe9TgQPA&#x27; +
+      &#x27;Y3qeJ59qA66MMzz9COwAJslqbbBdwNg4ATcqOnR4gu+iuNOLG0Ii/TN5eq6cdD6w3wPWGnea&#x27; +
+      &#x27;OAP42QP2uRFJYqEaRw4ajB1xG8mkkDv7DBgfJ9hk+UQX2F/AdYUcmghx1s8BZzrWdilMnR6X&#x27; +
+      &#x27;ZElgrUeyQ7LGT4HNiuxF0xIPWCdQJZ61UvdJcZi/C+wIcKVVF2aBqcWAlauwdAHeavFO1f8X&#x27; +
+      &#x27;FAP4kFIDG+xVB2+lHPndhRgIwBSg0ZFL7gYu8lh3PTBNecw5suzgvP5cGdlNDsm69SKuun6j&#x27; +
+      &#x27;VdgEI600/y7FT29F+4Fj82qHVOuAwxFqxKxUPs8FON7BvNt6w1HAhohA9lhlA860GAaBNRbP&#x27; +
+      &#x27;8gLBnEnVamuxHzjXWC8D9nqSpV81vxN4KcT3HjA19qi1aDd4VjoOaJaXadRzpcqz44HL9TIm&#x27; +
+      &#x27;f8ZIvnjEWtxiAb5rrW831i7T/xY7Uv+d1r6dQGUC+NNi3mc9TzPmB5VqBNRkNIpM6gWut86a&#x27; +
+      &#x27;AlQnHHWA/TzOmN9nrQ0APwBne8LYemV5wedXnlCoMWm29fy1Md/uOLhJ9+nqXKzTS/2XTCd0&#x27; +
+      &#x27;we2WIzDpY2OecRy6RVpwBeseq04cm9BnsNUqLE163JhXOQ5tkYXWejxZpzFvT0jH2xTNA9/a&#x27; +
+      &#x27;YDB1AA9rfo9VOQVS7LOMC4dWDtsdkJeNb+YVR9ukVetrHIduUsHq6lwc0r424ARzYbo8QlZJ&#x27; +
+      &#x27;70xH9dSs9c1GKAJYoaz8NGtPnRzJIHCvS/ylRivrbXWgbLoDeM0yklrtOc/ifcEIBmN84eoa&#x27; +
+      &#x27;q8vr69vYGUC3ip3gfi+RU8kAZ+UKyFcZkjZFyBzG6fN5Xvur5JWywPx8MrivpP+9eh4dkqo8&#x27; +
+      &#x27;xb/N9mUC6lDqkReVArfIw6SB91TXz5eR1cqtXQ28IaBeXUWFT31EVFmNEqo6WeyAHPIXMq5f&#x27; +
+      &#x27;FGhvlkuLhYIW2AiNkfqbBE6W6hsZRmpRlMi7eiqU2uXiksMF2Kq/s4YLsFnf74wwsw+jlNrP&#x27; +
+      &#x27;KXn63hz8e+RZagsBnA3cqKbrRDmBrUobwijj8cGhdIGkyTqS5A059vaT588IKbVDwjLphpD9&#x27; +
+      &#x27;aRU7kY1mspV546mgfM2IhLqMkQGrI2jB10xYJM+zKR/AXJbo+3Umpch/BPgknzssU2rnu78+&#x27; +
+      &#x27;RwAuUVTJAlcU4qAXqttkAg3IddU5CtpV4ik4SiQV9YNybD/wAP//LoEysBVG9fyEtV4QVQBP&#x27; +
+      &#x27;G3XjQWP0GG3nOVHdZNQAXC6JGyRFiVLJF/XNRqZ/APf0/Zema8OiAAAAAElFTkSuQmCC&#x27;;
+  this.tClef.onload = function() {
+    parent.imgLoaded();
+  };
+
+  this.bClef = new Image();
+  this.bClef.src = &#x27;data:image/png;base64, &#x27; +
+      &#x27;iVBORw0KGgoAAAANSUhEUgAAABsAAAAgCAQAAABJYMuwAAAB6ElEQVQ4y5XUT0hUURTH8c+M&#x27; +
+      &#x27;jpn9FQwjLReSCAlFUBlJEEHUIkhwEVKQixZCi9omLYqwXavauIho0yKUKAzaBbUzQaIsWxRk&#x27; +
+      &#x27;/lklRtZU6m3h6+mMM/r8PXicd8/93nvuPeedlEVtVq1FoyYZ7/3yzCdTZhRQKnoHF11R7pEh&#x27; +
+      &#x27;49apc0KbrAG97ppVRL2Cc0qjZRaWOioI5n21txCS0Sc4VsBzWFYQ/HUmHitTCWndggtFojgv&#x27; +
+      &#x27;CIJZB6IYnhrWxjYTJt3ywwdd1udhVYYi8Bs4JAhGaYmGF57nNuaBD2LfdaQMmtRJdw4W3MjD&#x27; +
+      &#x27;2mPPCxXYYidpZctOk6vB2Kq3HdNGSevPm1aR9/0ztrba9N9Me2c8Z9r9ggUBQVjq6PQnjn98&#x27; +
+      &#x27;IStLtCv2TWnKdZ3yxJjP7mhYlrn6GBtRk+8skVEqXSDhp2PspQ1SzupRXho558wVqZP9sTVs&#x27; +
+      &#x27;RrWH2JO2slIOxnYf5iHvEguoxkgU4mQ00qjDqmqNT9ZuDXodQR+X5G9VLd7i8eRQlbEIeiyT&#x27; +
+      &#x27;HLsXQVklyaHWGGpIDjVHXeR7wR5TRPv8jvY6khw6aSLqGM3JoZvRTq/UJr/y/qildiVFKl0y&#x27; +
+      &#x27;JZjWY3fOX72COnwRBLftSJalWlfNyBpyLXndpVxWZ8Bbb9ZS4f8AkCq9FpfsQ28AAAAASUVO&#x27; +
+      &#x27;RK5CYII=&#x27;;
+  this.bClef.onload = function() {
+    parent.imgLoaded();
+  };
+
+  this.cClef = new Image();
+  this.cClef.src = &#x27;data:image/png;base64, &#x27; +
+      &#x27;iVBORw0KGgoAAAANSUhEUgAAABgAAAAmCAQAAAB0DpOuAAACIUlEQVQ4y5XVS4iOURgH8N/H&#x27; +
+      &#x27;NzOIJCXl0kwuoYhpopmFGBs2g71y2UlZIMYl5ZoGSzYWUjakkA0l1+QuFE3kmiRyK5fBfF6L&#x27; +
+      &#x27;78zL9zlHed7Fc/7/9/2/T+e5nFOQKdtaO5QstyfgPsZrNUJJp9Oe+Vmme4nbZBct9cghx9W5&#x27; +
+      &#x27;4YIxPa+y8LSjZBkYJ5Pp0hS+adXtm8Z0hL2gTkfAZzxQ66YJKcHz4D/lzAGwX01csNptvLUz&#x27; +
+      &#x27;Zy6DJqOLUcFr0/T1w9ecKYUUzS0msvTd9wp8KfiJqbSmbFxKUFCI8ldSgpUaKvCw4J+kBFuN&#x27; +
+      &#x27;qMAjgz8RF4xVZ3YFMxA88CIu2IV2vf9gWsEan2OCejNCQ/QJTI0lWO9YvDUWGACmu6cNE5wz&#x27; +
+      &#x27;2Hzbobpw3zTaEtZzvbPONm+dN0tXvL13exPwkfC+troifwq6c/TesHjpUnXIFPLh/YegYJ8P&#x27; +
+      &#x27;YFC+k5rKSNURrpoTVou0anbYDWe15wmOzvSGnHsU0npLZl5aUO+jTOZ8/t+iNzIrUpt+6nZo&#x27; +
+      &#x27;h57cdzuK3eb9LShveRU2h7Es20mwUb9qwUtw3SenIvwUw1N12OVVJDJtqUNgcxXuDL6hmKx0&#x27; +
+      &#x27;3Kb+76lxPxWhVl8/fMlxS/DX4hGGuOyDJ6bmTDGcf2fjgg6NGGJDzjSDux7HBT2HSv+cWRiG&#x27; +
+      &#x27;t6u6l2YmL5SsjOKb7jTZQXcN1aJokk2uWOxhWsAdLUaZoV5Jp6bfl+Iv+S6xhZ7Q1G4AAAAA&#x27; +
+      &#x27;SUVORK5CYII=&#x27;;
+  this.cClef.onload = function() {
+    parent.imgLoaded();
+  };
+
+  this.sharp = new Image();
+  this.sharp.src = &#x27;data:image/png;base64, &#x27; +
+      &#x27;iVBORw0KGgoAAAANSUhEUgAAAAkAAAAcCAQAAAAZg12zAAAAxElEQVQoz6XQMUpDQRCA4W8T&#x27; +
+      &#x27;BUEwjZWxEAyrRDyFjdhJLmDrKeIFPIu3iFpbCAqmiIKQREHB1xjWYo0vT1IomWlmfgbmnwGW&#x27; +
+      &#x27;waELqIEbu1jVLNGOFZBKVIn/o4mExtJ3+yo6sufBkJZjqZI+foGhn7IwVjizQfLo06noxFXe&#x27; +
+      &#x27;GGyq67nzLsxKhD+rpnz2VHVN1LZlZMy2ruRZMdUJeXgmBirmLzqaPLk1cS46cJkH15Hso+M6&#x27; +
+      &#x27;S4xAfZFHz0Fv+mVzLyLkJV//bUd1gpAvqQAAAABJRU5ErkJggg==&#x27;;
+  this.sharp.onload = function() {
+    parent.imgLoaded();
+  };
+
+  this.sharpColor = new Image();
+  this.sharpColor.src = &#x27;data:image/png;base64, &#x27; +
+      &#x27;iVBORw0KGgoAAAANSUhEUgAAAAkAAAAcCAYAAACzipU4AAABLElEQVQ4y8XSv0ocURQG8N+u&#x27; +
+      &#x27;I1EirDBFBBUMSv4UsnVsZDofQATB6S208wEUfABbu8B0gZAXME7nA2gngoIowjoKK4iNbJo7&#x27; +
+      &#x27;OCy7SwrF09zvu+fjnnO+ewiRpMVwBS8lafGn5HUvcZKkxbeAP2Kyl+grRiq800vUN95e9Fz2&#x27; +
+      &#x27;lKRFo1YZu4MZfMAWVtFCK0rSYg7zQXvR9eIYPkc4xuiAlm7rPQRPuAvnDppRSFxhApv4iwWs&#x27; +
+      &#x27;51m8DfU8i2t5Fk9hCEd5Fp/iAbV+FtRe3cxO9YO7zVzEDVawgQhFlKTFLNaC9hcaXSsTRzir&#x27; +
+      &#x27;XHzqUfpyUOP3WMaPCNdo4wv2sI9p7OZZ/Lucrpln8feAfwYzx6uT1/Msvq2UGHqf9f0vURvn&#x27; +
+      &#x27;JYkqiTM8BnyAwzLxDz5LRoo+XtMwAAAAAElFTkSuQmCC&#x27;;
+  this.sharpColor.onload = function() {
+    parent.imgLoaded();
+  };
+
+  this.sharpFigBass = new Image();
+  this.sharpFigBass.src = &#x27;data:image/png;base64, &#x27; +
+      &#x27;iVBORw0KGgoAAAANSUhEUgAAAAcAAAAPCAMAAAAf3yWMAAAA/1BMVEVOTk4AAAAiIiLw8PDP&#x27; +
+      &#x27;z8+Hh4fMzMwjIyNTU1MJCQlhYWGcnJwCAgIUFBQTExMWFhYcHBz4+Pjv7++EhIQkJCT6+vrX&#x27; +
+      &#x27;19f39/d/f3/R0dH8/PzW1tb29vY2NjbNzc2GhoZQUFBGRkagoKCdnZ1UVFSoqKirq6uVlZVK&#x27; +
+      &#x27;Skqvr696enqWlpZkZGSOjo6NjY3+/v5dXV1JSUlISEgqKirm5ubU1NRFRUX09PTd3d1eXl59&#x27; +
+      &#x27;fX0SEhLg4OD19fViYmK5ublEREQyMjKxsbGJiYkeHh6AgIAEBAQ6OjodHR22trb9/f3p6em+&#x27; +
+      &#x27;vr6IiIiKiopBQUFzc3PQ0NBSUlLc3NzGxsappTWHAAAAAXRSTlMAQObYZgAAAAFiS0dEAIgF&#x27; +
+      &#x27;HUgAAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfdChgTJA0sUEKyAAAAg0lEQVQIHQF4&#x27; +
+      &#x27;AIf/AAAHAAAHAAAAAAcAAAcAAAAABwAABwAAAAAHAAAzBwcABwEBAQcHBwAHB0ZBBwAAAAAH&#x27; +
+      &#x27;AAAHAAAAAAcAAAcAAAAABwAABwAAAAAHUDAOAQcABw8BAQcBBwAHB0c6BwAAAAAHAAAHAAAA&#x27; +
+      &#x27;AAcAAAcAAAAABwAABwAAojUC3ILbwfkAAAAASUVORK5CYII=&#x27;;
+  this.sharpFigBass.onload = function() {
+    parent.imgLoaded();
+  };
+
+
+  this.flat = new Image();
+  this.flat.src = &#x27;data:image/png;base64, &#x27; +
+      &#x27;iVBORw0KGgoAAAANSUhEUgAAAAgAAAAYCAQAAABt0HSbAAAAkUlEQVQY083OsQpBARhA4e/e&#x27; +
+      &#x27;JK9gttoUs8kjGIwWm8HDeANZlAxKmU3KbLAahYi68RukLk/gbOdMh6WKLy4aeU09xHf44Z/C&#x27; +
+      &#x27;U8dWOOgrcLMVNjIhDAgrZUU9mbDnqgmabsI9lbmAqiIWqUSCkpYUU07qaLgLM8kn7IT5++So&#x27; +
+      &#x27;ZiSMkcDZRBgqfF5D6Obn19p5fQFtRC8aqop0JQAAAABJRU5ErkJggg==&#x27;;
+  this.flat.onload = function() {
+    parent.imgLoaded();
+  };
+
+  this.flatColor = new Image();
+  this.flatColor.src = &#x27;data:image/png;base64, &#x27; +
+      &#x27;iVBORw0KGgoAAAANSUhEUgAAAAgAAAAYCAYAAADH2bwQAAAA6ElEQVQoz+3RoUpEURDG8d9e&#x27; +
+      &#x27;LrrFoNdkVDAJRq0HBMFgMCl6mtVkUxB8A4tgEYSLCzbBIIJwn0Cw+gSmg0Usuq7Bs7As6z6B&#x27; +
+      &#x27;HwwzMH+Y+WaEmB5DTAv+UIFVzI4DuuiNA8bqH/hVmfN3iGkXJ1jEG05xXmIC17nxjC9M4wxl&#x27; +
+      &#x27;gTYS5rCCgwzBYYkPHDd19QohppcMlJgp8In3gb2W8lh4KNDKIcTUxvqAu9thm8tYy/Udrsoh&#x27; +
+      &#x27;oINJ3Dd1tdk/VA/dEFMH87hp6mojxNTqAwWOsIML7EFTV73+Jaewhf2mri5H/eIJ26Oa8AMr&#x27; +
+      &#x27;MTaLY1mrzwAAAABJRU5ErkJggg==&#x27;;
+  this.flatColor.onload = function() {
+    parent.imgLoaded();
+  };
+
+  this.flatFigBass = new Image();
+  this.flatFigBass.src = &#x27;data:image/png;base64, &#x27; +
+      &#x27;iVBORw0KGgoAAAANSUhEUgAAAAYAAAAPCAMAAADwHU6yAAAAolBMVEWnp6ckJCQAAAAvLy/q&#x27; +
+      &#x27;6upoaGgnJydwcHAqKiodHR1ERESdnZ22trakpKRMTExPT0/19fXv7+/29vaurq61tbXY2NgM&#x27; +
+      &#x27;DAzMzMxUVFSNjY0iIiKsrKwCAgIBAQEpKSn9/f2lpaUyMjLPz88FBQWWlpbS0tLDw8PQ0NA+&#x27; +
+      &#x27;Pj4mJiYSEhKHh4cXFxeoqKg1NTUTExMREREZGRnf39+cnJwDAwOenp4V5r8VAAAAAXRSTlMA&#x27; +
+      &#x27;QObYZgAAAAFiS0dEAIgFHUgAAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfdChgTKjDq&#x27; +
+      &#x27;uyMtAAAAMUlEQVQI12NgZAADvBQjlAIzmA3BtCaQyaQIVsLECKIYmUAadHTAKkEkAxtEnxyY&#x27; +
+      &#x27;BAAquAFD8JXS1AAAAABJRU5ErkJggg==&#x27;;
+  this.flatFigBass.onload = function() {
+    parent.imgLoaded();
+  };
+
+  this.natural = new Image();
+  this.natural.src = &#x27;data:image/png;base64, &#x27; +
+      &#x27;iVBORw0KGgoAAAANSUhEUgAAAAgAAAAeCAQAAAC7iZeGAAAAv0lEQVQY05XQMUtCcRQF8N97&#x27; +
+      &#x27;/InEskEIHJpyDQdBEPEjiBAEra429F36IO1tDuVUWyDRUJD5CQJ5kr2Gl+iLQt650znce+65&#x27; +
+      &#x27;lwuXcngw2qSxxCIv/MJ2IeTYnjhggRNNDceiINV1r+ZAORtJVTT/M12uTadePKvqc+fJqZZD&#x27; +
+      &#x27;DKRB5NX1T99O5hEViJ5kW5bgSNtZFqzuSs++kl24lW7WH+evss48KusEE7EbY+/enOsEQ7HE&#x27; +
+      &#x27;J/gimBd9clHhw/wbjBksgn0qOpgAAAAASUVORK5CYII=&#x27;;
+  this.natural.onload = function() {
+    parent.imgLoaded();
+  };
+
+  this.naturalColor = new Image();
+  this.naturalColor.src = &#x27;data:image/png;base64, &#x27; +
+      &#x27;iVBORw0KGgoAAAANSUhEUgAAAAgAAAAeCAYAAAARgF8NAAAA8UlEQVQoz7XSvUrEUBCG4Sch&#x27; +
+      &#x27;iOJfkcrCSluxsBKxyAWIiAo2abRTxHvxFtILllbprCwFQQsFf7p0wrKL69okcFzcgMoOnOac&#x27; +
+      &#x27;98x8883I8uoky6szIyLGIXbagC56bUBr/B9IRj1keTWDuAF69eUK1rCKJUQJBtjM8uoGC5jH&#x27; +
+      &#x27;dFhigLn6569E9n8S+YJHPCDFdowI99itz15ZpEe4bDJEeCqL9GIo20SoIRqL1d2wi35g8SLW&#x27; +
+      &#x27;sR8atZzl1Tm2MIspTH4DcPrncQ+7+YbbemAbCe7qTFe4xiuecdAAx83ylkX6EXTzCUlZpJ3x&#x27; +
+      &#x27;Lu14gXd0vgC9Azb8J/WQGQAAAABJRU5ErkJggg==&#x27;;
+  this.naturalColor.onload = function() {
+    parent.imgLoaded();
+  };
+
+  this.naturalFigBass = new Image();
+  this.naturalFigBass.src = &#x27;data:image/png;base64, &#x27; +
+      &#x27;iVBORw0KGgoAAAANSUhEUgAAAAYAAAAPCAMAAADwHU6yAAAAilBMVEWVlZUSEhIAAACsrKw4&#x27; +
+      &#x27;ODizs7OWlpavr6+tra329vb7+/siIiJHR0cpKSkCAgKXl5fS0tKysrLa2to2NjYuLi74+PgL&#x27; +
+      &#x27;CwtQUFA+Pj7k5OQwMDCRkZEhISFiYmKgoKC8vLze3t6Dg4PJycmjo6MGBgZfX18zMzOUlJQm&#x27; +
+      &#x27;Jia9vb1gYGD+/v5ubm4EBAQYyJtoAAAAAXRSTlMAQObYZgAAAAFiS0dEAIgFHUgAAAAJcEhZ&#x27; +
+      &#x27;cwAACxMAAAsTAQCanBgAAAAHdElNRQfdChgTGQlB1c4VAAAALUlEQVQI12NgZAADDIqJkZuB&#x27; +
+      &#x27;kYkJQqkogiiQBAYlzcCNrJIJJMgAkQMBbhgPADXrASb/uuETAAAAAElFTkSuQmCC&#x27;;
+  this.naturalFigBass.onload = function() {
+    parent.imgLoaded();
+  };
+
+  this.doubleSharp = new Image();
+  this.doubleSharp.src = &#x27;data:image/png;base64, &#x27; +
+      &#x27;iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAQAAAAnOwc2AAAAdUlEQVQI11XOoQ3CYBiE4ae0&#x27; +
+      &#x27;Bo0sSccoYQoMIzTFoNiEMaowKCZgDBKCQKCKa/Ihfpq0J+7yirscIYQDqBMtTBUpCgNyS1Bh&#x27; +
+      &#x27;oLATVs6eep3GSzYW90JoE4ybX7w9EuRqpa2LjZurD9b+l07gOL/Ug/t8M5u4Hy58IZKVjiCm&#x27; +
+      &#x27;AAAAAElFTkSuQmCC&#x27;;
+  this.doubleSharp.onload = function() {
+    parent.imgLoaded();
+  };
+
+  this.doubleSharpColor = new Image();
+  this.doubleSharpColor.src = &#x27;data:image/png;base64, &#x27; +
+      &#x27;iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAn0lEQVQY03XQIQ7CUBAE0Peh&#x27; +
+      &#x27;Bl08xwDbG2CQlSSgMJwEBboOywFq6TFICIKkrjgSML/hh6RrZpKZ3Z3dUJTtx6+2dZUfoSjb&#x27; +
+      &#x27;Oa69MDJc6QAZ3pGPMUm0WcR3b1zG7hyHomzv6HDGGg+EkI4vynYVDbCpq/w0lPEV8YlbKoR4&#x27; +
+      &#x27;3SdmOmOBKS7YoUHI0hdgX1d5E2PscBha3SW8SYV/YxjgvqQXJ1gHIRdPAAAAAElFTkSuQmCC&#x27;;
+  this.doubleSharpColor.onload = function() {
+    parent.imgLoaded();
+  };
+
+  this.doubleFlat = new Image();
+  this.doubleFlat.src = &#x27;data:image/png;base64, &#x27; +
+      &#x27;iVBORw0KGgoAAAANSUhEUgAAAA4AAAAXCAQAAACRmLYJAAAA/klEQVQoz83SvyvEcRgH8Nf9&#x27; +
+      &#x27;8CM5m0vpNt0gZ7Io/4AYmA0Gf4JRSTGKusmg3HDKbLzIopRkc4NNSnR+lStX+H4Mvs7dcrP3&#x27; +
+      &#x27;9H6ed8/T+/lBxZBfbFrWgrQJGfdxNCjbLkZCMwotHEkd8M/Fvk6jFHy1L4GGnHEZt3pEmDLs&#x27; +
+      &#x27;04UbaorqguBDUHEmCIJneYK6bUtqcfLEon2R4IiGabAqCE7jA7wLoqS6a5AHVTAqhcskEug1&#x27; +
+      &#x27;2+J+UheK6dj1nH6RFwl0W0DVYTqu3JCyJSuFFWPezHvlUc6BYAclewqCBwM/DZ+UBWug5Nid&#x27; +
+      &#x27;cyOtrzEf893mMDGuzDT5urLeP+kbi0lPkzNfV2AAAAAASUVORK5CYII=&#x27;;
+  this.doubleFlat.onload = function() {
+    parent.imgLoaded();
+  };
+
+  this.doubleFlatColor = new Image();
+  this.doubleFlatColor.src = &#x27;data:image/png;base64, &#x27; +
+      &#x27;iVBORw0KGgoAAAANSUhEUgAAAA4AAAAXCAYAAAA7kX6CAAABdklEQVQ4y+3TPWhUURAF4G/X&#x27; +
+      &#x27;VYM/hT4VIWojWIixskgwzQvapdBASCEPRCzsUwpCQLARCwtBLC/RdIKFohavslIsU6QTC0V9&#x27; +
+      &#x27;RNQiwurazMJl2U2xtVMNM5xzz8ycq6yaV2XVHDUQZdXcLatm2Yjo4Bz24/NA7zCObAf8i96Q&#x27; +
+      &#x27;Xm9EHbSNGf+BYwL3jHuOKfzZzgCwVVbNcZwNF33E7jCHsmpmMYku3tWp+NAqq+YrnuAa9gZR&#x27; +
+      &#x27;N0hfB9F09tgmpts4FKBHuI5vmZKL2MJVPI6ZD+BBB7+xWKfiRciaxEoA39SpKKP+HAuYwFwb&#x27; +
+      &#x27;v7CRSTmV5etZfho7In/f32orWCcwP2LrM9gZ+f3OwJYvYV9sczMj3IUrmYpnnfxF3A459+IT&#x27; +
+      &#x27;96XdxBn8xOU6Fd/b2R3XcBIP61Qsx/F7ZdVM4Ra+4Fidio3+DC3cwRJW6lTcyKSfwEu8xfk6&#x27; +
+      &#x27;FT9y5xwM/Qt1Kp5moC7m4iSzw7y6jvkBEHzCKi4M8+o/M7lkrKLCiyoAAAAASUVORK5CYII=&#x27;;
+  this.doubleFlatColor.onload = function() {
+    parent.imgLoaded();
+  };
+
+};
+
+/**
+ * Callback function called whenever an image has finished loading. Once
+ * all images have loaded, call the controller&#x27;s callback function so that
+ * canvas initialization can complete.
+ *
+ * @method imgLoaded
+ * @return {undefined}
+ */
+MusThGUI.Render.GlyphProvider.prototype.imgLoaded = function() {
+
+  this.numImagesLoaded += 1;
+  if (this.numImagesLoaded === 24) {
+    this.imagesLoadedCallback();
+  }
+
+};
+
+/**
+ * Returns the specified accidental image.
+ *
+ * @method getAccidental
+ * @param {String} accType The type of accidental image to return (&#x27;n&#x27;, &#x27;#&#x27;,
+ * &#x27;b&#x27;, &#x27;x&#x27;, &#x27;bb&#x27;).
+ * @param {Boolean} inColor If true, returns a color version of the
+ * accidental.
+ * @param {Boolean} figuredBass If true, returns a version to display within the
+ * figured bass (only available for sharps, flat and naturals).
+ * @return {Image} Returns the accidental image.
+ */
+MusThGUI.Render.GlyphProvider.prototype.getAccidental = function(accType,
+    inColor, figuredBass) {
+
+  switch (accType) {
+    case &#x27;n&#x27;:
+      if (figuredBass) {
+        return this.naturalFigBass;
+      }
+      else {
+        return (inColor) ? this.naturalColor : this.natural;
+      }
+      break;
+    case &#x27;#&#x27;:
+      if (figuredBass) {
+        return this.sharpFigBass;
+      }
+      else {
+        return (inColor) ? this.sharpColor : this.sharp;
+      }
+      break;
+    case &#x27;b&#x27;:
+      if (figuredBass) {
+        return this.flatFigBass;
+      }
+      else {
+        return (inColor) ? this.flatColor : this.flat;
+      }
+      break;
+    case &#x27;x&#x27;:
+      return (inColor) ? this.doubleSharpColor : this.doubleSharp;
+    case &#x27;bb&#x27;:
+      return (inColor) ? this.doubleFlatColor : this.doubleFlat;
+  }
+
+};
+
+/**
+ * Returns the specified accidental image.
+ *
+ * @method getNoteValue
+ * @param {String} noteValueType The type of accidental image to return
+ * (&#x27;whole&#x27;, &#x27;quarter_stem_up&#x27;, &#x27;quarter_stem_down&#x27;).
+ * @param {Boolean} inColor If true, returns a color version of the
+ * accidental.
+ * @param {Boolean} forToolbar If true, returns a smaller version for toolbar
+ * display (only available for quarter notes).
+ * @return {Image} Returns the note value image.
+ */
+MusThGUI.Render.GlyphProvider.prototype.getNoteValue = function(noteValueType,
+    inColor, forToolbar) {
+
+  switch (noteValueType) {
+    case &#x27;whole&#x27;:
+      return (inColor) ? this.wholeNoteColor : this.wholeNote;
+    case &#x27;quarter_stem_up&#x27;:
+      if (forToolbar) {
+        return this.qNoteStemUpToolbar;
+      }
+      else {
+        return (inColor) ? this.qNoteStemUpColor : this.qNoteStemUp;
+      }
+      break;
+    case &#x27;quarter_stem_down&#x27;:
+      if (forToolbar) {
+        return this.qNoteStemDownToolbar;
+      }
+      else {
+        return (inColor) ? this.qNoteStemDownColor : this.qNoteStemDown;
+      }
+  }
+
+};
+
+/**
+ * Returns the specified clef image.
+ *
+ * @method getClef
+ * @param {String} clefType The type of clef (&#x27;treble&#x27;, &#x27;bass&#x27;, &#x27;alto&#x27;,
+ * &#x27;tenor&#x27;).
+ * @return {Image} Returns the clef image.
+ */
+MusThGUI.Render.GlyphProvider.prototype.getClef = function(clefType) {
+
+  switch (clefType) {
+    case &#x27;treble&#x27;:
+      return this.tClef;
+    case &#x27;bass&#x27;:
+      return this.bClef;
+    case &#x27;alto&#x27;:
+    case &#x27;tenor&#x27;:
+      return this.cClef;
+  }
+
+};
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

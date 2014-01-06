@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>NoteRend.js</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="../assets/css/logo.png" title=""></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: </em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="../classes/Control.Controller.html">Control.Controller</a></li>
+            
+                <li><a href="../classes/Control.InputDialog.html">Control.InputDialog</a></li>
+            
+                <li><a href="../classes/GUIState.FiguredBass.html">GUIState.FiguredBass</a></li>
+            
+                <li><a href="../classes/GUIState.FiguredBassRend.html">GUIState.FiguredBassRend</a></li>
+            
+                <li><a href="../classes/GUIState.FiguredBassRow.html">GUIState.FiguredBassRow</a></li>
+            
+                <li><a href="../classes/GUIState.KeySign.html">GUIState.KeySign</a></li>
+            
+                <li><a href="../classes/GUIState.KeySignAcc.html">GUIState.KeySignAcc</a></li>
+            
+                <li><a href="../classes/GUIState.Note.html">GUIState.Note</a></li>
+            
+                <li><a href="../classes/GUIState.NoteCol.html">GUIState.NoteCol</a></li>
+            
+                <li><a href="../classes/GUIState.Staff.html">GUIState.Staff</a></li>
+            
+                <li><a href="../classes/GUIState.StaffSystem.html">GUIState.StaffSystem</a></li>
+            
+                <li><a href="../classes/GUIState.State.html">GUIState.State</a></li>
+            
+                <li><a href="../classes/GUIState.TextInput.html">GUIState.TextInput</a></li>
+            
+                <li><a href="../classes/GUIState.Toolbar.html">GUIState.Toolbar</a></li>
+            
+                <li><a href="../classes/GUIState.ToolbarBtn.html">GUIState.ToolbarBtn</a></li>
+            
+                <li><a href="../classes/GUIState.TwoVoiceNoteCol.html">GUIState.TwoVoiceNoteCol</a></li>
+            
+                <li><a href="../classes/MusThGUI.html">MusThGUI</a></li>
+            
+                <li><a href="../classes/Render.CoordManager.html">Render.CoordManager</a></li>
+            
+                <li><a href="../classes/Render.GlyphProvider.html">Render.GlyphProvider</a></li>
+            
+                <li><a href="../classes/Render.KeySignRend.html">Render.KeySignRend</a></li>
+            
+                <li><a href="../classes/Render.NoteColRend.html">Render.NoteColRend</a></li>
+            
+                <li><a href="../classes/Render.NoteRend.html">Render.NoteRend</a></li>
+            
+                <li><a href="../classes/Render.Renderer.html">Render.Renderer</a></li>
+            
+                <li><a href="../classes/Render.StaffRend.html">Render.StaffRend</a></li>
+            
+                <li><a href="../classes/Render.StaffSystemRend.html">Render.StaffSystemRend</a></li>
+            
+                <li><a href="../classes/Render.ToolbarBtnRend.html">Render.ToolbarBtnRend</a></li>
+            
+                <li><a href="../classes/Render.ToolbarRend.html">Render.ToolbarRend</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+                <li><a href="../modules/MusThGUI.html">MusThGUI</a></li>
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: NoteRend.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+/* Copyright (c) 2013 Eric Brisson
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the &quot;Software&quot;), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ THE SOFTWARE. */
+
+/**
+ * The NoteRend object takes care of drawing a note on a staff.
+ *
+ * @class NoteRend
+ * @namespace Render
+ *
+ * @constructor
+ * @param {Canvas} can An html5 canvas element.
+ * @param {Render.CoordManager} coordMgr The library&#x27;s coordinate
+ * manager.
+ * @param {Render.GlyphProvider} glyphProvider The library&#x27;s glyph
+ * provider.
+ * @param {GUIState.Note} note The note to be rendered.
+ * @param {Number} noteColID The zero-based ID of this note column containing
+ * the note.
+ * @param {Number} staffID The zero-based ID of the staff where the note is to
+ * be rendered.
+ * @param {String} clef The staff&#x27;s clef.
+ * @param {Number} keySignTotalAccColumns The total number of accidentals
+ * columns in the key signature.
+ * @param {Boolean} displayAcc Indicates whether the note&#x27;s accidental should
+ * be displayed.
+ * @param {Number} accPos A number indicating whether and how much an
+ * accidental should be offset to the left of the note (e.g. 0 = no offset, 1 =
+ * one offset level to the left, 2 = two offset levels to teh left, etc.).
+ * @return {undefined}
+ */
+MusThGUI.Render.NoteRend = function(can, coordMgr, glyphProvider, note,
+    noteColID, staffID, clef, keySignTotalAccColumns, displayAcc, accPos) {
+
+  this.can = can;
+  this.coordMgr = coordMgr;
+  this.note = note;
+  this.noteColID = noteColID;
+  this.staffID = staffID;
+  this.clef = clef;
+  this.keySignTotalAccColumns = keySignTotalAccColumns;
+  this.displayAcc = displayAcc;
+  this.accPos = accPos;
+  this.accColWidth = 15;
+  this.glyphProvider = glyphProvider;
+
+};
+
+/**
+ * Draws the note on the staff.
+ *
+ * @method draw
+ * @param {Boolean} noteOffset Indicates whether the note should be offset to
+ * the right so that its note head doesn&#x27;t overlap with a note displayed a step
+ * below.
+ * @return {undefined}
+ */
+MusThGUI.Render.NoteRend.prototype.draw = function(noteOffset) {
+
+  var notePos = this.coordMgr.getNotePos(this.note.letter, this.note.register,
+      this.staffID, this.clef, this.noteColID, this.keySignTotalAccColumns);
+  notePos.x -= 8;
+
+  // Draw note head
+
+  var ctx = this.can.getContext(&#x27;2d&#x27;);
+
+  // Make ghost note transparent
+  if (this.note.isGhost === true) {
+    ctx.globalAlpha = 0.5;
+  }
+  else {
+    ctx.globalAlpha = 1;
+  }
+  var noteImageWidth, x, y, offsetSize;
+  var img = this.glyphProvider.getNoteValue(this.note.noteValue,
+      this.note.editable, false);
+  if (this.note.noteValue === &#x27;whole&#x27;) {
+    noteImageWidth = img.width;
+    offsetSize = (noteOffset) ? 15 : 0;
+    x = notePos.x + offsetSize + 1;
+    y = notePos.y - img.height / 2;
+    ctx.drawImage(img, x, y);
+  }
+  else if (this.note.noteValue === &#x27;quarter_stem_up&#x27;) {
+    noteImageWidth = img.width;
+    offsetSize = (noteOffset) ? 11 : 0;
+    x = notePos.x + 1 + offsetSize;
+    y = notePos.y - img.height / 2 - 13;
+    ctx.drawImage(img, x, y);
+  }
+  else if (this.note.noteValue === &#x27;quarter_stem_down&#x27;) {
+    noteImageWidth = img.width;
+    offsetSize = (noteOffset) ? 11 : 0;
+    x = notePos.x + 1 + offsetSize;
+    y = notePos.y - img.height / 2 + 13;
+    ctx.drawImage(img, x, y);
+  }
+
+  // Draw ledger lines
+  var ledgerLines = this.coordMgr.getLedgerLinesY(this.staffID, this.clef,
+      this.note.letter, this.note.register);
+
+
+  if (this.note.editable) {
+    ctx.strokeStyle = &#x27;#415ded&#x27;;
+  }
+  else {
+    ctx.strokeStyle = &#x27;black&#x27;;
+  }
+  ctx.lineWidth = 1;
+  var i;
+  for (i = 0; i &lt; ledgerLines.length; i++) {
+    var lLineY = ledgerLines[i];
+    if (i === 0 || !(noteOffset)) {
+      ctx.beginPath();
+      ctx.moveTo(notePos.x - 4, lLineY);
+      ctx.lineTo(notePos.x + noteImageWidth + offsetSize + 5, lLineY);
+      ctx.stroke();
+    }
+  }
+  ctx.strokeStyle = &#x27;black&#x27;;
+
+  // Draw accidental
+  img = this.glyphProvider.getAccidental(this.note.accidental,
+      this.note.editable, false);
+  if (this.displayAcc) {
+    if (this.note.accidental === &#x27;#&#x27;) {
+      ctx.drawImage(img, notePos.x - (img.width) - 6 -
+          this.accPos * this.accColWidth, notePos.y - 14);
+    }
+    else if (this.note.accidental === &#x27;b&#x27;) {
+      ctx.drawImage(img, notePos.x - (img.width) - 7 -
+          this.accPos * this.accColWidth, notePos.y - 17);
+    }
+    else if (this.note.accidental === &#x27;bb&#x27;) {
+      ctx.drawImage(img, notePos.x - (img.width) - 5 -
+          this.accPos * this.accColWidth, notePos.y - 17);
+    }
+    else if (this.note.accidental === &#x27;x&#x27;) {
+      ctx.drawImage(img, notePos.x - (img.width) - 7 -
+          this.accPos * this.accColWidth, notePos.y - 5);
+    }
+    else if (this.note.accidental === &#x27;n&#x27;) {
+      ctx.drawImage(img, notePos.x - (img.width) - 7 -
+          this.accPos * this.accColWidth, notePos.y - 15);
+    }
+  }
+
+  ctx.globalAlpha = 1;
+
+};
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

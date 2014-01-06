@@ -1,0 +1,3406 @@
+{
+    "project": {},
+    "files": {
+        "Controller.js": {
+            "name": "Controller.js",
+            "modules": {},
+            "classes": {
+                "Control.Controller": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Control": 1
+            }
+        },
+        "CoordManager.js": {
+            "name": "CoordManager.js",
+            "modules": {},
+            "classes": {
+                "Render.CoordManager": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Render": 1
+            }
+        },
+        "FiguredBass.js": {
+            "name": "FiguredBass.js",
+            "modules": {},
+            "classes": {
+                "GUIState.FiguredBass": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "GUIState": 1
+            }
+        },
+        "FiguredBassRend.js": {
+            "name": "FiguredBassRend.js",
+            "modules": {},
+            "classes": {
+                "GUIState.FiguredBassRend": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "GUIState": 1
+            }
+        },
+        "FiguredBassRow.js": {
+            "name": "FiguredBassRow.js",
+            "modules": {},
+            "classes": {
+                "GUIState.FiguredBassRow": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "GUIState": 1
+            }
+        },
+        "GlyphProvider.js": {
+            "name": "GlyphProvider.js",
+            "modules": {},
+            "classes": {
+                "Render.GlyphProvider": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Render": 1
+            }
+        },
+        "InputDialog.js": {
+            "name": "InputDialog.js",
+            "modules": {},
+            "classes": {
+                "Control.InputDialog": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Control": 1
+            }
+        },
+        "KeySign.js": {
+            "name": "KeySign.js",
+            "modules": {},
+            "classes": {
+                "GUIState.KeySign": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "GUIState": 1
+            }
+        },
+        "KeySignAcc.js": {
+            "name": "KeySignAcc.js",
+            "modules": {},
+            "classes": {
+                "GUIState.KeySignAcc": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "GUIState": 1
+            }
+        },
+        "KeySignRend.js": {
+            "name": "KeySignRend.js",
+            "modules": {},
+            "classes": {
+                "Render.KeySignRend": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Render": 1
+            }
+        },
+        "MusThGUI.js": {
+            "name": "MusThGUI.js",
+            "modules": {
+                "MusThGUI": 1
+            },
+            "classes": {
+                "MusThGUI": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "Note.js": {
+            "name": "Note.js",
+            "modules": {},
+            "classes": {
+                "GUIState.Note": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "GUIState": 1
+            }
+        },
+        "NoteCol.js": {
+            "name": "NoteCol.js",
+            "modules": {},
+            "classes": {
+                "GUIState.NoteCol": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "GUIState": 1
+            }
+        },
+        "NoteColRend.js": {
+            "name": "NoteColRend.js",
+            "modules": {},
+            "classes": {
+                "Render.NoteColRend": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Render": 1
+            }
+        },
+        "NoteRend.js": {
+            "name": "NoteRend.js",
+            "modules": {},
+            "classes": {
+                "Render.NoteRend": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Render": 1
+            }
+        },
+        "Renderer.js": {
+            "name": "Renderer.js",
+            "modules": {},
+            "classes": {
+                "Render.Renderer": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Render": 1
+            }
+        },
+        "Staff.js": {
+            "name": "Staff.js",
+            "modules": {},
+            "classes": {
+                "GUIState.Staff": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "GUIState": 1
+            }
+        },
+        "StaffRend.js": {
+            "name": "StaffRend.js",
+            "modules": {},
+            "classes": {
+                "Render.StaffRend": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Render": 1
+            }
+        },
+        "StaffSystem.js": {
+            "name": "StaffSystem.js",
+            "modules": {},
+            "classes": {
+                "GUIState.StaffSystem": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "GUIState": 1
+            }
+        },
+        "StaffSystemRend.js": {
+            "name": "StaffSystemRend.js",
+            "modules": {},
+            "classes": {
+                "Render.StaffSystemRend": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Render": 1
+            }
+        },
+        "State.js": {
+            "name": "State.js",
+            "modules": {},
+            "classes": {
+                "GUIState.State": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "GUIState": 1
+            }
+        },
+        "TextInput.js": {
+            "name": "TextInput.js",
+            "modules": {},
+            "classes": {
+                "GUIState.TextInput": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "GUIState": 1
+            }
+        },
+        "Toolbar.js": {
+            "name": "Toolbar.js",
+            "modules": {},
+            "classes": {
+                "GUIState.Toolbar": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "GUIState": 1
+            }
+        },
+        "ToolbarBtn.js": {
+            "name": "ToolbarBtn.js",
+            "modules": {},
+            "classes": {
+                "GUIState.ToolbarBtn": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "GUIState": 1
+            }
+        },
+        "ToolbarBtnRend.js": {
+            "name": "ToolbarBtnRend.js",
+            "modules": {},
+            "classes": {
+                "Render.ToolbarBtnRend": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Render": 1
+            }
+        },
+        "ToolbarRend.js": {
+            "name": "ToolbarRend.js",
+            "modules": {},
+            "classes": {
+                "Render.ToolbarRend": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Render": 1
+            }
+        },
+        "TwoVoiceNoteCol.js": {
+            "name": "TwoVoiceNoteCol.js",
+            "modules": {},
+            "classes": {
+                "GUIState.TwoVoiceNoteCol": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "GUIState": 1
+            }
+        }
+    },
+    "modules": {
+        "MusThGUI": {
+            "name": "MusThGUI",
+            "submodules": {},
+            "classes": {
+                "Control.Controller": 1,
+                "Render.CoordManager": 1,
+                "GUIState.FiguredBass": 1,
+                "GUIState.FiguredBassRend": 1,
+                "GUIState.FiguredBassRow": 1,
+                "Render.GlyphProvider": 1,
+                "Control.InputDialog": 1,
+                "GUIState.KeySign": 1,
+                "GUIState.KeySignAcc": 1,
+                "Render.KeySignRend": 1,
+                "MusThGUI": 1,
+                "GUIState.Note": 1,
+                "GUIState.NoteCol": 1,
+                "Render.NoteColRend": 1,
+                "Render.NoteRend": 1,
+                "Render.Renderer": 1,
+                "GUIState.Staff": 1,
+                "Render.StaffRend": 1,
+                "GUIState.StaffSystem": 1,
+                "Render.StaffSystemRend": 1,
+                "GUIState.State": 1,
+                "GUIState.TextInput": 1,
+                "GUIState.Toolbar": 1,
+                "GUIState.ToolbarBtn": 1,
+                "Render.ToolbarBtnRend": 1,
+                "Render.ToolbarRend": 1,
+                "GUIState.TwoVoiceNoteCol": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "GUIState": 1,
+                "Render": 1
+            },
+            "tag": "module",
+            "file": "TwoVoiceNoteCol.js",
+            "line": 21,
+            "description": "The Music Theory GUI module allows for display and entry of notes in various\ncontexts that are suitable for music theory exercises.\n\nThe user interface is created by instantiating a {{#crossLink \"MusThGUI\"}}\n{{/crossLink}} object.\n\nHere is an example describing how to use this module:\n\n1) Add an HTMLtag for a small canvas in the web page source, with a unique 'id'\nattribute.\n\n\t<canvas id=\"myUniqueID\" width=\"1\" height=\"1\"/>\n\n2) Define an XML string that will describe the interface's initial state. Here\nis an example that would be well-suited for a scale question:\n\n\tvar initXML = '<MusThGUI>' +\n\t'<StaffSystem maxLedgerLines=\"3\">' +\n\t'<Staff clef=\"treble\">' +\n\t'<KeySign totalAccColumns=\"7\" >' +\n\t'<Accidental type=\"#\" letter=\"F\" register=\"5\" editable=\"false\" />' +\n\t'<Accidental type=\"#\" letter=\"C\" register=\"5\" editable=\"false\" />' +\n\t'<Accidental type=\"#\" letter=\"G\" register=\"5\" editable=\"false\" />' +\n\t'</KeySign>' +\n\t'<NoteColumns>' +\n\t'<NoteColumn maxNotes=\"1\" />' +\n\t'<NoteColumn maxNotes=\"1\" />' +\n\t'<NoteColumn maxNotes=\"1\" />' +\n\t'<NoteColumn maxNotes=\"1\" />' +\n\t'<NoteColumn maxNotes=\"1\" />' +\n\t'<NoteColumn maxNotes=\"1\" />' +\n\t'<NoteColumn maxNotes=\"1\" />' +\n\t'<NoteColumn maxNotes=\"1\" />' +\n\t'</NoteColumns>' +\n\t'</Staff>' +\n\t'</StaffSystem>' +\n\t'<Toolbars>' +\n\t'<AccidentalToolbar>' +\n\t'<Button symbol=\"n\" />' +\n\t'<Button symbol=\"#\" />' +\n\t'<Button symbol=\"b\" />' +\n\t'<Button symbol=\"##\" />' +\n\t'<Button symbol=\"bb\" />' +\n\t'</AccidentalToolbar>' +\n\t'</Toolbars>' +\n\t'</MusThGUI>';\n\nFor more details on the XML schema that the interface will accept and return,\nsee the 'valid_input_xml.xsd' file in the module's XML directory.\n\n3) Define a callback function that the interface will use to message back its\ncurrent state. This function will be called whenever the user changes the\ninterface's state (i.e. by adding or deleting notes on the staff).\n\n\tvar callBack = function(stateXML) {\n\t//stateXML will contain the most up-to-date canvas state.\n\t};\n\n4) Create a {{#crossLink \"MusThGUI\"}}{{/crossLink}} object using the canvas id\nfrom step 1, the XML string from step 2 and the callback function from step 3:\n\n\tvar musicCanvas = new MusThGUI('myUniqueID', initXML, callBack, true);\n\nArgument 4 specifies whether the interface should be editable after\ninitialization. Use a false value to display a static interface.\n\nOnce instantiated, the MusThGUI object will display an interactive music canvas\non the web page. Whenever the user makes any changes, the callback function will\nbe called and the most up-to-date canvas state will be returned, as an XML\nstring."
+        }
+    },
+    "classes": {
+        "Control.Controller": {
+            "name": "Control.Controller",
+            "shortname": "Control.Controller",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "MusThGUI",
+            "namespace": "Control",
+            "file": "Controller.js",
+            "line": 21,
+            "description": "The Controller object instantiates the canvas and handles mouse\nevents.",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "canID",
+                    "description": "The id of the HTMl 5 canvas to which this application\nwill be bound.",
+                    "type": "String"
+                },
+                {
+                    "name": "stateXML",
+                    "description": "The canvas state as xml.",
+                    "type": "String"
+                },
+                {
+                    "name": "callBackFunc",
+                    "description": "A function that the controller will use\nto send the current canvas state back the caller, whenever the state changes.\nThis function should accept one argument which provides the current state of\nthe canvas, as an xml string.",
+                    "type": "Function"
+                },
+                {
+                    "name": "editable",
+                    "description": "Specifies whether the user can change the UI\nafter initialization.",
+                    "type": "Boolean"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            }
+        },
+        "Render.CoordManager": {
+            "name": "Render.CoordManager",
+            "shortname": "Render.CoordManager",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "MusThGUI",
+            "namespace": "Render",
+            "file": "CoordManager.js",
+            "line": 21,
+            "description": "The CoordManager object provides canvas coordinates for rendering\npurposes. It also takes care of converting mouse event coordinates into\ncanvas elements.",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "state",
+                    "description": "The canvas state.",
+                    "type": "GUIState.State"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            }
+        },
+        "GUIState.FiguredBass": {
+            "name": "GUIState.FiguredBass",
+            "shortname": "GUIState.FiguredBass",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "MusThGUI",
+            "namespace": "GUIState",
+            "file": "FiguredBass.js",
+            "line": 21,
+            "description": "The FiguredBass object represents a note column's figured bass\nnotation.",
+            "is_constructor": 1,
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            }
+        },
+        "GUIState.FiguredBassRend": {
+            "name": "GUIState.FiguredBassRend",
+            "shortname": "GUIState.FiguredBassRend",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "MusThGUI",
+            "namespace": "GUIState",
+            "file": "FiguredBassRend.js",
+            "line": 21,
+            "description": "The FiguredBassRend object takes care of drawing the figuration\nnotation on the canvas.",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "can",
+                    "description": "An html5 canvas element.",
+                    "type": "Canvas"
+                },
+                {
+                    "name": "coordMgr",
+                    "description": "The library's coordinate\nmanager.",
+                    "type": "Render.CoordManager"
+                },
+                {
+                    "name": "glyphProvider",
+                    "description": "The library's glyph\nprovider.",
+                    "type": "Render.GlyphProvider"
+                },
+                {
+                    "name": "figBass",
+                    "description": "The figured bass to be\nrendered.",
+                    "type": "GUIState.FiguredBass"
+                },
+                {
+                    "name": "staffID",
+                    "description": "The zero-based ID of the staff.",
+                    "type": "Number"
+                },
+                {
+                    "name": "colID",
+                    "description": "The zero-based ID of the note column.",
+                    "type": "Number"
+                },
+                {
+                    "name": "totalAccCols",
+                    "description": "The number of accidental columns\nin the key signature portion of the staff.",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            }
+        },
+        "GUIState.FiguredBassRow": {
+            "name": "GUIState.FiguredBassRow",
+            "shortname": "GUIState.FiguredBassRow",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "MusThGUI",
+            "namespace": "GUIState",
+            "file": "FiguredBassRow.js",
+            "line": 21,
+            "description": "The FiguredBassRow object represents a row in a figured bass\nnotation (e.g. in the figured notation for a second inversion triad (64),\nboth 6 and 4 contitute a row of the figured bass).",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "rowText",
+                    "description": "The text to display in the figured bass row.",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            }
+        },
+        "Render.GlyphProvider": {
+            "name": "Render.GlyphProvider",
+            "shortname": "Render.GlyphProvider",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "MusThGUI",
+            "namespace": "Render",
+            "file": "GlyphProvider.js",
+            "line": 21,
+            "description": "The GlyphProvider object takes care of loading and returning\nimage objects to be drawn on the canvas.",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "imagesLoadedCallback",
+                    "description": "Function to callback once all images\nhave been loaded.",
+                    "type": "Function"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            }
+        },
+        "Control.InputDialog": {
+            "name": "Control.InputDialog",
+            "shortname": "Control.InputDialog",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "MusThGUI",
+            "namespace": "Control",
+            "file": "InputDialog.js",
+            "line": 21,
+            "description": "The InputDialog object represents a javascript dialog used to\nenter an answer in one of the canvas' text input. The use of this dialog\nallows the use of form elements to format the answer (in particular, the use\nof select elements).",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "controller",
+                    "description": "The library's controller\nobject.",
+                    "type": "Control.Controller"
+                },
+                {
+                    "name": "stateXML",
+                    "description": "The canvas state as xml. The xml specifies the\nhtml code to include in the dialog.",
+                    "type": "XMLDoc"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            }
+        },
+        "GUIState.KeySign": {
+            "name": "GUIState.KeySign",
+            "shortname": "GUIState.KeySign",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "MusThGUI",
+            "namespace": "GUIState",
+            "file": "KeySign.js",
+            "line": 21,
+            "description": "The KeySign object represents a staff's key signature.",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "totalAccColumns",
+                    "description": "The total number of accidentals columns\navailable in the key signature. Providing a total number of columns that is\nhigher than the number of accidentals initially added to the key signature\nallows the user to enter additional accidentals in the key signature.",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            }
+        },
+        "GUIState.KeySignAcc": {
+            "name": "GUIState.KeySignAcc",
+            "shortname": "GUIState.KeySignAcc",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "MusThGUI",
+            "namespace": "GUIState",
+            "file": "KeySignAcc.js",
+            "line": 21,
+            "description": "The KeySignAcc object represents key signature accidentals.",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "type",
+                    "description": "The accidental's type (('n' [natural], '#' [sharp],\n'b' [flat], 'x' [double sharp], 'bb' [double flat]).",
+                    "type": "String"
+                },
+                {
+                    "name": "letter",
+                    "description": "The accidental's letter name.",
+                    "type": "String"
+                },
+                {
+                    "name": "register",
+                    "description": "The accidental's register.",
+                    "type": "Number"
+                },
+                {
+                    "name": "editable",
+                    "description": "Indicates whether the accidental can be edited\nafter initialization.",
+                    "type": "Boolean"
+                },
+                {
+                    "name": "isGhost",
+                    "description": "Indicates whether the accidental is to be\ndisplayed as a ghost symbol.",
+                    "type": "Boolean"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            }
+        },
+        "Render.KeySignRend": {
+            "name": "Render.KeySignRend",
+            "shortname": "Render.KeySignRend",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "MusThGUI",
+            "namespace": "Render",
+            "file": "KeySignRend.js",
+            "line": 21,
+            "description": "The KeySignRend object takes care of drawing a staff's key\nsignature.",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "can",
+                    "description": "An html5 canvas element.",
+                    "type": "Canvas"
+                },
+                {
+                    "name": "coordMgr",
+                    "description": "The library's coordinate\nmanager.",
+                    "type": "Render.CoordManager"
+                },
+                {
+                    "name": "glyphProvider",
+                    "description": "The library's glyph\nprovider.",
+                    "type": "Render.GlyphProvider"
+                },
+                {
+                    "name": "staffID",
+                    "description": "The zero-based ID of the staff where the key\nsignature is to be rendered.",
+                    "type": "Number"
+                },
+                {
+                    "name": "clef",
+                    "description": "The staff's clef.",
+                    "type": "String"
+                },
+                {
+                    "name": "keySign",
+                    "description": "The key signature to render.",
+                    "type": "GUIState.KeySign"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            }
+        },
+        "MusThGUI": {
+            "name": "MusThGUI",
+            "shortname": "MusThGUI",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "MusThGUI",
+            "namespace": "",
+            "file": "MusThGUI.js",
+            "line": 96,
+            "description": "The MusThGUI object is used to interact with outside components.",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "canID",
+                    "description": "The id of the HTMl 5 canvas to which this application\nwill be bound.",
+                    "type": "String"
+                },
+                {
+                    "name": "stateXML",
+                    "description": "The canvas state as xml.",
+                    "type": "String"
+                },
+                {
+                    "name": "respCallBack",
+                    "description": "A function that the controller will use\nto send the current canvas answer back the caller, whenever the state\nchanges. This function should accept one argument which provides the\ncurrent XML output.",
+                    "type": "Function"
+                },
+                {
+                    "name": "editable",
+                    "description": "Specifies whether the user can change the UI\nafter initialization.",
+                    "type": "Boolean"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            }
+        },
+        "GUIState.Note": {
+            "name": "GUIState.Note",
+            "shortname": "GUIState.Note",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "MusThGUI",
+            "namespace": "GUIState",
+            "file": "Note.js",
+            "line": 21,
+            "description": "The Note object represents a staff note.",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "letter",
+                    "description": "The note's letter name.",
+                    "type": "String"
+                },
+                {
+                    "name": "register",
+                    "description": "The note's register.",
+                    "type": "Number"
+                },
+                {
+                    "name": "accidental",
+                    "description": "The note's accidental (('n' [natural],\n'#' [sharp], 'b' [flat], 'x' [double sharp], 'bb' [double flat]).",
+                    "type": "String"
+                },
+                {
+                    "name": "noteValue",
+                    "description": "The note's value ('whole', 'quarter_stem_up',\n'quarter_stem_down').",
+                    "type": "String"
+                },
+                {
+                    "name": "editable",
+                    "description": "Indicates whether the note can be edited\nafter initialization.",
+                    "type": "Boolean"
+                },
+                {
+                    "name": "isGhost",
+                    "description": "Indicates whether the note is to be\ndisplayed as a ghost symbol.",
+                    "type": "Boolean"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            }
+        },
+        "GUIState.NoteCol": {
+            "name": "GUIState.NoteCol",
+            "shortname": "GUIState.NoteCol",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "MusThGUI",
+            "namespace": "GUIState",
+            "file": "NoteCol.js",
+            "line": 21,
+            "description": "The NoteCol object represents a note column on a staff.",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "maxNotes",
+                    "description": "The maximum number of notes that the column can\ncontain.",
+                    "type": "Number"
+                },
+                {
+                    "name": "textInput",
+                    "description": "The text input associated\nwith the note column (null if no text input is present).",
+                    "type": "GUIState.TextInput"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            }
+        },
+        "Render.NoteColRend": {
+            "name": "Render.NoteColRend",
+            "shortname": "Render.NoteColRend",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "MusThGUI",
+            "namespace": "Render",
+            "file": "NoteColRend.js",
+            "line": 21,
+            "description": "The NoteColRend object takes care of drawing the elements of a\nstaff's note column.",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "can",
+                    "description": "An html5 canvas element.",
+                    "type": "Canvas"
+                },
+                {
+                    "name": "coordMgr",
+                    "description": "The library's coordinate\nmanager.",
+                    "type": "Render.CoordManager"
+                },
+                {
+                    "name": "glyphProvider",
+                    "description": "The library's glyph\nprovider.",
+                    "type": "Render.GlyphProvider"
+                },
+                {
+                    "name": "staff",
+                    "description": "The staff containing this note\ncolumn.",
+                    "type": "GUIState.Staff"
+                },
+                {
+                    "name": "staffID",
+                    "description": "The zero-based ID of the staff where containing the\nnote column.",
+                    "type": "Number"
+                },
+                {
+                    "name": "noteColID",
+                    "description": "The zero-based ID of this note column.",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            }
+        },
+        "Render.NoteRend": {
+            "name": "Render.NoteRend",
+            "shortname": "Render.NoteRend",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "MusThGUI",
+            "namespace": "Render",
+            "file": "NoteRend.js",
+            "line": 21,
+            "description": "The NoteRend object takes care of drawing a note on a staff.",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "can",
+                    "description": "An html5 canvas element.",
+                    "type": "Canvas"
+                },
+                {
+                    "name": "coordMgr",
+                    "description": "The library's coordinate\nmanager.",
+                    "type": "Render.CoordManager"
+                },
+                {
+                    "name": "glyphProvider",
+                    "description": "The library's glyph\nprovider.",
+                    "type": "Render.GlyphProvider"
+                },
+                {
+                    "name": "note",
+                    "description": "The note to be rendered.",
+                    "type": "GUIState.Note"
+                },
+                {
+                    "name": "noteColID",
+                    "description": "The zero-based ID of this note column containing\nthe note.",
+                    "type": "Number"
+                },
+                {
+                    "name": "staffID",
+                    "description": "The zero-based ID of the staff where the note is to\nbe rendered.",
+                    "type": "Number"
+                },
+                {
+                    "name": "clef",
+                    "description": "The staff's clef.",
+                    "type": "String"
+                },
+                {
+                    "name": "keySignTotalAccColumns",
+                    "description": "The total number of accidentals\ncolumns in the key signature.",
+                    "type": "Number"
+                },
+                {
+                    "name": "displayAcc",
+                    "description": "Indicates whether the note's accidental should\nbe displayed.",
+                    "type": "Boolean"
+                },
+                {
+                    "name": "accPos",
+                    "description": "A number indicating whether and how much an\naccidental should be offset to the left of the note (e.g. 0 = no offset, 1 =\none offset level to the left, 2 = two offset levels to teh left, etc.).",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            }
+        },
+        "Render.Renderer": {
+            "name": "Render.Renderer",
+            "shortname": "Render.Renderer",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "MusThGUI",
+            "namespace": "Render",
+            "file": "Renderer.js",
+            "line": 21,
+            "description": "The Renderer object takes care of drawing all canvas elements.",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "can",
+                    "description": "An html5 canvas element.",
+                    "type": "Canvas"
+                },
+                {
+                    "name": "state",
+                    "description": "The canvas' state.",
+                    "type": "GUIState.State"
+                },
+                {
+                    "name": "coordMgr",
+                    "description": "The library's coordinate\nmanager.",
+                    "type": "Render.CoordManager"
+                },
+                {
+                    "name": "glyphProvider",
+                    "description": "The library's glyph\nprovider.",
+                    "type": "Render.GlyphProvider"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            }
+        },
+        "GUIState.Staff": {
+            "name": "GUIState.Staff",
+            "shortname": "GUIState.Staff",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "MusThGUI",
+            "namespace": "GUIState",
+            "file": "Staff.js",
+            "line": 21,
+            "description": "The Staff object represents a staff.",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "clef",
+                    "description": "The staff's clef.",
+                    "type": "String"
+                },
+                {
+                    "name": "keySign",
+                    "description": "The staff's key signature.",
+                    "type": "GUIState.KeySign"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            }
+        },
+        "Render.StaffRend": {
+            "name": "Render.StaffRend",
+            "shortname": "Render.StaffRend",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "MusThGUI",
+            "namespace": "Render",
+            "file": "StaffRend.js",
+            "line": 21,
+            "description": "The StaffRend object takes care of drawing a staff.",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "can",
+                    "description": "An html5 canvas element.",
+                    "type": "Canvas"
+                },
+                {
+                    "name": "coordMgr",
+                    "description": "The library's coordinate\nmanager.",
+                    "type": "Render.CoordManager"
+                },
+                {
+                    "name": "glyphProvider",
+                    "description": "The library's glyph\nprovider.",
+                    "type": "Render.GlyphProvider"
+                },
+                {
+                    "name": "staff",
+                    "description": "The staff to be rendered.",
+                    "type": "GUIState.Staff"
+                },
+                {
+                    "name": "staffID",
+                    "description": "The zero-based ID of the staff to be rendered.",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            }
+        },
+        "GUIState.StaffSystem": {
+            "name": "GUIState.StaffSystem",
+            "shortname": "GUIState.StaffSystem",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "MusThGUI",
+            "namespace": "GUIState",
+            "file": "StaffSystem.js",
+            "line": 21,
+            "description": "The StaffSystem object stores the canvas state's staff system.",
+            "is_constructor": 1,
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            }
+        },
+        "Render.StaffSystemRend": {
+            "name": "Render.StaffSystemRend",
+            "shortname": "Render.StaffSystemRend",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "MusThGUI",
+            "namespace": "Render",
+            "file": "StaffSystemRend.js",
+            "line": 21,
+            "description": "The StaffSystemRend object takes care of drawing a staff system.",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "can",
+                    "description": "An html5 canvas element.",
+                    "type": "Canvas"
+                },
+                {
+                    "name": "coordMgr",
+                    "description": "The library's coordinate\nmanager.",
+                    "type": "Render.CoordManager"
+                },
+                {
+                    "name": "glyphProvider",
+                    "description": "The library's glyph\nprovider.",
+                    "type": "Render.GlyphProvider"
+                },
+                {
+                    "name": "staffSystem",
+                    "description": "The staff system to be\nrendered.",
+                    "type": "GUIState.StaffSystem"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            }
+        },
+        "GUIState.State": {
+            "name": "GUIState.State",
+            "shortname": "GUIState.State",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "MusThGUI",
+            "namespace": "GUIState",
+            "file": "State.js",
+            "line": 21,
+            "description": "The State object stores the canvas context\n(e.g. number of staves, clefs, key signature, notes, toolbars, input dialog,\netc).",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "editable",
+                    "description": "Specifies whether the state can be changed after\ninitialization.",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            }
+        },
+        "GUIState.TextInput": {
+            "name": "GUIState.TextInput",
+            "shortname": "GUIState.TextInput",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "MusThGUI",
+            "namespace": "GUIState",
+            "file": "TextInput.js",
+            "line": 21,
+            "description": "The TextInput object represents a staff.",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "value",
+                    "description": "The text input's value.",
+                    "type": "String"
+                },
+                {
+                    "name": "editable",
+                    "description": "Indicates whether the text input's value can be\nchanged after initialization.",
+                    "type": "Boolean"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            }
+        },
+        "GUIState.Toolbar": {
+            "name": "GUIState.Toolbar",
+            "shortname": "GUIState.Toolbar",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "MusThGUI",
+            "namespace": "GUIState",
+            "file": "Toolbar.js",
+            "line": 21,
+            "description": "The Toolbar object represents canvas toolbars.",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "name",
+                    "description": "The name of the toolbar ('acc' for an accidental\ntoolbar, 'noteVal' for a note value  toolbar).",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            }
+        },
+        "GUIState.ToolbarBtn": {
+            "name": "GUIState.ToolbarBtn",
+            "shortname": "GUIState.ToolbarBtn",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "MusThGUI",
+            "namespace": "GUIState",
+            "file": "ToolbarBtn.js",
+            "line": 21,
+            "description": "Represents the state of a toolbar button.",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "symbol",
+                    "description": "A string indicating the type of musical symbol to\ndisplay in a toolbar button ('n' [natural], '#' [sharp], 'b' [flat],\n'x' [double sharp], 'bb' [double flat], 'whole' [whole note],\n'quarter_stem_up' [quarter note with stem up],\n'quarter_stem_down' [quarter note with stem down]).",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            }
+        },
+        "Render.ToolbarBtnRend": {
+            "name": "Render.ToolbarBtnRend",
+            "shortname": "Render.ToolbarBtnRend",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "MusThGUI",
+            "namespace": "Render",
+            "file": "ToolbarBtnRend.js",
+            "line": 21,
+            "description": "The ToolbarBtnRend object takes care of drawing a toolbar button.",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "can",
+                    "description": "An html5 canvas element.",
+                    "type": "Canvas"
+                },
+                {
+                    "name": "glyphProvider",
+                    "description": "The library's glyph\nprovider.",
+                    "type": "Render.GlyphProvider"
+                },
+                {
+                    "name": "button",
+                    "description": "The toolbar button to be\nrendered.",
+                    "type": "GUIState.ToolbarBtn"
+                },
+                {
+                    "name": "x",
+                    "description": "The x-coordinate of the upper-left corner of the button.",
+                    "type": "Number"
+                },
+                {
+                    "name": "y",
+                    "description": "The y-coordinate of the upper-left corner of the button.",
+                    "type": "Number"
+                },
+                {
+                    "name": "width",
+                    "description": "The button's width.",
+                    "type": "Number"
+                },
+                {
+                    "name": "height",
+                    "description": "The button's height.",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            }
+        },
+        "Render.ToolbarRend": {
+            "name": "Render.ToolbarRend",
+            "shortname": "Render.ToolbarRend",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "MusThGUI",
+            "namespace": "Render",
+            "file": "ToolbarRend.js",
+            "line": 21,
+            "description": "The ToolbarRend object takes care of drawing a toolbar.",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "can",
+                    "description": "An html5 canvas element.",
+                    "type": "Canvas"
+                },
+                {
+                    "name": "coordMgr",
+                    "description": "The library's coordinate\nmanager.",
+                    "type": "Render.CoordManager"
+                },
+                {
+                    "name": "glyphProvider",
+                    "description": "The library's glyph\nprovider.",
+                    "type": "Render.GlyphProvider"
+                },
+                {
+                    "name": "toolbar",
+                    "description": "The toolbar to be rendered.",
+                    "type": "GUIState.Toolbar"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            }
+        },
+        "GUIState.TwoVoiceNoteCol": {
+            "name": "GUIState.TwoVoiceNoteCol",
+            "shortname": "GUIState.TwoVoiceNoteCol",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "MusThGUI",
+            "namespace": "GUIState",
+            "file": "TwoVoiceNoteCol.js",
+            "line": 21,
+            "description": "The TwoVoiceNoteCol object represents a note column on a staff,\nspecifically designed to handle a voice-leading context where two voices are\nshown in the column, with stems in opposite direction.",
+            "extends": "GUIState.NoteCol",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "figBass",
+                    "description": "The note column's figured\nbass indication.",
+                    "type": "GUIState.FiguredBass"
+                },
+                {
+                    "name": "textInput",
+                    "description": "The text input associated\nwith the note column (null if no text input is present).",
+                    "type": "GUIState.TextInput"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            }
+        }
+    },
+    "classitems": [
+        {
+            "file": "Controller.js",
+            "line": 64,
+            "description": "Callback function indicating that canvas images have been loaded. Finishes\ncanvases initialization.",
+            "itemtype": "method",
+            "name": "onImagesLoaded",
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            },
+            "class": "Control.Controller",
+            "namespace": "Control"
+        },
+        {
+            "file": "Controller.js",
+            "line": 81,
+            "description": "Translates the window-based point location of a mouse event into a\ncanvas-based location.",
+            "itemtype": "method",
+            "name": "getLocalCoord",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "The mouse event.",
+                    "type": "Event"
+                }
+            ],
+            "return": {
+                "description": "An object literal with properties x and y, representing\nthe canvas based location.",
+                "type": "Object"
+            },
+            "class": "Control.Controller",
+            "namespace": "Control"
+        },
+        {
+            "file": "Controller.js",
+            "line": 98,
+            "description": "Binds listener functions to mouse events.",
+            "itemtype": "method",
+            "name": "bindEventListeners",
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            },
+            "class": "Control.Controller",
+            "namespace": "Control"
+        },
+        {
+            "file": "Controller.js",
+            "line": 134,
+            "description": "Handles a canvas mouse click event.",
+            "itemtype": "method",
+            "name": "onMouseClick",
+            "params": [
+                {
+                    "name": "point",
+                    "description": "An object literal representing the location of the\nmouse click, with properties x and y.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            },
+            "class": "Control.Controller",
+            "namespace": "Control"
+        },
+        {
+            "file": "Controller.js",
+            "line": 225,
+            "description": "Handles a canvas mouse move event.",
+            "itemtype": "method",
+            "name": "onMouseMove",
+            "params": [
+                {
+                    "name": "point",
+                    "description": "An object literal representing the location of the\nmouseover event, with properties x and y.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            },
+            "class": "Control.Controller",
+            "namespace": "Control"
+        },
+        {
+            "file": "Controller.js",
+            "line": 296,
+            "description": "Given a mouse event location, determine if a canvas element (note,\nkey signature accidental, toolbar button, text input) was involved, and if\nso, return the element.",
+            "itemtype": "method",
+            "name": "getElementFromPoint",
+            "params": [
+                {
+                    "name": "point",
+                    "description": "An object literal representing the location of the\nmouse event, with properties x and y.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "An object literal with a property 'elemType' indicating the\ntype of element that was involved (if null, no element was involved).\nAdditional properties, customized for a given type, provide additional\ndetails on the element.",
+                "type": "Object"
+            },
+            "class": "Control.Controller",
+            "namespace": "Control"
+        },
+        {
+            "file": "Controller.js",
+            "line": 330,
+            "description": "Deletes the current ghost note (if displayed) from the canvas state.",
+            "itemtype": "method",
+            "name": "removeGhostNote",
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            },
+            "class": "Control.Controller",
+            "namespace": "Control"
+        },
+        {
+            "file": "Controller.js",
+            "line": 346,
+            "description": "Deletes the current ghost accidental (if displayed) from the canvas state.",
+            "itemtype": "method",
+            "name": "removeGhostAcc",
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            },
+            "class": "Control.Controller",
+            "namespace": "Control"
+        },
+        {
+            "file": "Controller.js",
+            "line": 366,
+            "description": "Disables the overlay effect for all toolbar buttons for which it is enabled.",
+            "itemtype": "method",
+            "name": "clearToolbarOverlays",
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            },
+            "class": "Control.Controller",
+            "namespace": "Control"
+        },
+        {
+            "file": "Controller.js",
+            "line": 383,
+            "description": "Draws the canvas state.",
+            "itemtype": "method",
+            "name": "drawState",
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            },
+            "class": "Control.Controller",
+            "namespace": "Control"
+        },
+        {
+            "file": "Controller.js",
+            "line": 398,
+            "description": "Given a column ID and a text input value, sets the value of the column's text\ninput to the given value.",
+            "itemtype": "method",
+            "name": "setColTextInput",
+            "params": [
+                {
+                    "name": "colID",
+                    "description": "The zero-based ID of the column.",
+                    "type": "Number"
+                },
+                {
+                    "name": "value",
+                    "description": "The value to be assigned to the text input.",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            },
+            "class": "Control.Controller",
+            "namespace": "Control"
+        },
+        {
+            "file": "CoordManager.js",
+            "line": 82,
+            "description": "Determines the width of the canvas.",
+            "itemtype": "method",
+            "name": "getCanvasWidth",
+            "params": [
+                {
+                    "name": "numNoteCols",
+                    "description": "The number of note columns in one of the\ncanvas' staves (with the assumption that each staff will have the same number\nof note columns).",
+                    "type": "Number"
+                },
+                {
+                    "name": "totalAccColumns",
+                    "description": "The number of accidental columns\nin the key signature portion of one of the canvas' staves (with the\nassumption that each staff will have the same number of key signature\naccidental columns).",
+                    "type": "Number"
+                },
+                {
+                    "name": "numToolbars",
+                    "description": "The number of canvas toolbars.",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "The width of the canvas.",
+                "type": "Number"
+            },
+            "class": "Render.CoordManager",
+            "namespace": "Render"
+        },
+        {
+            "file": "CoordManager.js",
+            "line": 106,
+            "description": "Determines the height of the canvas.",
+            "itemtype": "method",
+            "name": "getCanvasHeight",
+            "params": [
+                {
+                    "name": "numStaves",
+                    "description": "The number of staves in the staff system.",
+                    "type": "Number"
+                },
+                {
+                    "name": "maxNumToolbarBtns",
+                    "description": "The number of buttons for the longest\ntoolbar in the state.",
+                    "type": "Number"
+                },
+                {
+                    "name": "hasTextInput",
+                    "description": "Indicating whether at least one column in the\nstaff system has a text input.",
+                    "type": "Boolean"
+                }
+            ],
+            "return": {
+                "description": "The height of the canvas.",
+                "type": "Number"
+            },
+            "class": "Render.CoordManager",
+            "namespace": "Render"
+        },
+        {
+            "file": "CoordManager.js",
+            "line": 132,
+            "description": "Determine an appropriate note column width for the staff system, given the\nmaximum number of notes in the columns.",
+            "itemtype": "method",
+            "name": "getColWidth",
+            "params": [
+                {
+                    "name": "maxNotes",
+                    "description": "The maximum number of notes in the staff system's\nnote columns, with the assumption that all note columns in the staff system\nwill have the same maximum number of notes).",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "The note column width.",
+                "type": "Number"
+            },
+            "class": "Render.CoordManager",
+            "namespace": "Render"
+        },
+        {
+            "file": "CoordManager.js",
+            "line": 166,
+            "description": "Builds an array listing all white notes on the piano keyboard. All notes are\nassigned an integer ID. This array can be used to determine the stepwise\ndistance between two notes on the staff.",
+            "itemtype": "method",
+            "name": "noteArrayBuild",
+            "return": {
+                "description": "The keyboard note array, which can be referenced by ID\n(i.e. array.A0 returns 0) or by note name (i.e. array[0] returns 'A0').",
+                "type": "Object[]"
+            },
+            "class": "Render.CoordManager",
+            "namespace": "Render"
+        },
+        {
+            "file": "CoordManager.js",
+            "line": 217,
+            "description": "For each note in the coordinate manager's note array (this.notes), determines\nthe number of ledger lines required to draw the note and whether the ledger\nlines are to be drawn above or below the note head.",
+            "itemtype": "method",
+            "name": "setLedgerLines",
+            "return": {
+                "description": "An array of object literals with two properties:\nnumLines, which provides the number of lines, and loc, which is set to\n'above' or 'below'. Each literal is accessed using the clef and the note\nname, separated by a hyphen (e.g. array.treble-G3 returns {numlines: 2,\nloc: 'above'}).",
+                "type": "Object[]"
+            },
+            "class": "Render.CoordManager",
+            "namespace": "Render"
+        },
+        {
+            "file": "CoordManager.js",
+            "line": 268,
+            "description": "Computes the width of a staff.",
+            "itemtype": "method",
+            "name": "getStaffWidth",
+            "params": [
+                {
+                    "name": "numNoteCols",
+                    "description": "The number of note columns in the staff.",
+                    "type": "Number"
+                },
+                {
+                    "name": "totalAccColumns",
+                    "description": "The number of accidental columns\nin the key signature portion of the staff.",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "The width of the staff.",
+                "type": "Number"
+            },
+            "class": "Render.CoordManager",
+            "namespace": "Render"
+        },
+        {
+            "file": "CoordManager.js",
+            "line": 289,
+            "description": "Computes the height of a staff.",
+            "itemtype": "method",
+            "name": "getStaffHeight",
+            "params": [
+                {
+                    "name": "withLedgerLines",
+                    "description": "Indicates whether the ledger line portion\nof the staff should be included in the computation.",
+                    "type": "Boolean"
+                }
+            ],
+            "return": {
+                "description": "The height of the staff.",
+                "type": "Number"
+            },
+            "class": "Render.CoordManager",
+            "namespace": "Render"
+        },
+        {
+            "file": "CoordManager.js",
+            "line": 312,
+            "description": "Computes the height of the staff system.",
+            "itemtype": "method",
+            "name": "getStaffSystemHeight",
+            "params": [
+                {
+                    "name": "numStaves",
+                    "description": "The number of staves in the staff system.",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "The height of the staff system.",
+                "type": "Number"
+            },
+            "class": "Render.CoordManager",
+            "namespace": "Render"
+        },
+        {
+            "file": "CoordManager.js",
+            "line": 327,
+            "description": "Provides the location of the upper left corner of the staff system.",
+            "itemtype": "method",
+            "name": "getStaffSystemOrigin",
+            "return": {
+                "description": "An object literal of the form {x:__, y:__} representing\nthe staff system's origin.",
+                "type": "Object"
+            },
+            "class": "Render.CoordManager",
+            "namespace": "Render"
+        },
+        {
+            "file": "CoordManager.js",
+            "line": 340,
+            "description": "Provides the location of the upper left corner a staff.",
+            "itemtype": "method",
+            "name": "getStaffOrigin",
+            "params": [
+                {
+                    "name": "staffID",
+                    "description": "The zero-based ID of the staff.",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "An object literal of the form {x:__, y:__} representing\nthe staff's origin.",
+                "type": "Object"
+            },
+            "class": "Render.CoordManager",
+            "namespace": "Render"
+        },
+        {
+            "file": "CoordManager.js",
+            "line": 358,
+            "description": "Provides the location of the upper left corner a staff line.",
+            "itemtype": "method",
+            "name": "getStaffLinePos",
+            "params": [
+                {
+                    "name": "staffID",
+                    "description": "The zero-based ID of the staff.",
+                    "type": "Number"
+                },
+                {
+                    "name": "lineID",
+                    "description": "The zero-based ID of the staff line.",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "An object literal of the form {x:__, y:__} representing\nthe staff line's origin.",
+                "type": "Object"
+            },
+            "class": "Render.CoordManager",
+            "namespace": "Render"
+        },
+        {
+            "file": "CoordManager.js",
+            "line": 376,
+            "description": "Provides the location of the clef in a given staff.",
+            "itemtype": "method",
+            "name": "getClefPos",
+            "params": [
+                {
+                    "name": "staffID",
+                    "description": "The zero-based ID of the staff.",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "An object literal of the form {x:__, y:__} representing\nthe clef's location.",
+                "type": "Object"
+            },
+            "class": "Render.CoordManager",
+            "namespace": "Render"
+        },
+        {
+            "file": "CoordManager.js",
+            "line": 392,
+            "description": "Provides the location of a key signature accidental.",
+            "itemtype": "method",
+            "name": "getKeySignAccPos",
+            "params": [
+                {
+                    "name": "staffID",
+                    "description": "The zero-based ID of the staff.",
+                    "type": "Number"
+                },
+                {
+                    "name": "clef",
+                    "description": "The staff's clef.",
+                    "type": "String"
+                },
+                {
+                    "name": "keySignColID",
+                    "description": "The zero-based ID of the key signature column\nwhere the accidental lies.",
+                    "type": "Number"
+                },
+                {
+                    "name": "letter",
+                    "description": "The accidental's letter name.",
+                    "type": "String"
+                },
+                {
+                    "name": "register",
+                    "description": "The accidental's register.",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "An object literal of the form {x:__, y:__} representing\nthe key signature accidental's location.",
+                "type": "Object"
+            },
+            "class": "Render.CoordManager",
+            "namespace": "Render"
+        },
+        {
+            "file": "CoordManager.js",
+            "line": 414,
+            "description": "Provides the x-coordinate of the center of a given key signature accidental\ncolumn.",
+            "itemtype": "method",
+            "name": "getKeySignColCenterX",
+            "params": [
+                {
+                    "name": "staffID",
+                    "description": "The zero-based ID of the staff.",
+                    "type": "Number"
+                },
+                {
+                    "name": "keySignColID",
+                    "description": "The key signature column.",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Number"
+            },
+            "class": "Render.CoordManager",
+            "namespace": "Render"
+        },
+        {
+            "file": "CoordManager.js",
+            "line": 432,
+            "description": "Provides the y-coordinate of a given staff's highest possible note.",
+            "itemtype": "method",
+            "name": "getTopNoteY",
+            "params": [
+                {
+                    "name": "staffID",
+                    "description": "The zero-based ID of the staff.",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Number"
+            },
+            "class": "Render.CoordManager",
+            "namespace": "Render"
+        },
+        {
+            "file": "CoordManager.js",
+            "line": 448,
+            "description": "Provides the y of a given note on a staff.",
+            "itemtype": "method",
+            "name": "getLetterNameY",
+            "params": [
+                {
+                    "name": "staffID",
+                    "description": "The zero-based ID of the staff.",
+                    "type": "Number"
+                },
+                {
+                    "name": "clef",
+                    "description": "The staff's clef.",
+                    "type": "String"
+                },
+                {
+                    "name": "letter",
+                    "description": "The note's letter.",
+                    "type": "String"
+                },
+                {
+                    "name": "register",
+                    "description": "The note's register.",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Number"
+            },
+            "class": "Render.CoordManager",
+            "namespace": "Render"
+        },
+        {
+            "file": "CoordManager.js",
+            "line": 469,
+            "description": "Provides the stepwise distance between two notes on the staff.",
+            "itemtype": "method",
+            "name": "getStepwiseNoteDist",
+            "params": [
+                {
+                    "name": "note1",
+                    "description": "The first note's name as letter + register\n(e.g. 'A4').",
+                    "type": "String"
+                },
+                {
+                    "name": "note2",
+                    "description": "The second note's name as letter + register\n(e.g. 'A4').",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "The number of steps on the staff between the two notes.",
+                "type": "Number"
+            },
+            "class": "Render.CoordManager",
+            "namespace": "Render"
+        },
+        {
+            "file": "CoordManager.js",
+            "line": 486,
+            "description": "Provides the x-coordinate of the center of a given note column.",
+            "itemtype": "method",
+            "name": "getNoteColCenterX",
+            "params": [
+                {
+                    "name": "staffID",
+                    "description": "The zero-based ID of the staff.",
+                    "type": "Number"
+                },
+                {
+                    "name": "noteColID",
+                    "description": "The zero-based ID of the note column.",
+                    "type": "Number"
+                },
+                {
+                    "name": "totalAccColumns",
+                    "description": "The number of accidental columns\nin the key signature portion of the staff.",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Number"
+            },
+            "class": "Render.CoordManager",
+            "namespace": "Render"
+        },
+        {
+            "file": "CoordManager.js",
+            "line": 507,
+            "description": "Provides the location of a given note on a staff.",
+            "itemtype": "method",
+            "name": "getNotePos",
+            "params": [
+                {
+                    "name": "letter",
+                    "description": "The note's letter.",
+                    "type": "String"
+                },
+                {
+                    "name": "register",
+                    "description": "The note's register.",
+                    "type": "Number"
+                },
+                {
+                    "name": "staffID",
+                    "description": "The zero-based ID of the staff.",
+                    "type": "Number"
+                },
+                {
+                    "name": "clef",
+                    "description": "The staff's clef.",
+                    "type": "String"
+                },
+                {
+                    "name": "noteColID",
+                    "description": "The zero-based ID of the note column.",
+                    "type": "Number"
+                },
+                {
+                    "name": "totalAccColumns",
+                    "description": "The number of accidental columns\nin the key signature portion of the staff.",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Number"
+            },
+            "class": "Render.CoordManager",
+            "namespace": "Render"
+        },
+        {
+            "file": "CoordManager.js",
+            "line": 532,
+            "description": "Provides the y-coordinate of a given note's ledger lines.",
+            "itemtype": "method",
+            "name": "getLedgerLinesY",
+            "params": [
+                {
+                    "name": "staffID",
+                    "description": "The zero-based ID of the staff.",
+                    "type": "Number"
+                },
+                {
+                    "name": "clef",
+                    "description": "The staff's clef.",
+                    "type": "String"
+                },
+                {
+                    "name": "letter",
+                    "description": "The note's letter.",
+                    "type": "String"
+                },
+                {
+                    "name": "register",
+                    "description": "The note's register.",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "An array providing the y-coordinate for each line. If the\ngiven note is above the staff, the ledger lines are provided in descending\norder, otherwise they are provided in ascending order.",
+                "type": "Number[]"
+            },
+            "class": "Render.CoordManager",
+            "namespace": "Render"
+        },
+        {
+            "file": "CoordManager.js",
+            "line": 580,
+            "description": "Provides the interval size between two notes on the staff.",
+            "itemtype": "method",
+            "name": "getIntervalSize",
+            "params": [
+                {
+                    "name": "note1",
+                    "description": "The first note's name as letter + register\n(e.g. 'A4').",
+                    "type": "String"
+                },
+                {
+                    "name": "note2",
+                    "description": "The second note's name as letter + register\n(e.g. 'A4').",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "The interval size between the two notes.",
+                "type": "Number"
+            },
+            "class": "Render.CoordManager",
+            "namespace": "Render"
+        },
+        {
+            "file": "CoordManager.js",
+            "line": 597,
+            "description": "Given a canvas point, determine if a canvas element (note, key signature\naccidental, toolbar button, text input) is located at this point, and if\nso, return the element.",
+            "itemtype": "method",
+            "name": "getElementByPos",
+            "params": [
+                {
+                    "name": "point",
+                    "description": "An object literal representing the point, with\nproperties x and y.",
+                    "type": "Object"
+                },
+                {
+                    "name": "staves",
+                    "description": "The number of staves in the staff system.",
+                    "type": "Number"
+                },
+                {
+                    "name": "numCols",
+                    "description": "The number of note columns in one of the\ncanvas' staves (with the assumption that each staff will have the same number\nof note columns).",
+                    "type": "Number"
+                },
+                {
+                    "name": "totalAccColumns",
+                    "description": "The number of accidental columns\nin the key signature portion of one of the canvas' staves (with the\nassumption that each staff will have the same number of key signature\naccidental columns).",
+                    "type": "Number"
+                },
+                {
+                    "name": "toolbars",
+                    "description": "An array of the canvas'\ntoolbars.",
+                    "type": "GUIState.Toolbar"
+                },
+                {
+                    "name": "hasTextInput",
+                    "description": "Indicates whether at least one column in the\nstaff system has a text input.",
+                    "type": "Boolean"
+                }
+            ],
+            "return": {
+                "description": "An object literal with a property 'elemType' indicating the\ntype of element that was involved (if null, no element was involved).\nAdditional properties, customized for a given type, provide additional\ndetails on the element.",
+                "type": "Object"
+            },
+            "class": "Render.CoordManager",
+            "namespace": "Render"
+        },
+        {
+            "file": "CoordManager.js",
+            "line": 665,
+            "description": "Given a canvas point, determine if a text input element is located at this\npoint, and if so, return the text input.",
+            "itemtype": "method",
+            "name": "pointToTextInput",
+            "params": [
+                {
+                    "name": "point",
+                    "description": "An object literal representing the point, with\nproperties x and y.",
+                    "type": "Object"
+                },
+                {
+                    "name": "numCols",
+                    "description": "The number of note columns in one of the\ncanvas' staves (with the assumption that each staff will have the same number\nof note columns).",
+                    "type": "Number"
+                },
+                {
+                    "name": "totalAccColumns",
+                    "description": "The number of accidental columns\nin the key signature portion of one of the canvas' staves (with the\nassumption that each staff will have the same number of key signature\naccidental columns).",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "If a text input is found, returns an object literal of the\nform {elemType: 'textInput', colID: __} representing the text input.\nOtherwise, returns an object literal of the form {elemType: null}.",
+                "type": "Object"
+            },
+            "class": "Render.CoordManager",
+            "namespace": "Render"
+        },
+        {
+            "file": "CoordManager.js",
+            "line": 704,
+            "description": "Given a canvas point and a staff, determine if a note is located at this\npoint, and if so, return the note.",
+            "itemtype": "method",
+            "name": "pointToStaffNote",
+            "params": [
+                {
+                    "name": "point",
+                    "description": "An object literal representing the point, with\nproperties x and y.",
+                    "type": "Object"
+                },
+                {
+                    "name": "staffID",
+                    "description": "The zero-based ID of the staff.",
+                    "type": "Number"
+                },
+                {
+                    "name": "clef",
+                    "description": "The staff's clef.",
+                    "type": "String"
+                },
+                {
+                    "name": "numCols",
+                    "description": "The number of note columns in one of the\ncanvas' staves (with the assumption that each staff will have the same number\nof note columns).",
+                    "type": "Number"
+                },
+                {
+                    "name": "totalAccColumns",
+                    "description": "The number of accidental columns\nin the key signature portion of one of the canvas' staves (with the\nassumption that each staff will have the same number of key signature\naccidental columns).",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "If a note is found, an object literal of the form\n{elemType: 'note', staffID: __, colID: __, noteName: __} representing\nthe note. Otherwise, returns an object literal of the form {elemType: null}.",
+                "type": "Object"
+            },
+            "class": "Render.CoordManager",
+            "namespace": "Render"
+        },
+        {
+            "file": "CoordManager.js",
+            "line": 760,
+            "description": "Given a canvas point and a staff, determine if a key signature accidental is\nlocated at this point, and if so, return the key signature accidental.",
+            "itemtype": "method",
+            "name": "pointToKeySignAcc",
+            "params": [
+                {
+                    "name": "point",
+                    "description": "An object literal representing the point, with\nproperties x and y.",
+                    "type": "Object"
+                },
+                {
+                    "name": "staffID",
+                    "description": "The zero-based ID of the staff.",
+                    "type": "Number"
+                },
+                {
+                    "name": "clef",
+                    "description": "The staff's clef.",
+                    "type": "String"
+                },
+                {
+                    "name": "totalAccCols",
+                    "description": "The number of accidental columns\nin the key signature portion of one of the canvas' staves (with the\nassumption that each staff will have the same number of key signature\naccidental columns).",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "If a key signature accidental is found, return an object\nliteral of the form {elemType: 'keySign', staffID: __, colID: __,\nnoteName: __} representing the key signature accidental. Otherwise, returns\nan object literal of the form {elemType: null}.",
+                "type": "Object"
+            },
+            "class": "Render.CoordManager",
+            "namespace": "Render"
+        },
+        {
+            "file": "CoordManager.js",
+            "line": 801,
+            "description": "Given a canvas point and a toolbar, determine if a toolbar button is located\nat this point, and if so, return the toolbar button.",
+            "itemtype": "method",
+            "name": "pointToToolbarBtn",
+            "params": [
+                {
+                    "name": "point",
+                    "description": "An object literal representing the point, with\nproperties x and y.",
+                    "type": "Object"
+                },
+                {
+                    "name": "toolbarID",
+                    "description": "The zero-based ID of the toolbar.",
+                    "type": "Number"
+                },
+                {
+                    "name": "toolbarName",
+                    "description": "The name of the toolbar.",
+                    "type": "String"
+                },
+                {
+                    "name": "numToolbarBtns",
+                    "description": "The number of buttons in the toolbar.",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "If a toolbar button is found, return an object\nliteral of the form {elemType: 'toolbar', toolbarName: __, buttonID: __}\nrepresenting the toolbar button. Otherwise, returns an object literal of the\nform {elemType: null}.",
+                "type": "Object"
+            },
+            "class": "Render.CoordManager",
+            "namespace": "Render"
+        },
+        {
+            "file": "CoordManager.js",
+            "line": 841,
+            "description": "Given a y coordinate and a staff, returns the note name associated with the\ny coordinate.",
+            "itemtype": "method",
+            "name": "getNoteFromY",
+            "params": [
+                {
+                    "name": "staffID",
+                    "description": "The zero-based ID of the staff.",
+                    "type": "Number"
+                },
+                {
+                    "name": "clef",
+                    "description": "The staff's clef.",
+                    "type": "String"
+                },
+                {
+                    "name": "noteY",
+                    "description": "The y coordinate.",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "The note name as letter + register (e.g. 'A4').",
+                "type": "String"
+            },
+            "class": "Render.CoordManager",
+            "namespace": "Render"
+        },
+        {
+            "file": "CoordManager.js",
+            "line": 866,
+            "description": "Given a point and a rectangle's upper left and lower right corners, determine\nif the point lies within the rectangle.",
+            "itemtype": "method",
+            "name": "pointWithin",
+            "params": [
+                {
+                    "name": "point",
+                    "description": "An object literal representing the point, with\nproperties x and y.",
+                    "type": "Object"
+                },
+                {
+                    "name": "llPoint",
+                    "description": "An object literal representing the rectangle's upper\nleft corner, with properties x and y.",
+                    "type": "Object"
+                },
+                {
+                    "name": "brPoint",
+                    "description": "An object literal representing the rectangle's lower\nright corner, with properties x and y.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "Returns true if the point lies within the rectangle.",
+                "type": "Boolean"
+            },
+            "class": "Render.CoordManager",
+            "namespace": "Render"
+        },
+        {
+            "file": "CoordManager.js",
+            "line": 892,
+            "description": "Povides the size of toolbar buttons. It is assumed that all toolbar buttons\nare square.",
+            "itemtype": "method",
+            "name": "getToolbarBtnSize",
+            "return": {
+                "description": "",
+                "type": "Number"
+            },
+            "class": "Render.CoordManager",
+            "namespace": "Render"
+        },
+        {
+            "file": "CoordManager.js",
+            "line": 906,
+            "description": "Povides the x-coordinate of the upper left corner of a given toolbar.",
+            "itemtype": "method",
+            "name": "getToolbarX",
+            "params": [
+                {
+                    "name": "toolbarID",
+                    "description": "The zero-based ID of the toolbar.",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Number"
+            },
+            "class": "Render.CoordManager",
+            "namespace": "Render"
+        },
+        {
+            "file": "CoordManager.js",
+            "line": 920,
+            "description": "Povides the y-coordinate of the upper left corner of a given toolbar.",
+            "itemtype": "method",
+            "name": "getToolbarY",
+            "params": [
+                {
+                    "name": "numToolbarBtns",
+                    "description": "The number of toolbar buttons in the\ntoolbar.",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Number"
+            },
+            "class": "Render.CoordManager",
+            "namespace": "Render"
+        },
+        {
+            "file": "FiguredBass.js",
+            "line": 37,
+            "description": "Add a figured bass row to the  figured bass notation.",
+            "itemtype": "method",
+            "name": "addRow",
+            "params": [
+                {
+                    "name": "row",
+                    "description": "The figured bass row to be\nadded.",
+                    "type": "GUIState.FiguredBassRow"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            },
+            "class": "GUIState.FiguredBass",
+            "namespace": "GUIState"
+        },
+        {
+            "file": "FiguredBassRend.js",
+            "line": 55,
+            "description": "Draws the figured bass on the canvas.",
+            "itemtype": "method",
+            "name": "draw",
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            },
+            "class": "GUIState.FiguredBassRend",
+            "namespace": "GUIState"
+        },
+        {
+            "file": "GlyphProvider.js",
+            "line": 350,
+            "description": "Callback function called whenever an image has finished loading. Once\nall images have loaded, call the controller's callback function so that\ncanvas initialization can complete.",
+            "itemtype": "method",
+            "name": "imgLoaded",
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            },
+            "class": "Render.GlyphProvider",
+            "namespace": "Render"
+        },
+        {
+            "file": "GlyphProvider.js",
+            "line": 367,
+            "description": "Returns the specified accidental image.",
+            "itemtype": "method",
+            "name": "getAccidental",
+            "params": [
+                {
+                    "name": "accType",
+                    "description": "The type of accidental image to return ('n', '#',\n'b', 'x', 'bb').",
+                    "type": "String"
+                },
+                {
+                    "name": "inColor",
+                    "description": "If true, returns a color version of the\naccidental.",
+                    "type": "Boolean"
+                },
+                {
+                    "name": "figuredBass",
+                    "description": "If true, returns a version to display within the\nfigured bass (only available for sharps, flat and naturals).",
+                    "type": "Boolean"
+                }
+            ],
+            "return": {
+                "description": "Returns the accidental image.",
+                "type": "Image"
+            },
+            "class": "Render.GlyphProvider",
+            "namespace": "Render"
+        },
+        {
+            "file": "GlyphProvider.js",
+            "line": 415,
+            "description": "Returns the specified accidental image.",
+            "itemtype": "method",
+            "name": "getNoteValue",
+            "params": [
+                {
+                    "name": "noteValueType",
+                    "description": "The type of accidental image to return\n('whole', 'quarter_stem_up', 'quarter_stem_down').",
+                    "type": "String"
+                },
+                {
+                    "name": "inColor",
+                    "description": "If true, returns a color version of the\naccidental.",
+                    "type": "Boolean"
+                },
+                {
+                    "name": "forToolbar",
+                    "description": "If true, returns a smaller version for toolbar\ndisplay (only available for quarter notes).",
+                    "type": "Boolean"
+                }
+            ],
+            "return": {
+                "description": "Returns the note value image.",
+                "type": "Image"
+            },
+            "class": "Render.GlyphProvider",
+            "namespace": "Render"
+        },
+        {
+            "file": "GlyphProvider.js",
+            "line": 452,
+            "description": "Returns the specified clef image.",
+            "itemtype": "method",
+            "name": "getClef",
+            "params": [
+                {
+                    "name": "clefType",
+                    "description": "The type of clef ('treble', 'bass', 'alto',\n'tenor').",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "Returns the clef image.",
+                "type": "Image"
+            },
+            "class": "Render.GlyphProvider",
+            "namespace": "Render"
+        },
+        {
+            "file": "InputDialog.js",
+            "line": 55,
+            "description": "Initializes the input dialog.",
+            "itemtype": "method",
+            "name": "init",
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            },
+            "class": "Control.InputDialog",
+            "namespace": "Control"
+        },
+        {
+            "file": "InputDialog.js",
+            "line": 104,
+            "description": "Displays the input dialog.",
+            "itemtype": "method",
+            "name": "show",
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            },
+            "class": "Control.InputDialog",
+            "namespace": "Control"
+        },
+        {
+            "file": "InputDialog.js",
+            "line": 118,
+            "description": "Resets all form elements to empty values.",
+            "itemtype": "method",
+            "name": "resetDialogForm",
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            },
+            "class": "Control.InputDialog",
+            "namespace": "Control"
+        },
+        {
+            "file": "InputDialog.js",
+            "line": 132,
+            "description": "Resets all form elements to empty values.",
+            "itemtype": "method",
+            "name": "callBack",
+            "params": [
+                {
+                    "name": "combinedInput",
+                    "description": "The form's input, to be sent back to the\ncontroller object passed as argument to the constructor.",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            },
+            "class": "Control.InputDialog",
+            "namespace": "Control"
+        },
+        {
+            "file": "KeySign.js",
+            "line": 41,
+            "description": "Adds an accidental to the key signature.",
+            "itemtype": "method",
+            "name": "addAccidental",
+            "params": [
+                {
+                    "name": "accidental",
+                    "description": "The key signature\naccidental to be added.",
+                    "type": "GUIState.KeySignAcc"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            },
+            "class": "GUIState.KeySign",
+            "namespace": "GUIState"
+        },
+        {
+            "file": "KeySign.js",
+            "line": 55,
+            "description": "Removes the accidental from the specified accidental column.",
+            "itemtype": "method",
+            "name": "removeAccidental",
+            "params": [
+                {
+                    "name": "accColID",
+                    "description": "The zero-based ID of the accidental column from\nwhich the accidental will be removed.",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            },
+            "class": "GUIState.KeySign",
+            "namespace": "GUIState"
+        },
+        {
+            "file": "KeySign.js",
+            "line": 69,
+            "description": "Given a letter name, register and accidental column ID, indicates whether an\neditable accidental is present at that locationin the key signature.",
+            "itemtype": "method",
+            "name": "containsEditableAccidental",
+            "params": [
+                {
+                    "name": "ltr",
+                    "description": "The accidental's letter name.",
+                    "type": "String"
+                },
+                {
+                    "name": "reg",
+                    "description": "The accidental's register.",
+                    "type": "Number"
+                },
+                {
+                    "name": "colID",
+                    "description": "The zero-based ID of the accidental column where the\neditable is to be found.",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "Returns true if an editable accidental is found at the\nspecified location.",
+                "type": "Boolean"
+            },
+            "class": "GUIState.KeySign",
+            "namespace": "GUIState"
+        },
+        {
+            "file": "KeySign.js",
+            "line": 98,
+            "description": "Indicates whether an accidental has been assigned to all accidental columns\nin the key signature.",
+            "itemtype": "method",
+            "name": "isFull",
+            "return": {
+                "description": "Returns true if all accidental columns in the key\nsignature have an accidental.",
+                "type": "Boolean"
+            },
+            "class": "GUIState.KeySign",
+            "namespace": "GUIState"
+        },
+        {
+            "file": "KeySign.js",
+            "line": 119,
+            "description": "Indicates whether an accidental is present in a given accidental column.",
+            "itemtype": "method",
+            "name": "columnIsFull",
+            "params": [
+                {
+                    "name": "colID",
+                    "description": "The zero-based ID of the accidental column.",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "Returns true an accidental is found in the given column.",
+                "type": "Boolean"
+            },
+            "class": "GUIState.KeySign",
+            "namespace": "GUIState"
+        },
+        {
+            "file": "KeySignRend.js",
+            "line": 52,
+            "description": "Draws the key signature on the staff.",
+            "itemtype": "method",
+            "name": "draw",
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            },
+            "class": "Render.KeySignRend",
+            "namespace": "Render"
+        },
+        {
+            "file": "Note.js",
+            "line": 53,
+            "description": "Compares two notes with respect to letter and register (accidentals ignored).",
+            "itemtype": "method",
+            "name": "compare",
+            "params": [
+                {
+                    "name": "note1",
+                    "description": "The first note to be compared.",
+                    "type": "GUIState.Note"
+                },
+                {
+                    "name": "note2",
+                    "description": "The second note to be compared.",
+                    "type": "GUIState.Note"
+                }
+            ],
+            "return": {
+                "description": "Returns 1 is note1 > note 2, 0 if note1 = note 2, and\n-1 and note1 < note2.",
+                "type": "Number"
+            },
+            "class": "GUIState.Note",
+            "module": "MusThGUI",
+            "namespace": "GUIState"
+        },
+        {
+            "file": "NoteCol.js",
+            "line": 45,
+            "description": "Adds a note to the note column.",
+            "itemtype": "method",
+            "name": "addNote",
+            "params": [
+                {
+                    "name": "note",
+                    "description": "The note to be added.",
+                    "type": "GUIState.Note"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            },
+            "class": "GUIState.NoteCol",
+            "module": "MusThGUI",
+            "namespace": "GUIState"
+        },
+        {
+            "file": "NoteCol.js",
+            "line": 63,
+            "description": "Removes a note from the note column. No action taken if the given note isn't\nin the column.",
+            "itemtype": "method",
+            "name": "removeNote",
+            "params": [
+                {
+                    "name": "note",
+                    "description": "The note to be removed.",
+                    "type": "GUIState.Note"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            },
+            "class": "GUIState.NoteCol",
+            "module": "MusThGUI",
+            "namespace": "GUIState"
+        },
+        {
+            "file": "NoteCol.js",
+            "line": 86,
+            "description": "Removes the ghost note from the column, if present. It is assumed that there\ncan be at most one ghost note in the column at any given time.",
+            "itemtype": "method",
+            "name": "removeGhostNote",
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            },
+            "class": "GUIState.NoteCol",
+            "module": "MusThGUI",
+            "namespace": "GUIState"
+        },
+        {
+            "file": "NoteCol.js",
+            "line": 105,
+            "description": "Indicates whether the given note is present in the column (ghost notes\nignored).",
+            "itemtype": "method",
+            "name": "inColumn",
+            "params": [
+                {
+                    "name": "note",
+                    "description": "The note to look for.",
+                    "type": "GUIState.Note"
+                }
+            ],
+            "return": {
+                "description": "Returns the found note. If the note\nisn't found, returns null.",
+                "type": "GUIState.Note"
+            },
+            "class": "GUIState.NoteCol",
+            "module": "MusThGUI",
+            "namespace": "GUIState"
+        },
+        {
+            "file": "NoteCol.js",
+            "line": 132,
+            "description": "Indicates whether the number of non-ghost notes in the column is equal to\nthe maximum number of notes allowable in the column.",
+            "itemtype": "method",
+            "name": "isFull",
+            "return": {
+                "description": "Returns true if the note column is full.",
+                "type": "Boolean"
+            },
+            "class": "GUIState.NoteCol",
+            "module": "MusThGUI",
+            "namespace": "GUIState"
+        },
+        {
+            "file": "NoteCol.js",
+            "line": 157,
+            "description": "Indicates whether the given note can be added to the column.",
+            "itemtype": "method",
+            "name": "noteAddible",
+            "params": [
+                {
+                    "name": "potentialNote",
+                    "description": "The note to consider adding.",
+                    "type": "GUIState.Note"
+                }
+            ],
+            "return": {
+                "description": "Returns true if the note can be added to the column.",
+                "type": "Boolean"
+            },
+            "class": "GUIState.NoteCol",
+            "module": "MusThGUI",
+            "namespace": "GUIState"
+        },
+        {
+            "file": "NoteCol.js",
+            "line": 175,
+            "description": "Indicates whether the given note can be removed from the column.",
+            "itemtype": "method",
+            "name": "noteRemovable",
+            "params": [
+                {
+                    "name": "note",
+                    "description": "The note to consider removing.",
+                    "type": "GUIState.Note"
+                }
+            ],
+            "return": {
+                "description": "Returns true if the note can be removed from the column.",
+                "type": "Boolean"
+            },
+            "class": "GUIState.NoteCol",
+            "module": "MusThGUI",
+            "namespace": "GUIState"
+        },
+        {
+            "file": "NoteColRend.js",
+            "line": 57,
+            "description": "Draws the note column's elements  on the staff.",
+            "itemtype": "method",
+            "name": "draw",
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            },
+            "class": "Render.NoteColRend",
+            "module": "MusThGUI",
+            "namespace": "Render"
+        },
+        {
+            "file": "NoteColRend.js",
+            "line": 165,
+            "description": "Indicates whether a given note's accidental should be displayed. Accidentals\nare assumed to carry over from one note column to the next.",
+            "itemtype": "method",
+            "name": "displayAccidental",
+            "params": [
+                {
+                    "name": "note",
+                    "description": "The note whose accidental display is\nto be considered.",
+                    "type": "GUIState.Note"
+                },
+                {
+                    "name": "prevColNote",
+                    "description": "The previous note in the note\ncolumn, if present (null is assumed otherwise).",
+                    "type": "GUIState.Note"
+                },
+                {
+                    "name": "nextColNote",
+                    "description": "The next note in the note\ncolumn, if present (null is assumed otherwise).",
+                    "type": "GUIState.Note"
+                }
+            ],
+            "return": {
+                "description": "Returns true if the note can be removed from the column.",
+                "type": "Boolean"
+            },
+            "class": "Render.NoteColRend",
+            "module": "MusThGUI",
+            "namespace": "Render"
+        },
+        {
+            "file": "NoteRend.js",
+            "line": 65,
+            "description": "Draws the note on the staff.",
+            "itemtype": "method",
+            "name": "draw",
+            "params": [
+                {
+                    "name": "noteOffset",
+                    "description": "Indicates whether the note should be offset to\nthe right so that its note head doesn't overlap with a note displayed a step\nbelow.",
+                    "type": "Boolean"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            },
+            "class": "Render.NoteRend",
+            "module": "MusThGUI",
+            "namespace": "Render"
+        },
+        {
+            "file": "Renderer.js",
+            "line": 45,
+            "description": "Draws all canvas elements.",
+            "itemtype": "method",
+            "name": "draw",
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            },
+            "class": "Render.Renderer",
+            "module": "MusThGUI",
+            "namespace": "Render"
+        },
+        {
+            "file": "Staff.js",
+            "line": 40,
+            "description": "Adds a note column to the staff.",
+            "itemtype": "method",
+            "name": "addNoteColumn",
+            "params": [
+                {
+                    "name": "noteCol",
+                    "description": "The note column to be added.",
+                    "type": "GUIState.NoteCol"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            },
+            "class": "GUIState.Staff",
+            "module": "MusThGUI",
+            "namespace": "GUIState"
+        },
+        {
+            "file": "StaffRend.js",
+            "line": 48,
+            "description": "Draws the staff.",
+            "itemtype": "method",
+            "name": "draw",
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            },
+            "class": "Render.StaffRend",
+            "module": "MusThGUI",
+            "namespace": "Render"
+        },
+        {
+            "file": "StaffRend.js",
+            "line": 63,
+            "description": "Draws staff lines.",
+            "itemtype": "method",
+            "name": "drawLines",
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            },
+            "class": "Render.StaffRend",
+            "module": "MusThGUI",
+            "namespace": "Render"
+        },
+        {
+            "file": "StaffRend.js",
+            "line": 89,
+            "description": "Draws the staff's clef.",
+            "itemtype": "method",
+            "name": "drawClef",
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            },
+            "class": "Render.StaffRend",
+            "module": "MusThGUI",
+            "namespace": "Render"
+        },
+        {
+            "file": "StaffRend.js",
+            "line": 126,
+            "description": "Draws the staff's key signature.",
+            "itemtype": "method",
+            "name": "drawKeySign",
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            },
+            "class": "Render.StaffRend",
+            "module": "MusThGUI",
+            "namespace": "Render"
+        },
+        {
+            "file": "StaffRend.js",
+            "line": 140,
+            "description": "Draws the staff's note columns.",
+            "itemtype": "method",
+            "name": "drawNoteColumns",
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            },
+            "class": "Render.StaffRend",
+            "module": "MusThGUI",
+            "namespace": "Render"
+        },
+        {
+            "file": "StaffSystem.js",
+            "line": 37,
+            "description": "Adds a staff to the canvas state's staff system.",
+            "itemtype": "method",
+            "name": "addStaff",
+            "params": [
+                {
+                    "name": "staff",
+                    "description": "The staff to be added.",
+                    "type": "GUIState.Staff"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            },
+            "class": "GUIState.StaffSystem",
+            "module": "MusThGUI",
+            "namespace": "GUIState"
+        },
+        {
+            "file": "StaffSystem.js",
+            "line": 50,
+            "description": "Indicates whether at least one column in the staff system has a text input.",
+            "itemtype": "method",
+            "name": "hasTextInput",
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            },
+            "class": "GUIState.StaffSystem",
+            "module": "MusThGUI",
+            "namespace": "GUIState"
+        },
+        {
+            "file": "StaffSystemRend.js",
+            "line": 47,
+            "description": "Draws the staff system.",
+            "itemtype": "method",
+            "name": "draw",
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            },
+            "class": "Render.StaffSystemRend",
+            "module": "MusThGUI",
+            "namespace": "Render"
+        },
+        {
+            "file": "State.js",
+            "line": 42,
+            "description": "Sets the state after instantiation.",
+            "itemtype": "method",
+            "name": "setState",
+            "params": [
+                {
+                    "name": "stateXML",
+                    "description": "The canvas state as xml, used to build the state\nobject.",
+                    "type": "XMLDoc"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            },
+            "class": "GUIState.State",
+            "module": "MusThGUI",
+            "namespace": "GUIState"
+        },
+        {
+            "file": "State.js",
+            "line": 187,
+            "description": "Returns the canvas state.",
+            "itemtype": "method",
+            "name": "getState",
+            "return": {
+                "description": "The canvas state as xml.",
+                "type": "String"
+            },
+            "class": "GUIState.State",
+            "module": "MusThGUI",
+            "namespace": "GUIState"
+        },
+        {
+            "file": "State.js",
+            "line": 307,
+            "description": "Indicates whether the state contains a toolbar, given the toolbar name.",
+            "itemtype": "method",
+            "name": "hasToolbar",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "The toolbar name.",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "{Boolean)"
+            },
+            "class": "GUIState.State",
+            "module": "MusThGUI",
+            "namespace": "GUIState"
+        },
+        {
+            "file": "State.js",
+            "line": 326,
+            "description": "Returns a toolbar, given the toolbar name.",
+            "itemtype": "method",
+            "name": "getToolbar",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "The toolbar name.",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "Returns null if the toolbar\nisn't found.",
+                "type": "GUIState.Toolbar | null"
+            },
+            "class": "GUIState.State",
+            "module": "MusThGUI",
+            "namespace": "GUIState"
+        },
+        {
+            "file": "State.js",
+            "line": 346,
+            "description": "Returns the number of buttons for the longest toolbar in the state.",
+            "itemtype": "method",
+            "name": "getMaxNumToolbarButtons",
+            "return": {
+                "description": "Returns 0 if the state doesn't have any toolbars.",
+                "type": "Number"
+            },
+            "class": "GUIState.State",
+            "module": "MusThGUI",
+            "namespace": "GUIState"
+        },
+        {
+            "file": "Toolbar.js",
+            "line": 39,
+            "description": "Adds a button to the toolbar.",
+            "itemtype": "method",
+            "name": "addButton",
+            "params": [
+                {
+                    "name": "btn",
+                    "description": "The button to be added.",
+                    "type": "GUIState.ToolbarBtn"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            },
+            "class": "GUIState.Toolbar",
+            "module": "MusThGUI",
+            "namespace": "GUIState"
+        },
+        {
+            "file": "Toolbar.js",
+            "line": 52,
+            "description": "Set a toolbar button as selected. Only one button may be selected at\nany one time.",
+            "itemtype": "method",
+            "name": "select",
+            "params": [
+                {
+                    "name": "btnID",
+                    "description": "The zero-based position of the button to be selected.",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            },
+            "class": "GUIState.Toolbar",
+            "module": "MusThGUI",
+            "namespace": "GUIState"
+        },
+        {
+            "file": "Toolbar.js",
+            "line": 75,
+            "description": "Enables the mouseOverlay property of a button in the toolbar.",
+            "itemtype": "method",
+            "name": "setMouseOverlay",
+            "params": [
+                {
+                    "name": "btnID",
+                    "description": "The zero-based position of the button to be displayed\nwith an overlay. If this argument is null, the mouseOverlay property is\ndisabled for all buttons in the toolbar.",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            },
+            "class": "GUIState.Toolbar",
+            "module": "MusThGUI",
+            "namespace": "GUIState"
+        },
+        {
+            "file": "Toolbar.js",
+            "line": 101,
+            "description": "Returns the symbol of the button currently selected in the toolbar.",
+            "itemtype": "method",
+            "name": "selectedSymbol",
+            "return": {
+                "description": "",
+                "type": "String"
+            },
+            "class": "GUIState.Toolbar",
+            "module": "MusThGUI",
+            "namespace": "GUIState"
+        },
+        {
+            "file": "Toolbar.js",
+            "line": 118,
+            "description": "Returns the zero-based position of the button currently selected in the\ntoolbar.",
+            "itemtype": "method",
+            "name": "selectedID",
+            "return": {
+                "description": "",
+                "type": "Number"
+            },
+            "class": "GUIState.Toolbar",
+            "module": "MusThGUI",
+            "namespace": "GUIState"
+        },
+        {
+            "file": "ToolbarBtnRend.js",
+            "line": 52,
+            "description": "Draws the toolbar button.",
+            "itemtype": "method",
+            "name": "draw",
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            },
+            "class": "Render.ToolbarBtnRend",
+            "module": "MusThGUI",
+            "namespace": "Render"
+        },
+        {
+            "file": "ToolbarRend.js",
+            "line": 45,
+            "description": "Draws the toolbar.",
+            "itemtype": "method",
+            "name": "draw",
+            "params": [
+                {
+                    "name": "toolbarID",
+                    "description": "The zero-based ID of the toolbar to be rendered.",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            },
+            "class": "Render.ToolbarRend",
+            "module": "MusThGUI",
+            "namespace": "Render"
+        },
+        {
+            "file": "TwoVoiceNoteCol.js",
+            "line": 49,
+            "description": "Adds a note to the note column. Once the note is added, rearranges note stems\nso that they are in the opposite direction.",
+            "itemtype": "method",
+            "name": "addNote",
+            "params": [
+                {
+                    "name": "note",
+                    "description": "The note to be added.",
+                    "type": "GUIState.Note"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            },
+            "class": "GUIState.TwoVoiceNoteCol",
+            "module": "MusThGUI",
+            "namespace": "GUIState"
+        },
+        {
+            "file": "TwoVoiceNoteCol.js",
+            "line": 64,
+            "description": "Removes a note from the note column. No action taken if the given note isn't\nin the column. If two notes are in unison in the column, both notes are\nremoved. Once the note is removed, rearranges note stems so that they are in\nthe opposite direction.",
+            "itemtype": "method",
+            "name": "removeNote",
+            "params": [
+                {
+                    "name": "note",
+                    "description": "The note to be removed.",
+                    "type": "GUIState.Note"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            },
+            "class": "GUIState.TwoVoiceNoteCol",
+            "module": "MusThGUI",
+            "namespace": "GUIState"
+        },
+        {
+            "file": "TwoVoiceNoteCol.js",
+            "line": 97,
+            "description": "Removes the ghost note from the column, if present. It is assumed that there\ncan be at most one ghost note in the column at any given time. Once the ghost\nnote is removed, rearranges note stems so that they are in the opposite\ndirection.",
+            "itemtype": "method",
+            "name": "removeGhostNote",
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            },
+            "class": "GUIState.TwoVoiceNoteCol",
+            "module": "MusThGUI",
+            "namespace": "GUIState"
+        },
+        {
+            "file": "TwoVoiceNoteCol.js",
+            "line": 119,
+            "description": "Rearranges the note stems, as needed, so that they are in opposite direction.",
+            "itemtype": "method",
+            "name": "rearrangeStems",
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            },
+            "class": "GUIState.TwoVoiceNoteCol",
+            "module": "MusThGUI",
+            "namespace": "GUIState"
+        },
+        {
+            "file": "TwoVoiceNoteCol.js",
+            "line": 182,
+            "description": "Indicates whether the given note can be added to the column.",
+            "itemtype": "method",
+            "name": "noteAddible",
+            "params": [
+                {
+                    "name": "potentialNote",
+                    "description": "The note to consider adding.",
+                    "type": "GUIState.Note"
+                }
+            ],
+            "return": {
+                "description": "Returns true if the note can be added to the column.",
+                "type": "Boolean"
+            },
+            "class": "GUIState.TwoVoiceNoteCol",
+            "module": "MusThGUI",
+            "namespace": "GUIState"
+        },
+        {
+            "file": "TwoVoiceNoteCol.js",
+            "line": 217,
+            "description": "Indicates whether the given note can be removed from the column.",
+            "itemtype": "method",
+            "name": "noteRemovable",
+            "params": [
+                {
+                    "name": "note",
+                    "description": "The note to consider removing.",
+                    "type": "GUIState.Note"
+                }
+            ],
+            "return": {
+                "description": "Returns true if the note can be removed from the column.",
+                "type": "Boolean"
+            },
+            "class": "GUIState.TwoVoiceNoteCol",
+            "module": "MusThGUI",
+            "namespace": "GUIState"
+        },
+        {
+            "file": "TwoVoiceNoteCol.js",
+            "line": 236,
+            "description": "Provides the number of notes currently in the column, excluding the ghost\nnote.",
+            "itemtype": "method",
+            "name": "lengthWithoutGhost",
+            "return": {
+                "description": "Returns the number of non-ghost notes in the column.",
+                "type": "Number"
+            },
+            "class": "GUIState.TwoVoiceNoteCol",
+            "module": "MusThGUI",
+            "namespace": "GUIState"
+        },
+        {
+            "file": "TwoVoiceNoteCol.js",
+            "line": 256,
+            "description": "Provides the first non-ghost note in the column.",
+            "itemtype": "method",
+            "name": "getFirstNonGhost",
+            "return": {
+                "description": "Returns the first non-ghost note in\nthe column. If the column doesn't have non-ghost notes, returns null.",
+                "type": "GUIState.Note | null"
+            },
+            "class": "GUIState.TwoVoiceNoteCol",
+            "module": "MusThGUI",
+            "namespace": "GUIState"
+        }
+    ],
+    "warnings": []
+}

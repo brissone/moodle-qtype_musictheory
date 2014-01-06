@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>InputDialog.js</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="../assets/css/logo.png" title=""></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: </em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="../classes/Control.Controller.html">Control.Controller</a></li>
+            
+                <li><a href="../classes/Control.InputDialog.html">Control.InputDialog</a></li>
+            
+                <li><a href="../classes/GUIState.FiguredBass.html">GUIState.FiguredBass</a></li>
+            
+                <li><a href="../classes/GUIState.FiguredBassRend.html">GUIState.FiguredBassRend</a></li>
+            
+                <li><a href="../classes/GUIState.FiguredBassRow.html">GUIState.FiguredBassRow</a></li>
+            
+                <li><a href="../classes/GUIState.KeySign.html">GUIState.KeySign</a></li>
+            
+                <li><a href="../classes/GUIState.KeySignAcc.html">GUIState.KeySignAcc</a></li>
+            
+                <li><a href="../classes/GUIState.Note.html">GUIState.Note</a></li>
+            
+                <li><a href="../classes/GUIState.NoteCol.html">GUIState.NoteCol</a></li>
+            
+                <li><a href="../classes/GUIState.Staff.html">GUIState.Staff</a></li>
+            
+                <li><a href="../classes/GUIState.StaffSystem.html">GUIState.StaffSystem</a></li>
+            
+                <li><a href="../classes/GUIState.State.html">GUIState.State</a></li>
+            
+                <li><a href="../classes/GUIState.TextInput.html">GUIState.TextInput</a></li>
+            
+                <li><a href="../classes/GUIState.Toolbar.html">GUIState.Toolbar</a></li>
+            
+                <li><a href="../classes/GUIState.ToolbarBtn.html">GUIState.ToolbarBtn</a></li>
+            
+                <li><a href="../classes/GUIState.TwoVoiceNoteCol.html">GUIState.TwoVoiceNoteCol</a></li>
+            
+                <li><a href="../classes/MusThGUI.html">MusThGUI</a></li>
+            
+                <li><a href="../classes/Render.CoordManager.html">Render.CoordManager</a></li>
+            
+                <li><a href="../classes/Render.GlyphProvider.html">Render.GlyphProvider</a></li>
+            
+                <li><a href="../classes/Render.KeySignRend.html">Render.KeySignRend</a></li>
+            
+                <li><a href="../classes/Render.NoteColRend.html">Render.NoteColRend</a></li>
+            
+                <li><a href="../classes/Render.NoteRend.html">Render.NoteRend</a></li>
+            
+                <li><a href="../classes/Render.Renderer.html">Render.Renderer</a></li>
+            
+                <li><a href="../classes/Render.StaffRend.html">Render.StaffRend</a></li>
+            
+                <li><a href="../classes/Render.StaffSystemRend.html">Render.StaffSystemRend</a></li>
+            
+                <li><a href="../classes/Render.ToolbarBtnRend.html">Render.ToolbarBtnRend</a></li>
+            
+                <li><a href="../classes/Render.ToolbarRend.html">Render.ToolbarRend</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+                <li><a href="../modules/MusThGUI.html">MusThGUI</a></li>
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: InputDialog.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+/* Copyright (c) 2013 Eric Brisson
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the &quot;Software&quot;), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ THE SOFTWARE. */
+
+/**
+ * The InputDialog object represents a javascript dialog used to
+ * enter an answer in one of the canvas&#x27; text input. The use of this dialog
+ * allows the use of form elements to format the answer (in particular, the use
+ * of select elements).
+ *
+ * @class InputDialog
+ * @namespace Control
+ *
+ * @constructor
+ * @param {Control.Controller} controller The library&#x27;s controller
+ * object.
+ * @param {XMLDoc} stateXML The canvas state as xml. The xml specifies the
+ * html code to include in the dialog.
+ * @return {undefined}
+ */
+MusThGUI.Control.InputDialog = function(controller, stateXML) {
+
+  this.controller = controller;
+  this.parsedXML = stateXML;
+  this.panel = null;
+  this.colID = null;
+  this.dialogNode = this.parsedXML.getElementsByTagName(&#x27;InputDialog&#x27;)[0];
+
+  if (typeof(this.dialogNode) !== &#x27;undefined&#x27; &amp;&amp; this.dialogNode !== null) {
+    this.formDivContentXML = this.dialogNode.getElementsByTagName(&#x27;div&#x27;)[0];
+    this.dialogID = this.formDivContentXML.getAttribute(&#x27;id&#x27;);
+    this.width = this.dialogNode.getAttribute(&#x27;width&#x27;);
+    this.height = this.dialogNode.getAttribute(&#x27;height&#x27;);
+    this.btnTxtOK = this.dialogNode.getAttribute(&#x27;OKButtonText&#x27;);
+    this.btnTxtCancel = this.dialogNode.getAttribute(&#x27;cancelButtonText&#x27;);
+  }
+};
+
+/**
+ * Initializes the input dialog.
+ *
+ * @method init
+ * @return {undefined}
+ */
+MusThGUI.Control.InputDialog.prototype.init = function() {
+
+  Y.one(&#x27;body&#x27;).addClass(&#x27;yui3-skin-sam&#x27;);
+
+  var parent = this;
+  this.panel = new Y.Panel({
+    bodyContent: Y.XML.format(this.formDivContentXML),
+    headerContent: this.dialogNode.getAttribute(&#x27;headerContent&#x27;),
+    zIndex: 6,
+    centered: true,
+    modal: true,
+    visible: false,
+    render: true,
+    plugins: [Y.Plugin.Drag],
+    buttons: [
+      {
+        value: this.btnTxtOK,
+        section: Y.WidgetStdMod.FOOTER,
+        action: function(e) {
+          e.preventDefault();
+          var combinedInput = &#x27;&#x27;;
+          var divNode = parent.Y.one(&#x27;#&#x27; + parent.dialogID);
+          var selectElems = divNode.all(&#x27;select&#x27;);
+          selectElems.each(function(selectElem) {
+            combinedInput += selectElem.get(&#x27;value&#x27;);
+          });
+          parent.callBack(combinedInput);
+          this.hide();
+        }
+      },
+      {
+        value: this.btnTxtCancel,
+        section: Y.WidgetStdMod.FOOTER,
+        action: function(e) {
+          e.preventDefault();
+          this.hide();
+        }
+      }
+    ]
+  });
+
+};
+
+/**
+ * Displays the input dialog.
+ *
+ * @method show
+ * @return {undefined}
+ */
+MusThGUI.Control.InputDialog.prototype.show = function() {
+  if (typeof(this.panel) === &#x27;undefined&#x27;) {
+    this.init();
+  }
+  this.resetDialogForm();
+  this.panel.show();
+};
+
+/**
+ * Resets all form elements to empty values.
+ *
+ * @method resetDialogForm
+ * @return {undefined}
+ */
+MusThGUI.Control.InputDialog.prototype.resetDialogForm = function() {
+  var divNode = Y.one(&#x27;#&#x27; + this.dialogID);
+  var selectElems = divNode.all(&#x27;select&#x27;);
+  selectElems.each(function(selectElem) {
+    selectElem.set(&#x27;value&#x27;, &#x27;&#x27;);
+  });
+};
+
+/**
+ * Resets all form elements to empty values.
+ *
+ * @method callBack
+ * @param {String} combinedInput The form&#x27;s input, to be sent back to the
+ * controller object passed as argument to the constructor.
+ * @return {undefined}
+ */
+MusThGUI.Control.InputDialog.prototype.callBack = function(combinedInput) {
+
+  this.controller.setColTextInput(this.colID, combinedInput);
+
+};
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>
