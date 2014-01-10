@@ -26,6 +26,7 @@ require_once(__DIR__ . '/lib/MusicTheory/MusicTheory.php');
 
 require_once(__DIR__ . '/randomisation.php');
 
+require_once(__DIR__ . '/note/renderer.php');
 require_once(__DIR__ . '/keysignature/renderer.php');
 require_once(__DIR__ . '/interval/renderer.php');
 require_once(__DIR__ . '/scale/renderer.php');
@@ -77,6 +78,12 @@ abstract class qtype_musictheory_question extends question_graded_automatically 
 
     public function get_renderer(moodle_page $page) {
         switch ($this->musictheory_musicqtype) {
+            case "note-write":
+            case "note-write-random":
+                return new qtype_musictheory_note_write_renderer($page, null);
+            case 'note-identify':
+            case 'note-identify-random':
+                return new qtype_musictheory_note_identify_renderer($page, null);
             case "keysignature-write":
             case "keysignature-write-random":
                 return new qtype_musictheory_keysignature_write_renderer($page, null);
@@ -99,6 +106,7 @@ abstract class qtype_musictheory_question extends question_graded_automatically 
 
 }
 
+require_once(__DIR__ . '/note/question.php');
 require_once(__DIR__ . '/keysignature/question.php');
 require_once(__DIR__ . '/interval/question.php');
 require_once(__DIR__ . '/scale/question.php');

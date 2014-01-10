@@ -33,6 +33,7 @@ $string['pluginnameediting'] = 'Configurer une question: Musique - Théorie';
 // Edit form labels and help.
 $string['clef'] = 'Clef';
 $string['clef-random'] = 'Clefs possibles';
+$string['considerregister'] = 'Spécifier le registre';
 $string['displaykeysignature'] = "Afficher l'armature";
 $string['direction'] = 'Direction';
 $string['givennoteelementgroup'] = 'Note de départ';
@@ -42,28 +43,33 @@ $string['musicqtype'] = "Type d'exercise";
 $string['musictheory_intervalelementgroup'] = 'Intervalle';
 $string['musictheory_intervalelementgroup_help'] = "Indique le type d'intervalle.";
 $string['musictheory_intervalelementgroup_random'] = 'Intervalles possibles';
+$string['notelbl'] = 'Note';
 $string['quality-random'] = 'Qualiticatifs possibles';
 $string['questionoptions'] = 'Options de la question';
 $string['questiontext'] = 'Texte de la question';
-$string['questiontext_help'] = "Ce champ n'est pas requis. Un texte pour cette question sera généré
-     automatiquement. Si vous entrez du texte dans ce champ, ce texte sera affiché au-dessus du texte
-     généré automatiquement.";
+$string['questiontext_help'] = "Ce champ n'est pas requis. Si vous le laissez vide, un texte
+ pour cette question sera généré automatiquement. Si vous entrez du texte dans ce champ,
+ ce texte replacera celui généré automatiquement.";
 $string['scaletype-random'] = 'Types de gamme possibles';
 $string['size-random'] = 'Noms possibles';
 $string['tonic'] = 'Tonique';
 $string['updatemusicqtype'] = 'Mettre les options à jour';
 
 // Music question subtype options.
-$string['qtype_keysignature-write'] = 'Écrire une armature';
-$string['qtype_keysignature-write-random'] = 'Écrire une armature (aléatoire)';
+$string['qtype_note-write'] = 'Entrer une note';
+$string['qtype_note-write-random'] = 'Entrer une note (aléatoire)';
+$string['qtype_note-identify'] = 'Identifier une note';
+$string['qtype_note-identify-random'] = 'Identifier une note (aléatoire)';
+$string['qtype_keysignature-write'] = 'Entrer une armature';
+$string['qtype_keysignature-write-random'] = 'Entrer une armature (aléatoire)';
 $string['qtype_keysignature-identify'] = 'Identifier une armature';
 $string['qtype_keysignature-identify-random'] = 'Identifier une armature (aléatoire)';
-$string['qtype_interval-write'] = 'Écrire un intervalle';
-$string['qtype_interval-write-random'] = 'Écrire un intervalle (aléatoire)';
+$string['qtype_interval-write'] = 'Entrer un intervalle';
+$string['qtype_interval-write-random'] = 'Entrer un intervalle (aléatoire)';
 $string['qtype_interval-identify'] = 'Identifier un intervalle';
 $string['qtype_interval-identify-random'] = 'Identifier un intervalle (aléatoire)';
-$string['qtype_scale-write'] = 'Écrire une gamme';
-$string['qtype_scale-write-random'] = 'Écrire une gamme (aléatoire)';
+$string['qtype_scale-write'] = 'Entrer une gamme';
+$string['qtype_scale-write-random'] = 'Entrer une gamme (aléatoire)';
 
 // Edit form - grading strategy options and help.
 $string['musictheory_gradingstrategy'] = "Stragégie de correction";
@@ -82,6 +88,7 @@ $string['musictheory_gradingstrategy_scale-write_help'] = "<p>La stratégie de c
  Cette stratégie de correction divise la note de question par le nombre de notes de gamme à
  entrer, et accorde une note partielle pour chaque note de gamme correcte.</p>";
 $string['qtype_musictheory_strategy_all_or_nothing'] = "Tout ou rien";
+$string['qtype_musictheory_strategy_note_allornothing'] = "Tout ou rien";
 $string['qtype_musictheory_strategy_scale_creditbynote'] = "Crédit partiel pour chaque note de gamme correcte";
 
 // Note names.
@@ -225,18 +232,22 @@ $string['scaletype_harmonic'] = 'mineur, harmonique';
 $string['scaletype_melodic'] = 'mineur, mélodique';
 
 // Edit form validation.
+$string['validation_noteoutsidestaff'] = "Le registre de cette note se situe en
+ dehors de la portée avec la clef indiquée.";
 $string['validation_qualitymismatch'] = "Cette combinaison de nom d'intervalle et de qualificatif est non valide.";
 $string['validation_invalidinterval_above'] = "Cet intervalle ne peut être écrit au-dessus de la note de départ.";
 $string['validation_invalidinterval_below'] = "Cet intervalle ne peut être écrit au-dessous de la note de départ.";
 $string['validation_intervaloutsidestaff'] = "Le registre de la note de départ produit un
- intervalle qui en dehors de la portée avec la celf indiquée.";
+ intervalle qui en dehors de la portée avec la clef indiquée.";
 $string['validation_interval_novalidcombo'] = "Les options d'intervalles possibles sélectionnées
  ne produisent pas au moins un type d'interval valide.";
 $string['validation_scale_invalidtonic'] = "Tonique non valide pour le type de gamme sélectionné.";
 $string['validation_scaleoutsidestaff'] = "Le registre de la note de départ produit une gamme
- qui en dehors de la portée avec la celf indiquée";
+ qui en dehors de la portée avec la clef indiquée";
+
 // Question rendering.
 $string['correctansweris'] = 'La réponse correcte est:';
+$string['correctansweris_morethanone'] = "L'une des réponses correctes possibles est:";
 $string['selectakey'] = "Sélectionnez une tonalité";
 $string['selectasize'] = "Sélectionnez un nom";
 $string['selectaquality'] = "Sélectionnez un qualificatif";
@@ -246,6 +257,8 @@ $string['altoclef'] = "Clef d'ut (alto)";
 $string['tenorclef'] = "Clef d'ut (ténor)";
 
 // Question text and help button.
+$string['questiontext_note_write'] = 'Entrez la note suivante';
+$string['questiontext_note_identify'] = 'Identifiez la note suivante';
 $string['questiontext_keysignature_write'] = "Entrez l'armature suivante";
 $string['questiontext_keysignature_identify_major'] = "Déterminez la tonalité majeure
  représentée par l'armature suivante";
@@ -264,6 +277,18 @@ $string['acc_x'] = 'x';
 $string['acc_b'] = '&#9837;';
 $string['acc_bb'] = 'bb';
 
+$string['note_write_questionastext'] = 'Entrée de réponse de note';
+$string['note_write_questionastext_help'] = "<p>Entrez la note de réponse, sans espaces,
+ en utilisant la syntaxe suivante:</p>
+ <p>[Nom de note en majuscule (do = 'C', ré = 'D', mi = 'E', fa = 'F', sol = 'G', la = 'A', si = 'B')]
+ [Altération (bécarre = 'n', dièse = '#', bémol = 'b', double-dièse = 'x', double-bémol = 'bb')]
+ [Registre (un chiffre entre 1 et 6, suivant la numérotation
+ américaine, e.g. La 440Hz = 4)]</p><p>Exemples:
+ </p><ul><li><b>Gn5</b></li><li><b>A#4</b></li><li><b>Ebb3</b></li></ul>";
+$string['note_write_questionasui'] = 'Entrée de réponse de note';
+$string['note_write_questionasui_help'] = "<p>Entrez la note de réponse en cliquant sur la
+ portée, après avoir sélectionné l'altération voulue avec la barre d'outils de droite. Pour
+ effacer la note, cliquez sur celle-ci à nouveau.</p>";
 $string['keysignature_write_questionastext'] = "Entrée de réponse d'armature";
 $string['keysignature_write_questionastext_help'] = "<p>Entrez une liste (entre 1 et 7)
  d'altérations séparées par des virgules, sans espaces, en utilisant la syntaxe suivante:</p>
@@ -303,6 +328,8 @@ $string['scale_write_questionasui_help'] = "<p>Entrez les notes de la gamme en c
 $string['emptykeysignature'] = 'Armature vide';
 
 // Question answer validation.
+$string['validationerror_note_identify'] = "Réponse incomplète. Il faut sélectionner le
+ nom de la note, l'altération et le registre.";
 $string['validationerror_empty'] = 'Veuillez entrer une réponse.';
 $string['validationerror_interval_identify'] = "Réponse incomplète. Il faut sélectionner un
  nom d'intervalle et un qualiticatif d'interval.";

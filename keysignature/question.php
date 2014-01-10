@@ -57,6 +57,9 @@ class qtype_musictheory_keysignature_write extends qtype_musictheory_question im
     }
 
     public function is_complete_response(array $response) {
+        if (!isset($response['answer'])) {
+            return false;
+        }
         $regex = '/^([A-G](\#|b)[2-5],){0,6}([A-G](\#|b)[2-5]){1}$/';
         return preg_match($regex, $response['answer']);
     }
@@ -153,6 +156,9 @@ class qtype_musictheory_keysignature_identify extends qtype_musictheory_question
     }
 
     public function is_complete_response(array $response) {
+        if (!isset($response['answer'])) {
+            return false;
+        }
         $regex = '/^([A-G](n|\#|b|x|bb)(M|m)){1}$/';
         return preg_match($regex, $response['answer']);
     }

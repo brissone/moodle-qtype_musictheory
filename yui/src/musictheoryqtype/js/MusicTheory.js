@@ -195,10 +195,16 @@ NS.questionRender.convertOptionsXMLtoObjectLiteral = function(optionsXML) {
   var optionsNode = parsedXML.getElementsByTagName('options')[0].firstChild;
   var musicQType = optionsNode.nodeName;
 
+	options.musicQType = musicQType;
+
   switch (musicQType) {
+		case 'note-write':
+		case 'note-identify':
+      options.clef = optionsNode.getElementsByTagName(
+          'clef')[0].firstChild.nodeValue;
+			break;
     case 'keysignature-write':
     case 'keysignature-identify':
-      options.musicQType = musicQType;
       options.clef = optionsNode.getElementsByTagName(
           'clef')[0].firstChild.nodeValue;
       options.key = optionsNode.getElementsByTagName(
@@ -206,7 +212,6 @@ NS.questionRender.convertOptionsXMLtoObjectLiteral = function(optionsXML) {
       break;
     case 'interval-write':
     case 'interval-identify':
-      options.musicQType = musicQType;
       options.clef = optionsNode.getElementsByTagName(
           'clef')[0].firstChild.nodeValue;
       options.givenNote = [];
@@ -219,7 +224,6 @@ NS.questionRender.convertOptionsXMLtoObjectLiteral = function(optionsXML) {
           optionsNode.getElementsByTagName('register')[0].firstChild.nodeValue;
       break;
     case 'scale-write':
-      options.musicQType = 'scale-write';
       options.clef = optionsNode.getElementsByTagName(
           'clef')[0].firstChild.nodeValue;
       options.givenNote = [];

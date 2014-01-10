@@ -1,5 +1,27 @@
 YUI.add('moodle-qtype_musictheory-musictheoryui', function (Y, NAME) {
 
+// This file is part of Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
+/**
+ * @package    qtype
+ * @subpackage musictheory
+ * @copyright  2013 Eric Brisson
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
 M.qtype_musictheory = M.qtype_musictheory || {};
 
 M.qtype_musictheory.musictheoryui = {
@@ -39,41 +61,41 @@ M.qtype_musictheory.musictheoryui = {
  1) Add an HTMLtag for a small canvas in the web page source, with a unique 'id'
  attribute.
 
- <canvas id="myUniqueID" width="1" height="1"/>
+	<canvas id="myUniqueID" width="1" height="1"/>
 
  2) Define an XML string that will describe the interface's initial state. Here
  is an example that would be well-suited for a scale question:
 
- var initXML = '<MusThGUI>' +
- '<StaffSystem maxLedgerLines="3">' +
- '<Staff clef="treble">' +
- '<KeySign totalAccColumns="7" >' +
- '<Accidental type="#" letter="F" register="5" editable="false" />' +
- '<Accidental type="#" letter="C" register="5" editable="false" />' +
- '<Accidental type="#" letter="G" register="5" editable="false" />' +
- '</KeySign>' +
- '<NoteColumns>' +
- '<NoteColumn maxNotes="1" />' +
- '<NoteColumn maxNotes="1" />' +
- '<NoteColumn maxNotes="1" />' +
- '<NoteColumn maxNotes="1" />' +
- '<NoteColumn maxNotes="1" />' +
- '<NoteColumn maxNotes="1" />' +
- '<NoteColumn maxNotes="1" />' +
- '<NoteColumn maxNotes="1" />' +
- '</NoteColumns>' +
- '</Staff>' +
- '</StaffSystem>' +
- '<Toolbars>' +
- '<AccidentalToolbar>' +
- '<Button symbol="n" />' +
- '<Button symbol="#" />' +
- '<Button symbol="b" />' +
- '<Button symbol="##" />' +
- '<Button symbol="bb" />' +
- '</AccidentalToolbar>' +
- '</Toolbars>' +
- '</MusThGUI>';
+	var initXML = '<MusThGUI>' +
+	'<StaffSystem maxLedgerLines="3">' +
+	'<Staff clef="treble">' +
+	'<KeySign totalAccColumns="7" >' +
+	'<Accidental type="#" letter="F" register="5" editable="false" />' +
+	'<Accidental type="#" letter="C" register="5" editable="false" />' +
+	'<Accidental type="#" letter="G" register="5" editable="false" />' +
+	'</KeySign>' +
+	'<NoteColumns>' +
+	'<NoteColumn maxNotes="1" />' +
+	'<NoteColumn maxNotes="1" />' +
+	'<NoteColumn maxNotes="1" />' +
+	'<NoteColumn maxNotes="1" />' +
+	'<NoteColumn maxNotes="1" />' +
+	'<NoteColumn maxNotes="1" />' +
+	'<NoteColumn maxNotes="1" />' +
+	'<NoteColumn maxNotes="1" />' +
+	'</NoteColumns>' +
+	'</Staff>' +
+	'</StaffSystem>' +
+	'<Toolbars>' +
+	'<AccidentalToolbar>' +
+	'<Button symbol="n" />' +
+	'<Button symbol="#" />' +
+	'<Button symbol="b" />' +
+	'<Button symbol="##" />' +
+	'<Button symbol="bb" />' +
+	'</AccidentalToolbar>' +
+	'</Toolbars>' +
+	'</MusThGUI>';
 
  For more details on the XML schema that the interface will accept and return,
  see the 'valid_input_xml.xsd' file in the module's XML directory.
@@ -82,14 +104,14 @@ M.qtype_musictheory.musictheoryui = {
  current state. This function will be called whenever the user changes the
  interface's state (i.e. by adding or deleting notes on the staff).
 
- var callBack = function(stateXML) {
- //stateXML will contain the most up-to-date canvas state.
- };
+	var callBack = function(stateXML) {
+	//stateXML will contain the most up-to-date canvas state.
+	};
 
  4) Create a {{#crossLink "MusThGUI"}}{{/crossLink}} object using the canvas id
  from step 1, the XML string from step 2 and the callback function from step 3:
 
- var musicCanvas = new MusThGUI('myUniqueID', initXML, callBack, true);
+	var musicCanvas = new MusThGUI('myUniqueID', initXML, callBack, true);
 
  Argument 4 specifies whether the interface should be editable after
  initialization. Use a false value to display a static interface.
@@ -751,7 +773,6 @@ MusThGUI.Render.CoordManager = function(state) {
     bass: this.notes[bassTopNoteID],
     alto: this.notes[altoTopNoteID],
     tenor: this.notes[tenorTopNoteID]};
-
 };
 
 /**
@@ -909,7 +930,7 @@ MusThGUI.Render.CoordManager.prototype.setLedgerLines = function() {
   var topNoteID = new Array(this.notes.F5, this.notes.A3,
       this.notes.G4, this.notes.E4);
   var bottomNoteID = new Array(this.notes.E4, this.notes.G2,
-      this.notes.F3, this.notes.D2);
+      this.notes.F3, this.notes.D3);
 
   var i, j;
   var clef, noteName, stepDist, numLines;

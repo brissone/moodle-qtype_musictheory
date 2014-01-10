@@ -1540,7 +1540,7 @@
         },
         {
             "file": "CoordManager.js",
-            "line": 82,
+            "line": 81,
             "description": "Determines the width of the canvas.",
             "itemtype": "method",
             "name": "getCanvasWidth",
@@ -1570,7 +1570,7 @@
         },
         {
             "file": "CoordManager.js",
-            "line": 106,
+            "line": 105,
             "description": "Determines the height of the canvas.",
             "itemtype": "method",
             "name": "getCanvasHeight",
@@ -1600,7 +1600,7 @@
         },
         {
             "file": "CoordManager.js",
-            "line": 132,
+            "line": 131,
             "description": "Determine an appropriate note column width for the staff system, given the\nmaximum number of notes in the columns.",
             "itemtype": "method",
             "name": "getColWidth",
@@ -1620,7 +1620,7 @@
         },
         {
             "file": "CoordManager.js",
-            "line": 166,
+            "line": 165,
             "description": "Builds an array listing all white notes on the piano keyboard. All notes are\nassigned an integer ID. This array can be used to determine the stepwise\ndistance between two notes on the staff.",
             "itemtype": "method",
             "name": "noteArrayBuild",
@@ -1633,7 +1633,7 @@
         },
         {
             "file": "CoordManager.js",
-            "line": 217,
+            "line": 216,
             "description": "For each note in the coordinate manager's note array (this.notes), determines\nthe number of ledger lines required to draw the note and whether the ledger\nlines are to be drawn above or below the note head.",
             "itemtype": "method",
             "name": "setLedgerLines",
@@ -1646,7 +1646,7 @@
         },
         {
             "file": "CoordManager.js",
-            "line": 268,
+            "line": 267,
             "description": "Computes the width of a staff.",
             "itemtype": "method",
             "name": "getStaffWidth",
@@ -1671,7 +1671,7 @@
         },
         {
             "file": "CoordManager.js",
-            "line": 289,
+            "line": 288,
             "description": "Computes the height of a staff.",
             "itemtype": "method",
             "name": "getStaffHeight",
@@ -1691,7 +1691,7 @@
         },
         {
             "file": "CoordManager.js",
-            "line": 312,
+            "line": 311,
             "description": "Computes the height of the staff system.",
             "itemtype": "method",
             "name": "getStaffSystemHeight",
@@ -1711,7 +1711,7 @@
         },
         {
             "file": "CoordManager.js",
-            "line": 327,
+            "line": 326,
             "description": "Provides the location of the upper left corner of the staff system.",
             "itemtype": "method",
             "name": "getStaffSystemOrigin",
@@ -1724,7 +1724,7 @@
         },
         {
             "file": "CoordManager.js",
-            "line": 340,
+            "line": 339,
             "description": "Provides the location of the upper left corner a staff.",
             "itemtype": "method",
             "name": "getStaffOrigin",
@@ -1744,7 +1744,7 @@
         },
         {
             "file": "CoordManager.js",
-            "line": 358,
+            "line": 357,
             "description": "Provides the location of the upper left corner a staff line.",
             "itemtype": "method",
             "name": "getStaffLinePos",
@@ -1769,7 +1769,7 @@
         },
         {
             "file": "CoordManager.js",
-            "line": 376,
+            "line": 375,
             "description": "Provides the location of the clef in a given staff.",
             "itemtype": "method",
             "name": "getClefPos",
@@ -1789,7 +1789,7 @@
         },
         {
             "file": "CoordManager.js",
-            "line": 392,
+            "line": 391,
             "description": "Provides the location of a key signature accidental.",
             "itemtype": "method",
             "name": "getKeySignAccPos",
@@ -1829,7 +1829,7 @@
         },
         {
             "file": "CoordManager.js",
-            "line": 414,
+            "line": 413,
             "description": "Provides the x-coordinate of the center of a given key signature accidental\ncolumn.",
             "itemtype": "method",
             "name": "getKeySignColCenterX",
@@ -1854,7 +1854,7 @@
         },
         {
             "file": "CoordManager.js",
-            "line": 432,
+            "line": 431,
             "description": "Provides the y-coordinate of a given staff's highest possible note.",
             "itemtype": "method",
             "name": "getTopNoteY",
@@ -1874,7 +1874,7 @@
         },
         {
             "file": "CoordManager.js",
-            "line": 448,
+            "line": 447,
             "description": "Provides the y of a given note on a staff.",
             "itemtype": "method",
             "name": "getLetterNameY",
@@ -1909,7 +1909,7 @@
         },
         {
             "file": "CoordManager.js",
-            "line": 469,
+            "line": 468,
             "description": "Provides the stepwise distance between two notes on the staff.",
             "itemtype": "method",
             "name": "getStepwiseNoteDist",
@@ -1934,7 +1934,7 @@
         },
         {
             "file": "CoordManager.js",
-            "line": 486,
+            "line": 485,
             "description": "Provides the x-coordinate of the center of a given note column.",
             "itemtype": "method",
             "name": "getNoteColCenterX",
@@ -1964,7 +1964,7 @@
         },
         {
             "file": "CoordManager.js",
-            "line": 507,
+            "line": 506,
             "description": "Provides the location of a given note on a staff.",
             "itemtype": "method",
             "name": "getNotePos",
@@ -2009,7 +2009,7 @@
         },
         {
             "file": "CoordManager.js",
-            "line": 532,
+            "line": 531,
             "description": "Provides the y-coordinate of a given note's ledger lines.",
             "itemtype": "method",
             "name": "getLedgerLinesY",
@@ -2044,7 +2044,7 @@
         },
         {
             "file": "CoordManager.js",
-            "line": 580,
+            "line": 579,
             "description": "Provides the interval size between two notes on the staff.",
             "itemtype": "method",
             "name": "getIntervalSize",
@@ -2069,7 +2069,7 @@
         },
         {
             "file": "CoordManager.js",
-            "line": 597,
+            "line": 596,
             "description": "Given a canvas point, determine if a canvas element (note, key signature\naccidental, toolbar button, text input) is located at this point, and if\nso, return the element.",
             "itemtype": "method",
             "name": "getElementByPos",
@@ -2114,7 +2114,7 @@
         },
         {
             "file": "CoordManager.js",
-            "line": 665,
+            "line": 664,
             "description": "Given a canvas point, determine if a text input element is located at this\npoint, and if so, return the text input.",
             "itemtype": "method",
             "name": "pointToTextInput",
@@ -2144,7 +2144,7 @@
         },
         {
             "file": "CoordManager.js",
-            "line": 704,
+            "line": 703,
             "description": "Given a canvas point and a staff, determine if a note is located at this\npoint, and if so, return the note.",
             "itemtype": "method",
             "name": "pointToStaffNote",
@@ -2184,7 +2184,7 @@
         },
         {
             "file": "CoordManager.js",
-            "line": 760,
+            "line": 759,
             "description": "Given a canvas point and a staff, determine if a key signature accidental is\nlocated at this point, and if so, return the key signature accidental.",
             "itemtype": "method",
             "name": "pointToKeySignAcc",
@@ -2219,7 +2219,7 @@
         },
         {
             "file": "CoordManager.js",
-            "line": 801,
+            "line": 800,
             "description": "Given a canvas point and a toolbar, determine if a toolbar button is located\nat this point, and if so, return the toolbar button.",
             "itemtype": "method",
             "name": "pointToToolbarBtn",
@@ -2254,7 +2254,7 @@
         },
         {
             "file": "CoordManager.js",
-            "line": 841,
+            "line": 840,
             "description": "Given a y coordinate and a staff, returns the note name associated with the\ny coordinate.",
             "itemtype": "method",
             "name": "getNoteFromY",
@@ -2284,7 +2284,7 @@
         },
         {
             "file": "CoordManager.js",
-            "line": 866,
+            "line": 865,
             "description": "Given a point and a rectangle's upper left and lower right corners, determine\nif the point lies within the rectangle.",
             "itemtype": "method",
             "name": "pointWithin",
@@ -2314,7 +2314,7 @@
         },
         {
             "file": "CoordManager.js",
-            "line": 892,
+            "line": 891,
             "description": "Povides the size of toolbar buttons. It is assumed that all toolbar buttons\nare square.",
             "itemtype": "method",
             "name": "getToolbarBtnSize",
@@ -2327,7 +2327,7 @@
         },
         {
             "file": "CoordManager.js",
-            "line": 906,
+            "line": 905,
             "description": "Povides the x-coordinate of the upper left corner of a given toolbar.",
             "itemtype": "method",
             "name": "getToolbarX",
@@ -2347,7 +2347,7 @@
         },
         {
             "file": "CoordManager.js",
-            "line": 920,
+            "line": 919,
             "description": "Povides the y-coordinate of the upper left corner of a given toolbar.",
             "itemtype": "method",
             "name": "getToolbarY",

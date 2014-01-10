@@ -173,8 +173,12 @@ class qtype_musictheory_edit_form extends question_edit_form {
 
         $mform->setExpanded('hdrquestionoptions');
 
-        if (!isset($this->options->question)) {
+        if (!isset($this->question->options)) {
             $selectoptionsqtype = array(
+                "note-write"                   => get_string('qtype_note-write', 'qtype_musictheory'),
+                "note-write-random"            => get_string('qtype_note-write-random', 'qtype_musictheory'),
+                "note-identify"                => get_string('qtype_note-identify', 'qtype_musictheory'),
+                "note-identify-random"         => get_string('qtype_note-identify-random', 'qtype_musictheory'),
                 "keysignature-write"           => get_string('qtype_keysignature-write', 'qtype_musictheory'),
                 "keysignature-write-random"    => get_string('qtype_keysignature-write-random', 'qtype_musictheory'),
                 "keysignature-identify"        => get_string('qtype_keysignature-identify', 'qtype_musictheory'),
@@ -215,7 +219,7 @@ class qtype_musictheory_edit_form extends question_edit_form {
             if (isset($this->question->options->musictheory_musicqtype)) {
                 $currentmusicqtype = $this->question->options->musictheory_musicqtype;
             } else {
-                $currentmusicqtype = 'keysignature-write';
+                $currentmusicqtype = 'note-write';
             }
         }
 
@@ -244,6 +248,14 @@ class qtype_musictheory_edit_form extends question_edit_form {
         }
 
         switch ($currentmusicqtype) {
+            case 'note-write':
+            case 'note-identify';
+                $this->add_note_write_options($mform);
+                break;
+            case 'note-write-random':
+            case 'note-identify-random':
+                $this->add_note_write_random_options($mform);
+                break;
             case 'keysignature-write':
                 $this->add_keysignature_write_options($mform);
                 break;
@@ -278,6 +290,28 @@ class qtype_musictheory_edit_form extends question_edit_form {
         }
 
         $this->add_interactive_settings();
+    }
+
+    /**
+     * Adds form options for the note writing subtype.
+     *
+     * @param object $mform the form being built.
+     */
+    private function add_note_write_options($mform) {
+        $this->add_clef_option($mform, 'musictheory_clef', false, 'clef');
+        $this->add_considerregister_option($mform);
+        $this->add_givennote_option($mform, get_string('notelbl', 'qtype_musictheory'), true);
+        $mform->disabledIf('musictheory_givennoteregister', 'musictheory_considerregister', 'notchecked');
+    }
+
+    /**
+     * Adds form options for the random note writing subtype.
+     *
+     * @param object $mform the form being built.
+     */
+    private function add_note_write_random_options($mform) {
+        $this->add_clef_option($mform, 'musictheory_clef_random', true, 'clef-random');
+        $this->add_considerregister_option($mform);
     }
 
     /**
@@ -399,6 +433,19 @@ class qtype_musictheory_edit_form extends question_edit_form {
     }
 
     /**
+     * Adds a checkbox to the form indicating whether the register should
+     * be taken into account in a note question.
+     *
+     * @param object $mform The form being built.
+     */
+    private function add_considerregister_option($mform) {
+        $lbl = get_string('considerregister', 'qtype_musictheory');
+        $mform->addElement('advcheckbox', 'musictheory_considerregister', $lbl);
+        $mform->addHelpButton('musictheory_considerregister', 'considerregister', 'qtype_musictheory');
+        $mform->addRule('musictheory_considerregister', null, 'required', null, 'client');
+    }
+
+    /**
      * Adds a clef option to the form.
      *
      * @param object $mform The form being built.
@@ -408,7 +455,8 @@ class qtype_musictheory_edit_form extends question_edit_form {
      * be added.
      * @param string $labelkey The key to use for the option label.
      */
-    private function add_clef_option($mform, $questionfield, $multiselect, $labelkey) {
+    private function add_clef_option($mform, $questionfield, $multiselect,
+            $labelkey) {
 
         $selectoptionsclef = array(
             "treble" => get_string('treble', 'qtype_musictheory'),
@@ -499,7 +547,8 @@ class qtype_musictheory_edit_form extends question_edit_form {
      * be added.
      * @param string $labelkey The key to use for the option label.
      */
-    private function add_mode_option($mform, $questionfield, $multiselect, $labelkey) {
+    private function add_mode_option($mform, $questionfield, $multiselect,
+            $labelkey) {
 
         $selectoptionsclef = array(
             "M" => get_string('major', 'qtype_musictheory'),
@@ -539,7 +588,8 @@ class qtype_musictheory_edit_form extends question_edit_form {
      * be added.
      * @param string $labelkey The key to use for the option label.
      */
-    private function add_direction_option($mform, $questionfield, $multiselect, $labelkey) {
+    private function add_direction_option($mform, $questionfield, $multiselect,
+            $labelkey) {
         $selectoptionsdirection = array(
             "above" => get_string('dirasc', 'qtype_musictheory'),
             "below" => get_string('dirdesc', 'qtype_musictheory')
@@ -564,7 +614,8 @@ class qtype_musictheory_edit_form extends question_edit_form {
      * @param boolean $includedoubleaccidentals Indicates whether the accidental
      * portion should include double-sharps and double-flats.
      */
-    private function add_givennote_option($mform, $label, $includedoubleaccidentals) {
+    private function add_givennote_option($mform, $label,
+            $includedoubleaccidentals) {
         $selectoptionsletter = array(
             "A" => get_string('noteA', 'qtype_musictheory'),
             "B" => get_string('noteB', 'qtype_musictheory'),
@@ -619,7 +670,8 @@ class qtype_musictheory_edit_form extends question_edit_form {
      * be added.
      * @param string $labelkey The key to use for the option label.
      */
-    private function add_quality_size_option($mform, $questionfields, $multiselect, $labelkey) {
+    private function add_quality_size_option($mform, $questionfields,
+            $multiselect, $labelkey) {
         $selectoptionsquality = array(
             "D" => get_string('qualityD', 'qtype_musictheory'),
             "m" => get_string('qualitym', 'qtype_musictheory'),
@@ -689,7 +741,8 @@ class qtype_musictheory_edit_form extends question_edit_form {
      * be added.
      * @param string $labelkey The key to use for the option label.
      */
-    private function add_scaletype_option($mform, $questionfield, $multiselect, $labelkey) {
+    private function add_scaletype_option($mform, $questionfield, $multiselect,
+            $labelkey) {
         $selectoptionsscaletype = array(
             "major"    => get_string('scaletype_major', 'qtype_musictheory'),
             "natural"  => get_string('scaletype_natural', 'qtype_musictheory'),
@@ -755,10 +808,12 @@ class qtype_musictheory_validation {
      */
     public static function validate_form_options($data) {
         switch ($data['musictheory_musicqtype']) {
+            case 'note-write':
+            case 'note-identify':
+                return self::validate_note_options($data);
             case 'interval-write':
             case 'interval-identify':
-                return self::validate_interval_write_options
-                                ($data);
+                return self::validate_interval_write_options($data);
             case 'interval-write-random':
             case 'interval-identify-random':
                 return self::validate_interval_write_random_options($data);
@@ -766,6 +821,33 @@ class qtype_musictheory_validation {
                 return self::validate_scale_write_options($data);
         }
         return array();
+    }
+
+    /**
+     * Validates interval writing form options.
+     *
+     * It makes sure that a given interval exists and that it can be built
+     * on the requested given note. It also checks that the interval would
+     * fit in the staff in the requested clef.
+     *
+     * @param array $data The form data.
+     * @return array The validation errors.
+     */
+    public static function validate_note_options($data) {
+        $errors = array();
+
+        $ltr = $data['musictheory_givennoteletter'];
+        $acc = $data['musictheory_givennoteaccidental'];
+        $reg = $data['musictheory_givennoteregister'];
+        $note = new Note($ltr, $acc, $reg);
+
+        $staff = new Staff($data['musictheory_clef']);
+        if (!$staff->noteFitsInStaff($note, 4)) {
+            $errors['musictheory_givennoteelementgroup'] =
+                    get_string('validation_noteoutsidestaff', 'qtype_musictheory');
+        }
+
+        return $errors;
     }
 
     /**

@@ -8,19 +8,22 @@ DESCRIPTION
 This Moodle question type deals music theory. It currently supports the
 following music theory exercises:
 
-1) Key signature writing: The respondent is asked to enter a given key signature.
-2) Key signature identification: The respondent is asked to identify a given
+1) Note writing: The respondent is asked to enter a given note on the staff.
+2) Note identification: The response is asked to identify a give note.
+3) Key signature writing: The respondent is asked to enter a given key signature.
+4) Key signature identification: The respondent is asked to identify a given
 major or minor key signature.
-3) Interval writing: The respondent is asked to enter a given interval above or
+5) Interval writing: The respondent is asked to enter a given interval above or
 below a given note.
-4) Interval identification: The respondent is asked to identify the quality and
+6) Interval identification: The respondent is asked to identify the quality and
 size of a given interval
-5) Scale writing: The respondent is asked to enter a given scale.
+7) Scale writing: The respondent is asked to enter a given scale.
 
-If Javascript is enabled, answers are entered and displayed in an HTML5 graphical
+
+When Javascript is enabled, answers are entered and displayed in an HTML5 graphical
 user interface, using a separate Javascript component (Music Theory GUI)
-packaged as a YUI module. However, the music theory question is fully functional
-without Javascript, for accessibility purposes.
+packaged as a YUI module. All the exercises above are fully functional without
+Javascript, except for 1) Note writing and 2) Note identification.
 
 Each of the exercises above can also be configured so that a specific question
 is randomly generated upon starting an activity. The randomization can be based
@@ -74,7 +77,8 @@ is fully functional without it.
 
 How to install:
 
-1) Copy the contents of this folder into the following folder: moodle/question/type/musictheory.
+1) Copy the contents of this folder into the following folder:
+moodle/question/type/musictheory
 2) Load the "Notifications" page on the Moodle home page - this will create
 database tables used by the question type.
 

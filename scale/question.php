@@ -74,6 +74,9 @@ class qtype_musictheory_scale_write extends qtype_musictheory_question implement
     }
 
     public function is_complete_response(array $response) {
+        if (!isset($response['answer'])) {
+            return false;
+        }
         if ($this->musictheory_scaletype == 'melodic') {
             $regex = '/^([A-G](n|\#|b|x|bb)[2-6],){14}([A-G](n|\#|b|x|bb)[2-6]){1}$/';
         } else {

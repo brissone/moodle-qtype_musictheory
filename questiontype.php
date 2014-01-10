@@ -44,6 +44,18 @@ class qtype_musictheory extends question_type {
         question_bank::load_question_definition_classes($this->name());
 
         switch ($questiondata->options->musictheory_musicqtype) {
+            case 'note-write':
+                $class = 'qtype_musictheory_note_write';
+                break;
+            case 'note-write-random';
+                $class = 'qtype_musictheory_note_write_random';
+                break;
+            case 'note-identify':
+                $class = 'qtype_musictheory_note_identify';
+                break;
+            case 'note-identify-random':
+                $class = 'qtype_musictheory_note_identify_random';
+                break;
             case 'keysignature-write':
                 $class = 'qtype_musictheory_keysignature_write';
                 break;
@@ -82,11 +94,12 @@ class qtype_musictheory extends question_type {
     }
 
     public function set_default_options($question) {
-        $question->musictheory_musicqtype = 'keysignature-write';
+        $question->musictheory_musicqtype = 'note-write';
         $question->musictheory_gradingStrategy = 'all_or_nothing';
         $question->musictheory_clef = 'treble';
         $question->musictheory_keymode = 'GnM';
         $question->musictheory_displaykeysignature = '0';
+        $question->musictheory_considerregister = '0';
         $question->musictheory_direction = 'above';
         $question->musictheory_givennoteletter = 'C';
         $question->musictheory_givennoteaccidental = 'n';
@@ -104,7 +117,9 @@ class qtype_musictheory extends question_type {
         // The generated question text for random sybtypes is set in
         // [random_question_class]->start_attempt().
         if (strpos($question->musictheory_musicqtype, 'random') === false) {
-            $question->questiontext .= '<p>' . $question->get_question_text() . '</p>';
+            if (empty($question->questiontext)) {
+                $question->questiontext = '<p>' . $question->get_question_text() . '</p>';
+            }
         }
     }
 
@@ -134,6 +149,15 @@ class qtype_musictheory extends question_type {
         $options = $children[0];
 
         switch ($question->musictheory_musicqtype) {
+            case 'note-write':
+            case 'note-identify';
+                $considerreg = (((string) $options->considerregister) == 'true') ? 1 : 0;
+                $question->musictheory_considerregister = $considerreg;
+                $question->musictheory_clef = (string) $options->clef;
+                $question->musictheory_givennoteletter = (string) $options->note[0]->letter;
+                $question->musictheory_givennoteaccidental = (string) $options->note[0]->accidental;
+                $question->musictheory_givennoteregister = (string) $options->note[0]->register;
+                break;
             case 'keysignature-write':
                 $question->musictheory_clef = (string) $options->clef;
                 $question->musictheory_keymode = (string) $options->key;
@@ -197,6 +221,16 @@ class qtype_musictheory extends question_type {
         $options = $children[0];
 
         switch ($question->musictheory_musicqtype) {
+            case 'note-write-random':
+            case 'note-identify-random':
+                $question->musictheory_clef_random = array();
+                $clefrandom = 'clef-random';
+                foreach ($options->$clefrandom->children() as $clef) {
+                    array_push($question->musictheory_clef_random, (string) $clef);
+                }
+                $considerreg = (((string) $options->considerregister) == 'true') ? 1 : 0;
+                $question->musictheory_considerregister = $considerreg;
+                break;
             case 'keysignature-write-random':
             case 'keysignature-identify-random':
                 $question->musictheory_clef_random = array();
@@ -297,35 +331,27 @@ class qtype_musictheory extends question_type {
         $outxml = '<?xml version="1.0" encoding="UTF-8"?>';
 
         $outxml .= '<options>';
+        $outxml .= '<' . $musicqtype. '>';
 
         switch ($musicqtype) {
-            case 'keysignature-write':
-                $outxml .= '<keysignature-write>';
+            case 'note-write':
+            case 'note-identify':
+                $considerreg = ($question->musictheory_considerregister == 1) ? 'true' : 'false';
+                $outxml .= '<considerregister>' . $considerreg . '</considerregister>';
+                $outxml .= '<note>';
+                $outxml .= '<letter>' . $question->musictheory_givennoteletter . '</letter>';
+                $outxml .= '<accidental>' . $question->musictheory_givennoteaccidental . '</accidental>';
+                $outxml .= '<register>' . $question->musictheory_givennoteregister . '</register>';
+                $outxml .= '</note>';
                 $outxml .= '<clef>' . $question->musictheory_clef . '</clef>';
-                $outxml .= '<key>' . $question->musictheory_keymode . '</key>';
-                $outxml .= '</keysignature-write>';
                 break;
+            case 'keysignature-write':
             case 'keysignature-identify':
-                $outxml .= '<keysignature-identify>';
                 $outxml .= '<clef>' . $question->musictheory_clef . '</clef>';
                 $outxml .= '<key>' . $question->musictheory_keymode . '</key>';
-                $outxml .= '</keysignature-identify>';
                 break;
             case 'interval-write':
-                $outxml .= '<interval-write>';
-                $outxml .= '<clef>' . $question->musictheory_clef . '</clef>';
-                $outxml .= '<givennote>';
-                $outxml .= '<letter>' . $question->musictheory_givennoteletter . '</letter>';
-                $outxml .= '<accidental>' . $question->musictheory_givennoteaccidental . '</accidental>';
-                $outxml .= '<register>' . $question->musictheory_givennoteregister . '</register>';
-                $outxml .= '</givennote>';
-                $outxml .= '<direction>' . $question->musictheory_direction . '</direction>';
-                $outxml .= '<size>' . $question->musictheory_size . '</size>';
-                $outxml .= '<quality>' . $question->musictheory_quality . '</quality>';
-                $outxml .= '</interval-write>';
-                break;
             case 'interval-identify':
-                $outxml .= '<interval-identify>';
                 $outxml .= '<clef>' . $question->musictheory_clef . '</clef>';
                 $outxml .= '<givennote>';
                 $outxml .= '<letter>' . $question->musictheory_givennoteletter . '</letter>';
@@ -335,10 +361,8 @@ class qtype_musictheory extends question_type {
                 $outxml .= '<direction>' . $question->musictheory_direction . '</direction>';
                 $outxml .= '<size>' . $question->musictheory_size . '</size>';
                 $outxml .= '<quality>' . $question->musictheory_quality . '</quality>';
-                $outxml .= '</interval-identify>';
                 break;
             case 'scale-write';
-                $outxml .= '<scale-write>';
                 $outxml .= '<clef>' . $question->musictheory_clef . '</clef>';
                 $outxml .= '<tonic>';
                 $outxml .= '<letter>' . $question->musictheory_givennoteletter . '</letter>';
@@ -348,9 +372,10 @@ class qtype_musictheory extends question_type {
                 $displayks = ($question->musictheory_displaykeysignature == 1) ? 'true' : 'false';
                 $outxml .= '<displaykeysignature>' . $displayks . '</displaykeysignature>';
                 $outxml .= '<scaletype>' . $question->musictheory_scaletype . '</scaletype>';
-                $outxml .= '</scale-write>';
                 break;
         }
+
+        $outxml .= '</' . $musicqtype. '>';
         $outxml .= '</options>';
 
         return $outxml;
@@ -371,6 +396,18 @@ class qtype_musictheory extends question_type {
         $outxml .= '<options>';
 
         switch ($musicqtype) {
+            case 'note-write-random':
+            case 'note-identify-random':
+                $outxml .= '<' . $musicqtype . '>';
+                $outxml .= '<clef-random>';
+                foreach ($question->musictheory_clef_random as $clef) {
+                    $outxml .= '<clef>' . $clef . '</clef>';
+                }
+                $outxml .= '</clef-random>';
+                $considerreg = ($question->musictheory_considerregister == 1) ? 'true' : 'false';
+                $outxml .= '<considerregister>' . $considerreg . '</considerregister>';
+                $outxml .= '</' . $musicqtype . '>';
+                break;
             case 'keysignature-write-random':
             case 'keysignature-identify-random':
                 $outxml .= '<' . $musicqtype . '>';

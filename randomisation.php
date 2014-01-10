@@ -174,4 +174,49 @@ class qtype_musictheory_randomiser {
         return $tonic;
     }
 
+    /**
+     * Returns a randomly selected letter name.
+     *
+     * @return String The randomly selected letter name.
+     */
+    public static function get_random_letter_name() {
+        $ltrs = array('A','B','C','D','E','F','G');
+        return self::get_random_field($ltrs);
+    }
+
+    /**
+     * Returns a randomly selected letter name.
+     *
+     * @return String The randomly selected letter name.
+     */
+    public static function get_random_accidental() {
+        $accs = array('n','#','b','x','bb');
+        return self::get_random_field($accs);
+    }
+
+    /**
+     * Returns a randomly selected register whose notes would fit in the
+     * given clef.
+     *
+     * @param string $clef The clef to be used.
+     * @return String The randomly selected letter name.
+     */
+    public static function get_random_register($clef, $ltr) {
+        switch ($clef) {
+            case 'treble':
+                $regs = ($ltr === 'B') ? array(3, 4, 5): array(3, 4, 5, 6);
+                break;
+            case 'bass':
+                $regs = ($ltr === 'C' || $ltr === 'D') ? array(2, 3, 4): array(1, 2, 3, 4);
+                break;
+            case 'alto':
+                $regs = ($ltr === 'C') ? array(3, 4, 5): array(2, 3, 4, 5);
+                break;
+            case 'tenor':
+                $regs = ($ltr === 'A' || $ltr === 'B') ? array(2, 3, 4): array(2, 3, 4, 5);
+                break;
+        }
+        return self::get_random_field($regs);
+    }
+
 }

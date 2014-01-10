@@ -63,6 +63,9 @@ class qtype_musictheory_interval_write extends qtype_musictheory_question implem
     }
 
     public function is_complete_response(array $response) {
+        if (!isset($response['answer'])) {
+            return false;
+        }
         $regex = '/^([A-G](n|\#|b|x|bb)[1-6]){1}$/';
         return preg_match($regex, $response['answer']);
     }
@@ -184,6 +187,10 @@ class qtype_musictheory_interval_identify extends qtype_musictheory_question imp
     }
 
     public function is_complete_response(array $response) {
+        if (!isset($response['musictheory_answer_quality']) ||
+            !isset($response['musictheory_answer_size'])) {
+            return false;
+        }
         return (!empty($response['musictheory_answer_quality']) &&
                 !empty($response['musictheory_answer_size']));
     }
@@ -201,6 +208,12 @@ class qtype_musictheory_interval_identify extends qtype_musictheory_question imp
     }
 
     public function summarise_response(array $response) {
+        if (!isset($response['musictheory_answer_quality']) ||
+            !isset($response['musictheory_answer_size']) ||
+            empty($response['musictheory_answer_quality']) ||
+            empty($response['musictheory_answer_size'])) {
+            return '';
+        }
         $quality = get_string('quality' . $response['musictheory_answer_quality'], 'qtype_musictheory');
         $size = get_string('size' . $response['musictheory_answer_size'], 'qtype_musictheory');
         return $quality . ' ' . $size;

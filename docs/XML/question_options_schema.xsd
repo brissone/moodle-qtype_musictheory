@@ -9,6 +9,8 @@
   <xs:element name="options">
     <xs:complexType>
       <xs:choice>
+        <xs:element name="note-write" type="note-write-identify" />
+        <xs:element name="note-write-random" type="note-write-identify-random" />
         <xs:element name="keysignature-write" type="keysignature-write-identify" />
         <xs:element name="keysignature-write-random" type="keysignature-write-identify-random" />
         <xs:element name="keysignature-identify" type="keysignature-write-identify" />
@@ -26,6 +28,26 @@
   <!-- TYPES -->
 
   <!-- Complex types -->
+
+  <xs:complexType name="note-write-identify">
+    <xs:all>
+      <xs:element name="considerregister" type="xs:boolean" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="note" type="note-regoptional" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="clef" type="clef" minOccurs="1" maxOccurs="1" />
+    </xs:all>
+  </xs:complexType>
+
+    <xs:complexType name="note-write-identify-random">
+    <xs:all>
+      <xs:element name="considerregister" type="xs:boolean" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="clef-random" type="clef-random-choice" minOccurs="1" maxOccurs="1">
+        <xs:unique name="unique-note-clef">
+          <xs:selector xpath="clef"/>
+          <xs:field xpath="."/>
+        </xs:unique>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
 
   <xs:complexType name="keysignature-write-identify">
     <xs:all>
@@ -152,6 +174,16 @@
       <xs:extension base="note">
         <xs:sequence>
           <xs:element name="register" type="register"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="note-regoptional">
+    <xs:complexContent>
+      <xs:extension base="note">
+        <xs:sequence>
+          <xs:element name="register" type="register" minOccurs="0"/>
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
