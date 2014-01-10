@@ -74,7 +74,7 @@ is fully functional without it.
 
 How to install:
 
-1) Copy the "musictheory" folder into the following folder: moodle/question/type.
+1) Copy the contents of this folder into the following folder: moodle/question/type/musictheory.
 2) Load the "Notifications" page on the Moodle home page - this will create
 database tables used by the question type.
 
