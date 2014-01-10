@@ -58,7 +58,7 @@ class backup_qtype_musictheory_plugin extends backup_qtype_plugin {
         $pluginwrapper->add_child($musictheory);
 
         // Set source to populate the data.
-        $musictheory->set_source_table('question_musictheory', array('questionid' => backup::VAR_PARENTID));
+        $musictheory->set_source_table('qtype_musictheory', array('questionid' => backup::VAR_PARENTID));
 
         // Don't need to annotate ids nor files.
 

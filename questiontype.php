@@ -32,7 +32,7 @@ class qtype_musictheory extends question_type {
 
     public function extra_question_fields() {
         return array(
-            'question_musictheory',
+            'qtype_musictheory',
             'musictheory_musicqtype',
             'musictheory_gradingstrategy',
             'musictheory_optionsxml',

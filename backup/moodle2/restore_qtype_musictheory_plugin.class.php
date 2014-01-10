@@ -64,14 +64,14 @@ class restore_qtype_musictheory_plugin extends restore_qtype_plugin {
         $newquestionid = $this->get_new_parentid('question');
         $questioncreated = $this->get_mappingid('question_created', $oldquestionid) ? true : false;
 
-        // If the question has been created by restore, we need to create its question_musictheory too.
+        // If the question has been created by restore, we need to create its qtype_musictheory too.
         if ($questioncreated) {
             // Adjust the questionid column - all other fields are fine.
             $data->questionid = $newquestionid;
             // Insert record.
-            $newitemid = $DB->insert_record('question_musictheory', $data);
+            $newitemid = $DB->insert_record('qtype_musictheory', $data);
             // Create mapping.
-            $this->set_mapping('question_musictheory', $oldid, $newitemid);
+            $this->set_mapping('qtype_musictheory', $oldid, $newitemid);
         }
     }
 
