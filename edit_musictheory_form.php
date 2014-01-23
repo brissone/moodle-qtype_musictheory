@@ -242,6 +242,9 @@ class qtype_musictheory_edit_form extends question_edit_form {
         $mform->addRule('musictheory_gradingstrategy', null, 'required', null, 'client');
         if (count($selectoptionsgradingstrategy) > 1) {
             $helplbl = 'musictheory_gradingstrategy_' . $currentmusicqtype;
+            if (strpos($helplbl, '-random')) {
+                $helplbl = substr($helplbl, 0, strlen($helplbl) - 7);
+            }
             $mform->addHelpButton('musictheory_gradingstrategy', $helplbl, 'qtype_musictheory');
         } else {
             $mform->addHelpButton('musictheory_gradingstrategy', 'musictheory_gradingstrategy', 'qtype_musictheory');

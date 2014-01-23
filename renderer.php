@@ -68,8 +68,8 @@ abstract class qtype_musictheory_renderer extends qtype_renderer {
                 $response[$key] = $qa->get_last_qt_var($key);
             }
             $grade = $question->grade_response($response);
-            $fraction = $grade[0];
-            if ($fraction < 1) {
+            $fraction = intval(round($grade[0], 3) * 1000);
+            if ($fraction < 1000) {
                 $rightanswerdivid = 'musictheory_correctanswerdiv_' .
                         $qa->get_qt_field_name($key);
                 $rightanswerattributes = array(

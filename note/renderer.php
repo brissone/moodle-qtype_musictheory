@@ -62,11 +62,10 @@ class qtype_musictheory_note_write_renderer extends qtype_musictheory_renderer {
         $PAGE->requires->yui_module($qtypemod, $rendernamespace, $moduleparams);
 
         $inputattributes = array(
-            'type'  => 'text',
+            'type'  => 'hidden',
             'name'  => $inputname,
             'value' => $initialinput,
-            'id'    => $inputname,
-            'size'  => 4
+            'id'    => $inputname
         );
 
         if ($options->readonly) {
@@ -74,7 +73,7 @@ class qtype_musictheory_note_write_renderer extends qtype_musictheory_renderer {
         }
 
         $questiontext = $question->format_questiontext($qa);
-        $input = html_writer::empty_tag('hidden', $inputattributes);
+        $input = html_writer::empty_tag('input', $inputattributes);
         $result = html_writer::tag('div', $questiontext, array('class' => 'qtext'));
 
         $nonjavascriptdivattr = array(
@@ -84,6 +83,7 @@ class qtype_musictheory_note_write_renderer extends qtype_musictheory_renderer {
 
         $result .= html_writer::start_tag('div', $nonjavascriptdivattr);
         $result .= $input;
+        $result .= get_string('javascriptrequired', 'qtype_musictheory');
         $result .= html_writer::end_tag('div');
 
         $javascriptdivattr = array(
@@ -213,6 +213,16 @@ class qtype_musictheory_note_identify_renderer extends qtype_musictheory_rendere
         $questiontext = $question->format_questiontext($qa);
         $result = html_writer::tag('div', $questiontext, array('class' => 'qtext'));
 
+        $ltrinputname = $qa->get_qt_field_name('musictheory_answer_ltr');
+        $nonjavascriptdivattr = array(
+            'id'    => 'musictheory_div_replacedbycanvas_' . $ltrinputname,
+            'class' => 'ablock'
+        );
+
+        $result .= html_writer::start_tag('div', $nonjavascriptdivattr);
+        $result .= get_string('javascriptrequired', 'qtype_musictheory');
+        $result .= html_writer::end_tag('div');
+
         $javascriptdivattr = array(
             'id'    => 'musictheory_div_canvas_' . $ltrselectid,
             'class' => 'ablock',
@@ -259,9 +269,17 @@ class qtype_musictheory_note_identify_renderer extends qtype_musictheory_rendere
     public function correct_response(question_attempt $qa) {
         $question = $qa->get_question();
         $correctresponsearray = $question->get_correct_response();
-        $keymode = str_replace('#', 'sharp', $correctresponsearray['answer']);
-        $correctresponse = get_string($keymode, 'qtype_musictheory');
-        return get_string('correctansweris', 'qtype_musictheory') . ' <b>' . $correctresponse . '</b>';
+        $ltr = get_string('note' . $correctresponsearray['musictheory_answer_ltr'], 'qtype_musictheory');
+        $acckey = str_replace('#', 'sharp', $correctresponsearray['musictheory_answer_acc']);
+        $acc = get_string('acc_' . $acckey, 'qtype_musictheory');
+        if ($question->musictheory_considerregister) {
+            $reg = $correctresponsearray['musictheory_answer_reg'];
+        }
+        else {
+            $reg = '';
+        }
+        $note = $ltr . $acc . $reg;
+        return get_string('correctansweris', 'qtype_musictheory') . ' <b>' . $note . '</b>';
     }
 
 }

@@ -182,11 +182,11 @@ $string['M3'] = 'Tierce majeure';
 $string['A3'] = 'Tierce augmentée';
 
 $string['D4'] = 'Quarte diminuée';
-$string['P4'] = 'Quarte majeure';
+$string['P4'] = 'Quarte parfaite';
 $string['A4'] = 'Quarte augmentée';
 
 $string['D5'] = 'Quinte diminuée';
-$string['P5'] = 'Quinte majeure';
+$string['P5'] = 'Quinte parfaite';
 $string['A5'] = 'Quinte augmentée';
 
 $string['D6'] = 'Sixte diminuée';
@@ -200,7 +200,7 @@ $string['M7'] = 'Septième majeure';
 $string['A7'] = 'Septième augmentée';
 
 $string['D8'] = 'Octave diminuée';
-$string['P8'] = 'Octave majeure';
+$string['P8'] = 'Octave parfaite';
 $string['A8'] = 'Octave augmentée';
 
 $string['D9'] = 'Neuvième diminuée';
@@ -214,11 +214,11 @@ $string['M10'] = 'Dixième majeure';
 $string['A10'] = 'Dixième augmentée';
 
 $string['D11'] = 'Onzième diminuée';
-$string['P11'] = 'Onzième majeure';
+$string['P11'] = 'Onzième parfaite';
 $string['A11'] = 'Onzième augmentée';
 
 $string['D12'] = 'Douzième diminuée';
-$string['P12'] = 'Douzième majeure';
+$string['P12'] = 'Douzième parfaite';
 $string['A12'] = 'Douzième augmentée';
 
 $string['D13'] = 'Treizième diminuée';
@@ -250,6 +250,8 @@ $string['validation_scaleoutsidestaff'] = "Le registre de la note de départ pro
 // Question rendering.
 $string['correctansweris'] = 'La réponse correcte est:';
 $string['correctansweris_morethanone'] = "L'une des réponses correctes possibles est:";
+$string['javascriptrequired'] = "Ce texte est normalement remplacé par un interface
+ graphique, qui requiert que Javascript sois activé dans votre navigateur.";
 $string['selectakey'] = "Sélectionnez une tonalité";
 $string['selectasize'] = "Sélectionnez un nom";
 $string['selectaquality'] = "Sélectionnez un qualificatif";
@@ -332,6 +334,8 @@ $string['emptykeysignature'] = 'Armature vide';
 // Question answer validation.
 $string['validationerror_note_identify'] = "Réponse incomplète. Il faut sélectionner le
  nom de la note, l'altération et le registre.";
+$string['validationerror_note_identify_no_reg'] = "Réponse incomplète. Il faut sélectionner le
+ nom de la note et l'altération.";
 $string['validationerror_empty'] = 'Veuillez entrer une réponse.';
 $string['validationerror_interval_identify'] = "Réponse incomplète. Il faut sélectionner un
  nom d'intervalle et un qualiticatif d'interval.";

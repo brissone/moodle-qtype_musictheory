@@ -84,7 +84,7 @@ class qtype_musictheory_note_write extends qtype_musictheory_question implements
             return null;
         } else {
             $ans = str_replace(' ', '', $response['answer']);
-            $ans = ($this->musictheory_considerregister) ? $ans : substr($ans, 0, 2);
+            $ans = ($this->musictheory_considerregister) ? $ans : substr($ans, 0, strlen($ans) - 1);
             return $ans;
         }
     }
@@ -280,7 +280,12 @@ class qtype_musictheory_note_identify extends qtype_musictheory_question impleme
     }
 
     public function get_validation_error(array $response) {
-        return get_string('validationerror_note_identify', 'qtype_musictheory');
+        if ($this->musictheory_considerregister) {
+            return get_string('validationerror_note_identify', 'qtype_musictheory');
+        }
+        else {
+            return get_string('validationerror_note_identify_no_reg', 'qtype_musictheory');
+        }
     }
 
     public function get_question_text() {

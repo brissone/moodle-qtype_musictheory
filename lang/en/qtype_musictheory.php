@@ -182,11 +182,11 @@ $string['M3'] = 'Major 3rd';
 $string['A3'] = 'Augmented 3rd';
 
 $string['D4'] = 'Diminished 4th';
-$string['P4'] = 'Major 4th';
+$string['P4'] = 'Perfect 4th';
 $string['A4'] = 'Augmented 4th';
 
 $string['D5'] = 'Diminished 5th ';
-$string['P5'] = 'Major 5th';
+$string['P5'] = 'Perfect 5th';
 $string['A5'] = 'Augmented 5th';
 
 $string['D6'] = 'Diminished 6th';
@@ -200,7 +200,7 @@ $string['M7'] = 'Major 7th';
 $string['A7'] = 'Augmented 7th';
 
 $string['D8'] = 'Diminished octave';
-$string['P8'] = 'Major octave';
+$string['P8'] = 'Perfect octave';
 $string['A8'] = 'Augmented octave';
 
 $string['D9'] = 'Diminished 9th';
@@ -209,16 +209,16 @@ $string['M9'] = 'Major 9th';
 $string['A9'] = 'Augmented 9th';
 
 $string['D10'] = 'Diminished 10th';
-$string['m10'] = 'Diminished 10th';
+$string['m10'] = 'Minor 10th';
 $string['M10'] = 'Major 10th';
 $string['A10'] = 'Augmented 10th';
 
 $string['D11'] = 'Diminished 11th';
-$string['P11'] = 'Major 11th';
+$string['P11'] = 'Perfect 11th';
 $string['A11'] = 'Augmented 11th';
 
 $string['D12'] = 'Diminished 12th';
-$string['P12'] = 'Major 12th';
+$string['P12'] = 'Perfect 12th';
 $string['A12'] = 'Augmented 12th';
 
 $string['D13'] = 'Diminished 13th';
@@ -250,6 +250,8 @@ $string['validation_scaleoutsidestaff'] = "The given tonic's register produces a
 // Question rendering.
 $string['correctansweris'] = 'The correct answer is:';
 $string['correctansweris_morethanone'] = 'One possible correct answer could be:';
+$string['javascriptrequired'] = "This text is to be replaced by a graphical user
+ interface, which requires Javascript to be enabled in your browser.";
 $string['selectakey'] = "Select a key";
 $string['selectasize'] = "Select a size";
 $string['selectaquality'] = "Select a quality";
@@ -321,6 +323,8 @@ $string['emptykeysignature'] = 'Empty key signature';
 // Question answer validation.
 $string['validationerror_note_identify'] = 'Incomplete answer. The letter name, accidental
  and register must be selected.';
+$string['validationerror_note_identify_no_reg'] = 'Incomplete answer. Both the letter name and accidental
+ must be selected.';
 $string['validationerror_empty'] = 'No answer was provided.';
 $string['validationerror_interval_identify'] = 'Incomplete answer. Both the quality and the size
  must be selected.';
