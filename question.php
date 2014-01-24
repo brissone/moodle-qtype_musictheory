@@ -146,8 +146,10 @@ class qtype_musictheory_strategy_all_or_nothing implements qtype_musictheory_gra
 
         $fraction = 1;
         foreach ($response as $key => $answer) {
-            if ($answer !== $correctresponse[$key]) {
-                $fraction = 0;
+            if (strpos($key, '_var_') === false) {
+                if ($answer !== $correctresponse[$key]) {
+                    $fraction = 0;
+                }
             }
         }
         return array($fraction, question_state::graded_state_for_fraction($fraction));

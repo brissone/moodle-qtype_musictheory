@@ -282,8 +282,7 @@ class qtype_musictheory_note_identify extends qtype_musictheory_question impleme
     public function get_validation_error(array $response) {
         if ($this->musictheory_considerregister) {
             return get_string('validationerror_note_identify', 'qtype_musictheory');
-        }
-        else {
+        } else {
             return get_string('validationerror_note_identify_no_reg', 'qtype_musictheory');
         }
     }
@@ -348,15 +347,17 @@ class qtype_musictheory_strategy_note_allornothing implements qtype_musictheory_
 
         $fraction = 1;
         foreach ($response as $key => $answer) {
-            if ($params['considerregister']) {
-                $ans = $answer;
-                $resp = $correctresponse[$key];
-            } else {
-                $ans = substr($answer, 0, 2);
-                $resp = substr($correctresponse[$key], 0, 2);
-            }
-            if ($ans !== $resp) {
-                $fraction = 0;
+            if (strpos($key, '_var_') === false) {
+                if ($params['considerregister']) {
+                    $ans = $answer;
+                    $resp = $correctresponse[$key];
+                } else {
+                    $ans = substr($answer, 0, 2);
+                    $resp = substr($correctresponse[$key], 0, 2);
+                }
+                if ($ans !== $resp) {
+                    $fraction = 0;
+                }
             }
         }
         return array($fraction, question_state::graded_state_for_fraction($fraction));
