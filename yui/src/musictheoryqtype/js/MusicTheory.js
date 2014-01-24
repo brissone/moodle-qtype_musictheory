@@ -113,7 +113,7 @@ NS.questionRender.renderQuestion = function(HTMLInputID, options,
   var canvasNode = Y.one('#' + displayCanvasID);
   if (!canvasNode) {
     canvasNode = Y.Node.create(
-        '<div style="margin-top:10px;margin-bottom:15px"><canvas id="' +
+        '<div style="margin-top:10px;margin-bottom:15px;overflow:auto"><canvas id="' +
         displayCanvasID + '" width="1" height="1" /></div>');
     canvasDiv.append(canvasNode);
   }

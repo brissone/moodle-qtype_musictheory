@@ -110,7 +110,6 @@ class qtype_musictheory extends question_type {
     }
 
     protected function initialise_question_instance(question_definition $question, $questiondata) {
-        $this->question_definition = $question;
         parent::initialise_question_instance($question, $questiondata);
         $this->initialise_options_from_xml($question);
         $this->initialise_random_options_from_xml($question);
