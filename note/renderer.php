@@ -125,7 +125,6 @@ class qtype_musictheory_note_identify_renderer extends qtype_musictheory_rendere
     public function formulation_and_controls(question_attempt $qa,
             question_display_options $options) {
 
-
         global $PAGE;
 
         $PAGE->requires->yui_module('moodle-qtype_musictheory-musictheoryui', 'M.qtype_musictheory.musictheoryui.init');
@@ -133,7 +132,11 @@ class qtype_musictheory_note_identify_renderer extends qtype_musictheory_rendere
         $question = $qa->get_question();
 
         $ltrselectid = $qa->get_qt_field_name('musictheory_answer_ltr');
-        $accselectid = $qa->get_qt_field_name('musictheory_answer_acc');
+
+        if ($question->musictheory_includealterations) {
+            $accselectid = $qa->get_qt_field_name('musictheory_answer_acc');
+        }
+
         if ($question->musictheory_considerregister) {
             $regselectid = $qa->get_qt_field_name('musictheory_answer_reg');
         }
@@ -172,23 +175,26 @@ class qtype_musictheory_note_identify_renderer extends qtype_musictheory_rendere
             'id'   => $ltrselectid
         );
 
-        $selectoptionsacc = array(
-            ''   => '',
-            'n'  => get_string('acc_n', 'qtype_musictheory'),
-            '#'  => get_string('acc_sharp', 'qtype_musictheory'),
-            'b'  => get_string('acc_b', 'qtype_musictheory'),
-            'x'  => get_string('acc_x', 'qtype_musictheory'),
-            'bb' => get_string('acc_bb', 'qtype_musictheory'),
-        );
+        if ($question->musictheory_includealterations) {
+            $selectoptionsacc = array(
+                ''   => '',
+                'n'  => get_string('acc_n', 'qtype_musictheory'),
+                '#'  => get_string('acc_sharp', 'qtype_musictheory'),
+                'b'  => get_string('acc_b', 'qtype_musictheory'),
+                'x'  => get_string('acc_x', 'qtype_musictheory'),
+                'bb' => get_string('acc_bb', 'qtype_musictheory'),
+            );
 
-        $accselectattributes = array(
-            'name' => $accselectid,
-            'id'   => $accselectid
-        );
+            $accselectattributes = array(
+                'name' => $accselectid,
+                'id'   => $accselectid
+            );
+        }
 
         if ($question->musictheory_considerregister) {
             $selectoptionsreg = array(
                 ''  => '',
+                '1' => '1',
                 '2' => '2',
                 '3' => '3',
                 '4' => '4',
@@ -204,7 +210,9 @@ class qtype_musictheory_note_identify_renderer extends qtype_musictheory_rendere
 
         if ($options->readonly) {
             $ltrselectattributes['disabled'] = 'true';
-            $accselectattributes['disabled'] = 'true';
+            if ($question->musictheory_includealterations) {
+                $accselectattributes['disabled'] = 'true';
+            }
             if ($question->musictheory_considerregister) {
                 $regselectattributes['disabled'] = 'true';
             }
@@ -234,7 +242,9 @@ class qtype_musictheory_note_identify_renderer extends qtype_musictheory_rendere
         $curracc = $qa->get_last_qt_var('musictheory_answer_acc');
         $currreg = $qa->get_last_qt_var('musictheory_answer_reg');
         $input = html_writer::select($selectoptionsltr, $ltrselectid, $currltr, true, $ltrselectattributes);
-        $input .= html_writer::select($selectoptionsacc, $accselectid, $curracc, true, $accselectattributes);
+        if ($question->musictheory_includealterations) {
+            $input .= html_writer::select($selectoptionsacc, $accselectid, $curracc, true, $accselectattributes);
+        }
         if ($question->musictheory_considerregister) {
             $input .= html_writer::select($selectoptionsreg, $regselectid, $currreg, true, $regselectattributes);
         }
@@ -244,21 +254,20 @@ class qtype_musictheory_note_identify_renderer extends qtype_musictheory_rendere
 
         if ($qa->get_state() == question_state::$invalid) {
             $currentltr = $qa->get_last_qt_var('musictheory_answer_ltr');
-            $currentacc = $qa->get_last_qt_var('musictheory_answer_acc');
+            if ($question->musictheory_includealterations) {
+                $currentacc = $qa->get_last_qt_var('musictheory_answer_acc');
+            }
             if ($question->musictheory_considerregister) {
                 $currentreg = $qa->get_last_qt_var('musictheory_answer_reg');
             }
+            $answerarray = array();
+            $answerarray['musictheory_answer_ltr'] = $currentltr;
+
+            if ($question->musictheory_includealterations) {
+                $answerarray['musictheory_answer_acc'] = $currentacc;
+            }
             if ($question->musictheory_considerregister) {
-                $answerarray = array(
-                    'musictheory_answer_ltr' => $currentltr,
-                    'musictheory_answer_acc' => $currentacc,
-                    'musictheory_answer_reg' => $currentreg
-                );
-            } else {
-                $answerarray = array(
-                    'musictheory_answer_ltr' => $currentltr,
-                    'musictheory_answer_acc' => $currentacc
-                );
+                $answerarray['musictheory_answer_reg'] = $currentreg;
             }
             $result .= html_writer::nonempty_tag('div', $question->get_validation_error($answerarray), array('class' => 'validationerror'));
         }
@@ -270,12 +279,15 @@ class qtype_musictheory_note_identify_renderer extends qtype_musictheory_rendere
         $question = $qa->get_question();
         $correctresponsearray = $question->get_correct_response();
         $ltr = get_string('note' . $correctresponsearray['musictheory_answer_ltr'], 'qtype_musictheory');
-        $acckey = str_replace('#', 'sharp', $correctresponsearray['musictheory_answer_acc']);
-        $acc = get_string('acc_' . $acckey, 'qtype_musictheory');
+        if ($question->musictheory_includealterations) {
+            $acckey = str_replace('#', 'sharp', $correctresponsearray['musictheory_answer_acc']);
+            $acc = get_string('acc_' . $acckey, 'qtype_musictheory');
+        } else {
+            $acc = '';
+        }
         if ($question->musictheory_considerregister) {
             $reg = $correctresponsearray['musictheory_answer_reg'];
-        }
-        else {
+        } else {
             $reg = '';
         }
         $note = $ltr . $acc . $reg;

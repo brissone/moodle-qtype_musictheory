@@ -33,7 +33,12 @@ $string['pluginnameediting'] = 'Configurer une question: Musique - Théorie';
 // Edit form labels and help.
 $string['clef'] = 'Clef';
 $string['clef-random'] = 'Clefs possibles';
-$string['considerregister'] = 'Spécifier le registre';
+$string['considerregister'] = 'Inclure le registre';
+$string['considerregister_help'] = "Indique si le registre de la note devrait
+    être inclu dans la question.";
+$string['includealterations'] = 'Inclure les altérations';
+$string['includealterations_help'] = "Indique si les altérations devraient être
+ inclues dans la question.";
 $string['displaykeysignature'] = "Afficher l'armature";
 $string['direction'] = 'Direction';
 $string['givennoteelementgroup'] = 'Note de départ';
@@ -332,8 +337,10 @@ $string['emptykeysignature'] = 'Armature vide';
 // Question answer validation.
 $string['validationerror_note_identify'] = "Réponse incomplète. Il faut sélectionner le
  nom de la note, l'altération et le registre.";
-$string['validationerror_note_identify_no_reg'] = "Réponse incomplète. Il faut sélectionner le
+$string['validationerror_note_identify_ltr_acc'] = "Réponse incomplète. Il faut sélectionner le
  nom de la note et l'altération.";
+$string['validationerror_note_identify_ltr_reg'] = "Réponse incomplète. Il faut sélectionner le
+ nom de la note et le registre.";
 $string['validationerror_empty'] = 'Veuillez entrer une réponse.';
 $string['validationerror_interval_identify'] = "Réponse incomplète. Il faut sélectionner un
  nom d'intervalle et un qualiticatif d'interval.";

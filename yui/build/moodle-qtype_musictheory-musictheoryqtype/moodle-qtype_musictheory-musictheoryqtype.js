@@ -61,19 +61,19 @@ NS.questionRender = {};
  * @return {Undefined}
  */
 NS.initQuestionRender = function(HTMLInputID, optionsXML, readOnly,
-    initialInput, correctResponse, correctRespStr) {
+		initialInput, correctResponse, correctRespStr) {
 
-  var options = NS.questionRender.convertOptionsXMLtoObjectLiteral(optionsXML);
+	var options = NS.questionRender.convertOptionsXMLtoObjectLiteral(optionsXML);
 
-  NS.questionRender.renderQuestion(HTMLInputID, options,
-      readOnly, initialInput);
+	NS.questionRender.renderQuestion(HTMLInputID, options,
+			readOnly, initialInput);
 
-  if (correctResponse !== null && typeof(correctResponse) !== 'undefined' &&
-      correctResponse !== '') {
-    NS.questionRender.renderCorrectResponse(HTMLInputID, options,
-        correctResponse,
-        correctRespStr);
-  }
+	if (correctResponse !== null && typeof(correctResponse) !== 'undefined' &&
+			correctResponse !== '') {
+		NS.questionRender.renderCorrectResponse(HTMLInputID, options,
+				correctResponse,
+				correctRespStr);
+	}
 
 };
 
@@ -91,48 +91,48 @@ NS.initQuestionRender = function(HTMLInputID, optionsXML, readOnly,
  * @return {Undefined}
  */
 NS.questionRender.renderQuestion = function(HTMLInputID, options,
-    readOnly, initialInput) {
+		readOnly, initialInput) {
 
-  HTMLInputID = HTMLInputID.replace(':', '\\:');
+	HTMLInputID = HTMLInputID.replace(':', '\\:');
 
-  var YInput = Y.one('#' + HTMLInputID);
+	var YInput = Y.one('#' + HTMLInputID);
 
-  var replacedDiv = Y.one(
-      '#' + 'musictheory_div_replacedbycanvas_' + HTMLInputID);
-  if (replacedDiv) {
-    replacedDiv.hide();
-  }
+	var replacedDiv = Y.one(
+			'#' + 'musictheory_div_replacedbycanvas_' + HTMLInputID);
+	if (replacedDiv) {
+		replacedDiv.hide();
+	}
 
-  var canvasDiv = Y.one('#musictheory_div_canvas_' + HTMLInputID);
+	var canvasDiv = Y.one('#musictheory_div_canvas_' + HTMLInputID);
 
-  if (!canvasDiv) {
-    return;
-  }
+	if (!canvasDiv) {
+		return;
+	}
 
-  var displayCanvasID = 'musictheory_renderMusicCanvas_' + HTMLInputID.replace(
-      '\\:', '-');
+	var displayCanvasID = 'musictheory_renderMusicCanvas_' + HTMLInputID.replace(
+			'\\:', '-');
 
-  var canvasNode = Y.one('#' + displayCanvasID);
-  if (!canvasNode) {
-    canvasNode = Y.Node.create(
-        '<div style="margin-top:10px;margin-bottom:15px;overflow:auto"><canvas id="' +
-        displayCanvasID + '" width="1" height="1" /></div>');
-    canvasDiv.append(canvasNode);
-  }
+	var canvasNode = Y.one('#' + displayCanvasID);
+	if (!canvasNode) {
+		canvasNode = Y.Node.create(
+				'<div style="margin-top:10px;margin-bottom:15px;overflow:auto"><canvas id="' +
+				displayCanvasID + '" width="1" height="1" /></div>');
+		canvasDiv.append(canvasNode);
+	}
 
-  options.editable = !readOnly;
-  options.containsUserInput = true;
+	options.editable = !readOnly;
+	options.containsUserInput = true;
 
-  var xmlConverter = new NS.XMLConverter(options);
-  var callBack = function(stateXML) {
-    YInput.set('value', xmlConverter.getCanvasTextOutput(stateXML));
-  };
+	var xmlConverter = new NS.XMLConverter(options);
+	var callBack = function(stateXML) {
+		YInput.set('value', xmlConverter.getCanvasTextOutput(stateXML));
+	};
 
-  var stateXML = xmlConverter.getCanvasXML(initialInput);
-  new MusThGUI(displayCanvasID, stateXML, callBack,
-      options.editable);
+	var stateXML = xmlConverter.getCanvasXML(initialInput);
+	new MusThGUI(displayCanvasID, stateXML, callBack,
+			options.editable);
 
-  canvasDiv.show();
+	canvasDiv.show();
 };
 
 /**
@@ -150,34 +150,34 @@ NS.questionRender.renderQuestion = function(HTMLInputID, options,
  * @return {Undefined}
  */
 NS.questionRender.renderCorrectResponse = function(HTMLInputID, options,
-    correctResponse, correctResponseStr) {
+		correctResponse, correctResponseStr) {
 
-  HTMLInputID = HTMLInputID.replace(':', '\\:');
-  var YInput = Y.one('#' + 'musictheory_correctanswerdiv_' + HTMLInputID);
+	HTMLInputID = HTMLInputID.replace(':', '\\:');
+	var YInput = Y.one('#' + 'musictheory_correctanswerdiv_' + HTMLInputID);
 
-  if (!YInput) {
-    return;
-  }
+	if (!YInput) {
+		return;
+	}
 
-  var correctCanvasID = 'musictheory_renderCorrectResponseCanvas_' +
-      HTMLInputID.replace('\\:', '-');
+	var correctCanvasID = 'musictheory_renderCorrectResponseCanvas_' +
+			HTMLInputID.replace('\\:', '-');
 
-  var canvasNode = Y.one('#' + correctCanvasID);
-  if (!canvasNode) {
-    YInput.setHTML('<p>' + correctResponseStr + '</p>' +
-        '<canvas id="' + correctCanvasID + '" width="1" height="1" />');
-  }
+	var canvasNode = Y.one('#' + correctCanvasID);
+	if (!canvasNode) {
+		YInput.setHTML('<p>' + correctResponseStr + '</p>' +
+				'<canvas id="' + correctCanvasID + '" width="1" height="1" />');
+	}
 
-  options.editable = false;
-  options.containsUserInput = false;
+	options.editable = false;
+	options.containsUserInput = false;
 
-  var xmlConverter = new NS.XMLConverter(options);
-  var callBack = function() {
-  };
+	var xmlConverter = new NS.XMLConverter(options);
+	var callBack = function() {
+	};
 
-  var stateXML = xmlConverter.getCanvasXML(correctResponse);
-  new MusThGUI(correctCanvasID, stateXML, callBack,
-      options.editable);
+	var stateXML = xmlConverter.getCanvasXML(correctResponse);
+	new MusThGUI(correctCanvasID, stateXML, callBack,
+			options.editable);
 
 };
 
@@ -191,61 +191,64 @@ NS.questionRender.renderCorrectResponse = function(HTMLInputID, options,
  */
 NS.questionRender.convertOptionsXMLtoObjectLiteral = function(optionsXML) {
 
-  var parsedXML = Y.XML.parse(optionsXML);
-  var options = {};
+	var parsedXML = Y.XML.parse(optionsXML);
+	var options = {};
 
-  var optionsNode = parsedXML.getElementsByTagName('options')[0].firstChild;
-  var musicQType = optionsNode.nodeName;
+	var optionsNode = parsedXML.getElementsByTagName('options')[0].firstChild;
+	var musicQType = optionsNode.nodeName;
 
 	options.musicQType = musicQType;
 
-  switch (musicQType) {
+	switch (musicQType) {
 		case 'note-write':
 		case 'note-identify':
-      options.clef = optionsNode.getElementsByTagName(
-          'clef')[0].firstChild.nodeValue;
+			options.clef = optionsNode.getElementsByTagName(
+					'clef')[0].firstChild.nodeValue;
+			options.includeAlterations = optionsNode.getElementsByTagName(
+					'includealterations')[0].firstChild.nodeValue;
+			options.includeAlterations = (options.includeAlterations === 'true');
 			break;
-    case 'keysignature-write':
-    case 'keysignature-identify':
-      options.clef = optionsNode.getElementsByTagName(
-          'clef')[0].firstChild.nodeValue;
-      options.key = optionsNode.getElementsByTagName(
-          'key')[0].firstChild.nodeValue;
-      break;
-    case 'interval-write':
-    case 'interval-identify':
-      options.clef = optionsNode.getElementsByTagName(
-          'clef')[0].firstChild.nodeValue;
-      options.givenNote = [];
-      options.givenNote.ltr =
-          optionsNode.getElementsByTagName('letter')[0].firstChild.nodeValue;
-      options.givenNote.acc =
-          optionsNode.getElementsByTagName(
-          'accidental')[0].firstChild.nodeValue;
-      options.givenNote.reg =
-          optionsNode.getElementsByTagName('register')[0].firstChild.nodeValue;
-      break;
-    case 'scale-write':
-      options.clef = optionsNode.getElementsByTagName(
-          'clef')[0].firstChild.nodeValue;
-      options.givenNote = [];
-      options.givenNote.ltr =
-          optionsNode.getElementsByTagName('letter')[0].firstChild.nodeValue;
-      options.givenNote.acc =
-          optionsNode.getElementsByTagName(
-          'accidental')[0].firstChild.nodeValue;
-      options.givenNote.reg =
-          optionsNode.getElementsByTagName('register')[0].firstChild.nodeValue;
-      options.includeKS =
-          optionsNode.getElementsByTagName(
-          'displaykeysignature')[0].firstChild.nodeValue;
-      options.includeKS = (options.includeKS === 'true');
-      options.scaleType = optionsNode.getElementsByTagName(
-          'scaletype')[0].firstChild.nodeValue;
-      break;
-  }
+		case 'keysignature-write':
+		case 'keysignature-identify':
+			options.clef = optionsNode.getElementsByTagName(
+					'clef')[0].firstChild.nodeValue;
+			options.key = optionsNode.getElementsByTagName(
+					'key')[0].firstChild.nodeValue;
+			break;
+		case 'interval-write':
+		case 'interval-identify':
+			options.clef = optionsNode.getElementsByTagName(
+					'clef')[0].firstChild.nodeValue;
+			options.givenNote = [];
+			options.givenNote.ltr =
+					optionsNode.getElementsByTagName('letter')[0].firstChild.nodeValue;
+			options.givenNote.acc =
+					optionsNode.getElementsByTagName(
+					'accidental')[0].firstChild.nodeValue;
+			options.givenNote.reg =
+					optionsNode.getElementsByTagName('register')[0].firstChild.nodeValue;
+			break;
+		case 'scale-write':
+			options.clef = optionsNode.getElementsByTagName(
+					'clef')[0].firstChild.nodeValue;
+			options.givenNote = [];
+			options.givenNote.ltr =
+					optionsNode.getElementsByTagName('letter')[0].firstChild.nodeValue;
+			options.givenNote.acc =
+					optionsNode.getElementsByTagName(
+					'accidental')[0].firstChild.nodeValue;
+			options.givenNote.reg =
+					optionsNode.getElementsByTagName('register')[0].firstChild.nodeValue;
+			options.includeKS =
+					optionsNode.getElementsByTagName(
+					'displaykeysignature')[0].firstChild.nodeValue;
+			options.includeKS = (options.includeKS === 'true');
+			options.scaleType = optionsNode.getElementsByTagName(
+					'scaletype')[0].firstChild.nodeValue;
+			break;
+	}
 
-  return options;
+	return options;
 
 };
 
@@ -260,8 +263,8 @@ NS.editForm = {};
  */
 NS.initEditForm = function() {
 
-  NS.editForm.setOptionVisibility();
-  NS.editForm.setFormOptionListeners();
+	NS.editForm.setOptionVisibility();
+	NS.editForm.setFormOptionListeners();
 
 };
 
@@ -273,13 +276,13 @@ NS.initEditForm = function() {
  */
 NS.editForm.setFormOptionListeners = function() {
 
-  Y.all(
-      '#id_musictheory_musicqtype').on('change', function() {
-    var typeBtnNode = Y.one('#' + 'id_musictheory_updatemusicqtype');
-    if (typeBtnNode) {
-      typeBtnNode.simulate('click');
-    }
-  });
+	Y.all(
+			'#id_musictheory_musicqtype').on('change', function() {
+		var typeBtnNode = Y.one('#' + 'id_musictheory_updatemusicqtype');
+		if (typeBtnNode) {
+			typeBtnNode.simulate('click');
+		}
+	});
 
 };
 
@@ -291,10 +294,10 @@ NS.editForm.setFormOptionListeners = function() {
  */
 NS.editForm.setOptionVisibility = function() {
 
-  var typeBtnNode = Y.one('#' + 'id_musictheory_updatemusicqtype');
-  if (typeBtnNode) {
-    typeBtnNode.hide();
-  }
+	var typeBtnNode = Y.one('#' + 'id_musictheory_updatemusicqtype');
+	if (typeBtnNode) {
+		typeBtnNode.hide();
+	}
 
 };
 
@@ -311,86 +314,86 @@ NS.editForm.setOptionVisibility = function() {
  */
 NS.getKeySign = function(key, clef) {
 
-  var tonic = key.substring(0, key.length - 1);
-  var mode = key.substr(key.length - 1, 1);
+	var tonic = key.substring(0, key.length - 1);
+	var mode = key.substr(key.length - 1, 1);
 
-  var sharpOrFlat = [];
-  sharpOrFlat.Cn = 'sharp';
-  sharpOrFlat.Gn = 'sharp';
-  sharpOrFlat.Dn = 'sharp';
-  sharpOrFlat.An = 'sharp';
-  sharpOrFlat.En = 'sharp';
-  sharpOrFlat.Bn = 'sharp';
-  sharpOrFlat['F#'] = 'sharp';
-  sharpOrFlat['C#'] = 'sharp';
-  sharpOrFlat.Fn = 'flat';
-  sharpOrFlat.Bb = 'flat';
-  sharpOrFlat.Eb = 'flat';
-  sharpOrFlat.Ab = 'flat';
-  sharpOrFlat.Db = 'flat';
-  sharpOrFlat.Gb = 'flat';
-  sharpOrFlat.Cb = 'flat';
+	var sharpOrFlat = [];
+	sharpOrFlat.Cn = 'sharp';
+	sharpOrFlat.Gn = 'sharp';
+	sharpOrFlat.Dn = 'sharp';
+	sharpOrFlat.An = 'sharp';
+	sharpOrFlat.En = 'sharp';
+	sharpOrFlat.Bn = 'sharp';
+	sharpOrFlat['F#'] = 'sharp';
+	sharpOrFlat['C#'] = 'sharp';
+	sharpOrFlat.Fn = 'flat';
+	sharpOrFlat.Bb = 'flat';
+	sharpOrFlat.Eb = 'flat';
+	sharpOrFlat.Ab = 'flat';
+	sharpOrFlat.Db = 'flat';
+	sharpOrFlat.Gb = 'flat';
+	sharpOrFlat.Cb = 'flat';
 
-  var trebleSharp = new Array('F#5', 'C#5', 'G#5', 'D#5', 'A#4', 'E#5', 'B#4');
-  var bassSharp = new Array('F#3', 'C#3', 'G#3', 'D#3', 'A#2', 'E#3', 'B#2');
-  var altoSharp = new Array('F#4', 'C#4', 'G#4', 'D#4', 'A#3', 'E#4', 'B#3');
-  var tenorSharp = new Array('F#3', 'C#4', 'G#3', 'D#4', 'A#3', 'E#4', 'B#3');
-  var trebleFlat = new Array('Bb4', 'Eb5', 'Ab4', 'Db5', 'Gb4', 'Cb5', 'Fb4');
-  var bassFlat = new Array('Bb2', 'Eb3', 'Ab2', 'Db3', 'Gb2', 'Cb3', 'Fb2');
-  var altoFlat = new Array('Bb3', 'Eb4', 'Ab3', 'Db4', 'Gb3', 'Cb4', 'Fb3');
-  var tenorFlat = new Array('Bb3', 'Eb4', 'Ab3', 'Db4', 'Gb3', 'Cb4', 'Fb3');
+	var trebleSharp = new Array('F#5', 'C#5', 'G#5', 'D#5', 'A#4', 'E#5', 'B#4');
+	var bassSharp = new Array('F#3', 'C#3', 'G#3', 'D#3', 'A#2', 'E#3', 'B#2');
+	var altoSharp = new Array('F#4', 'C#4', 'G#4', 'D#4', 'A#3', 'E#4', 'B#3');
+	var tenorSharp = new Array('F#3', 'C#4', 'G#3', 'D#4', 'A#3', 'E#4', 'B#3');
+	var trebleFlat = new Array('Bb4', 'Eb5', 'Ab4', 'Db5', 'Gb4', 'Cb5', 'Fb4');
+	var bassFlat = new Array('Bb2', 'Eb3', 'Ab2', 'Db3', 'Gb2', 'Cb3', 'Fb2');
+	var altoFlat = new Array('Bb3', 'Eb4', 'Ab3', 'Db4', 'Gb3', 'Cb4', 'Fb3');
+	var tenorFlat = new Array('Bb3', 'Eb4', 'Ab3', 'Db4', 'Gb3', 'Cb4', 'Fb3');
 
-  var accList = [];
-  accList.treblesharp = trebleSharp;
-  accList.basssharp = bassSharp;
-  accList.altosharp = altoSharp;
-  accList.tenorsharp = tenorSharp;
-  accList.trebleflat = trebleFlat;
-  accList.bassflat = bassFlat;
-  accList.altoflat = altoFlat;
-  accList.tenorflat = tenorFlat;
+	var accList = [];
+	accList.treblesharp = trebleSharp;
+	accList.basssharp = bassSharp;
+	accList.altosharp = altoSharp;
+	accList.tenorsharp = tenorSharp;
+	accList.trebleflat = trebleFlat;
+	accList.bassflat = bassFlat;
+	accList.altoflat = altoFlat;
+	accList.tenorflat = tenorFlat;
 
-  var numAccMajor = [];
-  numAccMajor.Cn = 0;
-  numAccMajor.Gn = 1;
-  numAccMajor.Dn = 2;
-  numAccMajor.An = 3;
-  numAccMajor.En = 4;
-  numAccMajor.Bn = 5;
-  numAccMajor['F#'] = 6;
-  numAccMajor['C#'] = 7;
-  numAccMajor.Fn = 1;
-  numAccMajor.Bb = 2;
-  numAccMajor.Eb = 3;
-  numAccMajor.Ab = 4;
-  numAccMajor.Db = 5;
-  numAccMajor.Gb = 6;
-  numAccMajor.Cb = 7;
+	var numAccMajor = [];
+	numAccMajor.Cn = 0;
+	numAccMajor.Gn = 1;
+	numAccMajor.Dn = 2;
+	numAccMajor.An = 3;
+	numAccMajor.En = 4;
+	numAccMajor.Bn = 5;
+	numAccMajor['F#'] = 6;
+	numAccMajor['C#'] = 7;
+	numAccMajor.Fn = 1;
+	numAccMajor.Bb = 2;
+	numAccMajor.Eb = 3;
+	numAccMajor.Ab = 4;
+	numAccMajor.Db = 5;
+	numAccMajor.Gb = 6;
+	numAccMajor.Cb = 7;
 
-  var relativeMajorKeys = [];
-  relativeMajorKeys.An = 'Cn';
-  relativeMajorKeys.En = 'Gn';
-  relativeMajorKeys.Bn = 'Dn';
-  relativeMajorKeys['F#'] = 'An';
-  relativeMajorKeys['C#'] = 'En';
-  relativeMajorKeys['G#'] = 'Bn';
-  relativeMajorKeys['D#'] = 'F#';
-  relativeMajorKeys['A#'] = 'C#';
-  relativeMajorKeys.Dn = 'Fn';
-  relativeMajorKeys.Gn = 'Bb';
-  relativeMajorKeys.Cn = 'Eb';
-  relativeMajorKeys.Fn = 'Ab';
-  relativeMajorKeys.Bb = 'Db';
-  relativeMajorKeys.Eb = 'Gb';
-  relativeMajorKeys.Ab = 'Cb';
+	var relativeMajorKeys = [];
+	relativeMajorKeys.An = 'Cn';
+	relativeMajorKeys.En = 'Gn';
+	relativeMajorKeys.Bn = 'Dn';
+	relativeMajorKeys['F#'] = 'An';
+	relativeMajorKeys['C#'] = 'En';
+	relativeMajorKeys['G#'] = 'Bn';
+	relativeMajorKeys['D#'] = 'F#';
+	relativeMajorKeys['A#'] = 'C#';
+	relativeMajorKeys.Dn = 'Fn';
+	relativeMajorKeys.Gn = 'Bb';
+	relativeMajorKeys.Cn = 'Eb';
+	relativeMajorKeys.Fn = 'Ab';
+	relativeMajorKeys.Bb = 'Db';
+	relativeMajorKeys.Eb = 'Gb';
+	relativeMajorKeys.Ab = 'Cb';
 
-  var majorTonic = (mode === 'M') ? tonic : relativeMajorKeys[tonic];
+	var majorTonic = (mode === 'M') ? tonic : relativeMajorKeys[tonic];
 
-  var acc;
-  acc = accList[clef + sharpOrFlat[majorTonic]];
-  acc = acc.slice(0, numAccMajor[majorTonic]);
+	var acc;
+	acc = accList[clef + sharpOrFlat[majorTonic]];
+	acc = acc.slice(0, numAccMajor[majorTonic]);
 
-  return acc;
+	return acc;
 
 };// This file is part of Moodle - http://moodle.org/
 //
@@ -440,6 +443,9 @@ NS.getKeySign = function(key, clef) {
  *   </li>
  *   <li><b>{Boolean} includeKS</b>: Indicates whether a key signature should be
  *   displayed. Used for the following types: scale.
+ *   </li>
+ *   <li><b>{Boolean} includeAlterations</b>: Indicates whether alterations should
+ *   be included in note writing/identification questions.
  *   </li>
  *   <li><b>{String} key</b>: Indicates the key and mode, for key signature
  *   display purposes (e.g. 'C#M', 'gm'). Mandatory if includeKS is set to true,
@@ -606,15 +612,17 @@ NS.XMLConverter.prototype.getNoteWriteXML = function(input) {
 
 	stateXML += '</Staff>\n';
 	stateXML += '</StaffSystem>\n';
-	stateXML += '    <Toolbars>\n';
-	stateXML += '        <AccidentalToolbar>\n';
-	stateXML += '            <Button symbol="n"/>';
-	stateXML += '            <Button symbol="#"/>';
-	stateXML += '            <Button symbol="b"/>';
-	stateXML += '            <Button symbol="x"/>';
-	stateXML += '            <Button symbol="bb"/>';
-	stateXML += '        </AccidentalToolbar>\n';
-	stateXML += '    </Toolbars>\n';
+	if (this.options.includeAlterations) {
+		stateXML += '    <Toolbars>\n';
+		stateXML += '        <AccidentalToolbar>\n';
+		stateXML += '            <Button symbol="n"/>';
+		stateXML += '            <Button symbol="#"/>';
+		stateXML += '            <Button symbol="b"/>';
+		stateXML += '            <Button symbol="x"/>';
+		stateXML += '            <Button symbol="bb"/>';
+		stateXML += '        </AccidentalToolbar>\n';
+		stateXML += '    </Toolbars>\n';
+	}
 	stateXML += '</MusThGUI>';
 
 	return stateXML;

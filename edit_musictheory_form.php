@@ -252,8 +252,10 @@ class qtype_musictheory_edit_form extends question_edit_form {
 
         switch ($currentmusicqtype) {
             case 'note-write':
-            case 'note-identify';
                 $this->add_note_write_options($mform);
+                break;
+            case 'note-identify':
+                $this->add_note_identification_options($mform);
                 break;
             case 'note-write-random':
             case 'note-identify-random':
@@ -302,9 +304,24 @@ class qtype_musictheory_edit_form extends question_edit_form {
      */
     private function add_note_write_options($mform) {
         $this->add_clef_option($mform, 'musictheory_clef', false, 'clef');
+        $this->add_includealterations_option($mform);
         $this->add_considerregister_option($mform);
         $this->add_givennote_option($mform, get_string('notelbl', 'qtype_musictheory'), true);
+        $mform->disabledIf('musictheory_givennoteaccidental', 'musictheory_includealterations', 'notchecked');
         $mform->disabledIf('musictheory_givennoteregister', 'musictheory_considerregister', 'notchecked');
+    }
+
+    /**
+     * Adds form options for the note identification subtype.
+     *
+     * @param object $mform the form being built.
+     */
+    private function add_note_identification_options($mform) {
+        $this->add_clef_option($mform, 'musictheory_clef', false, 'clef');
+        $this->add_includealterations_option($mform);
+        $this->add_considerregister_option($mform);
+        $this->add_givennote_option($mform, get_string('notelbl', 'qtype_musictheory'), true);
+        $mform->disabledIf('musictheory_givennoteaccidental', 'musictheory_includealterations', 'notchecked');
     }
 
     /**
@@ -314,6 +331,7 @@ class qtype_musictheory_edit_form extends question_edit_form {
      */
     private function add_note_write_random_options($mform) {
         $this->add_clef_option($mform, 'musictheory_clef_random', true, 'clef-random');
+        $this->add_includealterations_option($mform);
         $this->add_considerregister_option($mform);
     }
 
@@ -446,6 +464,19 @@ class qtype_musictheory_edit_form extends question_edit_form {
         $mform->addElement('advcheckbox', 'musictheory_considerregister', $lbl);
         $mform->addHelpButton('musictheory_considerregister', 'considerregister', 'qtype_musictheory');
         $mform->addRule('musictheory_considerregister', null, 'required', null, 'client');
+    }
+
+    /**
+     * Adds a checkbox to the form indicating whether the note alterations should
+     * be taken into account in a note question.
+     *
+     * @param object $mform The form being built.
+     */
+    private function add_includealterations_option($mform) {
+        $lbl = get_string('includealterations', 'qtype_musictheory');
+        $mform->addElement('advcheckbox', 'musictheory_includealterations', $lbl);
+        $mform->addHelpButton('musictheory_includealterations', 'includealterations', 'qtype_musictheory');
+        $mform->addRule('musictheory_includealterations', null, 'required', null, 'client');
     }
 
     /**

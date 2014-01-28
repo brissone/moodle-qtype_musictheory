@@ -32,9 +32,12 @@ $string['pluginnameediting'] = 'Editing a music theory question';
 // Edit form labels and help.
 $string['clef'] = 'Clef';
 $string['clef-random'] = 'Possible clefs';
-$string['considerregister'] = 'Specify register';
+$string['considerregister'] = 'Include register';
 $string['considerregister_help'] = "Indicates whether the note's register is to be
-    included as part of the question.";
+ included as part of the question.";
+$string['includealterations'] = 'Include alterations';
+$string['includealterations_help'] = "Indicates whether accidentals are to be
+ included as part of the question.";
 $string['displaykeysignature'] = 'Display key signature';
 $string['direction'] = 'Direction';
 $string['givennoteelementgroup'] = 'Given note';
@@ -323,7 +326,9 @@ $string['emptykeysignature'] = 'Empty key signature';
 // Question answer validation.
 $string['validationerror_note_identify'] = 'Incomplete answer. The letter name, accidental
  and register must be selected.';
-$string['validationerror_note_identify_no_reg'] = 'Incomplete answer. Both the letter name and accidental
+$string['validationerror_note_identify_ltr_acc'] = 'Incomplete answer. Both the letter name and accidental
+ must be selected.';
+$string['validationerror_note_identify_ltr_reg'] = 'Incomplete answer. Both the letter name and register
  must be selected.';
 $string['validationerror_empty'] = 'No answer was provided.';
 $string['validationerror_interval_identify'] = 'Incomplete answer. Both the quality and the size

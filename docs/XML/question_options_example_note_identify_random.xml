@@ -3,13 +3,12 @@
 <options
   xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
   xsi:noNamespaceSchemaLocation='question_options_schema.xsd'>
-  <note-write>
+  <note-identify-random>
     <considerregister>false</considerregister>
     <includealterations>true</includealterations>
-    <note>
-      <letter>E</letter>
-      <accidental>b</accidental>
-    </note>
-    <clef>treble</clef>
-  </note-write>
+    <clef-random>
+      <clef>bass</clef>
+      <clef>treble</clef>
+    </clef-random>
+  </note-identify-random>
 </options>

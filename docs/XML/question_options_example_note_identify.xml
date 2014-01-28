@@ -3,7 +3,7 @@
 <options
   xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
   xsi:noNamespaceSchemaLocation='question_options_schema.xsd'>
-  <note-write>
+  <note-identify>
     <considerregister>false</considerregister>
     <includealterations>true</includealterations>
     <note>
@@ -11,5 +11,5 @@
       <accidental>b</accidental>
     </note>
     <clef>treble</clef>
-  </note-write>
+  </note-identify>
 </options>

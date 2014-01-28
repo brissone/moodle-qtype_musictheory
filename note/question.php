@@ -47,13 +47,18 @@ class qtype_musictheory_note_write extends qtype_musictheory_question implements
         $correctresponse = $this->get_correct_response();
         $params = array();
         $params['considerregister'] = $this->musictheory_considerregister;
+        $params['includealterations'] = $this->musictheory_includealterations;
 
         return $this->gradingstrategy->grade($response, $correctresponse, $params);
     }
 
     public function get_correct_response() {
         $ltr = $this->musictheory_givennoteletter;
-        $acc = $this->musictheory_givennoteaccidental;
+        if ($this->musictheory_includealterations) {
+            $acc = $this->musictheory_givennoteaccidental;
+        } else {
+            $acc = 'n';
+        }
         if ($this->musictheory_considerregister) {
             $reg = $this->musictheory_givennoteregister;
         } else {
@@ -66,11 +71,17 @@ class qtype_musictheory_note_write extends qtype_musictheory_question implements
         if (!isset($response['answer'])) {
             return false;
         }
-        if ($this->musictheory_considerregister) {
+        if ($this->musictheory_considerregister &&
+                $this->musictheory_includealterations) {
             $regex = '/^([A-G](n|\#|b|x|bb)[1-6]){1}$/';
-        } else {
+        } else if ($this->musictheory_considerregister) {
+            $regex = '/^([A-G](n|\#|b|x|bb)?[1-6]){1}$/';
+        } else if ($this->musictheory_includealterations) {
             $regex = '/^([A-G](n|\#|b|x|bb)[1-6]?){1}$/';
+        } else {
+            $regex = '/^([A-G](n|\#|b|x|bb)?[1-6]?){1}$/';
         }
+
         return preg_match($regex, $response['answer']);
     }
 
@@ -84,8 +95,13 @@ class qtype_musictheory_note_write extends qtype_musictheory_question implements
             return null;
         } else {
             $ans = str_replace(' ', '', $response['answer']);
-            $ans = ($this->musictheory_considerregister) ? $ans : substr($ans, 0, strlen($ans) - 1);
-            return $ans;
+            $ltr = substr($ans, 0, 1);
+            $acc = substr($ans, 1, strlen($ans) - 2);
+            $reg = substr($ans, strlen($ans) - 1, 1);
+            $resp = $ltr;
+            $resp .= ($this->musictheory_includealterations) ? $acc : '';
+            $resp .= ($this->musictheory_considerregister) ? $reg : '';
+            return $resp;
         }
     }
 
@@ -115,11 +131,14 @@ class qtype_musictheory_note_write extends qtype_musictheory_question implements
                 $acc = get_string('acc_sharp', 'qtype_musictheory');
                 break;
         }
+
         $note = get_string('note' . $this->musictheory_givennoteletter, 'qtype_musictheory');
-        if ($this->musictheory_considerregister) {
-            $note .= $acc . $this->musictheory_givennoteregister;
-        } else {
+
+        if ($this->musictheory_includealterations) {
             $note .= $acc;
+        }
+        if ($this->musictheory_considerregister) {
+            $note .= $this->musictheory_givennoteregister;
         }
 
         return $qtext . ': <b>' . $note . '</b>';
@@ -146,6 +165,7 @@ class qtype_musictheory_note_write_random extends qtype_musictheory_note_write {
         $this->questiontext = $this->get_question_text();
         $step->set_qt_var('_var_clef', $this->musictheory_clef);
         $step->set_qt_var('_var_considerregister', $this->musictheory_considerregister);
+        $step->set_qt_var('_var_includealterations', $this->musictheory_includealterations);
         $step->set_qt_var('_var_givennoteletter', $this->musictheory_givennoteletter);
         $step->set_qt_var('_var_givennoteaccidental', $this->musictheory_givennoteaccidental);
         $step->set_qt_var('_var_givennoteregister', $this->musictheory_givennoteregister);
@@ -157,6 +177,7 @@ class qtype_musictheory_note_write_random extends qtype_musictheory_note_write {
     public function apply_attempt_state(question_attempt_step $step) {
         $this->musictheory_clef = $step->get_qt_var('_var_clef');
         $this->musictheory_considerregister = $step->get_qt_var('_var_considerregister');
+        $this->musictheory_includealterations = $step->get_qt_var('_var_includealterations');
         $this->musictheory_givennoteletter = $step->get_qt_var('_var_givennoteletter');
         $this->musictheory_givennoteaccidental = $step->get_qt_var('_var_givennoteaccidental');
         $this->musictheory_givennoteregister = $step->get_qt_var('_var_givennoteregister');
@@ -183,18 +204,17 @@ class qtype_musictheory_note_identify extends qtype_musictheory_question impleme
     }
 
     public function get_expected_data() {
-        if ($this->musictheory_considerregister) {
-            return array(
-                'musictheory_answer_ltr' => PARAM_TEXT,
-                'musictheory_answer_acc' => PARAM_TEXT,
-                'musictheory_answer_reg' => PARAM_TEXT
-            );
-        } else {
-            return array(
-                'musictheory_answer_ltr' => PARAM_TEXT,
-                'musictheory_answer_acc' => PARAM_TEXT
-            );
+        $expdata = array();
+        $expdata['musictheory_answer_ltr'] = PARAM_TEXT;
+
+        if ($this->musictheory_includealterations) {
+            $expdata['musictheory_answer_acc'] = PARAM_TEXT;
         }
+        if ($this->musictheory_considerregister) {
+            $expdata['musictheory_answer_reg'] = PARAM_TEXT;
+        }
+
+        return $expdata;
     }
 
     public function grade_response(array $response) {
@@ -204,62 +224,81 @@ class qtype_musictheory_note_identify extends qtype_musictheory_question impleme
     }
 
     public function get_correct_response() {
-        if ($this->musictheory_considerregister) {
-            return array(
-                'musictheory_answer_ltr' => $this->musictheory_givennoteletter,
-                'musictheory_answer_acc' => $this->musictheory_givennoteaccidental,
-                'musictheory_answer_reg' => $this->musictheory_givennoteregister
-            );
-        } else {
-            return array(
-                'musictheory_answer_ltr' => $this->musictheory_givennoteletter,
-                'musictheory_answer_acc' => $this->musictheory_givennoteaccidental
-            );
+        $resp = array();
+        $resp['musictheory_answer_ltr'] = $this->musictheory_givennoteletter;
+
+        if ($this->musictheory_includealterations) {
+            $resp['musictheory_answer_acc'] = $this->musictheory_givennoteaccidental;
         }
+        if ($this->musictheory_considerregister) {
+            $resp['musictheory_answer_reg'] = $this->musictheory_givennoteregister;
+        }
+        return $resp;
     }
 
     public function is_complete_response(array $response) {
-        if (!isset($response['musictheory_answer_ltr']) ||
-                !isset($response['musictheory_answer_acc'])) {
+
+        if (!isset($response['musictheory_answer_ltr'])) {
             return false;
         }
-
+        if ($this->musictheory_includealterations) {
+            if (!isset($response['musictheory_answer_acc'])) {
+                return false;
+            }
+        }
         if ($this->musictheory_considerregister) {
             if (!isset($response['musictheory_answer_reg'])) {
                 return false;
             }
         }
 
-        if ($this->musictheory_considerregister) {
+        if ($this->musictheory_considerregister &&
+                $this->musictheory_includealterations) {
             return (!empty($response['musictheory_answer_ltr']) &&
                     !empty($response['musictheory_answer_acc']) &&
                     !empty($response['musictheory_answer_reg']));
-        } else {
+        } else if ($this->musictheory_includealterations) {
             return (!empty($response['musictheory_answer_ltr']) &&
                     !empty($response['musictheory_answer_acc']));
+        } else if ($this->musictheory_considerregister) {
+            return (!empty($response['musictheory_answer_ltr']) &&
+                    !empty($response['musictheory_answer_reg']));
+        } else {
+            return (!empty($response['musictheory_answer_ltr']));
         }
     }
 
     public function is_same_response(array $prevresponse, array $newresponse) {
+
         $sameltr = question_utils::arrays_same_at_key_missing_is_blank(
                         $prevresponse, $newresponse, 'musictheory_answer_ltr');
-        $sameacc = question_utils::arrays_same_at_key_missing_is_blank(
-                        $prevresponse, $newresponse, 'musictheory_answer_acc');
+
+        $sameacc = true;
+        if ($this->musictheory_includealterations) {
+            $sameacc = question_utils::arrays_same_at_key_missing_is_blank(
+                            $prevresponse, $newresponse, 'musictheory_answer_acc');
+        }
+
+        $samereg = true;
         if ($this->musictheory_considerregister) {
             $samereg = question_utils::arrays_same_at_key_missing_is_blank(
                             $prevresponse, $newresponse, 'musictheory_answer_reg');
-            return ($sameltr && $sameacc && $samereg);
-        } else {
-            return ($sameltr && $sameacc);
         }
+
+        return ($sameltr && $sameacc && $samereg);
     }
 
     public function summarise_response(array $response) {
         if (!isset($response['musictheory_answer_ltr']) ||
-                !isset($response['musictheory_answer_acc']) ||
-                empty($response['musictheory_answer_ltr']) ||
-                empty($response['musictheory_answer_acc'])) {
+                empty($response['musictheory_answer_ltr'])) {
             return '';
+        }
+
+        if ($this->musictheory_includealterations) {
+            if (!isset($response['musictheory_answer_acc']) ||
+                    empty($response['musictheory_answer_acc'])) {
+                return '';
+            }
         }
 
         if ($this->musictheory_considerregister) {
@@ -270,20 +309,29 @@ class qtype_musictheory_note_identify extends qtype_musictheory_question impleme
         }
 
         $note = get_string('note' . $response['musictheory_answer_ltr'], 'qtype_musictheory');
-        $acckey = 'acc_' . str_replace('#', 'sharp', $response['musictheory_answer_acc']);
-        $acc = get_string($acckey, 'qtype_musictheory');
-        if ($this->musictheory_considerregister) {
-            return $note . $acc . $response['musictheory_answer_reg'];
-        } else {
-            return $note . $acc;
+        $acc = '';
+        if ($this->musictheory_includealterations) {
+            $acckey = 'acc_' . str_replace('#', 'sharp', $response['musictheory_answer_acc']);
+            $acc = get_string($acckey, 'qtype_musictheory');
         }
+        $reg = '';
+        if ($this->musictheory_considerregister) {
+            $reg = $response['musictheory_answer_reg'];
+        }
+
+        return $note . $acc . $reg;
     }
 
     public function get_validation_error(array $response) {
-        if ($this->musictheory_considerregister) {
+        if ($this->musictheory_considerregister &&
+                $this->musictheory_includealterations) {
             return get_string('validationerror_note_identify', 'qtype_musictheory');
+        } else if ($this->musictheory_includealterations) {
+            return get_string('validationerror_note_identify_ltr_acc', 'qtype_musictheory');
+        } else if ($this->musictheory_considerregister) {
+            return get_string('validationerror_note_identify_ltr_reg', 'qtype_musictheory');
         } else {
-            return get_string('validationerror_note_identify_no_reg', 'qtype_musictheory');
+            return get_string('validationerror_empty', 'qtype_musictheory');
         }
     }
 
@@ -295,7 +343,7 @@ class qtype_musictheory_note_identify extends qtype_musictheory_question impleme
 }
 
 /**
- * The music theory random note identificastion question subtype.
+ * The music theory random note identification question subtype.
  *
  * @copyright  2014 Eric Brisson
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -305,7 +353,11 @@ class qtype_musictheory_note_identify_random extends qtype_musictheory_note_iden
     public function start_attempt(question_attempt_step $step, $variant) {
         $this->musictheory_clef = qtype_musictheory_randomiser::get_random_field($this->musictheory_clef_random);
         $this->musictheory_givennoteletter = qtype_musictheory_randomiser::get_random_letter_name();
-        $this->musictheory_givennoteaccidental = qtype_musictheory_randomiser::get_random_accidental();
+        if ($this->musictheory_includealterations) {
+            $this->musictheory_givennoteaccidental = qtype_musictheory_randomiser::get_random_accidental();
+        } else {
+            $this->musictheory_givennoteaccidental = 'n';
+        }
         $this->musictheory_givennoteregister =
                 qtype_musictheory_randomiser::get_random_register(
                         $this->musictheory_clef, $this->musictheory_givennoteletter);
@@ -313,6 +365,7 @@ class qtype_musictheory_note_identify_random extends qtype_musictheory_note_iden
         $this->questiontext = $this->get_question_text();
         $step->set_qt_var('_var_clef', $this->musictheory_clef);
         $step->set_qt_var('_var_considerregister', $this->musictheory_considerregister);
+        $step->set_qt_var('_var_includealterations', $this->musictheory_includealterations);
         $step->set_qt_var('_var_givennoteletter', $this->musictheory_givennoteletter);
         $step->set_qt_var('_var_givennoteaccidental', $this->musictheory_givennoteaccidental);
         $step->set_qt_var('_var_givennoteregister', $this->musictheory_givennoteregister);
@@ -324,6 +377,7 @@ class qtype_musictheory_note_identify_random extends qtype_musictheory_note_iden
     public function apply_attempt_state(question_attempt_step $step) {
         $this->musictheory_clef = $step->get_qt_var('_var_clef');
         $this->musictheory_considerregister = $step->get_qt_var('_var_considerregister');
+        $this->musictheory_includealterations = $step->get_qt_var('_var_includealterations');
         $this->musictheory_givennoteletter = $step->get_qt_var('_var_givennoteletter');
         $this->musictheory_givennoteaccidental = $step->get_qt_var('_var_givennoteaccidental');
         $this->musictheory_givennoteregister = $step->get_qt_var('_var_givennoteregister');
@@ -336,7 +390,7 @@ class qtype_musictheory_note_identify_random extends qtype_musictheory_note_iden
 
 /**
  * A grading strategy that applies the all-or-nothing approach for a note
- * question, consider the register as appropriate.
+ * question, considering the alterations and the register as appropriate.
  *
  * @copyright  2014 Eric Brisson
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -348,12 +402,22 @@ class qtype_musictheory_strategy_note_allornothing implements qtype_musictheory_
         $fraction = 1;
         foreach ($response as $key => $answer) {
             if (strpos($key, '_var_') === false) {
+                $ansltr = substr($answer, 0, 1);
+                $ansacc = substr($answer, 1, strlen($answer) - 2);
+                $ansreg = substr($answer, strlen($answer) - 1, 1);
+                $respltr = substr($correctresponse[$key], 0, 1);
+                $respacc = substr($correctresponse[$key], 1, strlen($correctresponse[$key]) - 2);
+                $respreg = substr($correctresponse[$key], strlen($correctresponse[$key]) - 1, 1);
+
+                $ans = $ansltr;
+                $resp = $respltr;
+                if ($params['includealterations']) {
+                    $ans .= $ansacc;
+                    $resp .= $respacc;
+                }
                 if ($params['considerregister']) {
-                    $ans = $answer;
-                    $resp = $correctresponse[$key];
-                } else {
-                    $ans = substr($answer, 0, 2);
-                    $resp = substr($correctresponse[$key], 0, 2);
+                    $ans .= $ansreg;
+                    $resp .= $respreg;
                 }
                 if ($ans !== $resp) {
                     $fraction = 0;

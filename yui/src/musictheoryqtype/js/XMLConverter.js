@@ -47,6 +47,9 @@
  *   <li><b>{Boolean} includeKS</b>: Indicates whether a key signature should be
  *   displayed. Used for the following types: scale.
  *   </li>
+ *   <li><b>{Boolean} includeAlterations</b>: Indicates whether alterations should
+ *   be included in note writing/identification questions.
+ *   </li>
  *   <li><b>{String} key</b>: Indicates the key and mode, for key signature
  *   display purposes (e.g. 'C#M', 'gm'). Mandatory if includeKS is set to true,
  *   and also mandatory for the four-part voice-leading canvas type.
@@ -212,15 +215,17 @@ NS.XMLConverter.prototype.getNoteWriteXML = function(input) {
 
 	stateXML += '</Staff>\n';
 	stateXML += '</StaffSystem>\n';
-	stateXML += '    <Toolbars>\n';
-	stateXML += '        <AccidentalToolbar>\n';
-	stateXML += '            <Button symbol="n"/>';
-	stateXML += '            <Button symbol="#"/>';
-	stateXML += '            <Button symbol="b"/>';
-	stateXML += '            <Button symbol="x"/>';
-	stateXML += '            <Button symbol="bb"/>';
-	stateXML += '        </AccidentalToolbar>\n';
-	stateXML += '    </Toolbars>\n';
+	if (this.options.includeAlterations) {
+		stateXML += '    <Toolbars>\n';
+		stateXML += '        <AccidentalToolbar>\n';
+		stateXML += '            <Button symbol="n"/>';
+		stateXML += '            <Button symbol="#"/>';
+		stateXML += '            <Button symbol="b"/>';
+		stateXML += '            <Button symbol="x"/>';
+		stateXML += '            <Button symbol="bb"/>';
+		stateXML += '        </AccidentalToolbar>\n';
+		stateXML += '    </Toolbars>\n';
+	}
 	stateXML += '</MusThGUI>';
 
 	return stateXML;
