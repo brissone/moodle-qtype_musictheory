@@ -73,7 +73,8 @@ tested with this version.
 earlier versions of PHP.
 
 3)	Javascript is used for the graphical user interface, but the question type
-is fully functional without it.
+is fully functional without it, with the exception of the note writing and note
+identification exercises.
 
 How to install:
 
