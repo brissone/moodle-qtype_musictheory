@@ -27,9 +27,12 @@ require_once(__DIR__ . '/lib/MusicTheory/MusicTheory.php');
 require_once(__DIR__ . '/randomisation.php');
 
 require_once(__DIR__ . '/note/renderer.php');
+require_once(__DIR__ . '/keyboard/renderer.php');
 require_once(__DIR__ . '/keysignature/renderer.php');
 require_once(__DIR__ . '/interval/renderer.php');
 require_once(__DIR__ . '/scale/renderer.php');
+require_once(__DIR__ . '/harmonicfunction/renderer.php');
+require_once(__DIR__ . '/chordquality/renderer.php');
 
 /**
  * Interface that a music theory question subtype must implement.
@@ -84,6 +87,8 @@ abstract class qtype_musictheory_question extends question_graded_automatically 
             case 'note-identify':
             case 'note-identify-random':
                 return new qtype_musictheory_note_identify_renderer($page, null);
+            case 'keyboard-input':
+                return new qtype_musictheory_keyboard_input_renderer($page, null);
             case "keysignature-write":
             case "keysignature-write-random":
                 return new qtype_musictheory_keysignature_write_renderer($page, null);
@@ -99,7 +104,18 @@ abstract class qtype_musictheory_question extends question_graded_automatically 
             case 'scale-write':
             case 'scale-write-random':
                 return new qtype_musictheory_scale_write_renderer($page, null);
-            default:
+            case 'chordquality-write':
+            case 'chordquality-write-random':
+                return new qtype_musictheory_chordquality_write_renderer($page, null);
+            case 'chordquality-identify':
+            case 'chordquality-identify-random':
+                return new qtype_musictheory_chordquality_identify_renderer($page, null);
+            case 'harmonicfunction-write':
+            case 'harmonicfunction-write-random':
+                return new qtype_musictheory_harmonicfunction_write_renderer($page, null);
+            case 'harmonicfunction-identify':
+            case 'harmonicfunction-identify-random':
+                return new qtype_musictheory_harmonicfunction_identify_renderer($page, null);
                 return parent::get_renderer($page);
         }
     }
@@ -107,9 +123,12 @@ abstract class qtype_musictheory_question extends question_graded_automatically 
 }
 
 require_once(__DIR__ . '/note/question.php');
+require_once(__DIR__ . '/keyboard/question.php');
 require_once(__DIR__ . '/keysignature/question.php');
 require_once(__DIR__ . '/interval/question.php');
 require_once(__DIR__ . '/scale/question.php');
+require_once(__DIR__ . '/chordquality/question.php');
+require_once(__DIR__ . '/harmonicfunction/question.php');
 
 /**
  * This interface defines the methods that a class must implement if it is to
@@ -149,6 +168,7 @@ class qtype_musictheory_strategy_all_or_nothing implements qtype_musictheory_gra
             if (strpos($key, '_var_') === false) {
                 if ($answer !== $correctresponse[$key]) {
                     $fraction = 0;
+                    break;
                 }
             }
         }

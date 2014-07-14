@@ -1,0 +1,703 @@
+{
+    "project": {},
+    "files": {
+        "Controller.js": {
+            "name": "Controller.js",
+            "modules": {},
+            "classes": {
+                "Control.Controller": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Control": 1
+            }
+        },
+        "CoordManager.js": {
+            "name": "CoordManager.js",
+            "modules": {},
+            "classes": {
+                "Render.CoordManager": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Render": 1
+            }
+        },
+        "Key.js": {
+            "name": "Key.js",
+            "modules": {},
+            "classes": {
+                "GUIState.Key": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "GUIState": 1
+            }
+        },
+        "KeyRend.js": {
+            "name": "KeyRend.js",
+            "modules": {},
+            "classes": {
+                "Render.KeyRend": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Render": 1
+            }
+        },
+        "Keyboard.js": {
+            "name": "Keyboard.js",
+            "modules": {},
+            "classes": {
+                "GUIState.Keyboard": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "GUIState": 1
+            }
+        },
+        "KeyboardInput.js": {
+            "name": "KeyboardInput.js",
+            "modules": {
+                "KeyboardInput": 1
+            },
+            "classes": {
+                "KeyboardInput": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "Renderer.js": {
+            "name": "Renderer.js",
+            "modules": {},
+            "classes": {
+                "Render.Renderer": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Render": 1
+            }
+        },
+        "State.js": {
+            "name": "State.js",
+            "modules": {},
+            "classes": {
+                "GUIState.State": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "GUIState": 1
+            }
+        }
+    },
+    "modules": {
+        "KeyboardInput": {
+            "name": "KeyboardInput",
+            "submodules": {},
+            "classes": {
+                "Control.Controller": 1,
+                "Render.CoordManager": 1,
+                "GUIState.Key": 1,
+                "Render.KeyRend": 1,
+                "GUIState.Keyboard": 1,
+                "KeyboardInput": 1,
+                "Render.Renderer": 1,
+                "GUIState.State": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "Render": 1,
+                "GUIState": 1
+            },
+            "tag": "module",
+            "file": "State.js",
+            "line": 21,
+            "description": "The Keyboard Input module allows for display and selection of notes on a piano\nkeyboard.\n\nThe user interface is created by instantiating a {{#crossLink \"KeyboardInput\"}}\n{{/crossLink}} object.\n\nHere is an example describing how to use this module:\n\n1) Add an HTMLtag for a small canvas in the web page source, with a unique 'id'\nattribute.\n\n\t<canvas id=\"myUniqueID\" width=\"1\" height=\"1\"/>\n\n2) Define an XML string that will describe the interface's initial state. Here\nis an example:\n\n\tvar initXML = '<keyboardinput maxkeys=\"2\">' +\n\t'<givenkeys>' +\n\t'<givenkey pitchclass=\"4\" register=\"5\" />' +\n\t'</givenkeys>' +\n\t'<selectedkeys>' +\n\t'<selectedkey pitchclass=\"5\" register=\"2\" />' +\n\t'</selectedkeys>' +\n\t'</keyboardinput>';\n\nThe maxkeys attribute indicates the maximum number of keys that can be selected\nat any given time. The given keys are keys that will be highlighted on the\nkeyboard but will not be selectable/unselectable. The selected keys are keys\nthat will be initially selected - these keys can be unselected.\n\nFor more details on the XML schema that the interface will accept and return,\nsee the 'valid_input_xml.xsd' file in the module's XML directory.\n\n3) Define a callback function that the interface will use to message back its\ncurrent state. This function will be called whenever the user changes the\ninterface's state (i.e. by selecting or unselecting keys on the keyboard).\n\n\tvar callBack = function(stateXML) {\n\t//stateXML will contain the most up-to-date canvas state.\n\t};\n\n4) Create a {{#crossLink \"KeyboardInput\"}}{{/crossLink}} object using the\ncanvas id from step 1, the XML string from step 2 and the callback function\nfrom step 3:\n\n\tvar musicCanvas = new KeyboardInput('myUniqueID', initXML, callBack, true);\n\nArgument 4 specifies whether the interface should be editable after\ninitialization. Use a false value to display a static interface.\n\nOnce instantiated, the KeyboardInput object will display an interactive\nkeyboard on the web page. Whenever the user selects or unselects a key, the\ncallback function is called and the most up-to-date canvas state is\nreturned, as an XML string."
+        }
+    },
+    "classes": {
+        "Control.Controller": {
+            "name": "Control.Controller",
+            "shortname": "Control.Controller",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "KeyboardInput",
+            "namespace": "Control",
+            "file": "Controller.js",
+            "line": 21,
+            "description": "The Controller object instantiates the canvas and handles mouse\nevents.",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "canID",
+                    "description": "The id of the HTMl 5 canvas to which this application\nwill be bound.",
+                    "type": "String"
+                },
+                {
+                    "name": "stateXML",
+                    "description": "The canvas state as xml.",
+                    "type": "String"
+                },
+                {
+                    "name": "callBackFunc",
+                    "description": "A function that the controller will use\nto send the current canvas state back the caller, whenever the state changes.\nThis function should accept one argument which provides the current state of\nthe canvas, as an xml string.",
+                    "type": "Function"
+                },
+                {
+                    "name": "editable",
+                    "description": "Specifies whether the user can change the UI\nafter initialization.",
+                    "type": "Boolean"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            }
+        },
+        "Render.CoordManager": {
+            "name": "Render.CoordManager",
+            "shortname": "Render.CoordManager",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "KeyboardInput",
+            "namespace": "Render",
+            "file": "CoordManager.js",
+            "line": 21,
+            "description": "The CoordManager object provides canvas coordinates for rendering\npurposes. It also takes care of converting mouse event coordinates into\ncanvas elements.",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "state",
+                    "description": "The canvas state.",
+                    "type": "GUIState.State"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            }
+        },
+        "GUIState.Key": {
+            "name": "GUIState.Key",
+            "shortname": "GUIState.Key",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "KeyboardInput",
+            "namespace": "GUIState",
+            "file": "Key.js",
+            "line": 21,
+            "description": "The Key object represents a keyboard key.",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "pitchClass",
+                    "description": "The zero-based pitch class of the key, with C=0.",
+                    "type": "Number"
+                },
+                {
+                    "name": "register",
+                    "description": "The keys's register.",
+                    "type": "Number"
+                },
+                {
+                    "name": "editable",
+                    "description": "Indicates whether the key can be edited\nafter initialization.",
+                    "type": "Boolean"
+                },
+                {
+                    "name": "selected",
+                    "description": "Indicates whether the key is selected.",
+                    "type": "Boolean"
+                },
+                {
+                    "name": "isGhost",
+                    "description": "Indicates whether the note is to be\ndisplayed as a ghost symbol.",
+                    "type": "Boolean"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            }
+        },
+        "Render.KeyRend": {
+            "name": "Render.KeyRend",
+            "shortname": "Render.KeyRend",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "KeyboardInput",
+            "namespace": "Render",
+            "file": "KeyRend.js",
+            "line": 21,
+            "description": "The KeyRend object takes care of drawing a note on a staff.",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "can",
+                    "description": "An html5 canvas element.",
+                    "type": "Canvas"
+                },
+                {
+                    "name": "coordMgr",
+                    "description": "The library's coordinate\nmanager.",
+                    "type": "Render.CoordManager"
+                },
+                {
+                    "name": "key",
+                    "description": "The key to be rendered.",
+                    "type": "GUIState.Key"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            }
+        },
+        "GUIState.Keyboard": {
+            "name": "GUIState.Keyboard",
+            "shortname": "GUIState.Keyboard",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "KeyboardInput",
+            "namespace": "GUIState",
+            "file": "Keyboard.js",
+            "line": 21,
+            "description": "The Keyboard object stores the canvas state's keyboard.",
+            "is_constructor": 1,
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            }
+        },
+        "KeyboardInput": {
+            "name": "KeyboardInput",
+            "shortname": "KeyboardInput",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "KeyboardInput",
+            "namespace": "",
+            "file": "KeyboardInput.js",
+            "line": 80,
+            "description": "The KeyboardInput object is used to interact with outside components.",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "canID",
+                    "description": "The id of the HTMl 5 canvas to which this application\nwill be bound.",
+                    "type": "String"
+                },
+                {
+                    "name": "stateXML",
+                    "description": "The canvas state as xml.",
+                    "type": "String"
+                },
+                {
+                    "name": "respCallBack",
+                    "description": "A function that the controller will use\nto send the current canvas answer back the caller, whenever the state\nchanges. This function should accept one argument which provides the\ncurrent XML output.",
+                    "type": "Function"
+                },
+                {
+                    "name": "editable",
+                    "description": "Specifies whether the user can change the UI\nafter initialization.",
+                    "type": "Boolean"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            }
+        },
+        "Render.Renderer": {
+            "name": "Render.Renderer",
+            "shortname": "Render.Renderer",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "KeyboardInput",
+            "namespace": "Render",
+            "file": "Renderer.js",
+            "line": 21,
+            "description": "The Renderer object takes care of drawing all canvas elements.",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "can",
+                    "description": "An html5 canvas element.",
+                    "type": "Canvas"
+                },
+                {
+                    "name": "state",
+                    "description": "The canvas' state.",
+                    "type": "GUIState.State"
+                },
+                {
+                    "name": "coordMgr",
+                    "description": "The library's coordinate\nmanager.",
+                    "type": "Render.CoordManager"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            }
+        },
+        "GUIState.State": {
+            "name": "GUIState.State",
+            "shortname": "GUIState.State",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "KeyboardInput",
+            "namespace": "GUIState",
+            "file": "State.js",
+            "line": 21,
+            "description": "The State object stores the canvas context",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "editable",
+                    "description": "Specifies whether the state can be changed after\ninitialization.",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            }
+        }
+    },
+    "classitems": [
+        {
+            "file": "Controller.js",
+            "line": 62,
+            "description": "Translates the window-based point location of a mouse event into a\ncanvas-based location.",
+            "itemtype": "method",
+            "name": "getLocalCoord",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "The mouse event.",
+                    "type": "Event"
+                }
+            ],
+            "return": {
+                "description": "An object literal with properties x and y, representing\nthe canvas based location.",
+                "type": "Object"
+            },
+            "class": "Control.Controller",
+            "namespace": "Control"
+        },
+        {
+            "file": "Controller.js",
+            "line": 79,
+            "description": "Binds listener functions to mouse events.",
+            "itemtype": "method",
+            "name": "bindEventListeners",
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            },
+            "class": "Control.Controller",
+            "namespace": "Control"
+        },
+        {
+            "file": "Controller.js",
+            "line": 112,
+            "description": "Handles a canvas mouse click event.",
+            "itemtype": "method",
+            "name": "onMouseClick",
+            "params": [
+                {
+                    "name": "point",
+                    "description": "An object literal representing the location of the\nmouse click, with properties x and y.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            },
+            "class": "Control.Controller",
+            "namespace": "Control"
+        },
+        {
+            "file": "Controller.js",
+            "line": 142,
+            "description": "Handles a canvas mouse move event.",
+            "itemtype": "method",
+            "name": "onMouseMove",
+            "params": [
+                {
+                    "name": "point",
+                    "description": "An object literal representing the location of the\nmouseover event, with properties x and y.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            },
+            "class": "Control.Controller",
+            "namespace": "Control"
+        },
+        {
+            "file": "Controller.js",
+            "line": 171,
+            "description": "Deletes the current ghost key (if displayed) from the canvas state.",
+            "itemtype": "method",
+            "name": "removeGhostKey",
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            },
+            "class": "Control.Controller",
+            "namespace": "Control"
+        },
+        {
+            "file": "Controller.js",
+            "line": 185,
+            "description": "Draws the canvas state.",
+            "itemtype": "method",
+            "name": "drawState",
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            },
+            "class": "Control.Controller",
+            "namespace": "Control"
+        },
+        {
+            "file": "CoordManager.js",
+            "line": 46,
+            "description": "Given a mouse event location, determine if a canvas element (a keyboard key)\nwas involved, and if so, return the element.",
+            "itemtype": "method",
+            "name": "getElementFromPoint",
+            "params": [
+                {
+                    "name": "point",
+                    "description": "An object literal representing the location of the\nmouse event, with properties x and y.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "An object literal with a properties 'pitchClass' and\n'register'. Returns null if no element was involved.",
+                "type": "Object"
+            },
+            "class": "Render.CoordManager",
+            "namespace": "Render"
+        },
+        {
+            "file": "CoordManager.js",
+            "line": 66,
+            "description": "Given a point, determine if the point is located within the keyboard on the\ncanvas.",
+            "itemtype": "method",
+            "name": "isKeyboardPoint",
+            "params": [
+                {
+                    "name": "point",
+                    "description": "An object literal representing the location of the\nmouse event, with properties x and y.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "Returns true if the point is located within the keyboard.",
+                "type": "Boolean"
+            },
+            "class": "Render.CoordManager",
+            "namespace": "Render"
+        },
+        {
+            "file": "CoordManager.js",
+            "line": 88,
+            "description": "Given a point known to be located within the keyboard, returns the key\nthat referred to by the point.",
+            "itemtype": "method",
+            "name": "getKeyFromPoint",
+            "params": [
+                {
+                    "name": "point",
+                    "description": "An object literal representing the location of the\nmouse event, with properties x and y.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "An object literal with a properties 'pitchClass' and\n'register'.",
+                "type": "Object"
+            },
+            "class": "Render.CoordManager",
+            "namespace": "Render"
+        },
+        {
+            "file": "CoordManager.js",
+            "line": 168,
+            "description": "Given a point and a rectangle's upper left and lower right corners, determine\nif the point lies within the rectangle.",
+            "itemtype": "method",
+            "name": "pointWithin",
+            "params": [
+                {
+                    "name": "point",
+                    "description": "An object literal representing the point, with\nproperties x and y.",
+                    "type": "Object"
+                },
+                {
+                    "name": "llPoint",
+                    "description": "An object literal representing the rectangle's upper\nleft corner, with properties x and y.",
+                    "type": "Object"
+                },
+                {
+                    "name": "brPoint",
+                    "description": "An object literal representing the rectangle's lower\nright corner, with properties x and y.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "Returns true if the point lies within the rectangle.",
+                "type": "Boolean"
+            },
+            "class": "Render.CoordManager",
+            "namespace": "Render"
+        },
+        {
+            "file": "Key.js",
+            "line": 61,
+            "description": "Returns the zero-based subset ID of the key within the register, with C=0\nfor white keys and C#/Db=0 for black keys.\n\nFor example, the subset ID of G is 4 (i.e. G is the 5th white key above C),\nand the subset ID of F#/Gb is 2 (F#/Gb is the 3rd black key above C#/Db).",
+            "itemtype": "method",
+            "name": "getSubsetIDWithinRegister",
+            "return": {
+                "description": "The key's subset ID within the register.",
+                "type": "Number"
+            },
+            "class": "GUIState.Key",
+            "namespace": "GUIState"
+        },
+        {
+            "file": "KeyRend.js",
+            "line": 42,
+            "description": "Draws the key on the staff.",
+            "itemtype": "method",
+            "name": "draw",
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            },
+            "class": "Render.KeyRend",
+            "namespace": "Render"
+        },
+        {
+            "file": "Keyboard.js",
+            "line": 53,
+            "description": "Returns all keyboard keys or a subset of the keys.",
+            "itemtype": "method",
+            "name": "getKeys",
+            "params": [
+                {
+                    "name": "subset",
+                    "description": "A parameter describing which keys should be returned\n('all', 'white', 'black', 'selected', 'givenkeys'). 'givenkeys' returns all\nkeys that are not editable.",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "An array of keyboard keys.",
+                "type": "Array"
+            },
+            "class": "GUIState.Keyboard",
+            "namespace": "GUIState"
+        },
+        {
+            "file": "Keyboard.js",
+            "line": 78,
+            "description": "Returns a single keyboard key, given a pitchclass and a register.",
+            "itemtype": "method",
+            "name": "getKey",
+            "params": [
+                {
+                    "name": "register",
+                    "description": "The key's register.",
+                    "type": "Number"
+                },
+                {
+                    "name": "pitchClass",
+                    "description": "The key's pitchClass.",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "The requested key.",
+                "type": "GUIState.Key"
+            },
+            "class": "GUIState.Keyboard",
+            "namespace": "GUIState"
+        },
+        {
+            "file": "Renderer.js",
+            "line": 42,
+            "description": "Draws all canvas elements.",
+            "itemtype": "method",
+            "name": "draw",
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            },
+            "class": "Render.Renderer",
+            "module": "KeyboardInput",
+            "namespace": "Render"
+        },
+        {
+            "file": "State.js",
+            "line": 39,
+            "description": "Sets the state after instantiation.",
+            "itemtype": "method",
+            "name": "setState",
+            "params": [
+                {
+                    "name": "stateXML",
+                    "description": "The canvas state as xml, used to build the state\nobject.",
+                    "type": "XMLDoc"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            },
+            "class": "GUIState.State",
+            "module": "KeyboardInput",
+            "namespace": "GUIState"
+        },
+        {
+            "file": "State.js",
+            "line": 79,
+            "description": "Returns the canvas state.",
+            "itemtype": "method",
+            "name": "getState",
+            "return": {
+                "description": "The canvas state as xml.",
+                "type": "String"
+            },
+            "class": "GUIState.State",
+            "module": "KeyboardInput",
+            "namespace": "GUIState"
+        }
+    ],
+    "warnings": []
+}

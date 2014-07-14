@@ -20,5 +20,5 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-The moodle-qtype_musictheory-musictheoryui module is a simple wrapper that enables
+The moodle-qtype_musictheory-musictheoryui module is a simple wrapper that allows
 the MusThGUI component to be used within a Moodle question type.

@@ -30,6 +30,13 @@ $string['pluginnameadding'] = 'Adding a music theory question';
 $string['pluginnameediting'] = 'Editing a music theory question';
 
 // Edit form labels and help.
+$string['answerlbl'] = 'Answer';
+$string['aug6thgr'] = 'German Augmented 6th';
+$string['aug6thfr'] = 'French Augmented 6th';
+$string['aug6thit'] = 'Italian Augmented 6th';
+$string['chordroot'] = 'Chord root';
+$string['chordquality'] = 'Chord quality';
+$string['chordquality-random'] = 'Possible chord qualities';
 $string['clef'] = 'Clef';
 $string['clef-random'] = 'Possible clefs';
 $string['considerregister'] = 'Include register';
@@ -38,15 +45,20 @@ $string['considerregister_help'] = "Indicates whether the note's register is to 
 $string['includealterations'] = 'Include alterations';
 $string['includealterations_help'] = "Indicates whether accidentals are to be
  included as part of the question.";
+$string['includestaticnote'] = 'Include given note';
 $string['displaykeysignature'] = 'Display key signature';
 $string['direction'] = 'Direction';
 $string['givennoteelementgroup'] = 'Given note';
+$string['harmonicfunctiontype-random'] = 'Possible harmonic functions';
+$string['hfidentifyresponsetypes'] = 'Possible harmonic functions in response';
 $string['keymode'] = 'Key';
+$string['lbl_harmonicfunction'] = 'Harmonic function';
 $string['mode-random'] = 'Possible modes';
 $string['musicqtype'] = 'Music question type';
 $string['musictheory_intervalelementgroup'] = 'Interval';
 $string['musictheory_intervalelementgroup_help'] = 'Indicates the type of interval.';
 $string['musictheory_intervalelementgroup_random'] = 'Possible intervals';
+$string['nosectonic'] = '[No secondary tonic]';
 $string['notelbl'] = 'Note';
 $string['quality-random'] = 'Possible qualities';
 $string['questionoptions'] = 'Question options';
@@ -55,6 +67,7 @@ $string['questiontext_help'] = "This field isn't required. If left empty, a ques
  appropriate for the given music question type will be automatically displayed within
  activities. If you do enter text in this field, it will replace the automatically
  generated question text.";
+$string['rootposition'] = '[root]';
 $string['scaletype-random'] = 'Possible scale types';
 $string['size-random'] = 'Possible sizes';
 $string['tonic'] = 'Tonic';
@@ -65,6 +78,7 @@ $string['qtype_note-write'] = 'Note writing';
 $string['qtype_note-write-random'] = 'Note writing (random)';
 $string['qtype_note-identify'] = 'Note identification';
 $string['qtype_note-identify-random'] = 'Note identification (random)';
+$string['qtype_keyboard-input'] = 'Keyboard Input';
 $string['qtype_keysignature-write'] = 'Key signature writing';
 $string['qtype_keysignature-write-random'] = 'Key signature writing (random)';
 $string['qtype_keysignature-identify'] = 'Key signature identification';
@@ -75,6 +89,14 @@ $string['qtype_interval-identify'] = 'Interval identification';
 $string['qtype_interval-identify-random'] = 'Interval identification (random)';
 $string['qtype_scale-write'] = 'Scale writing';
 $string['qtype_scale-write-random'] = 'Scale writing (random)';
+$string['qtype_chordquality-write'] = 'Chord quality writing';
+$string['qtype_chordquality-write-random'] = 'Chord quality writing (random)';
+$string['qtype_chordquality-identify'] = 'Chord quality identification';
+$string['qtype_chordquality-identify-random'] = 'Chord quality identification (random)';
+$string['qtype_harmonicfunction-write'] = 'Harmonic function writing';
+$string['qtype_harmonicfunction-write-random'] = 'Harmonic function writing (random)';
+$string['qtype_harmonicfunction-identify'] = 'Harmonic function identification';
+$string['qtype_harmonicfunction-identify-random'] = 'Harmonic function identification (random)';
 
 // Edit form - grading strategy options and help.
 $string['musictheory_gradingstrategy'] = "Grading strategy";
@@ -93,7 +115,11 @@ $string['musictheory_gradingstrategy_scale-write_help'] = "<p>The grading strate
  to enter, and awards partial grade for each correct note.</p>
 ";
 $string['qtype_musictheory_strategy_all_or_nothing'] = "All or nothing";
+$string['qtype_musictheory_strategy_chordqualitywrite_allornothing'] = "All or nothing";
+$string['qtype_musictheory_strategy_harmonicfunctionwrite_allornothing'] = "All or nothing";
+$string['qtype_musictheory_strategy_harmonicfunctionid_allornothing'] = "All or nothing";
 $string['qtype_musictheory_strategy_note_allornothing'] = "All or nothing";
+$string['qtype_musictheory_strategy_keyboard_allornothing'] = "All or nothing";
 $string['qtype_musictheory_strategy_scale_creditbynote'] = "Partial credit for each correct note";
 
 // Note names.
@@ -110,6 +136,7 @@ $string['treble'] = 'Treble';
 $string['bass'] = 'Bass';
 $string['alto'] = 'Alto';
 $string['tenor'] = 'Tenor';
+$string['grandstaff'] = 'Grand Staff';
 
 // Key options.
 $string['CnM'] = 'C major';
@@ -236,10 +263,32 @@ $string['scaletype_natural'] = 'Natural minor';
 $string['scaletype_harmonic'] = 'Harmonic minor';
 $string['scaletype_melodic'] = 'Melodic minor';
 
+// Harmonic function types.
+$string['hftype_diatonictriad'] = 'Diatonic triad';
+$string['hftype_dom7th'] = 'Dominant seventh';
+$string['hftype_nondom7th'] = 'Nondominant seventh';
+$string['hftype_leadingtone7thhalfdim'] = 'Leading tone seventh (half diminished)';
+$string['hftype_leadingtone7thfullydim'] = 'Leading tone seventh (fully diminished)';
+$string['hftype_secdomtriad'] = 'Secondary dominant (triad)';
+$string['hftype_secdom7th'] = 'Secondary dominant (seventh)';
+$string['hftype_secnondomtriad'] = 'Secondary nondominant (triad)';
+$string['hftype_secnondom7th'] = 'Secondary nondominant (seventh)';
+$string['hftype_seclttriad'] = 'Secondary leading tone (triad)';
+$string['hftype_seclthalfdim'] = 'Secondary leading tone 7th (half diminished)';
+$string['hftype_secltfullydim'] = 'Secondary leading tone 7th (fully diminished)';
+$string['hftype_neapolitan'] = 'Neapolitan';
+$string['hftype_aug6th'] = 'Augmented 6th';
+$string['hftype_chromaticmediant'] = 'Chromatic mediant';
+$string['hftype_extendeddom'] = 'Extended dominant (9, 11 or 13)';
+
 // Edit form validation.
 $string['validation_noteoutsidestaff'] = "This note's register doesn't fit within the staff
  in the specified clef.";
+$string['validation_noteoutsidekeyboard'] = "This note is outside the range of the piano keyboard.";
 $string['validation_qualitymismatch'] = "This combination of interval size and quality is invalid.";
+$string['validation_harmonicfunctionnotsupported'] = 'This harmonic function is not supported or is invalid.';
+$string['validation_harmonicfunctiontypenotselected'] = 'The function type for the specified harmonic function must be selected.';
+$string['validation_invalidchordquality'] = 'This type of chord cannot be built on the specified root.';
 $string['validation_invalidinterval_above'] = "This interval cannot be written above the given note.";
 $string['validation_invalidinterval_below'] = "This interval cannot be written below the given note.";
 $string['validation_intervaloutsidestaff'] = "The given note's register produces an interval that
@@ -252,9 +301,11 @@ $string['validation_scaleoutsidestaff'] = "The given tonic's register produces a
 
 // Question rendering.
 $string['correctansweris'] = 'The correct answer is:';
-$string['correctansweris_morethanone'] = 'One possible correct answer could be:';
+$string['correctansweris_morethanone'] = 'One possible correct answer is:';
 $string['javascriptrequired'] = "This text is to be replaced by a graphical user
  interface, which requires Javascript to be enabled in your browser.";
+$string['selectanoption'] = "[No secondary tonic]";
+$string['selectanoption'] = "Select";
 $string['selectakey'] = "Select a key";
 $string['selectasize'] = "Select a size";
 $string['selectaquality'] = "Select a quality";
@@ -266,6 +317,7 @@ $string['tenorclef'] = 'Tenor clef';
 // Question text and help button.
 $string['questiontext_note_write'] = 'Enter the following note';
 $string['questiontext_note_identify'] = 'Identify the following note';
+$string['questiontext_keyboard_input'] = 'Enter the following note on the keyboard';
 $string['questiontext_keysignature_write'] = 'Enter the following key signature';
 $string['questiontext_keysignature_identify_major'] = 'Determine the major key represented by the
  following key signature';
@@ -277,13 +329,34 @@ $string['questiontext_interval_identify'] = 'Identify the following interval';
 $string['questiontext_scale_write'] = 'Write the following scale in ascending direction';
 $string['questiontext_scale_write_melodic'] = 'Write the following scale in both ascending and
      descending directions';
+$string['questiontext_chordquality_write'] = 'Enter the following chord';
+$string['questiontext_chordquality_identify'] = 'Identify the root and quality of the following chord';
+$string['questiontext_harmonicfunction_write'] = 'Enter the following harmonic function';
+$string['questiontext_harmonicfunction_identify'] = 'Identify the following harmonic function';
 
 $string['acc_n'] = '&#9838;';
 $string['acc_sharp'] = '&#9839;';
 $string['acc_x'] = 'x';
 $string['acc_b'] = '&#9837;';
-$string['acc_bb'] = 'bb';
+$string['acc_bb'] = '&#9837;&#9837;';
 
+$string['chordquality_write_questionastext'] = 'Chord quality answer entry';
+$string['chordquality_write_questionastext_help'] = '<p>Enter a comma-separated list of notes,
+  without spaces, using the following syntax:</p><p>[Uppercase letter name][Accidental
+  ("n" = natural, "#" = sharp, "b" = flat, "x" = double-sharp, "bb" = double-flat)]4, ... </p>
+ <p>Random example: <b>answer=>Cn4,En4,G#4</b></p>';
+$string['chordquality_write_questionasui'] = 'Harmonic function answer entry';
+$string['chordquality_write_questionasui_help'] = '<p>Enter notes by clicking on the staff, after selecting
+ the type of accidental in the right-hand toolbar. To delete a note, click on it again.</p>';
+$string['note_write_questionastext'] = 'Note answer entry';
+$string['harmonicfunction_write_questionastext'] = 'Harmonic function answer entry';
+$string['harmonicfunction_write_questionastext_help'] = '<p>Enter a comma-separated list of notes,
+  without spaces, using the following syntax:</p><p>[Uppercase letter name][Accidental
+  ("n" = natural, "#" = sharp, "b" = flat, "x" = double-sharp, "bb" = double-flat)]4, ... </p>
+ <p>Random example: <b>answer=>Cn4,En4,G#4</b></p>';
+$string['harmonicfunction_write_questionasui'] = 'Harmonic function answer entry';
+$string['harmonicfunction_write_questionasui_help'] = '<p>Enter notes by clicking on the staff, after selecting
+ the type of accidental in the right-hand toolbar. To delete a note, click on it again.</p>';
 $string['note_write_questionastext'] = 'Note answer entry';
 $string['note_write_questionastext_help'] = '<p>Enter the response note, without spaces, using
  the following syntax:</p><p>[Uppercase letter name] [Accidental ("n" = natural, "#" = sharp,
@@ -293,6 +366,8 @@ $string['note_write_questionastext_help'] = '<p>Enter the response note, without
 $string['note_write_questionasui'] = 'Note answer entry';
 $string['note_write_questionasui_help'] = '<p>Enter the note by clicking on the staff, after
  selecting the type of accidental in the right-hand toolbar. To delete the note, click on it again.</p>';
+$string['keyboard_input_questionasui'] = 'Keyboard input answer entry';
+$string['keyboard_input_questionasui_help'] = '<p>Enter notes by clicking on the keyboard. To delete a note, click on it again.</p>';
 $string['keysignature_write_questionastext'] = 'Key signature answer entry';
 $string['keysignature_write_questionastext_help'] = '<p>Enter a comma-separated list of accidentals
  (between 1 and 7 of them), without spaces, using the following syntax:</p><p>[Uppercase letter name]
@@ -324,6 +399,8 @@ $string['scale_write_questionasui_help'] = '<p>Enter notes by clicking on the st
 $string['emptykeysignature'] = 'Empty key signature';
 
 // Question answer validation.
+$string['validationerror_chordquality_identify'] = 'Incomplete answer. The letter, accidental and chord quality must be selected.';
+$string['validationerror_notewrite_twonotesingrandstaff'] = 'Two notes were entered. Please enter only one note.';
 $string['validationerror_note_identify'] = 'Incomplete answer. The letter name, accidental
  and register must be selected.';
 $string['validationerror_note_identify_ltr_acc'] = 'Incomplete answer. Both the letter name and accidental
@@ -331,6 +408,9 @@ $string['validationerror_note_identify_ltr_acc'] = 'Incomplete answer. Both the 
 $string['validationerror_note_identify_ltr_reg'] = 'Incomplete answer. Both the letter name and register
  must be selected.';
 $string['validationerror_empty'] = 'No answer was provided.';
+$string['validationerror_incompletechordquality'] = 'Incomplete answer. Number of notes in this chord';
+$string['validationerror_harmonicfunction_identify'] = 'Incomplete answer. All dropdown menus must be selected.';
+$string['validationerror_incompleteharmonicfunction'] = 'Incomplete answer. Number of notes in this harmonic function';
 $string['validationerror_interval_identify'] = 'Incomplete answer. Both the quality and the size
  must be selected.';
 $string['validationerror_invalidsyntax'] = 'Invalid answer syntax.';

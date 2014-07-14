@@ -22,8 +22,9 @@
 
 The moodle-qtype_musictheory-musictheoryqtype module includes javascript
 features for the music theory question type. It mainly takes care of
-communication between Moodle and the graphical user interface
+communication between Moodle and the graphical user interfaces
 (i.e. the MusThGUI component wrapped in the
-moodle-qtype_musictheory-musictheoryui module). In particular, it converts
-questions options and the user input into XML strings that MusThGUI can
-process.
+moodle-qtype_musictheory-musictheoryui module, and the Keyboard Input component
+wrapped in the moodle-qtype_musictheory-musictheorykeyboardui module).
+In particular, it converts questions options and the user input into XML strings
+that MusThGUI and Keyboard Input can process.

@@ -180,26 +180,28 @@
  * @return {undefined}
  */
 MusThGUI.Control.Controller = function(canID, stateXML, callBackFunc,
-    editable) {
+		editable) {
 
-  this.canID = canID;
-  this.canNode = Y.one(&#x27;#&#x27; + canID);
-  this.html5Can = this.canNode.getDOMNode();
-  this.ctx = this.html5Can.getContext(&#x27;2d&#x27;);
-  this.stateXML = Y.XML.parse(stateXML);
-  this.state = new MusThGUI.GUIState.State(editable);
-  this.state.setState(this.stateXML);
-  this.coordMgr = new MusThGUI.Render.CoordManager(this.state);
-  this.html5Can.width = this.coordMgr.canvasWidth;
-  this.html5Can.height = this.coordMgr.canvasHeight;
-  this.callBack = callBackFunc;
-  this.inputDialog = null;
-  this.bindEventListeners();
+	this.canID = canID;
+	this.canNode = Y.one(&#x27;#&#x27; + canID);
+	this.html5Can = this.canNode.getDOMNode();
+	this.ctx = this.html5Can.getContext(&#x27;2d&#x27;);
+	this.stateXML = Y.XML.parse(stateXML);
+	this.state = new MusThGUI.GUIState.State(editable);
+	this.state.setState(this.stateXML);
+	this.coordMgr = new MusThGUI.Render.CoordManager(this.state);
+	this.html5Can.width = this.coordMgr.canvasWidth;
+	this.html5Can.height = this.coordMgr.canvasHeight;
+	this.callBack = callBackFunc;
+	this.inputDialog = null;
+	this.bindEventListeners();
+	this.ghostNote = null;
+	this.ghostAcc = null;
 
-  var parent = this;
-  this.glyphProvider = new MusThGUI.Render.GlyphProvider(function() {
-    parent.onImagesLoaded();
-  });
+	var parent = this;
+	this.glyphProvider = new MusThGUI.Render.GlyphProvider(function() {
+		parent.onImagesLoaded();
+	});
 
 };
 
@@ -212,11 +214,9 @@ MusThGUI.Control.Controller = function(canID, stateXML, callBackFunc,
  */
 MusThGUI.Control.Controller.prototype.onImagesLoaded = function() {
 
-  this.renderer = new MusThGUI.Render.Renderer(this.html5Can, this.state,
-      this.coordMgr, this.glyphProvider);
-  this.ghostNote = null;
-  this.ghostAcc = null;
-  this.drawState();
+	this.renderer = new MusThGUI.Render.Renderer(this.html5Can, this.state,
+			this.coordMgr, this.glyphProvider);
+	this.drawState();
 
 };
 
@@ -231,9 +231,9 @@ MusThGUI.Control.Controller.prototype.onImagesLoaded = function() {
  */
 MusThGUI.Control.Controller.prototype.getLocalCoord = function(e) {
 
-  var canOrigin = {x: this.canNode.getXY()[0],
-    y: this.canNode.getXY()[1]};
-  return {x: e.pageX - canOrigin.x, y: e.pageY - canOrigin.y};
+	var canOrigin = {x: this.canNode.getXY()[0],
+		y: this.canNode.getXY()[1]};
+	return {x: e.pageX - canOrigin.x, y: e.pageY - canOrigin.y};
 
 };
 
@@ -245,31 +245,30 @@ MusThGUI.Control.Controller.prototype.getLocalCoord = function(e) {
  */
 MusThGUI.Control.Controller.prototype.bindEventListeners = function() {
 
-  if (!(this.state.editable)) {
-    return;
-  }
+	if (!(this.state.editable)) {
+		return;
+	}
 
-  var parent = this;
+	var parent = this;
 
-  //this.jQueryCan.unbind();
-  this.canNode.detachAll();
+	this.canNode.detachAll();
 
-  this.canNode.on(&#x27;click&#x27;, function(e) {
-    var coord = parent.getLocalCoord(e);
-    parent.onMouseClick({x: coord.x, y: coord.y});
-  });
+	this.canNode.on(&#x27;click&#x27;, function(e) {
+		var coord = parent.getLocalCoord(e);
+		parent.onMouseClick({x: coord.x, y: coord.y});
+	});
 
-  this.canNode.on(&#x27;mousemove&#x27;, function(e) {
-    var coord = parent.getLocalCoord(e);
-    parent.onMouseMove({x: coord.x, y: coord.y});
-  });
+	this.canNode.on(&#x27;mousemove&#x27;, function(e) {
+		var coord = parent.getLocalCoord(e);
+		parent.onMouseMove({x: coord.x, y: coord.y});
+	});
 
-  this.canNode.on(&#x27;mouseleave&#x27;, function() {
-    parent.removeGhostNote();
-    parent.removeGhostAcc();
-    parent.clearToolbarOverlays();
-    parent.drawState();
-  });
+	this.canNode.on(&#x27;mouseleave&#x27;, function() {
+		parent.removeGhostNote();
+		parent.removeGhostAcc();
+		parent.clearToolbarOverlays();
+		parent.drawState();
+	});
 
 };
 
@@ -283,84 +282,84 @@ MusThGUI.Control.Controller.prototype.bindEventListeners = function() {
  */
 MusThGUI.Control.Controller.prototype.onMouseClick = function(point) {
 
-  var elem = this.getElementFromPoint(point);
-  var letter, register;
+	var elem = this.getElementFromPoint(point);
+	var letter, register;
 
-  if (elem.elemType !== null) {
-    // Note
-    if (elem.elemType === &#x27;note&#x27;) {
-      var staff = this.state.staffSystem.staves[elem.staffID];
-      var noteCol = staff.noteColumns[elem.colID];
-      letter = elem.noteName.substr(0, 1);
-      register = parseInt(elem.noteName.substr(1, 1), 10);
-      var acc = (this.state.hasToolbar(&#x27;acc&#x27;)) ?
-          this.state.getToolbar(&#x27;acc&#x27;).selectedSymbol() :
-          &#x27;n&#x27;;
-      var noteVal = (this.state.hasToolbar(&#x27;noteVal&#x27;)) ?
-          this.state.getToolbar(&#x27;noteVal&#x27;).selectedSymbol() :
-          &#x27;whole&#x27;;
-      var newNote = new MusThGUI.GUIState.Note(letter, register, acc,
-          noteVal, true, false);
-      if (noteCol.noteAddible(newNote)) {
+	if (elem.elemType !== null) {
+		// Note
+		if (elem.elemType === &#x27;note&#x27;) {
+			var staff = this.state.staffSystem.staves[elem.staffID];
+			var noteCol = staff.noteColumns[elem.colID];
+			letter = elem.noteName.substr(0, 1);
+			register = parseInt(elem.noteName.substr(1, 1), 10);
+			var acc = (this.state.hasToolbar(&#x27;acc&#x27;)) ?
+					this.state.getToolbar(&#x27;acc&#x27;).selectedSymbol() :
+					&#x27;n&#x27;;
+			var noteVal = (this.state.hasToolbar(&#x27;noteVal&#x27;)) ?
+					this.state.getToolbar(&#x27;noteVal&#x27;).selectedSymbol() :
+					&#x27;whole&#x27;;
+			var newNote = new MusThGUI.GUIState.Note(letter, register, acc,
+					noteVal, true, false);
+			if (noteCol.noteAddible(newNote)) {
 
-        this.removeGhostNote();
-        noteCol.addNote(newNote);
-        this.callBack(this.state.getState());
-      }
-      else if (noteCol.noteRemovable(newNote)) {
-        noteCol.removeNote(newNote);
-        this.callBack(this.state.getState());
-      }
-    }
-    // key signature
-    else if (elem.elemType === &#x27;keysign&#x27; &amp;&amp; this.state.hasToolbar(&#x27;acc&#x27;)) {
-      var keySign =
-          this.state.staffSystem.staves[elem.staffID].keySign;
-      var col = (elem.colID &gt; (keySign.totalAccColumns - 1)) ?
-          keySign.totalAccColumns : elem.colID;
-      letter = elem.noteName.substr(0, 1);
-      register = parseInt(elem.noteName.substr(1, 1), 10);
-      if (keySign.containsEditableAccidental(letter, register, col)) {
-        keySign.removeAccidental(col);
-        this.callBack(this.state.getState());
-      }
-      else {
-        if (!(keySign.isFull()) &amp;&amp; !(keySign.columnIsFull(col))) {
-          if (this.state.hasToolbar(&#x27;acc&#x27;)) {
-            var tbrSel = this.state.getToolbar(&#x27;acc&#x27;).selectedSymbol();
-            if (tbrSel === &#x27;#&#x27; || tbrSel === &#x27;b&#x27;) {
-              var newAcc = new MusThGUI.GUIState.KeySignAcc(
-                  this.state.getToolbar(&#x27;acc&#x27;).selectedSymbol(),
-                  letter, register, true, false);
-              this.removeGhostAcc();
-              keySign.addAccidental(newAcc);
-              this.callBack(this.state.getState());
-            }
-          }
-        }
-      }
-    }
-    // Toolbar button
-    else if (elem.elemType === &#x27;toolbar&#x27;) {
-      this.state.getToolbar(elem.toolbarName).select(elem.buttonID);
-    }
-    // Text input
-    else if (elem.elemType === &#x27;textInput&#x27;) {
-      var parent = this;
-      Y.Array.each(this.state.staffSystem.staves, function(staff) {
-        var textInput = staff.noteColumns[elem.colID].textInput;
-        if (textInput !== null) {
-          if (typeof(parent.inputDialog) === &#x27;undefined&#x27;) {
-            parent.inputDialog = new MusThGUI.Control.InputDialog(
-                parent, parent.parsedXML);
-          }
-          parent.inputDialog.colID = elem.colID;
-          parent.inputDialog.show();
-        }
-      });
-    }
-    this.drawState();
-  }
+				this.removeGhostNote();
+				noteCol.addNote(newNote);
+				this.callBack(this.state.getState());
+			}
+			else if (noteCol.noteRemovable(newNote)) {
+				noteCol.removeNote(newNote);
+				this.callBack(this.state.getState());
+			}
+		}
+		// key signature
+		else if (elem.elemType === &#x27;keysign&#x27; &amp;&amp; this.state.hasToolbar(&#x27;acc&#x27;)) {
+			var keySign =
+					this.state.staffSystem.staves[elem.staffID].keySign;
+			var col = (elem.colID &gt; (keySign.totalAccColumns - 1)) ?
+					keySign.totalAccColumns : elem.colID;
+			letter = elem.noteName.substr(0, 1);
+			register = parseInt(elem.noteName.substr(1, 1), 10);
+			if (keySign.containsEditableAccidental(letter, register, col)) {
+				keySign.removeAccidental(col);
+				this.callBack(this.state.getState());
+			}
+			else {
+				if (!(keySign.isFull()) &amp;&amp; !(keySign.columnIsFull(col))) {
+					if (this.state.hasToolbar(&#x27;acc&#x27;)) {
+						var tbrSel = this.state.getToolbar(&#x27;acc&#x27;).selectedSymbol();
+						if (tbrSel === &#x27;#&#x27; || tbrSel === &#x27;b&#x27;) {
+							var newAcc = new MusThGUI.GUIState.KeySignAcc(
+									this.state.getToolbar(&#x27;acc&#x27;).selectedSymbol(),
+									letter, register, true, false);
+							this.removeGhostAcc();
+							keySign.addAccidental(newAcc);
+							this.callBack(this.state.getState());
+						}
+					}
+				}
+			}
+		}
+		// Toolbar button
+		else if (elem.elemType === &#x27;toolbar&#x27;) {
+			this.state.getToolbar(elem.toolbarName).select(elem.buttonID);
+		}
+		// Text input
+		else if (elem.elemType === &#x27;textInput&#x27;) {
+			var parent = this;
+			Y.Array.each(this.state.staffSystem.staves, function(staff) {
+				var textInput = staff.noteColumns[elem.colID].textInput;
+				if (textInput !== null) {
+					if (typeof(parent.inputDialog) === &#x27;undefined&#x27;) {
+						parent.inputDialog = new MusThGUI.Control.InputDialog(
+								parent, parent.parsedXML);
+					}
+					parent.inputDialog.colID = elem.colID;
+					parent.inputDialog.show();
+				}
+			});
+		}
+		this.drawState();
+	}
 
 };
 
@@ -374,65 +373,65 @@ MusThGUI.Control.Controller.prototype.onMouseClick = function(point) {
  */
 MusThGUI.Control.Controller.prototype.onMouseMove = function(point) {
 
-  this.removeGhostNote();
-  this.removeGhostAcc();
-  this.clearToolbarOverlays();
-  var letter, register;
+	this.removeGhostNote();
+	this.removeGhostAcc();
+	this.clearToolbarOverlays();
+	var letter, register;
 
-  var elem = this.getElementFromPoint(point);
-  if (elem.elemType !== null) {
-    if (elem.elemType === &#x27;note&#x27;) {
-      var staff = this.state.staffSystem.staves[elem.staffID];
-      var noteCol = staff.noteColumns[elem.colID];
-      letter = elem.noteName.substr(0, 1);
-      register = elem.noteName.substr(1, 1);
-      var acc = (this.state.hasToolbar(&#x27;acc&#x27;)) ?
-          this.state.getToolbar(&#x27;acc&#x27;).selectedSymbol() :
-          &#x27;n&#x27;;
-      var noteVal = (this.state.hasToolbar(&#x27;noteVal&#x27;)) ?
-          this.state.getToolbar(&#x27;noteVal&#x27;).selectedSymbol() :
-          &#x27;whole&#x27;;
-      var newNote = new MusThGUI.GUIState.Note(letter, register, acc,
-          noteVal, true, true);
-      if (noteCol.noteAddible(newNote)) {
-        noteCol.addNote(newNote);
-        this.ghostNote = {note: newNote, staffID: elem.staffID,
-          colID: elem.colID};
-      }
-    }
-    else if (elem.elemType === &#x27;keysign&#x27; &amp;&amp; this.state.hasToolbar(&#x27;acc&#x27;)) {
-      var keySign =
-          this.state.staffSystem.staves[elem.staffID].keySign;
-      var col = (elem.colID &gt; (keySign.totalAccColumns - 1)) ?
-          keySign.totalAccColumns : elem.colID;
-      letter = elem.noteName.substr(0, 1);
-      register = parseInt(elem.noteName.substr(1, 1), 10);
+	var elem = this.getElementFromPoint(point);
+	if (elem.elemType !== null) {
+		if (elem.elemType === &#x27;note&#x27;) {
+			var staff = this.state.staffSystem.staves[elem.staffID];
+			var noteCol = staff.noteColumns[elem.colID];
+			letter = elem.noteName.substr(0, 1);
+			register = elem.noteName.substr(1, 1);
+			var acc = (this.state.hasToolbar(&#x27;acc&#x27;)) ?
+					this.state.getToolbar(&#x27;acc&#x27;).selectedSymbol() :
+					&#x27;n&#x27;;
+			var noteVal = (this.state.hasToolbar(&#x27;noteVal&#x27;)) ?
+					this.state.getToolbar(&#x27;noteVal&#x27;).selectedSymbol() :
+					&#x27;whole&#x27;;
+			var newNote = new MusThGUI.GUIState.Note(letter, register, acc,
+					noteVal, true, true);
+			if (noteCol.noteAddible(newNote)) {
+				noteCol.addNote(newNote);
+				this.ghostNote = {note: newNote, staffID: elem.staffID,
+					colID: elem.colID};
+			}
+		}
+		else if (elem.elemType === &#x27;keysign&#x27; &amp;&amp; this.state.hasToolbar(&#x27;acc&#x27;)) {
+			var keySign =
+					this.state.staffSystem.staves[elem.staffID].keySign;
+			var col = (elem.colID &gt; (keySign.totalAccColumns - 1)) ?
+					keySign.totalAccColumns : elem.colID;
+			letter = elem.noteName.substr(0, 1);
+			register = parseInt(elem.noteName.substr(1, 1), 10);
 
-      if (!(keySign.isFull()) &amp;&amp; !(keySign.columnIsFull(col))) {
-        if (this.state.hasToolbar(&#x27;acc&#x27;)) {
-          var tbrSel = this.state.getToolbar(&#x27;acc&#x27;).selectedSymbol();
-          if (tbrSel === &#x27;#&#x27; || tbrSel === &#x27;b&#x27;) {
-            var newAcc = new MusThGUI.GUIState.KeySignAcc(
-                this.state.getToolbar(&#x27;acc&#x27;).selectedSymbol(),
-                letter, register, true, true);
-            keySign.addAccidental(newAcc);
-            this.ghostAcc = {staffID: elem.staffID};
-          }
-        }
-      }
-    }
-    else if (elem.elemType === &#x27;toolbar&#x27;) {
-      if (elem.buttonID !==
-          this.state.getToolbar(elem.toolbarName).selectedID()) {
-        this.state.getToolbar(elem.toolbarName).
-            setMouseOverlay(elem.buttonID);
-      }
-    }
-  }
-  else {
-    this.clearToolbarOverlays();
-  }
-  this.drawState();
+			if (!(keySign.isFull()) &amp;&amp; !(keySign.columnIsFull(col))) {
+				if (this.state.hasToolbar(&#x27;acc&#x27;)) {
+					var tbrSel = this.state.getToolbar(&#x27;acc&#x27;).selectedSymbol();
+					if (tbrSel === &#x27;#&#x27; || tbrSel === &#x27;b&#x27;) {
+						var newAcc = new MusThGUI.GUIState.KeySignAcc(
+								this.state.getToolbar(&#x27;acc&#x27;).selectedSymbol(),
+								letter, register, true, true);
+						keySign.addAccidental(newAcc);
+						this.ghostAcc = {staffID: elem.staffID};
+					}
+				}
+			}
+		}
+		else if (elem.elemType === &#x27;toolbar&#x27;) {
+			if (elem.buttonID !==
+					this.state.getToolbar(elem.toolbarName).selectedID()) {
+				this.state.getToolbar(elem.toolbarName).
+						setMouseOverlay(elem.buttonID);
+			}
+		}
+	}
+	else {
+		this.clearToolbarOverlays();
+	}
+	this.drawState();
 };
 
 /**
@@ -450,22 +449,22 @@ MusThGUI.Control.Controller.prototype.onMouseMove = function(point) {
  */
 MusThGUI.Control.Controller.prototype.getElementFromPoint = function(point) {
 
-  var staves = [];
+	var staves = [];
 
-  Y.Array.each(this.state.staffSystem.staves, function(staff) {
+	Y.Array.each(this.state.staffSystem.staves, function(staff) {
 
-    staves.push(staff.clef);
+		staves.push(staff.clef);
 
-  });
+	});
 
-  var numCols = this.state.staffSystem.staves[0].noteColumns.length;
-  var totalAccColumns =
-      this.state.staffSystem.staves[0].keySign.totalAccColumns;
-  var elem =
-      this.coordMgr.getElementByPos(point, staves, numCols, totalAccColumns,
-      this.state.toolbars, this.state.staffSystem.hasTextInput());
+	var numCols = this.state.staffSystem.staves[0].noteColumns.length;
+	var totalAccColumns =
+			this.state.staffSystem.staves[0].keySign.totalAccColumns;
+	var elem =
+			this.coordMgr.getElementByPos(point, staves, numCols, totalAccColumns,
+			this.state.toolbars, this.state.staffSystem.hasTextInput());
 
-  return elem;
+	return elem;
 
 };
 
@@ -477,11 +476,11 @@ MusThGUI.Control.Controller.prototype.getElementFromPoint = function(point) {
  */
 MusThGUI.Control.Controller.prototype.removeGhostNote = function() {
 
-  if (this.ghostNote !== null) {
-    var gNoteSt = this.state.staffSystem.staves[this.ghostNote.staffID];
-    gNoteSt.noteColumns[this.ghostNote.colID].removeGhostNote();
-    this.ghostNote = null;
-  }
+	if (this.ghostNote !== null &amp;&amp; typeof(this.ghostNote !== &#x27;undefined&#x27;)) {
+		var gNoteSt = this.state.staffSystem.staves[this.ghostNote.staffID];
+		gNoteSt.noteColumns[this.ghostNote.colID].removeGhostNote();
+		this.ghostNote = null;
+	}
 
 };
 
@@ -493,15 +492,15 @@ MusThGUI.Control.Controller.prototype.removeGhostNote = function() {
  */
 MusThGUI.Control.Controller.prototype.removeGhostAcc = function() {
 
-  if (this.ghostAcc !== null) {
-    var gAccSt = this.state.staffSystem.staves[this.ghostAcc.staffID];
-    if (gAccSt.keySign.accidentals.length &gt; 0) {
-      var i = gAccSt.keySign.accidentals.length - 1;
-      if (gAccSt.keySign.accidentals[i].isGhost) {
-        gAccSt.keySign.removeAccidental(i);
-      }
-    }
-  }
+	if (this.ghostAcc !== null &amp;&amp; typeof(this.ghostAcc) !== &#x27;undefined&#x27;) {
+		var gAccSt = this.state.staffSystem.staves[this.ghostAcc.staffID];
+		if (gAccSt.keySign.accidentals.length &gt; 0) {
+			var i = gAccSt.keySign.accidentals.length - 1;
+			if (gAccSt.keySign.accidentals[i].isGhost) {
+				gAccSt.keySign.removeAccidental(i);
+			}
+		}
+	}
 
 };
 
@@ -513,12 +512,12 @@ MusThGUI.Control.Controller.prototype.removeGhostAcc = function() {
  */
 MusThGUI.Control.Controller.prototype.clearToolbarOverlays = function() {
 
-  if (this.state.toolbars.length &gt; 0) {
-    var i;
-    for (i = 0; i &lt; this.state.toolbars.length; i++) {
-      this.state.toolbars[i].setMouseOverlay(null);
-    }
-  }
+	if (this.state.toolbars.length &gt; 0) {
+		var i;
+		for (i = 0; i &lt; this.state.toolbars.length; i++) {
+			this.state.toolbars[i].setMouseOverlay(null);
+		}
+	}
 
 };
 
@@ -530,10 +529,14 @@ MusThGUI.Control.Controller.prototype.clearToolbarOverlays = function() {
  */
 MusThGUI.Control.Controller.prototype.drawState = function() {
 
-  this.ctx.fillStyle = &#x27;white&#x27;;
-  this.ctx.fillRect(0, 0, this.coordMgr.canvasWidth,
-      this.coordMgr.canvasHeight);
-  this.renderer.draw();
+	if (typeof(this.renderer) !== &#x27;undefined&#x27;) {
+		if (this.renderer !== null) {
+			this.ctx.fillStyle = &#x27;white&#x27;;
+			this.ctx.fillRect(0, 0, this.coordMgr.canvasWidth,
+					this.coordMgr.canvasHeight);
+			this.renderer.draw();
+		}
+	}
 
 };
 
@@ -547,20 +550,20 @@ MusThGUI.Control.Controller.prototype.drawState = function() {
  * @return {undefined}
  */
 MusThGUI.Control.Controller.prototype.setColTextInput = function(colID,
-    value) {
+		value) {
 
-  var parent = this;
+	var parent = this;
 
-  Y.Array.each(this.state.staffSystem.staves, function(staff) {
+	Y.Array.each(this.state.staffSystem.staves, function(staff) {
 
-    var textInput = staff.noteColumns[colID].textInput;
-    if (textInput !== null) {
-      textInput.value = value;
-      parent.callBack(parent.state.getState());
-      parent.drawState();
-    }
+		var textInput = staff.noteColumns[colID].textInput;
+		if (textInput !== null) {
+			textInput.value = value;
+			parent.callBack(parent.state.getState());
+			parent.drawState();
+		}
 
-  });
+	});
 
 };
     </pre>

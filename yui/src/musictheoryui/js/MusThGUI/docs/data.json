@@ -1357,7 +1357,7 @@
     "classitems": [
         {
             "file": "Controller.js",
-            "line": 64,
+            "line": 66,
             "description": "Callback function indicating that canvas images have been loaded. Finishes\ncanvases initialization.",
             "itemtype": "method",
             "name": "onImagesLoaded",
@@ -1403,7 +1403,7 @@
         },
         {
             "file": "Controller.js",
-            "line": 134,
+            "line": 133,
             "description": "Handles a canvas mouse click event.",
             "itemtype": "method",
             "name": "onMouseClick",
@@ -1423,7 +1423,7 @@
         },
         {
             "file": "Controller.js",
-            "line": 225,
+            "line": 224,
             "description": "Handles a canvas mouse move event.",
             "itemtype": "method",
             "name": "onMouseMove",
@@ -1443,7 +1443,7 @@
         },
         {
             "file": "Controller.js",
-            "line": 296,
+            "line": 295,
             "description": "Given a mouse event location, determine if a canvas element (note,\nkey signature accidental, toolbar button, text input) was involved, and if\nso, return the element.",
             "itemtype": "method",
             "name": "getElementFromPoint",
@@ -1463,7 +1463,7 @@
         },
         {
             "file": "Controller.js",
-            "line": 330,
+            "line": 329,
             "description": "Deletes the current ghost note (if displayed) from the canvas state.",
             "itemtype": "method",
             "name": "removeGhostNote",
@@ -1476,7 +1476,7 @@
         },
         {
             "file": "Controller.js",
-            "line": 346,
+            "line": 345,
             "description": "Deletes the current ghost accidental (if displayed) from the canvas state.",
             "itemtype": "method",
             "name": "removeGhostAcc",
@@ -1489,7 +1489,7 @@
         },
         {
             "file": "Controller.js",
-            "line": 366,
+            "line": 365,
             "description": "Disables the overlay effect for all toolbar buttons for which it is enabled.",
             "itemtype": "method",
             "name": "clearToolbarOverlays",
@@ -1502,7 +1502,7 @@
         },
         {
             "file": "Controller.js",
-            "line": 383,
+            "line": 382,
             "description": "Draws the canvas state.",
             "itemtype": "method",
             "name": "drawState",
@@ -1515,7 +1515,7 @@
         },
         {
             "file": "Controller.js",
-            "line": 398,
+            "line": 401,
             "description": "Given a column ID and a text input value, sets the value of the column's text\ninput to the given value.",
             "itemtype": "method",
             "name": "setColTextInput",
@@ -3068,7 +3068,7 @@
         },
         {
             "file": "State.js",
-            "line": 187,
+            "line": 186,
             "description": "Returns the canvas state.",
             "itemtype": "method",
             "name": "getState",
@@ -3082,7 +3082,7 @@
         },
         {
             "file": "State.js",
-            "line": 307,
+            "line": 306,
             "description": "Indicates whether the state contains a toolbar, given the toolbar name.",
             "itemtype": "method",
             "name": "hasToolbar",
@@ -3102,7 +3102,7 @@
         },
         {
             "file": "State.js",
-            "line": 326,
+            "line": 325,
             "description": "Returns a toolbar, given the toolbar name.",
             "itemtype": "method",
             "name": "getToolbar",
@@ -3123,7 +3123,7 @@
         },
         {
             "file": "State.js",
-            "line": 346,
+            "line": 345,
             "description": "Returns the number of buttons for the longest toolbar in the state.",
             "itemtype": "method",
             "name": "getMaxNumToolbarButtons",

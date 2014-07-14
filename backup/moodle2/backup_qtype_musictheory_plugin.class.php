@@ -18,7 +18,6 @@
  * @package    qtype
  * @subpackage musictheory
  * @copyright  2013 Eric Brisson
- * @copyright  2013 Jay Huber
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 defined('MOODLE_INTERNAL') || die();

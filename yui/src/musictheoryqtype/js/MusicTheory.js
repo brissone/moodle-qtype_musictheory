@@ -42,41 +42,38 @@ var NS = M.qtype_musictheory.musictheoryqtype;
 NS.questionRender = {};
 
 /**
- * Initializes MusThGUI canvases when a music theory question is displayed.
+ * Initializes GUI canvases when a music theory question is displayed.
  *
  * @method initQuestionRender
- * @param {String} HTMLInputID The unique id of the text input that the MusThGUI
- * canvas is to replace.
- * @param {String} optionsXML An XML string specifying the Moodle music
- * question's settings.
- * @param {Boolean} readOnly Indicates whether the canvas should be editable.
- * @param {String} initialInput The initial input to use when initializing the
- * MusThGUI canvas, formatted in accordance with the music question type.
- * @param {String} correctResponse The correct answer for the question,
- * formatted in accordance with the music question type.
- * @param {String} correctRespStr The sentence to display when the correct
- * answer is rendered.
+ * @param {Array} params An array containing various rendering parameters.
  * @return {Undefined}
  */
-NS.initQuestionRender = function(HTMLInputID, optionsXML, readOnly,
-		initialInput, correctResponse, correctRespStr) {
+NS.initQuestionRender = function(params) {
 
-	var options = NS.questionRender.convertOptionsXMLtoObjectLiteral(optionsXML);
+  var HTMLInputID = params.inputname,
+      optionsXML = params.optionsxml,
+      readOnly = params.readonly,
+      initialInput = params.initialinput,
+      correctResponse = params.correctresponse,
+      correctRespStr = params.correctrespstr,
+      additionalParams = params.additionalparams,
+      options = NS.questionRender.convertOptionsXMLtoObjectLiteral(optionsXML,
+      additionalParams);
 
-	NS.questionRender.renderQuestion(HTMLInputID, options,
-			readOnly, initialInput);
+  NS.questionRender.renderQuestion(HTMLInputID, options,
+      readOnly, initialInput);
 
-	if (correctResponse !== null && typeof(correctResponse) !== 'undefined' &&
-			correctResponse !== '') {
-		NS.questionRender.renderCorrectResponse(HTMLInputID, options,
-				correctResponse,
-				correctRespStr);
-	}
+  if (correctResponse !== null && typeof(correctResponse) !== 'undefined' &&
+      correctResponse !== '') {
+    NS.questionRender.renderCorrectResponse(HTMLInputID, options,
+        correctResponse,
+        correctRespStr);
+  }
 
 };
 
 /**
- * Initializes the MusThGUI canvas for the question section.
+ * Initializes the GUI canvas for the question section.
  *
  * @method renderQuestion
  * @param {String} HTMLInputID The unique id of the text input that the MusThGUI
@@ -89,52 +86,70 @@ NS.initQuestionRender = function(HTMLInputID, optionsXML, readOnly,
  * @return {Undefined}
  */
 NS.questionRender.renderQuestion = function(HTMLInputID, options,
-		readOnly, initialInput) {
+    readOnly, initialInput) {
 
-	HTMLInputID = HTMLInputID.replace(':', '\\:');
+  var YInput,
+      canvasDiv,
+      displayCanvasID,
+      xmlConverter,
+      replacedDiv,
+      canvasNode,
+      stateXML,
+      callBack;
 
-	var YInput = Y.one('#' + HTMLInputID);
+  HTMLInputID = HTMLInputID.replace(':', '\\:');
 
-	var replacedDiv = Y.one(
-			'#' + 'musictheory_div_replacedbycanvas_' + HTMLInputID);
-	if (replacedDiv) {
-		replacedDiv.hide();
-	}
+  YInput = Y.one('#' + HTMLInputID);
 
-	var canvasDiv = Y.one('#musictheory_div_canvas_' + HTMLInputID);
+  replacedDiv = Y.one(
+      '#' + 'musictheory_div_replacedbycanvas_' + HTMLInputID);
 
-	if (!canvasDiv) {
-		return;
-	}
+  if (replacedDiv) {
+    replacedDiv.hide();
+  }
 
-	var displayCanvasID = 'musictheory_renderMusicCanvas_' + HTMLInputID.replace(
-			'\\:', '-');
+  canvasDiv = Y.one('#musictheory_div_canvas_' + HTMLInputID);
 
-	var canvasNode = Y.one('#' + displayCanvasID);
-	if (!canvasNode) {
-		canvasNode = Y.Node.create(
-				'<div style="margin-top:10px;margin-bottom:15px;overflow:auto"><canvas id="' +
-				displayCanvasID + '" width="1" height="1" /></div>');
-		canvasDiv.append(canvasNode);
-	}
+  if (!canvasDiv) {
+    return;
+  }
 
-	options.editable = !readOnly;
-	options.containsUserInput = true;
+  displayCanvasID = 'musictheory_renderMusicCanvas_' + HTMLInputID.replace(
+      '\\:', '-');
 
-	var xmlConverter = new NS.XMLConverter(options);
-	var callBack = function(stateXML) {
-		YInput.set('value', xmlConverter.getCanvasTextOutput(stateXML));
-	};
+  canvasNode = Y.one('#' + displayCanvasID);
 
-	var stateXML = xmlConverter.getCanvasXML(initialInput);
-	new MusThGUI(displayCanvasID, stateXML, callBack,
-			options.editable);
+  if (!canvasNode) {
+    canvasNode = Y.Node.create(
+        '<div style="margin-top:10px;margin-bottom:15px;overflow:auto"><canvas id="' +
+        displayCanvasID + '" width="1" height="1" /></div>');
+    canvasDiv.append(canvasNode);
+  }
 
-	canvasDiv.show();
+  options.editable = !readOnly;
+  options.containsUserInput = true;
+
+  xmlConverter = new NS.XMLConverter(options);
+  callBack = function(stateXML) {
+    YInput.set('value', xmlConverter.getCanvasTextOutput(stateXML));
+  };
+
+  stateXML = xmlConverter.getCanvasXML(initialInput);
+
+  if (options.musicQType === 'keyboard-input') {
+    new KeyboardInput(displayCanvasID, stateXML, callBack,
+        options.editable);
+  }
+  else {
+    new MusThGUI(displayCanvasID, stateXML, callBack,
+        options.editable);
+  }
+
+  canvasDiv.show();
 };
 
 /**
- * Initializes MusThGUI canvases when a music theory question is displayed.
+ * Initializes GUI canvases when a music theory question is displayed.
  *
  * @method renderCorrectResponse
  * @param {String} HTMLInputID The unique id of the text input that the MusThGUI
@@ -148,34 +163,49 @@ NS.questionRender.renderQuestion = function(HTMLInputID, options,
  * @return {Undefined}
  */
 NS.questionRender.renderCorrectResponse = function(HTMLInputID, options,
-		correctResponse, correctResponseStr) {
+    correctResponse, correctResponseStr) {
 
-	HTMLInputID = HTMLInputID.replace(':', '\\:');
-	var YInput = Y.one('#' + 'musictheory_correctanswerdiv_' + HTMLInputID);
+  var YInput,
+      correctCanvasID,
+      canvasNode,
+      xmlConverter,
+      stateXML,
+      callBack;
 
-	if (!YInput) {
-		return;
-	}
 
-	var correctCanvasID = 'musictheory_renderCorrectResponseCanvas_' +
-			HTMLInputID.replace('\\:', '-');
+  HTMLInputID = HTMLInputID.replace(':', '\\:');
+  YInput = Y.one('#' + 'musictheory_correctanswerdiv_' + HTMLInputID);
 
-	var canvasNode = Y.one('#' + correctCanvasID);
-	if (!canvasNode) {
-		YInput.setHTML('<p>' + correctResponseStr + '</p>' +
-				'<canvas id="' + correctCanvasID + '" width="1" height="1" />');
-	}
+  if (!YInput) {
+    return;
+  }
 
-	options.editable = false;
-	options.containsUserInput = false;
+  correctCanvasID = 'musictheory_renderCorrectResponseCanvas_' +
+      HTMLInputID.replace('\\:', '-');
 
-	var xmlConverter = new NS.XMLConverter(options);
-	var callBack = function() {
-	};
+  canvasNode = Y.one('#' + correctCanvasID);
 
-	var stateXML = xmlConverter.getCanvasXML(correctResponse);
-	new MusThGUI(correctCanvasID, stateXML, callBack,
-			options.editable);
+  if (!canvasNode) {
+    YInput.setHTML('<p>' + correctResponseStr + '</p>' +
+        '<canvas id="' + correctCanvasID + '" width="1" height="1" />');
+  }
+
+  options.editable = false;
+  options.containsUserInput = false;
+
+  xmlConverter = new NS.XMLConverter(options);
+  callBack = function() {
+  };
+
+  stateXML = xmlConverter.getCanvasXML(correctResponse);
+  if (options.musicQType === 'keyboard-input') {
+    new KeyboardInput(correctCanvasID, stateXML, callBack,
+        options.editable);
+  }
+  else {
+    new MusThGUI(correctCanvasID, stateXML, callBack,
+        options.editable);
+  }
 
 };
 
@@ -185,68 +215,105 @@ NS.questionRender.renderCorrectResponse = function(HTMLInputID, options,
  * @method convertOptionsXMLtoObjectLiteral
  * @param {String} optionsXML An XML string specifying the Moodle music
  * question's settings.
+ * @param {Array} additionalParams An array containing additional parameters
+ * not stored in the saved question settings
  * @return {Object literal}
  */
-NS.questionRender.convertOptionsXMLtoObjectLiteral = function(optionsXML) {
+NS.questionRender.convertOptionsXMLtoObjectLiteral = function(optionsXML,
+    additionalParams) {
 
-	var parsedXML = Y.XML.parse(optionsXML);
-	var options = {};
+  var parsedXML = Y.XML.parse(optionsXML),
+      options = {},
+      optionsNode = parsedXML.getElementsByTagName('options')[0].firstChild,
+      musicQType = optionsNode.nodeName;
 
-	var optionsNode = parsedXML.getElementsByTagName('options')[0].firstChild;
-	var musicQType = optionsNode.nodeName;
+  options.musicQType = musicQType;
 
-	options.musicQType = musicQType;
+  switch (musicQType) {
+    case 'note-write':
+    case 'note-identify':
+      options.clef = optionsNode.getElementsByTagName(
+          'clef')[0].firstChild.nodeValue;
+      options.includeAlterations = optionsNode.getElementsByTagName(
+          'includealterations')[0].firstChild.nodeValue;
+      options.includeAlterations = (options.includeAlterations === 'true');
+      break;
+    case 'keyboard-input':
+      options.includestaticnote = optionsNode.getElementsByTagName(
+          'includestaticnote')[0].firstChild.nodeValue;
+      if (options.includestaticnote === 'true') {
+        options.staticnotepitchclass = additionalParams.pitchclass;
+        options.staticnoteregister = additionalParams.register;
+      }
+      break;
+    case 'keysignature-write':
+    case 'keysignature-identify':
+      options.clef = optionsNode.getElementsByTagName(
+          'clef')[0].firstChild.nodeValue;
+      options.key = optionsNode.getElementsByTagName(
+          'key')[0].firstChild.nodeValue;
+      break;
+    case 'interval-write':
+    case 'interval-identify':
+      options.clef = optionsNode.getElementsByTagName(
+          'clef')[0].firstChild.nodeValue;
+      options.givenNote = [];
+      options.givenNote.ltr =
+          optionsNode.getElementsByTagName('letter')[0].firstChild.nodeValue;
+      options.givenNote.acc =
+          optionsNode.getElementsByTagName(
+          'accidental')[0].firstChild.nodeValue;
+      options.givenNote.reg =
+          optionsNode.getElementsByTagName('register')[0].firstChild.nodeValue;
+      break;
+    case 'scale-write':
+      options.clef = optionsNode.getElementsByTagName(
+          'clef')[0].firstChild.nodeValue;
+      options.givenNote = [];
+      options.givenNote.ltr =
+          optionsNode.getElementsByTagName('letter')[0].firstChild.nodeValue;
+      options.givenNote.acc =
+          optionsNode.getElementsByTagName(
+          'accidental')[0].firstChild.nodeValue;
+      options.givenNote.reg =
+          optionsNode.getElementsByTagName('register')[0].firstChild.nodeValue;
+      options.includeKS =
+          optionsNode.getElementsByTagName(
+          'displaykeysignature')[0].firstChild.nodeValue;
+      options.includeKS = (options.includeKS === 'true');
+      options.scaleType = optionsNode.getElementsByTagName(
+          'scaletype')[0].firstChild.nodeValue;
+      break;
+    case 'chordquality-write':
+    case 'chordquality-identify':
+      options.clef = optionsNode.getElementsByTagName(
+          'clef')[0].firstChild.nodeValue;
+      options.maxNotes = additionalParams.maxnotes;
+      break;
+    case 'harmonicfunction-write':
+      options.maxNotes = additionalParams.maxnotes;
+      options.clef = optionsNode.getElementsByTagName(
+          'clef')[0].firstChild.nodeValue;
+      options.key = optionsNode.getElementsByTagName(
+          'key')[0].firstChild.nodeValue;
+      options.includeKS =
+          optionsNode.getElementsByTagName(
+          'displaykeysignature')[0].firstChild.nodeValue;
+      options.includeKS = (options.includeKS === 'true');
+      break;
+    case 'harmonicfunction-identify':
+      options.clef = optionsNode.getElementsByTagName(
+          'clef')[0].firstChild.nodeValue;
+      options.key = optionsNode.getElementsByTagName(
+          'key')[0].firstChild.nodeValue;
+      options.includeKS =
+          optionsNode.getElementsByTagName(
+          'displaykeysignature')[0].firstChild.nodeValue;
+      options.includeKS = (options.includeKS === 'true');
+      break;
+  }
 
-	switch (musicQType) {
-		case 'note-write':
-		case 'note-identify':
-			options.clef = optionsNode.getElementsByTagName(
-					'clef')[0].firstChild.nodeValue;
-			options.includeAlterations = optionsNode.getElementsByTagName(
-					'includealterations')[0].firstChild.nodeValue;
-			options.includeAlterations = (options.includeAlterations === 'true');
-			break;
-		case 'keysignature-write':
-		case 'keysignature-identify':
-			options.clef = optionsNode.getElementsByTagName(
-					'clef')[0].firstChild.nodeValue;
-			options.key = optionsNode.getElementsByTagName(
-					'key')[0].firstChild.nodeValue;
-			break;
-		case 'interval-write':
-		case 'interval-identify':
-			options.clef = optionsNode.getElementsByTagName(
-					'clef')[0].firstChild.nodeValue;
-			options.givenNote = [];
-			options.givenNote.ltr =
-					optionsNode.getElementsByTagName('letter')[0].firstChild.nodeValue;
-			options.givenNote.acc =
-					optionsNode.getElementsByTagName(
-					'accidental')[0].firstChild.nodeValue;
-			options.givenNote.reg =
-					optionsNode.getElementsByTagName('register')[0].firstChild.nodeValue;
-			break;
-		case 'scale-write':
-			options.clef = optionsNode.getElementsByTagName(
-					'clef')[0].firstChild.nodeValue;
-			options.givenNote = [];
-			options.givenNote.ltr =
-					optionsNode.getElementsByTagName('letter')[0].firstChild.nodeValue;
-			options.givenNote.acc =
-					optionsNode.getElementsByTagName(
-					'accidental')[0].firstChild.nodeValue;
-			options.givenNote.reg =
-					optionsNode.getElementsByTagName('register')[0].firstChild.nodeValue;
-			options.includeKS =
-					optionsNode.getElementsByTagName(
-					'displaykeysignature')[0].firstChild.nodeValue;
-			options.includeKS = (options.includeKS === 'true');
-			options.scaleType = optionsNode.getElementsByTagName(
-					'scaletype')[0].firstChild.nodeValue;
-			break;
-	}
-
-	return options;
+  return options;
 
 };
 
@@ -261,8 +328,8 @@ NS.editForm = {};
  */
 NS.initEditForm = function() {
 
-	NS.editForm.setOptionVisibility();
-	NS.editForm.setFormOptionListeners();
+  NS.editForm.setOptionVisibility();
+  NS.editForm.setFormOptionListeners();
 
 };
 
@@ -274,13 +341,13 @@ NS.initEditForm = function() {
  */
 NS.editForm.setFormOptionListeners = function() {
 
-	Y.all(
-			'#id_musictheory_musicqtype').on('change', function() {
-		var typeBtnNode = Y.one('#' + 'id_musictheory_updatemusicqtype');
-		if (typeBtnNode) {
-			typeBtnNode.simulate('click');
-		}
-	});
+  Y.all(
+      '#id_musictheory_musicqtype').on('change', function() {
+    var typeBtnNode = Y.one('#' + 'id_musictheory_updatemusicqtype');
+    if (typeBtnNode) {
+      typeBtnNode.simulate('click');
+    }
+  });
 
 };
 
@@ -292,10 +359,10 @@ NS.editForm.setFormOptionListeners = function() {
  */
 NS.editForm.setOptionVisibility = function() {
 
-	var typeBtnNode = Y.one('#' + 'id_musictheory_updatemusicqtype');
-	if (typeBtnNode) {
-		typeBtnNode.hide();
-	}
+  var typeBtnNode = Y.one('#' + 'id_musictheory_updatemusicqtype');
+  if (typeBtnNode) {
+    typeBtnNode.hide();
+  }
 
 };
 
@@ -312,10 +379,23 @@ NS.editForm.setOptionVisibility = function() {
  */
 NS.getKeySign = function(key, clef) {
 
-	var tonic = key.substring(0, key.length - 1);
-	var mode = key.substr(key.length - 1, 1);
+	var tonic = key.substring(0, key.length - 1),
+			mode = key.substr(key.length - 1, 1),
+			trebleSharp = new Array('F#5', 'C#5', 'G#5', 'D#5', 'A#4', 'E#5', 'B#4'),
+			bassSharp = new Array('F#3', 'C#3', 'G#3', 'D#3', 'A#2', 'E#3', 'B#2'),
+			altoSharp = new Array('F#4', 'C#4', 'G#4', 'D#4', 'A#3', 'E#4', 'B#3'),
+			tenorSharp = new Array('F#3', 'C#4', 'G#3', 'D#4', 'A#3', 'E#4', 'B#3'),
+			trebleFlat = new Array('Bb4', 'Eb5', 'Ab4', 'Db5', 'Gb4', 'Cb5', 'Fb4'),
+			bassFlat = new Array('Bb2', 'Eb3', 'Ab2', 'Db3', 'Gb2', 'Cb3', 'Fb2'),
+			altoFlat = new Array('Bb3', 'Eb4', 'Ab3', 'Db4', 'Gb3', 'Cb4', 'Fb3'),
+			tenorFlat = new Array('Bb3', 'Eb4', 'Ab3', 'Db4', 'Gb3', 'Cb4', 'Fb3'),
+			sharpOrFlat = [],
+			accList = [],
+			numAccMajor = [],
+			relativeMajorKeys = [],
+			majorTonic,
+			acc;
 
-	var sharpOrFlat = [];
 	sharpOrFlat.Cn = 'sharp';
 	sharpOrFlat.Gn = 'sharp';
 	sharpOrFlat.Dn = 'sharp';
@@ -332,16 +412,6 @@ NS.getKeySign = function(key, clef) {
 	sharpOrFlat.Gb = 'flat';
 	sharpOrFlat.Cb = 'flat';
 
-	var trebleSharp = new Array('F#5', 'C#5', 'G#5', 'D#5', 'A#4', 'E#5', 'B#4');
-	var bassSharp = new Array('F#3', 'C#3', 'G#3', 'D#3', 'A#2', 'E#3', 'B#2');
-	var altoSharp = new Array('F#4', 'C#4', 'G#4', 'D#4', 'A#3', 'E#4', 'B#3');
-	var tenorSharp = new Array('F#3', 'C#4', 'G#3', 'D#4', 'A#3', 'E#4', 'B#3');
-	var trebleFlat = new Array('Bb4', 'Eb5', 'Ab4', 'Db5', 'Gb4', 'Cb5', 'Fb4');
-	var bassFlat = new Array('Bb2', 'Eb3', 'Ab2', 'Db3', 'Gb2', 'Cb3', 'Fb2');
-	var altoFlat = new Array('Bb3', 'Eb4', 'Ab3', 'Db4', 'Gb3', 'Cb4', 'Fb3');
-	var tenorFlat = new Array('Bb3', 'Eb4', 'Ab3', 'Db4', 'Gb3', 'Cb4', 'Fb3');
-
-	var accList = [];
 	accList.treblesharp = trebleSharp;
 	accList.basssharp = bassSharp;
 	accList.altosharp = altoSharp;
@@ -351,7 +421,6 @@ NS.getKeySign = function(key, clef) {
 	accList.altoflat = altoFlat;
 	accList.tenorflat = tenorFlat;
 
-	var numAccMajor = [];
 	numAccMajor.Cn = 0;
 	numAccMajor.Gn = 1;
 	numAccMajor.Dn = 2;
@@ -368,7 +437,6 @@ NS.getKeySign = function(key, clef) {
 	numAccMajor.Gb = 6;
 	numAccMajor.Cb = 7;
 
-	var relativeMajorKeys = [];
 	relativeMajorKeys.An = 'Cn';
 	relativeMajorKeys.En = 'Gn';
 	relativeMajorKeys.Bn = 'Dn';
@@ -385,9 +453,7 @@ NS.getKeySign = function(key, clef) {
 	relativeMajorKeys.Eb = 'Gb';
 	relativeMajorKeys.Ab = 'Cb';
 
-	var majorTonic = (mode === 'M') ? tonic : relativeMajorKeys[tonic];
-
-	var acc;
+	majorTonic = (mode === 'M') ? tonic : relativeMajorKeys[tonic];
 	acc = accList[clef + sharpOrFlat[majorTonic]];
 	acc = acc.slice(0, numAccMajor[majorTonic]);
 

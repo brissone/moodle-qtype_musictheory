@@ -35,85 +35,94 @@ require_once(dirname(dirname(__FILE__)) . '/renderer.php');
  */
 class qtype_musictheory_scale_write_renderer extends qtype_musictheory_renderer {
 
-    public function formulation_and_controls(question_attempt $qa, question_display_options $options) {
+	public function formulation_and_controls(question_attempt $qa,
+			question_display_options $options) {
 
-        global $PAGE, $OUTPUT;
+		global $PAGE, $OUTPUT;
 
-        $PAGE->requires->yui_module('moodle-qtype_musictheory-musictheoryui', 'M.qtype_musictheory.musictheoryui.init');
+		$PAGE->requires->yui_module('moodle-qtype_musictheory-musictheoryui', 'M.qtype_musictheory.musictheoryui.init');
 
-        $inputname = $qa->get_qt_field_name('answer');
-        $question = $qa->get_question();
-        $initialinput = $qa->get_last_qt_var('answer');
-        $correctresponsearray = $question->get_correct_response();
-        $correctresponse = $correctresponsearray['answer'];
+		$inputname = $qa->get_qt_field_name('answer');
+		$question = $qa->get_question();
+		$initialinput = $qa->get_last_qt_var('answer');
+		if ($options->rightanswer) {
+			$correctresponsearray = $question->get_correct_response();
+			$correctresponse = $correctresponsearray['answer'];
+		} else {
+			$correctresponse = null;
+		}
 
-        $moduleparams = array(
-            $inputname,
-            $question->musictheory_optionsxml,
-            $options->readonly,
-            $initialinput,
-            $correctresponse,
-            get_string('correctansweris', 'qtype_musictheory'),
-            false
-        );
-        $qtypemod = 'moodle-qtype_musictheory-musictheoryqtype';
-        $rendernamespace = 'M.qtype_musictheory.musictheoryqtype.initQuestionRender';
-        $PAGE->requires->yui_module($qtypemod, $rendernamespace, $moduleparams);
+		$moduleparams = array(
+			array(
+				'inputname'			 => $inputname,
+				'optionsxml'		 => $question->musictheory_optionsxml,
+				'readonly'			 => $options->readonly,
+				'initialinput'		 => $initialinput,
+				'correctresponse'	 => $correctresponse,
+				'correctrespstr'	 => get_string('correctansweris', 'qtype_musictheory'),
+				'additionalparams'	 => array(
+				)
+			)
+		);
 
-        $inputattributes = array(
-            'type'  => 'text',
-            'name'  => $inputname,
-            'value' => $initialinput,
-            'id'    => $inputname,
-            'size'  => 70
-        );
+		$qtypemod = 'moodle-qtype_musictheory-musictheoryqtype';
+		$rendernamespace = 'M.qtype_musictheory.musictheoryqtype.initQuestionRender';
+		$PAGE->requires->yui_module($qtypemod, $rendernamespace, $moduleparams);
 
-        if ($options->readonly) {
-            $inputattributes['readonly'] = 'readonly';
-        }
+		$inputattributes = array(
+			'type'	 => 'text',
+			'name'	 => $inputname,
+			'value'	 => $initialinput,
+			'id'	 => $inputname,
+			'size'	 => 70
+		);
 
-        $questiontext = $question->format_questiontext($qa);
-        $input = html_writer::empty_tag('input', $inputattributes);
-        $result = html_writer::tag('div', $questiontext, array('class' => 'qtext'));
+		if ($options->readonly) {
+			$inputattributes['readonly'] = 'readonly';
+		}
 
-        $nonjavascriptdivattr = array(
-            'id'    => 'musictheory_div_replacedbycanvas_' . $inputname,
-            'class' => 'ablock'
-        );
+		$questiontext = $question->format_questiontext($qa);
+		$input = html_writer::empty_tag('input', $inputattributes);
+		$result = html_writer::tag('div', $questiontext, array('class' => 'qtext'));
 
-        $tonic = $question->musictheory_givennoteletter;
-        $acc = $question->musictheory_givennoteaccidental;
-        $tonic .= $acc . $question->musictheory_givennoteregister;
-        $result .= html_writer::start_tag('div', $nonjavascriptdivattr);
-        $result .= '<b>' . get_string('tonic', 'qtype_musictheory') . ' = ' . $tonic . '</b>&nbsp;' . $input;
-        if (!$options->readonly) {
-            $result .= $OUTPUT->help_icon('scale_write_questionastext', 'qtype_musictheory', '');
-        }
-        $result .= html_writer::end_tag('div');
+		$nonjavascriptdivattr = array(
+			'id'	 => 'musictheory_div_replacedbycanvas_' . $inputname,
+			'class'	 => 'ablock'
+		);
 
-        $javascriptdivattr = array(
-            'id'    => 'musictheory_div_canvas_' . $inputname,
-            'class' => 'ablock',
-            'style' => 'display:none'
-        );
-        $result .= html_writer::start_tag('div', $javascriptdivattr);
-        if (!$options->readonly) {
-            $result .= $OUTPUT->help_icon('scale_write_questionasui', 'qtype_musictheory', '');
-        }
-        $result .= html_writer::end_tag('div');
+		$tonic = $question->musictheory_givennoteletter;
+		$acc = $question->musictheory_givennoteaccidental;
+		$tonic .= $acc . $question->musictheory_givennoteregister;
+		$result .= html_writer::start_tag('div', $nonjavascriptdivattr);
+		$result .= '<b>' . get_string('tonic', 'qtype_musictheory') . ' = ' . $tonic . '</b>&nbsp;' . $input;
+		if (!$options->readonly) {
+			$result .= $OUTPUT->help_icon('scale_write_questionastext', 'qtype_musictheory', '');
+		}
+		$result .= html_writer::end_tag('div');
 
-        if ($qa->get_state() == question_state::$invalid) {
-            $result .= html_writer::nonempty_tag('div', $question->get_validation_error(array('answer' => $initialinput)), array('class' => 'validationerror'));
-        }
+		$javascriptdivattr = array(
+			'id'	 => 'musictheory_div_canvas_' . $inputname,
+			'class'	 => 'ablock',
+			'style'	 => 'display:none'
+		);
+		$result .= html_writer::start_tag('div', $javascriptdivattr);
+		if (!$options->readonly) {
+			$result .= $OUTPUT->help_icon('scale_write_questionasui', 'qtype_musictheory', '');
+		}
+		$result .= html_writer::end_tag('div');
 
-        return $result;
-    }
+		if ($qa->get_state() == question_state::$invalid) {
+			$result .= html_writer::nonempty_tag('div', $question->get_validation_error(array('answer' => $initialinput)), array('class' => 'validationerror'));
+		}
 
-    public function correct_response(question_attempt $qa) {
-        $question = $qa->get_question();
-        $correctresponsearray = $question->get_correct_response();
-        return get_string('correctansweris', 'qtype_musictheory') . ' ' .
-                $correctresponsearray['answer'];
-    }
+		return $result;
+	}
+
+	public function correct_response(question_attempt $qa) {
+		$question = $qa->get_question();
+		$correctresponsearray = $question->get_correct_response();
+		return get_string('correctansweris', 'qtype_musictheory') . ' ' .
+				$correctresponsearray['answer'];
+	}
 
 }

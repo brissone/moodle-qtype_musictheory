@@ -384,7 +384,6 @@ MusThGUI.Control.Controller.prototype.bindEventListeners = function() {
 
 	var parent = this;
 
-	//this.jQueryCan.unbind();
 	this.canNode.detachAll();
 
 	this.canNode.on('click', function(e) {
@@ -2547,14 +2546,13 @@ MusThGUI.GUIState.State.prototype.setState = function(stateXML) {
 
   this.stateXML = stateXML;
   this.staffSystem = new MusThGUI.GUIState.StaffSystem();
-  var parent = this;
 
   // Staff System
   var i, j, k, l, editable, acc;
   var sSys = this.stateXML.getElementsByTagName('StaffSystem');
   for (i = 0; i < sSys.length; i++) {
 
-    parent.staffSystem.maxLedgerLines =
+    this.staffSystem.maxLedgerLines =
         parseInt(sSys[i].getAttribute('maxLedgerLines'), 10);
 
     //Staves
@@ -2637,7 +2635,7 @@ MusThGUI.GUIState.State.prototype.setState = function(stateXML) {
 
       } // Note columns
 
-      parent.staffSystem.addStaff(staff);
+      this.staffSystem.addStaff(staff);
 
     } // Staves
 

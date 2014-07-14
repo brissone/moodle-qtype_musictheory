@@ -109,7 +109,6 @@ MusThGUI.Control.Controller.prototype.bindEventListeners = function() {
 
 	var parent = this;
 
-	//this.jQueryCan.unbind();
 	this.canNode.detachAll();
 
 	this.canNode.on('click', function(e) {

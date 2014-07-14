@@ -50,7 +50,8 @@ class qtype_musictheory_randomiser {
      * empty key signatures should be considered.
      * @return string The randomly selected key.
      */
-    public static function get_random_key($possiblemodes, $includeemptykeysignature) {
+    public static function get_random_key($possiblemodes,
+            $includeemptykeysignature) {
         $modeid = rand(0, count($possiblemodes) - 1);
         $mode = $possiblemodes[$modeid];
         $possiblekeys = Tonality::getValidKeys($mode);
@@ -117,7 +118,8 @@ class qtype_musictheory_randomiser {
      * @return array The randomly selected interval, with two keys,
      * 'quality' and 'size'.
      */
-    public static function get_random_interval($possiblequalities, $possiblesizes) {
+    public static function get_random_interval($possiblequalities,
+            $possiblesizes) {
         $validcombos = array();
 
         foreach ($possiblequalities as $quality) {
@@ -180,17 +182,21 @@ class qtype_musictheory_randomiser {
      * @return String The randomly selected letter name.
      */
     public static function get_random_letter_name() {
-        $ltrs = array('A','B','C','D','E','F','G');
+        $ltrs = array('A', 'B', 'C', 'D', 'E', 'F', 'G');
         return self::get_random_field($ltrs);
     }
 
     /**
-     * Returns a randomly selected letter name.
+     * Returns a randomly selected accidental.
      *
-     * @return String The randomly selected letter name.
+     * @return String The randomly selected accidental.
      */
-    public static function get_random_accidental() {
-        $accs = array('n','#','b','x','bb');
+    public static function get_random_accidental($includedoubleaccidentals = true) {
+        if ($includedoubleaccidentals) {
+            $accs = array('n', '#', 'b', 'x', 'bb');
+        } else {
+            $accs = array('n', '#', 'b');
+        }
         return self::get_random_field($accs);
     }
 
@@ -204,19 +210,279 @@ class qtype_musictheory_randomiser {
     public static function get_random_register($clef, $ltr) {
         switch ($clef) {
             case 'treble':
-                $regs = ($ltr === 'B') ? array(3, 4, 5): array(3, 4, 5, 6);
+                $regs = ($ltr === 'B') ? array(3, 4, 5) : array(3, 4, 5, 6);
                 break;
             case 'bass':
-                $regs = ($ltr === 'C' || $ltr === 'D') ? array(2, 3, 4): array(1, 2, 3, 4);
+                $regs = ($ltr === 'C' || $ltr === 'D') ? array(2, 3, 4) : array(1, 2, 3, 4);
                 break;
             case 'alto':
-                $regs = ($ltr === 'C') ? array(3, 4, 5): array(2, 3, 4, 5);
+                $regs = ($ltr === 'C') ? array(3, 4, 5) : array(2, 3, 4, 5);
                 break;
             case 'tenor':
-                $regs = ($ltr === 'A' || $ltr === 'B') ? array(2, 3, 4): array(2, 3, 4, 5);
+                $regs = ($ltr === 'A' || $ltr === 'B') ? array(2, 3, 4) : array(2, 3, 4, 5);
                 break;
+            case 'grandstaff':
+                switch ($ltr) {
+                    case 'B':
+                        $regs = array(2, 3, 4, 5);
+                        break;
+                    case 'C':
+                    case 'D':
+                        $regs = array(2, 3, 4, 5, 6);
+                        break;
+                    default:
+                        $regs = array(1, 2, 3, 4, 5, 6);
+                }
         }
         return self::get_random_field($regs);
+    }
+
+    /**
+     * Returns a randomly selected harmonic function.
+     *
+     * @param string $hftype The type of harmonic function to return.
+     * @param string $mode The mode.
+     * @return array An array with three indices ('hfprimary', 'hfinvext' and
+     * 'hfsecondary') describing the randomly generated harmonic function.
+     */
+    public static function get_random_harmonicfunction($hftype, $keymode) {
+        $hf = array();
+        $mode = substr($keymode, 2, 1);
+        $key = substr($keymode, 0, 2);
+
+        switch ($hftype) {
+            case 'diatonictriad':
+                if ($mode === 'M') {
+                    $possprimary = array('I', 'ii', 'iii', 'IV', 'V', 'vi', 'viio');
+                } else {
+                    $possprimary = array('i', 'iio', 'III', 'III+', 'iv', 'V', 'VI', 'vio', 'VII', 'viio');
+                }
+                $hf['primary'] = self::get_random_field($possprimary);
+                $hf['invext'] = self::get_random_field(array('', '6', '64'));
+                $hf['secondary'] = '';
+                break;
+            case 'dom7th':
+                $hf['primary'] = 'V';
+                $hf['invext'] = self::get_random_field(array('7', '65', '43', '42'));
+                $hf['secondary'] = '';
+                break;
+            case 'nondom7th':
+                if ($mode === 'M') {
+                    $possprimary = array('I', 'ii', 'iii', 'IV', 'vi');
+                } else {
+                    $possprimary = array('i', 'ii-o', 'III', 'iv', 'VI', 'vi-o');
+                }
+                $hf['primary'] = self::get_random_field($possprimary);
+                $hf['invext'] = self::get_random_field(array('7', '65', '43', '42'));
+                $hf['secondary'] = '';
+                break;
+            case 'leadingtone7thhalfdim':
+                $hf['primary'] = 'vii-o';
+                $hf['invext'] = self::get_random_field(array('7', '65', '43', '42'));
+                $hf['secondary'] = '';
+                break;
+            case 'leadingtone7thfullydim':
+                $hf['primary'] = 'viio';
+                $hf['invext'] = self::get_random_field(array('7', '65', '43', '42'));
+                $hf['secondary'] = '';
+                break;
+            case 'secdomtriad':
+                if ($mode === 'M') {
+                    $posssecondary = array('/ii', '/iii', '/IV', '/V', '/vi');
+                } else {
+                    $posssecondary = array('/III', '/iv', '/V', '/VI', '/VII');
+                }
+                $hf['primary'] = 'V';
+                $hf['invext'] = self::get_random_field(array('', '6', '64'));
+                $hf['secondary'] = self::get_random_field($posssecondary);
+                break;
+            case 'secdom7th':
+                if ($mode === 'M') {
+                    $posssecondary = array('/ii', '/iii', '/IV', '/V', '/vi');
+                } else {
+                    $posssecondary = array('/III', '/iv', '/V', '/VI', '/VII');
+                }
+                $hf['primary'] = 'V';
+                $hf['invext'] = self::get_random_field(array('7', '65', '43', '42'));
+                $hf['secondary'] = self::get_random_field($posssecondary);
+                break;
+            case 'secnondomtriad':
+                if ($mode === 'M') {
+                    $posssecondary = array('/ii', '/iii', '/IV', '/V', '/vi');
+                } else {
+                    $posssecondary = array('/III', '/iv', '/V', '/VI', '/VII');
+                }
+                $hf['invext'] = self::get_random_field(array('', '6', '64'));
+                $hf['secondary'] = self::get_random_field($posssecondary);
+                switch ($hf['secondary']) {
+                    case '/ii':
+                    case '/iii':
+                    case '/iv':
+                    case '/vi':
+                        $possprimary = array('iio', 'III', 'iv', 'VI', 'viio', 'VII');
+                        break;
+                    default:
+                        $possprimary = array('ii', 'iii', 'IV', 'vi');
+                        break;
+                }
+                $hf['primary'] = self::get_random_field($possprimary);
+                break;
+            case 'secnondom7th':
+                if ($mode === 'M') {
+                    $posssecondary = array('/ii', '/iii', '/IV', '/V', '/vi');
+                } else {
+                    $posssecondary = array('/III', '/iv', '/V', '/VI', '/VII');
+                }
+                $hf['invext'] = self::get_random_field(array('7', '65', '43', '42'));
+                $hf['secondary'] = self::get_random_field($posssecondary);
+                switch ($hf['secondary']) {
+                    case '/ii':
+                    case '/iii':
+                    case '/iv':
+                    case '/vi':
+                        $possprimary = array('ii-o', 'III', 'iv', 'VI', 'vi-o', 'VII');
+                        break;
+                    default:
+                        $possprimary = array('ii', 'iii', 'IV', 'vi');
+                        break;
+                }
+                $hf['primary'] = self::get_random_field($possprimary);
+                break;
+            case 'seclttriad':
+                if ($mode === 'M') {
+                    $posssecondary = array('/ii', '/iii', '/IV', '/V', '/vi');
+                } else {
+                    $posssecondary = array('/III', '/iv', '/V', '/VI', '/VII');
+                }
+                $hf['primary'] = 'viio';
+                $hf['invext'] = self::get_random_field(array('', '6', '64'));
+                $hf['secondary'] = self::get_random_field($posssecondary);
+                break;
+            case 'seclthalfdim':
+                if ($mode === 'M') {
+                    $posssecondary = array('/ii', '/iii', '/IV', '/V', '/vi');
+                } else {
+                    $posssecondary = array('/III', '/iv', '/V', '/VI', '/VII');
+                }
+                $hf['primary'] = 'vii-o';
+                $hf['invext'] = self::get_random_field(array('7', '65', '43', '42'));
+                $hf['secondary'] = self::get_random_field($posssecondary);
+                break;
+            case 'secltfullydim':
+                if ($mode === 'M') {
+                    $posssecondary = array('/ii', '/iii', '/IV', '/V', '/vi');
+                } else {
+                    $posssecondary = array('/III', '/iv', '/V', '/VI', '/VII');
+                }
+                $hf['primary'] = 'viio';
+                $hf['invext'] = self::get_random_field(array('7', '65', '43', '42'));
+                $hf['secondary'] = self::get_random_field($posssecondary);
+                break;
+            case 'neapolitan':
+                $hf['primary'] = 'N';
+                $hf['invext'] = '6';
+                $hf['secondary'] = '';
+                break;
+            case 'aug6th':
+                $hf['primary'] = self::get_random_field(array('Gr', 'Fr', 'It'));
+                $hf['invext'] = '';
+                $hf['secondary'] = '';
+                break;
+            case 'chromaticmediant':
+                $degree = self::get_random_field(array('iii', 'vi'));
+                if ($degree === 'iii') {
+                    if ($mode === 'M') {
+                        switch ($key) {
+                            case 'Gb':
+                            case 'Cb':
+                                $hf['primary'] = self::get_random_field(array('bbIII', 'bbiii'));
+                                break;
+                            case 'Dn':
+                            case 'An':
+                            case 'En':
+                            case 'Bn':
+                            case 'F#':
+                            case 'C#':
+                                $hf['primary'] = self::get_random_field(array('nIII', 'niii'));
+                                break;
+                            default:
+                                $hf['primary'] = self::get_random_field(array('bIII', 'biii'));
+                                break;
+                        }
+                    } else {
+                        switch ($key) {
+                            case 'D#':
+                            case 'A#':
+                                $hf['primary'] = self::get_random_field(array('xIII', 'xiii'));
+                                break;
+                            case 'Dn':
+                            case 'An':
+                            case 'En':
+                            case 'Bn':
+                            case 'F#':
+                            case 'C#':
+                                $hf['primary'] = self::get_random_field(array('#III', '#iii'));
+                                break;
+                            default:
+                                $hf['primary'] = self::get_random_field(array('nIII', 'niii'));
+                                break;
+                        }
+                    }
+                } else {
+                    if ($mode === 'M') {
+                        switch ($key) {
+                            case 'Db':
+                            case 'Gb':
+                            case 'Cb':
+                                $hf['primary'] = self::get_random_field(array('bbVI', 'bbvi'));
+                                break;
+                            case 'An':
+                            case 'En':
+                            case 'Bn':
+                            case 'F#':
+                            case 'C#':
+                                $hf['primary'] = self::get_random_field(array('nVI', 'nvi'));
+                                break;
+                            default:
+                                $hf['primary'] = self::get_random_field(array('bVI', 'bvi'));
+                                break;
+                        }
+                    } else {
+                        switch ($key) {
+                            case 'A#':
+                                $hf['primary'] = self::get_random_field(array('xVI', 'xvi'));
+                                break;
+                            case 'An':
+                            case 'En':
+                            case 'Bn':
+                            case 'F#':
+                            case 'C#':
+                            case 'G#':
+                            case 'D#':
+                                $hf['primary'] = self::get_random_field(array('#VI', '#vi'));
+                                break;
+                            default:
+                                $hf['primary'] = self::get_random_field(array('nVI', 'nvi'));
+                                break;
+                        }
+                    }
+                }
+
+                $hf['invext'] = self::get_random_field(array('', '6', '64'));
+                $hf['secondary'] = '';
+                break;
+            case 'extendeddom':
+                $hf['primary'] = 'V';
+                $hf['invext'] = self::get_random_field(array('9', '11', '13'));
+                $hf['secondary'] = '';
+                break;
+            default:
+                $hf['primary'] = 'I';
+                $hf['invext'] = '';
+                $hf['secondary'] = '';
+                break;
+        }
+        return $hf;
     }
 
 }
