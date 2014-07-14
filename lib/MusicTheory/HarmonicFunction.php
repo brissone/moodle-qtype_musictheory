@@ -107,10 +107,6 @@ class HarmonicFunction extends Chord {
 			return true;
 		} else if ($this->isA6()) {
 			return true;
-		} else if ($this->isChromaticMediant()) {
-			return true;
-		} else if ($this->isExtendedDominant()) {
-			return true;
 		} else {
 			return false;
 		}
@@ -150,10 +146,6 @@ class HarmonicFunction extends Chord {
 			return 'neapolitan';
 		} else if ($this->isA6()) {
 			return 'aug6th';
-		} else if ($this->isChromaticMediant()) {
-			return 'chromaticmediant';
-		} else if ($this->isExtendedDominant()) {
-			return 'extendeddom';
 		}
 	}
 
@@ -412,97 +404,6 @@ class HarmonicFunction extends Chord {
 				($this->invExt === '') && $this->secondaryTonic === '') {
 			return true;
 		}
-	}
-
-	/**
-	 * Returns true if the harmonic function is a chromatic mediant.
-	 *
-	 * @return boolean
-	 */
-	private function isChromaticMediant() {
-
-		if (!$this->isTriad()) {
-			return false;
-		}
-
-		$chromMedMajornIII = array('Dn', 'An', 'En', 'Bn', 'F#', 'C#');
-		$chromMedMajorbIII = array('Gn', 'Cn', 'Fn', 'Bb', 'Eb', 'Ab', 'Db');
-		$chromMedMajorbbIII = array('Gb', 'Cb');
-		$chromMedMajornVI = array('An', 'En', 'Bn', 'F#', 'C#');
-		$chromMedMajorbVI = array('Dn', 'Gn', 'Cn', 'Fn', 'Bb', 'Eb', 'Ab');
-		$chromMedMajorbbVI = array('Db', 'Gb', 'Cb');
-
-		$chromMedMinornIII = array('Gn', 'Cn', 'Fn', 'Bb', 'Eb', 'Ab');
-		$chromMedMinorsIII = array('Dn', 'An', 'En', 'Bn', 'F#', 'C#', 'G#');
-		$chromMedMinorxIII = array('D#', 'A#');
-		$chromMedMinornVI = array('Dn', 'Gn', 'Cn', 'Fn', 'Bb', 'Eb', 'Ab');
-		$chromMedMinorsVI = array('An', 'En', 'Bn', 'F#', 'C#', 'G#', 'D#');
-		$chromMedMinorxVI = array('A#');
-
-		$romannum = $this->rootPrefix . $this->romanNum;
-		$tonic = $this->key->getTonic()->getLetter() . $this->key->getTonic()->getAccidental();
-
-		if ($this->key->isMajor()) {
-			if ($romannum === 'III' || $romannum === 'VI') {
-				return true;
-			} else if (strtolower($romannum) === 'niii' &&
-					in_array($tonic, $chromMedMajornIII)) {
-				return true;
-			} else if (strtolower($romannum) === 'biii' &&
-					in_array($tonic, $chromMedMajorbIII)) {
-				return true;
-			} else if (strtolower($romannum) === 'bbiii' &&
-					in_array($tonic, $chromMedMajorbbIII)) {
-				return true;
-			} else if (strtolower($romannum) === 'nvi' &&
-					in_array($tonic, $chromMedMajornVI)) {
-				return true;
-			} else if (strtolower($romannum) === 'bvi' &&
-					in_array($tonic, $chromMedMajorbVI)) {
-				return true;
-			} else if (strtolower($romannum) === 'bbvi' &&
-					in_array($tonic, $chromMedMajorbbVI)) {
-				return true;
-			} else {
-				return false;
-			}
-		} else if (!$this->key->isMajor()) {
-			if ($romannum === 'iii' || $romannum === 'vi') {
-				return true;
-			} else if (strtolower($romannum) === 'niii' &&
-					in_array($tonic, $chromMedMinornIII)) {
-				return true;
-			} else if (strtolower($romannum) === '#iii' &&
-					in_array($tonic, $chromMedMinorsIII)) {
-				return true;
-			} else if (strtolower($romannum) === 'xiii' &&
-					in_array($tonic, $chromMedMinorxIII)) {
-				return true;
-			} else if (strtolower($romannum) === 'nvi' &&
-					in_array($tonic, $chromMedMinornVI)) {
-				return true;
-			} else if (strtolower($romannum) === '#vi' &&
-					in_array($tonic, $chromMedMinorsVI)) {
-				return true;
-			} else if (strtolower($romannum) === 'xvi' &&
-					in_array($tonic, $chromMedMinorxVI)) {
-				return true;
-			} else {
-				return false;
-			}
-		} else {
-			return false;
-		}
-	}
-
-	/**
-	 * Returns true if the harmonic function is an extended dominant chord.
-	 *
-	 * @return boolean
-	 */
-	private function isExtendedDominant() {
-		return ($this->rootPrefix === '' && $this->secondaryTonic === '' && $this->isExtended() &&
-				$this->romanNum === 'V');
 	}
 
 	/**

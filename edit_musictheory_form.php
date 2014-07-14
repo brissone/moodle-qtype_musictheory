@@ -1073,9 +1073,7 @@ class qtype_musictheory_edit_form extends question_edit_form {
 			'seclthalfdim'			 => get_string('hftype_seclthalfdim', 'qtype_musictheory'),
 			'secltfullydim'			 => get_string('hftype_secltfullydim', 'qtype_musictheory'),
 			'neapolitan'			 => get_string('hftype_neapolitan', 'qtype_musictheory'),
-			'aug6th'				 => get_string('hftype_aug6th', 'qtype_musictheory'),
-			'chromaticmediant'		 => get_string('hftype_chromaticmediant', 'qtype_musictheory'),
-			'extendeddom'			 => get_string('hftype_extendeddom', 'qtype_musictheory')
+			'aug6th'				 => get_string('hftype_aug6th', 'qtype_musictheory')
 		);
 
 		if ($multiselect) {

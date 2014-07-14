@@ -524,43 +524,6 @@ class qtype_musictheory_harmonicfunction_identify_renderer extends qtype_musicth
                     $hfinvext['10_r'] = get_string('rootposition', 'qtype_musictheory');
                     $hfsecondary['100_none'] = get_string('nosectonic', 'qtype_musictheory');
                     break;
-                case 'chromaticmediant':
-                    $hfprimary['300_III'] = 'III';
-                    $hfprimary['305_nIII'] = '&#9838;III';
-                    $hfprimary['310_bIII'] = '&#9837;III';
-                    $hfprimary['315_bbIII'] = '&#9837;&#9837;III';
-                    $hfprimary['320_#III'] = '&#9839;III';
-                    $hfprimary['325_xIII'] = 'xIII';
-                    $hfprimary['350_iii'] = 'iii';
-                    $hfprimary['355_niii'] = '&#9838;iii';
-                    $hfprimary['355_biii'] = '&#9837;iii';
-                    $hfprimary['360_bbiii'] = '&#9837;&#9837;iii';
-                    $hfprimary['365_#iii'] = '&#9839;iii';
-                    $hfprimary['370_xiii'] = 'xiii';
-                    $hfprimary['600_VI'] = 'VI';
-                    $hfprimary['605_nVI'] = '&#9838;VI';
-                    $hfprimary['610_bVI'] = '&#9837;VI';
-                    $hfprimary['615_bbVI'] = '&#9837;&#9837;VI';
-                    $hfprimary['620_#VI'] = '&#9839;VI';
-                    $hfprimary['625_xVI'] = 'xVI';
-                    $hfprimary['650_vi'] = 'vi';
-                    $hfprimary['655_nvi'] = '&#9838;vi';
-                    $hfprimary['660_bvi'] = '&#9837;vi';
-                    $hfprimary['666_bbvi'] = '&#9837;&#9837;vi';
-                    $hfprimary['670_#vi'] = '&#9839;vi';
-                    $hfprimary['675_xvi'] = 'xvi';
-                    $hfinvext['10_r'] = get_string('rootposition', 'qtype_musictheory');
-                    $hfinvext['20_6'] = '6';
-                    $hfinvext['30_64'] = '64';
-                    $hfsecondary['100_none'] = get_string('nosectonic', 'qtype_musictheory');
-                    break;
-                case 'extendeddom';
-                    $hfprimary['500_V'] = 'V';
-                    $hfinvext['80_9'] = '9';
-                    $hfinvext['85_11'] = '11';
-                    $hfinvext['90_13'] = '13';
-                    $hfsecondary['100_none'] = get_string('nosectonic', 'qtype_musictheory');
-                    break;
             }
         }
 

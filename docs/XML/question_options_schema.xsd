@@ -411,7 +411,7 @@
 
   <xs:simpleType name="harmonicfunctiontype">
     <xs:restriction base="xs:string">
-      <xs:pattern value="diatonictriad|dom7th|nondom7th|leadingtone7thhalfdim|leadingtone7thfullydim|secdomtriad|secdom7th|secnondomtriad|secnondom7th|seclthalfdim|secltfullydim|neapolitan|aug6th|chromaticmediant|extendeddom"/>
+      <xs:pattern value="diatonictriad|dom7th|nondom7th|leadingtone7thhalfdim|leadingtone7thfullydim|secdomtriad|secdom7th|secnondomtriad|secnondom7th|seclthalfdim|secltfullydim|neapolitan|aug6th"/>
     </xs:restriction>
   </xs:simpleType>
 
