@@ -968,34 +968,14 @@ class qtype_musictheory_edit_form extends question_edit_form {
 			'ii-o'	 => 'ii&#248;',
 			'N'		 => 'N',
 			'iii'	 => 'iii',
-			'niii'	 => '&#9838;iii',
-			'biii'	 => '&#9837;iii',
-			'bbiii'	 => '&#9837;&#9837;iii',
-			'#iii'	 => '&#9839;iii',
-			'xiii'	 => '&#9839;iii',
 			'III'	 => 'III',
 			'III+'	 => 'III+',
-			'nIII'	 => '&#9838;III',
-			'bIII'	 => '&#9837;III',
-			'bbIII'	 => '&#9837;&#9837;III',
-			'#III'	 => '&#9839;III',
-			'xIII'	 => 'xIII',
 			'IV'	 => 'IV',
 			'iv'	 => 'iv',
 			'V'		 => 'V',
 			'v'		 => 'v',
 			'vi'	 => 'vi',
-			'nvi'	 => '&#9838;vi',
-			'bvi'	 => '&#9837;vi',
-			'bbvi'	 => '&#9837;&#9837;vi',
-			'#vi'	 => '&#9839;vi',
-			'xvi'	 => 'xvi',
 			'VI'	 => 'VI',
-			'nVI'	 => '&#9838;VI',
-			'bVI'	 => '&#9837;VI',
-			'bbVI'	 => '&#9837;&#9837;VI',
-			'#VI'	 => '&#9839;VI',
-			'xVI'	 => 'xVI',
 			'vio'	 => 'vio',
 			'vi-o'	 => 'vi&#248;',
 			'viio'	 => 'viio',
@@ -1073,12 +1053,13 @@ class qtype_musictheory_edit_form extends question_edit_form {
 			'seclthalfdim'			 => get_string('hftype_seclthalfdim', 'qtype_musictheory'),
 			'secltfullydim'			 => get_string('hftype_secltfullydim', 'qtype_musictheory'),
 			'neapolitan'			 => get_string('hftype_neapolitan', 'qtype_musictheory'),
-			'aug6th'				 => get_string('hftype_aug6th', 'qtype_musictheory')
+			'aug6th'				 => get_string('hftype_aug6th', 'qtype_musictheory'),
+			'extendeddom'			 => get_string('hftype_extendeddom', 'qtype_musictheory')
 		);
 
 		if ($multiselect) {
 			$selectattr = array('multiple'
-				=> 'multiple', 'size'		 => 16);
+				=> 'multiple', 'size'		 => 15);
 		} else {
 			$selectattr = array();
 		}

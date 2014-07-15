@@ -50,8 +50,8 @@ class qtype_musictheory_harmonicfunction_write extends qtype_musictheory_questio
 
 	public function get_correct_response() {
 		$hfprimary = $this->musictheory_hfprimary;
-		$hfinvext = $this->musictheory_hfinvext;
-		$hfsecondary = $this->musictheory_hfsecondary;
+		$hfinvext = ($this->musictheory_hfinvext === 'r') ? '': $this->musictheory_hfinvext;
+		$hfsecondary = ($this->musictheory_hfsecondary === 'none') ? '': $this->musictheory_hfsecondary;
 		$tonicltr = substr($this->musictheory_keymode, 0, 1);
 		$tonicacc = substr($this->musictheory_keymode, 1, 1);
 		$tonic = new Note($tonicltr, $tonicacc, 4);
@@ -117,7 +117,12 @@ class qtype_musictheory_harmonicfunction_write extends qtype_musictheory_questio
 	public function get_question_text() {
 		$qtext = get_string('questiontext_harmonicfunction_write', 'qtype_musictheory');
 		$key = get_string(str_replace('#', 'sharp', $this->musictheory_keymode), 'qtype_musictheory');
-		$harmonicfunction = $this->musictheory_hfprimary . $this->musictheory_hfinvext . $this->musictheory_hfsecondary;
+		$invext = ($this->musictheory_hfinvext === 'r') ? '': $this->musictheory_hfinvext;
+		$hfsec = ($this->musictheory_hfsecondary === 'none') ? '': $this->musictheory_hfsecondary;
+		$harmonicfunction = $this->musictheory_hfprimary . $invext . $hfsec;
+		if ($harmonicfunction === 'Gr' || $harmonicfunction === 'It' || $harmonicfunction === 'Fr') {
+			$harmonicfunction = get_string('aug6th' . strtolower($harmonicfunction), 'qtype_musictheory');
+		}
 		return $qtext . ': <b>' . $key . ', ' . $harmonicfunction . '</b>';
 	}
 

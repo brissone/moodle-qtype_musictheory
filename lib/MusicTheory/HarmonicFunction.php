@@ -107,6 +107,8 @@ class HarmonicFunction extends Chord {
 			return true;
 		} else if ($this->isA6()) {
 			return true;
+		} else if ($this->isExtendedDominant()) {
+			return true;
 		} else {
 			return false;
 		}
@@ -146,6 +148,8 @@ class HarmonicFunction extends Chord {
 			return 'neapolitan';
 		} else if ($this->isA6()) {
 			return 'aug6th';
+		} else if ($this->isExtendedDominant()) {
+			return 'extendeddom';
 		}
 	}
 
@@ -404,6 +408,16 @@ class HarmonicFunction extends Chord {
 				($this->invExt === '') && $this->secondaryTonic === '') {
 			return true;
 		}
+	}
+
+	/**
+	 * Returns true if the harmonic function is an extended dominant chord.
+	 *
+	 * @return boolean
+	 */
+	private function isExtendedDominant() {
+		return ($this->rootPrefix === '' && $this->secondaryTonic === '' && $this->isExtended() &&
+				$this->romanNum === 'V');
 	}
 
 	/**

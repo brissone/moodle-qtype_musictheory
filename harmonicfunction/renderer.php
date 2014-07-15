@@ -524,6 +524,13 @@ class qtype_musictheory_harmonicfunction_identify_renderer extends qtype_musicth
                     $hfinvext['10_r'] = get_string('rootposition', 'qtype_musictheory');
                     $hfsecondary['100_none'] = get_string('nosectonic', 'qtype_musictheory');
                     break;
+                case 'extendeddom';
+                    $hfprimary['500_V'] = 'V';
+                    $hfinvext['80_9'] = '9';
+                    $hfinvext['85_11'] = '11';
+                    $hfinvext['90_13'] = '13';
+                    $hfsecondary['100_none'] = get_string('nosectonic', 'qtype_musictheory');
+                    break;
             }
         }
 

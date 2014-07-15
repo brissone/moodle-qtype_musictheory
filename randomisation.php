@@ -388,6 +388,11 @@ class qtype_musictheory_randomiser {
                 $hf['invext'] = '';
                 $hf['secondary'] = '';
                 break;
+            case 'extendeddom':
+                $hf['primary'] = 'V';
+                $hf['invext'] = self::get_random_field(array('9', '11', '13'));
+                $hf['secondary'] = '';
+                break;
             default:
                 $hf['primary'] = 'I';
                 $hf['invext'] = '';

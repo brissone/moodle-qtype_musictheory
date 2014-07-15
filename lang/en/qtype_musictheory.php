@@ -278,6 +278,7 @@ $string['hftype_seclthalfdim'] = 'Secondary leading tone 7th (half diminished)';
 $string['hftype_secltfullydim'] = 'Secondary leading tone 7th (fully diminished)';
 $string['hftype_neapolitan'] = 'Neapolitan';
 $string['hftype_aug6th'] = 'Augmented 6th';
+$string['hftype_extendeddom'] = 'Extended dominant (9, 11 or 13)';
 
 // Edit form validation.
 $string['validation_noteoutsidestaff'] = "This note's register doesn't fit within the staff

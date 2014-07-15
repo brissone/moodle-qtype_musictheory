@@ -277,6 +277,7 @@ $string['hftype_seclthalfdim'] = 'Septième de sensible secondaire)';
 $string['hftype_secltfullydim'] = 'Septième diminuée secondaire';
 $string['hftype_neapolitan'] = 'Accord napolitain';
 $string['hftype_aug6th'] = 'Sixte augmentée';
+$string['hftype_extendeddom'] = 'Neuvième, onzième ou treizième de dominante';
 
 // Edit form validation.
 $string['validation_noteoutsidestaff'] = "Le registre de cette note se situe en
