@@ -43,7 +43,8 @@ question is created or edited. For example, it is possible to configure an
 interval writing question so that it asks for a perfect fifth above a randomly
 chosen given note. This randomization process, configured during question
 creation, alleviates the need to create very large question banks, and can be
-particularly useful for interval and chord/harmonic function questions, given that the number of possible questions for these exercises is very large.
+particularly useful for interval and chord/harmonic function questions, given
+that the number of possible questions for these exercises is very large.
 
 I made a choice to create a framework where the correctness of a given question
 is automatically computed, without having to enter individual answers during
@@ -81,15 +82,15 @@ Requirements:
 earlier versions of PHP.
 
 3)	Javascript is used for the graphical user interface, but the question type
-is fully functional without it, with the exception of the note writing and note
-identification exercises.
+is fully functional without it, with the exception of the note writing, note
+identification and keyboard input exercises.
 
 How to install:
 
-1) Copy the contents of this folder into the following folder:
-moodle/question/type/musictheory
+1) Copy the 'musictheory' folder into the following folder:
+moodle/question/type
 2) Load the "Notifications" page on the Moodle home page - this will create
-database tables used by the question type.
+the database tables used by the question type.
 
 ================================================================================
 
@@ -113,3 +114,4 @@ created by Eric Brisson and its source code is available under the MIT License.
 may be useful for any application dealing with music theoretical concepts. It
 was created by Eric Brisson and its source code is available under the MIT
 License.
+
