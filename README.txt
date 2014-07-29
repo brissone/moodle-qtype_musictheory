@@ -64,6 +64,8 @@ Many thanks to Ken Graetz, Scott Schradle and colleagues in Winona State
 University's TLT and IT departments for their support of my Moodle development
 efforts through the maintenance of our institution's Moodle server.
 
+Maintainer: Eric Brisson
+
 ===========================================================================
 
 INSTALLATION
