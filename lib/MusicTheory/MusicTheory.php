@@ -28,7 +28,7 @@
 require_once 'Chord.php';
 require_once 'HarmonicFunction.php';
 require_once 'Interval.php';
-require_once 'Keysignature.php';
+require_once 'KeySignature.php';
 require_once 'Note.php';
 require_once 'Scale.php';
 require_once 'Staff.php';
