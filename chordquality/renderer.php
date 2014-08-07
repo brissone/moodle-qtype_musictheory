@@ -60,7 +60,7 @@ class qtype_musictheory_chordquality_write_renderer extends qtype_musictheory_re
                 'readonly'         => $options->readonly,
                 'initialinput'     => $initialinput,
                 'correctresponse'  => $correctresponse,
-                'correctrespstr'   => get_string('correctansweris_morethanone', 'qtype_musictheory'),
+                'correctrespstr'   => get_string('correctansweris', 'qtype_musictheory'),
                 'additionalparams' => array(
                     'maxnotes' => $maxnotes
                 )
@@ -121,7 +121,7 @@ class qtype_musictheory_chordquality_write_renderer extends qtype_musictheory_re
     public function correct_response(question_attempt $qa) {
         $question = $qa->get_question();
         $correctresponsearray = $question->get_correct_response();
-        return get_string('correctansweris_morethanone', 'qtype_musictheory') . ' ' .
+        return get_string('correctansweris', 'qtype_musictheory') . ' ' .
                 $correctresponsearray['answer'];
     }
 
@@ -246,6 +246,7 @@ class qtype_musictheory_chordquality_identify_renderer extends qtype_musictheory
         if ($options->readonly) {
             $chordqualityselectattributes['disabled'] = 'true';
             $rootletterselectattributes['disabled'] = 'true';
+			$rootaccselectattributes['disabled'] = 'true';
         }
 
         $questiontext = $question->format_questiontext($qa);
@@ -301,8 +302,11 @@ class qtype_musictheory_chordquality_identify_renderer extends qtype_musictheory
     public function correct_response(question_attempt $qa) {
         $question = $qa->get_question();
         $correctresponsearray = $question->get_correct_response();
-        $quality = get_string($correctresponsearray['musictheory_answer_chordquality']);
-        return get_string('correctansweris', 'qtype_musictheory') . ' <b>' . $quality . '</b>';
+		$ltr = get_string('note' . $correctresponsearray['musictheory_answer_rootletter'], 'qtype_musictheory');
+		$acckey = str_replace('#', 'sharp', $correctresponsearray['musictheory_answer_rootacc']);
+		$acc = get_string('acc_' . $acckey, 'qtype_musictheory');
+        $quality = get_string($correctresponsearray['musictheory_answer_chordquality'], 'qtype_musictheory');
+        return get_string('correctansweris', 'qtype_musictheory') . ' <b>' . $ltr . $acc . ' ' . $quality . '</b>';
     }
 
 }

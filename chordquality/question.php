@@ -65,7 +65,13 @@ class qtype_musictheory_chordquality_write extends qtype_musictheory_question im
             default:
                 $quality = 'M';
         }
-        $root = new Note($this->musictheory_givennoteletter, $this->musictheory_givennoteaccidental);
+		if ($this->musictheory_clef === 'treble') {
+			$reg = 4;
+		}
+		else {
+			$reg = 3;
+		}
+        $root = new Note($this->musictheory_givennoteletter, $this->musictheory_givennoteaccidental, $reg);
         $chord = new Chord($root, $quality, 0);
         return array('answer' => (string) $chord);
     }
