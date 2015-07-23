@@ -73,9 +73,10 @@ INSTALLATION
 
 Requirements:
 
-1) 	Moodle 2.7.x
+1) 	Moodle 2.7, 2.8 or 2.9 (it may work with later versions but has only been
+with tested with these versions)
 
-2) 	PHP 5: the plug-in was coded with version 5.5.3. It hasn't been tested with
+2) 	PHP 5: the plugin was coded with version 5.5.3. It hasn't been tested with
 earlier versions of PHP.
 
 3)	Javascript is used for the graphical user interface, but the question type
@@ -85,7 +86,7 @@ identification and keyboard input exercises.
 How to install:
 
 1) Copy the 'musictheory' folder into the following folder:
-moodle/question/type
+[moodle]/question/type
 2) Load the "Notifications" page on the Moodle home page - this will create
 the database tables used by the question type.
 
@@ -103,8 +104,8 @@ component for displaying or interacting with music theory examples and exercises
 It was created by Eric Brisson and its source code is available under the MIT
 License.
 
-1) Keyboard Input (musictheory/yui/src/musictheorykeyboardui/js/KeyboardInput): An
-HTML5 component for displaying or interacting with a piano keyboard. It was
+1) Keyboard Input (musictheory/yui/src/musictheorykeyboardui/js/KeyboardInput):
+An HTML5 component for displaying or interacting with a piano keyboard. It was
 created by Eric Brisson and its source code is available under the MIT License.
 
 3) Music Theory PHP Library (musictheory/lib/MusicTheory): A PHP library which

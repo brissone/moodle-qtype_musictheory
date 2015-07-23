@@ -122,13 +122,13 @@ $string['qtype_musictheory_strategy_note_allornothing'] = "Tout ou rien";
 $string['qtype_musictheory_strategy_scale_creditbynote'] = "Crédit partiel pour chaque note de gamme correcte";
 
 // Note names.
-$string['noteC'] = 'Do';
-$string['noteD'] = 'Ré';
-$string['noteE'] = 'Mi';
-$string['noteF'] = 'Fa';
-$string['noteG'] = 'Sol';
-$string['noteA'] = 'La';
-$string['noteB'] = 'Si';
+$string['notec'] = 'Do';
+$string['noted'] = 'Ré';
+$string['notee'] = 'Mi';
+$string['notef'] = 'Fa';
+$string['noteg'] = 'Sol';
+$string['notea'] = 'La';
+$string['noteb'] = 'Si';
 
 // Clef options.
 $string['treble'] = 'Clef de sol';
@@ -138,47 +138,47 @@ $string['tenor'] = "Clef d'ut (ténor)";
 $string['grandstaff'] = 'Système de portée (Clefs de sol et fa)';
 
 // Key options.
-$string['CnM'] = 'Do majeur';
-$string['GnM'] = 'Sol majeur';
-$string['DnM'] = 'Ré majeur';
-$string['AnM'] = 'La majeur';
-$string['EnM'] = 'Mi majeur';
-$string['BnM'] = 'Si majeur';
-$string['FsharpM'] = 'Fa&#9839; majeur';
-$string['CsharpM'] = 'Do&#9839; majeur';
-$string['FnM'] = 'Fa majeur';
-$string['BbM'] = 'Si&#9837; majeur';
-$string['EbM'] = 'Mi&#9837; majeur';
-$string['AbM'] = 'La&#9837; majeur';
-$string['DbM'] = 'Ré&#9837; majeur';
-$string['GbM'] = 'Sol&#9837; majeur';
-$string['CbM'] = 'Do&#9837; majeur';
-$string['Anm'] = 'La mineur';
-$string['Enm'] = 'Mi mineur';
-$string['Bnm'] = 'Si mineur';
-$string['Fsharpm'] = 'Fa&#9839; mineur';
-$string['Csharpm'] = 'Do&#9839; mineur';
-$string['Gsharpm'] = 'Sol&#9839; mineur';
-$string['Dsharpm'] = 'Ré&#9839; mineur';
-$string['Asharpm'] = 'La&#9839; mineur';
-$string['Dnm'] = 'Ré mineur';
-$string['Gnm'] = 'Sol mineur';
-$string['Cnm'] = 'Do mineur';
-$string['Fnm'] = 'Fa mineur';
-$string['Bbm'] = 'Si&#9837; mineur';
-$string['Ebm'] = 'Mi&#9837; mineur';
-$string['Abm'] = 'La&#9837; mineur';
+$string['cnmajor'] = 'Do majeur';
+$string['gnmajor'] = 'Sol majeur';
+$string['dnmajor'] = 'Ré majeur';
+$string['anmajor'] = 'La majeur';
+$string['enmajor'] = 'Mi majeur';
+$string['bnmajor'] = 'Si majeur';
+$string['fsharpmajor'] = 'Fa&#9839; majeur';
+$string['csharpmajor'] = 'Do&#9839; majeur';
+$string['fnmajor'] = 'Fa majeur';
+$string['bbmajor'] = 'Si&#9837; majeur';
+$string['ebmajor'] = 'Mi&#9837; majeur';
+$string['abmajor'] = 'La&#9837; majeur';
+$string['dbmajor'] = 'Ré&#9837; majeur';
+$string['gbmajor'] = 'Sol&#9837; majeur';
+$string['cbmajor'] = 'Do&#9837; majeur';
+$string['anminor'] = 'La mineur';
+$string['enminor'] = 'Mi mineur';
+$string['bnminor'] = 'Si mineur';
+$string['fsharpminor'] = 'Fa&#9839; mineur';
+$string['csharpminor'] = 'Do&#9839; mineur';
+$string['gsharpminor'] = 'Sol&#9839; mineur';
+$string['dsharpminor'] = 'Ré&#9839; mineur';
+$string['asharpminor'] = 'La&#9839; mineur';
+$string['dnminor'] = 'Ré mineur';
+$string['gnminor'] = 'Sol mineur';
+$string['cnminor'] = 'Do mineur';
+$string['fnminor'] = 'Fa mineur';
+$string['bbminor'] = 'Si&#9837; mineur';
+$string['ebminor'] = 'Mi&#9837; mineur';
+$string['abminor'] = 'La&#9837; mineur';
 
 // Interval direction options.
 $string['dirasc'] = 'Au-dessus de la note de départ';
 $string['dirdesc'] = 'Au-dessous de la note de départ';
 
 // Interval qualities.
-$string['qualityM'] = 'Majeur';
-$string['qualitym'] = 'Mineur';
-$string['qualityP'] = 'Parfait';
-$string['qualityA'] = 'Augmenté(e)';
-$string['qualityD'] = 'Diminué(e)';
+$string['qualitymaj'] = 'Majeur';
+$string['qualitymin'] = 'Mineur';
+$string['qualityper'] = 'Parfait';
+$string['qualityaug'] = 'Augmenté(e)';
+$string['qualitydim'] = 'Diminué(e)';
 $string['major'] = 'Majeur';
 $string['minor'] = 'Mineur';
 $string['perfect'] = 'Parfait';
@@ -200,60 +200,60 @@ $string['size12'] = 'Douzième';
 $string['size13'] = 'Treizième';
 
 // Intervals
-$string['D2'] = 'Seconde diminuée';
-$string['m2'] = 'Seconde mineure';
-$string['M2'] = 'Seconde majeure';
-$string['A2'] = 'Seconde augmentée';
+$string['dim2'] = 'Seconde diminuée';
+$string['min2'] = 'Seconde mineure';
+$string['maj2'] = 'Seconde majeure';
+$string['aug2'] = 'Seconde augmentée';
 
-$string['D3'] = 'Tierce diminuée';
-$string['m3'] = 'Tierce mineure';
-$string['M3'] = 'Tierce majeure';
-$string['A3'] = 'Tierce augmentée';
+$string['dim3'] = 'Tierce diminuée';
+$string['min3'] = 'Tierce mineure';
+$string['maj3'] = 'Tierce majeure';
+$string['aug3'] = 'Tierce augmentée';
 
-$string['D4'] = 'Quarte diminuée';
-$string['P4'] = 'Quarte parfaite';
-$string['A4'] = 'Quarte augmentée';
+$string['dim4'] = 'Quarte diminuée';
+$string['per4'] = 'Quarte parfaite';
+$string['aug4'] = 'Quarte augmentée';
 
-$string['D5'] = 'Quinte diminuée';
-$string['P5'] = 'Quinte parfaite';
-$string['A5'] = 'Quinte augmentée';
+$string['dim5'] = 'Quinte diminuée';
+$string['per5'] = 'Quinte parfaite';
+$string['aug5'] = 'Quinte augmentée';
 
-$string['D6'] = 'Sixte diminuée';
-$string['m6'] = 'Sixte mineure';
-$string['M6'] = 'Sixte majeure';
-$string['A6'] = 'Sixte augmentée';
+$string['dim6'] = 'Sixte diminuée';
+$string['min6'] = 'Sixte mineure';
+$string['maj6'] = 'Sixte majeure';
+$string['aug6'] = 'Sixte augmentée';
 
-$string['D7'] = 'Septième diminuée';
-$string['m7'] = 'Septième mineure';
-$string['M7'] = 'Septième majeure';
-$string['A7'] = 'Septième augmentée';
+$string['dim7'] = 'Septième diminuée';
+$string['min7'] = 'Septième mineure';
+$string['maj7'] = 'Septième majeure';
+$string['aug7'] = 'Septième augmentée';
 
-$string['D8'] = 'Octave diminuée';
-$string['P8'] = 'Octave parfaite';
-$string['A8'] = 'Octave augmentée';
+$string['dim8'] = 'Octave diminuée';
+$string['per8'] = 'Octave parfaite';
+$string['aug8'] = 'Octave augmentée';
 
-$string['D9'] = 'Neuvième diminuée';
-$string['m9'] = 'Neuvième mineure';
-$string['M9'] = 'Neuvième majeure';
-$string['A9'] = 'Neuvième augmentée';
+$string['dim9'] = 'Neuvième diminuée';
+$string['min9'] = 'Neuvième mineure';
+$string['maj9'] = 'Neuvième majeure';
+$string['aug9'] = 'Neuvième augmentée';
 
-$string['D10'] = 'Dixième diminuée';
-$string['m10'] = 'Dixième mineure';
-$string['M10'] = 'Dixième majeure';
-$string['A10'] = 'Dixième augmentée';
+$string['dim10'] = 'Dixième diminuée';
+$string['min10'] = 'Dixième mineure';
+$string['maj10'] = 'Dixième majeure';
+$string['aug10'] = 'Dixième augmentée';
 
-$string['D11'] = 'Onzième diminuée';
-$string['P11'] = 'Onzième parfaite';
-$string['A11'] = 'Onzième augmentée';
+$string['dim11'] = 'Onzième diminuée';
+$string['per11'] = 'Onzième parfaite';
+$string['aug11'] = 'Onzième augmentée';
 
-$string['D12'] = 'Douzième diminuée';
-$string['P12'] = 'Douzième parfaite';
-$string['A12'] = 'Douzième augmentée';
+$string['dim12'] = 'Douzième diminuée';
+$string['per12'] = 'Douzième parfaite';
+$string['aug12'] = 'Douzième augmentée';
 
-$string['D13'] = 'Treizième diminuée';
-$string['m13'] = 'Treizième mineure';
-$string['M13'] = 'Treizième majeure';
-$string['A13'] = 'Treizième augmentée';
+$string['dim13'] = 'Treizième diminuée';
+$string['min13'] = 'Treizième mineure';
+$string['maj13'] = 'Treizième majeure';
+$string['aug13'] = 'Treizième augmentée';
 
 // Scale types.
 $string['scaletype'] = 'Type de gamme';

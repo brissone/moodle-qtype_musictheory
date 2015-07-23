@@ -33,110 +33,117 @@ defined('MOODLE_INTERNAL') || die();
  */
 class qtype_musictheory_harmonicfunction_write extends qtype_musictheory_question implements qtype_musictheory_subtype {
 
-	public function get_supported_grading_strategies() {
-		return array(
-			'qtype_musictheory_strategy_harmonicfunctionwrite_allornothing'
-		);
-	}
+    public function get_supported_grading_strategies() {
+        return array(
+            'qtype_musictheory_strategy_harmonicfunctionwrite_allornothing'
+        );
+    }
 
-	public function get_expected_data() {
-		return array('answer' => PARAM_CLEANHTML);
-	}
+    public function get_expected_data() {
+        return array('answer' => PARAM_CLEANHTML);
+    }
 
-	public function grade_response(array $response) {
-		$correctresponse = $this->get_correct_response();
-		return $this->gradingstrategy->grade($response, $correctresponse);
-	}
+    public function grade_response(array $response) {
+        $correctresponse = $this->get_correct_response();
+        return $this->gradingstrategy->grade($response, $correctresponse);
+    }
 
-	public function get_correct_response() {
-		$hfprimary = $this->musictheory_hfprimary;
-		$hfinvext = ($this->musictheory_hfinvext === 'r') ? '': $this->musictheory_hfinvext;
-		$hfsecondary = ($this->musictheory_hfsecondary === 'none') ? '': $this->musictheory_hfsecondary;
-		$tonicltr = substr($this->musictheory_keymode, 0, 1);
-		$tonicacc = substr($this->musictheory_keymode, 1, 1);
-		$tonic = new Note($tonicltr, $tonicacc, 4);
-		$ismajor = (substr($this->musictheory_keymode, 2, 1) === 'M');
-		$tonality = new Tonality($tonic, $ismajor);
-		switch ($this->musictheory_clef) {
-			case 'treble':
-				$reg = 4;
-				break;
-			case 'alto':
-			case 'tenor':
-				$reg = 3;
-				break;
-			case 'bass':
-				$reg = 2;
-				break;
-		}
-		$hf = new HarmonicFunction($tonality, $hfprimary . $hfinvext . $hfsecondary, $reg);
-		return array('answer' => (string) $hf);
-	}
+    public function get_correct_response() {
+        $hfprimary = $this->musictheory_hfprimary;
+        $hfinvext = ($this->musictheory_hfinvext === 'r') ? '' : $this->musictheory_hfinvext;
+        $hfsecondary = ($this->musictheory_hfsecondary === 'none') ? '' : $this->musictheory_hfsecondary;
+        $tonicltr = substr($this->musictheory_keymode, 0, 1);
+        $tonicacc = substr($this->musictheory_keymode, 1, 1);
+        $tonic = new Note($tonicltr, $tonicacc, 4);
+        $ismajor = (substr($this->musictheory_keymode, 2, 1) === 'M');
+        $tonality = new Tonality($tonic, $ismajor);
+        switch ($this->musictheory_clef) {
+            case 'treble':
+                $reg = 4;
+                break;
+            case 'alto':
+            case 'tenor':
+                $reg = 3;
+                break;
+            case 'bass':
+                $reg = 2;
+                break;
+        }
+        $hf = new HarmonicFunction($tonality, $hfprimary . $hfinvext . $hfsecondary, $reg);
+        return array('answer' => (string) $hf);
+    }
 
-	public function is_complete_response(array $response) {
-		if (!isset($response['answer'])) {
-			return false;
-		}
+    public function is_complete_response(array $response) {
+        if (!isset($response['answer'])) {
+            return false;
+        }
 
-		$numnotes = $this->get_answer_num_notes();
-		$regex = '/^([A-G](n|\#|b|x|bb)[1-6],){' . ($numnotes - 1) . '}([A-G](n|\#|b|x|bb)[1-6]){1}$/';
-		return preg_match($regex, $response['answer']);
-	}
+        $numnotes = $this->get_answer_num_notes();
+        $regex = '/^([A-G](n|\#|b|x|bb)[1-6],){' . ($numnotes - 1) . '}([A-G](n|\#|b|x|bb)[1-6]){1}$/';
+        return preg_match($regex, $response['answer']);
+    }
 
-	public function is_same_response(array $prevresponse, array $newresponse) {
-		return question_utils::arrays_same_at_key_missing_is_blank(
-						$prevresponse, $newresponse, 'answer');
-	}
+    public function is_same_response(array $prevresponse, array $newresponse) {
+        return question_utils::arrays_same_at_key_missing_is_blank(
+                        $prevresponse, $newresponse, 'answer');
+    }
 
-	public function summarise_response(array $response) {
-		if (!array_key_exists('answer', $response)) {
-			return null;
-		} else {
-			return str_replace(' ', '', $response['answer']);
-		}
-	}
+    public function summarise_response(array $response) {
+        if (!array_key_exists('answer', $response)) {
+            return null;
+        } else {
+            return str_replace(' ', '', $response['answer']);
+        }
+    }
 
-	public function get_validation_error(array $response) {
-		if (empty($response['answer'])) {
-			return get_string('validationerror_empty', 'qtype_musictheory');
-		} else if (preg_match('/\s/', $response['answer'])) {
-			return get_string('validationerror_whitespace', 'qtype_musictheory');
-		}
+    public function get_validation_error(array $response) {
+        if (empty($response['answer'])) {
+            return get_string('validationerror_empty', 'qtype_musictheory');
+        } else if (preg_match('/\s/', $response['answer'])) {
+            return get_string('validationerror_whitespace', 'qtype_musictheory');
+        }
 
-		$numnotes = $this->get_answer_num_notes();
-		$regex = '/^([A-G](n|\#|b|x|bb)[1-6],){0,' . ($numnotes - 2) . '}?([A-G](n|\#|b|x|bb)[1-6]){1}$/';
-		if (preg_match($regex, $response['answer'])) {
-			return get_string('validationerror_incompleteharmonicfunction', 'qtype_musictheory') . ': ' . $numnotes;
-		}
+        $numnotes = $this->get_answer_num_notes();
+        $regex = '/^([A-G](n|\#|b|x|bb)[1-6],){0,' . ($numnotes - 2) . '}?([A-G](n|\#|b|x|bb)[1-6]){1}$/';
+        if (preg_match($regex, $response['answer'])) {
+            return get_string('validationerror_incompleteharmonicfunction', 'qtype_musictheory') . ': ' . $numnotes;
+        }
 
-		global $OUTPUT;
-		$help = $OUTPUT->help_icon('harmonicfunction_write_questionastext', 'qtype_musictheory', true);
-		return get_string('validationerror_invalidsyntax', 'qtype_musictheory') . $help;
-	}
+        global $OUTPUT;
+        $help = $OUTPUT->help_icon('harmonicfunction_write_questionastext', 'qtype_musictheory', true);
+        return get_string('validationerror_invalidsyntax', 'qtype_musictheory') . $help;
+    }
 
-	public function get_question_text() {
-		$qtext = get_string('questiontext_harmonicfunction_write', 'qtype_musictheory');
-		$key = get_string(str_replace('#', 'sharp', $this->musictheory_keymode), 'qtype_musictheory');
-		$invext = ($this->musictheory_hfinvext === 'r') ? '': $this->musictheory_hfinvext;
-		$hfsec = ($this->musictheory_hfsecondary === 'none') ? '': $this->musictheory_hfsecondary;
-		$harmonicfunction = $this->musictheory_hfprimary . $invext . $hfsec;
-		if ($harmonicfunction === 'Gr' || $harmonicfunction === 'It' || $harmonicfunction === 'Fr') {
-			$harmonicfunction = get_string('aug6th' . strtolower($harmonicfunction), 'qtype_musictheory');
-		}
-		return $qtext . ': <b>' . $key . ', ' . $harmonicfunction . '</b>';
-	}
+    public function get_question_text() {
+        $qtext = get_string('questiontext_harmonicfunction_write', 'qtype_musictheory');
+        $keyindex = str_replace('#', 'sharp', $this->musictheory_keymode);
+        if (strpos($keyindex, 'M') !== false) {
+            $keyindex = str_replace('M', 'major', $keyindex);
+        } else {
+            $keyindex = str_replace('m', 'minor', $keyindex);
+        }
+        $key = get_string(strtolower($keyindex), 'qtype_musictheory');
+        $invext = ($this->musictheory_hfinvext === 'r') ? '' : $this->musictheory_hfinvext;
+        $hfsec = ($this->musictheory_hfsecondary === 'none') ? '' : $this->musictheory_hfsecondary;
+        $harmonicfunction = $this->musictheory_hfprimary . $invext . $hfsec;
+        if ($harmonicfunction === 'Gr' || $harmonicfunction === 'It' || $harmonicfunction === 'Fr') {
+            $harmonicfunction = get_string('aug6th' . strtolower($harmonicfunction), 'qtype_musictheory');
+        }
+        $harmonicfunction = str_replace('-o', '&#248;', $harmonicfunction);
+        return $qtext . ': <b>' . $key . ', ' . $harmonicfunction . '</b>';
+    }
 
-	/**
-	 * Returns the number of notes in the correct answer for this question.
-	 *
-	 * @return integer The number of notes in the correct answer.
-	 */
-	public function get_answer_num_notes() {
-		$correctresponsearray = $this->get_correct_response();
-		$correctresponse = $correctresponsearray['answer'];
-		$maxnotes = count(explode(',', $correctresponse));
-		return $maxnotes;
-	}
+    /**
+     * Returns the number of notes in the correct answer for this question.
+     *
+     * @return integer The number of notes in the correct answer.
+     */
+    public function get_answer_num_notes() {
+        $correctresponsearray = $this->get_correct_response();
+        $correctresponse = $correctresponsearray['answer'];
+        $maxnotes = count(explode(',', $correctresponse));
+        return $maxnotes;
+    }
 
 }
 
@@ -148,36 +155,36 @@ class qtype_musictheory_harmonicfunction_write extends qtype_musictheory_questio
  */
 class qtype_musictheory_harmonicfunction_write_random extends qtype_musictheory_harmonicfunction_write {
 
-	public function start_attempt(question_attempt_step $step, $variant) {
-		$this->musictheory_clef = qtype_musictheory_randomiser::get_random_field($this->musictheory_clef_random);
-		$this->musictheory_keymode = qtype_musictheory_randomiser::get_random_key($this->musictheory_mode_random, false);
-		$hftype = qtype_musictheory_randomiser::get_random_field($this->musictheory_harmonicfunctiontype_random);
-		$harmonicfunction = qtype_musictheory_randomiser::get_random_harmonicfunction($hftype, $this->musictheory_keymode);
-		$this->musictheory_hfprimary = $harmonicfunction['primary'];
-		$this->musictheory_hfinvext = $harmonicfunction['invext'];
-		$this->musictheory_hfsecondary = $harmonicfunction['secondary'];
-		$this->musictheory_optionsxml = $this->qtype->get_options_xml($this, 'harmonicfunction-write');
-		$this->questiontext = $this->get_question_text();
-		$step->set_qt_var('_var_clef', $this->musictheory_clef);
-		$step->set_qt_var('_var_keymode', $this->musictheory_keymode);
-		$step->set_qt_var('_var_hfprimary', $this->musictheory_hfprimary);
-		$step->set_qt_var('_var_hfsecondary', $this->musictheory_hfsecondary);
-		$step->set_qt_var('_var_hfinvext', $this->musictheory_hfinvext);
-		$step->set_qt_var('_var_optionsxml', $this->musictheory_optionsxml);
-		$step->set_qt_var('_var_questiontext', $this->questiontext);
-		parent::start_attempt($step, $variant);
-	}
+    public function start_attempt(question_attempt_step $step, $variant) {
+        $this->musictheory_clef = qtype_musictheory_randomiser::get_random_field($this->musictheory_clef_random);
+        $this->musictheory_keymode = qtype_musictheory_randomiser::get_random_key($this->musictheory_mode_random, false);
+        $hftype = qtype_musictheory_randomiser::get_random_field($this->musictheory_harmonicfunctiontype_random);
+        $harmonicfunction = qtype_musictheory_randomiser::get_random_harmonicfunction($hftype, $this->musictheory_keymode);
+        $this->musictheory_hfprimary = $harmonicfunction['primary'];
+        $this->musictheory_hfinvext = $harmonicfunction['invext'];
+        $this->musictheory_hfsecondary = $harmonicfunction['secondary'];
+        $this->musictheory_optionsxml = $this->qtype->get_options_xml($this, 'harmonicfunction-write');
+        $this->questiontext = $this->get_question_text();
+        $step->set_qt_var('_var_clef', $this->musictheory_clef);
+        $step->set_qt_var('_var_keymode', $this->musictheory_keymode);
+        $step->set_qt_var('_var_hfprimary', $this->musictheory_hfprimary);
+        $step->set_qt_var('_var_hfsecondary', $this->musictheory_hfsecondary);
+        $step->set_qt_var('_var_hfinvext', $this->musictheory_hfinvext);
+        $step->set_qt_var('_var_optionsxml', $this->musictheory_optionsxml);
+        $step->set_qt_var('_var_questiontext', $this->questiontext);
+        parent::start_attempt($step, $variant);
+    }
 
-	public function apply_attempt_state(question_attempt_step $step) {
-		$this->musictheory_clef = $step->get_qt_var('_var_clef');
-		$this->musictheory_keymode = $step->get_qt_var('_var_keymode');
-		$this->musictheory_hfprimary = $step->get_qt_var('_var_hfprimary');
-		$this->musictheory_hfsecondary = $step->get_qt_var('_var_hfsecondary');
-		$this->musictheory_hfinvext = $step->get_qt_var('_var_hfinvext');
-		$this->musictheory_optionsxml = $step->get_qt_var('_var_optionsxml');
-		$this->questiontext = $step->get_qt_var('_var_questiontext');
-		parent::apply_attempt_state($step);
-	}
+    public function apply_attempt_state(question_attempt_step $step) {
+        $this->musictheory_clef = $step->get_qt_var('_var_clef');
+        $this->musictheory_keymode = $step->get_qt_var('_var_keymode');
+        $this->musictheory_hfprimary = $step->get_qt_var('_var_hfprimary');
+        $this->musictheory_hfsecondary = $step->get_qt_var('_var_hfsecondary');
+        $this->musictheory_hfinvext = $step->get_qt_var('_var_hfinvext');
+        $this->musictheory_optionsxml = $step->get_qt_var('_var_optionsxml');
+        $this->questiontext = $step->get_qt_var('_var_questiontext');
+        parent::apply_attempt_state($step);
+    }
 
 }
 
@@ -189,141 +196,142 @@ class qtype_musictheory_harmonicfunction_write_random extends qtype_musictheory_
  */
 class qtype_musictheory_harmonicfunction_identify extends qtype_musictheory_question implements qtype_musictheory_subtype {
 
-	public function get_supported_grading_strategies() {
-		return array(
-			'qtype_musictheory_strategy_harmonicfunctionid_allornothing'
-		);
-	}
+    public function get_supported_grading_strategies() {
+        return array(
+            'qtype_musictheory_strategy_harmonicfunctionid_allornothing'
+        );
+    }
 
-	public function grade_response(array $response) {
+    public function grade_response(array $response) {
 
-		$correctresponse = $this->get_correct_response();
-		return $this->gradingstrategy->grade($response, $correctresponse, $this->musictheory_keymode);
-	}
+        $correctresponse = $this->get_correct_response();
+        return $this->gradingstrategy->grade($response, $correctresponse, $this->musictheory_keymode);
+    }
 
-	public function get_correct_response() {
-		$corrresp = array(
-			'musictheory_answer_hfprimary'	 => $this->musictheory_hfprimary,
-			'musictheory_answer_hfinvext'	 => $this->musictheory_hfinvext
-		);
-		if ($this->hftypesinresponsehavesectonic()) {
-			$corrresp['musictheory_answer_hfsecondary'] = $this->musictheory_hfsecondary;
-		}
-		return $corrresp;
-	}
+    public function get_correct_response() {
+        $corrresp = array(
+            'musictheory_answer_hfprimary' => $this->musictheory_hfprimary,
+            'musictheory_answer_hfinvext'  => $this->musictheory_hfinvext
+        );
+        if ($this->hftypesinresponsehavesectonic()) {
+            $corrresp['musictheory_answer_hfsecondary'] = $this->musictheory_hfsecondary;
+        }
+        return $corrresp;
+    }
 
-	public function get_expected_data() {
-		$expdata = array(
-			'musictheory_answer_hfprimary'	 => PARAM_TEXT,
-			'musictheory_answer_hfinvext'	 => PARAM_TEXT
-		);
-		if ($this->hftypesinresponsehavesectonic()) {
-			$expdata['musictheory_answer_hfsecondary'] = PARAM_TEXT;
-		}
-		return $expdata;
-	}
+    public function get_expected_data() {
+        $expdata = array(
+            'musictheory_answer_hfprimary' => PARAM_TEXT,
+            'musictheory_answer_hfinvext'  => PARAM_TEXT
+        );
+        if ($this->hftypesinresponsehavesectonic()) {
+            $expdata['musictheory_answer_hfsecondary'] = PARAM_TEXT;
+        }
+        return $expdata;
+    }
 
-	public function is_complete_response(array $response) {
+    public function is_complete_response(array $response) {
 
-		if ($this->hftypesinresponsehavesectonic()) {
-			if (!isset($response['musictheory_answer_hfprimary']) ||
-					!isset($response['musictheory_answer_hfinvext']) ||
-					!isset($response['musictheory_answer_hfsecondary'])) {
-				return false;
-			}
-		} else {
-			if (!isset($response['musictheory_answer_hfprimary']) ||
-					!isset($response['musictheory_answer_hfinvext'])) {
-				return false;
-			}
-		}
+        if ($this->hftypesinresponsehavesectonic()) {
+            if (!isset($response['musictheory_answer_hfprimary']) ||
+                    !isset($response['musictheory_answer_hfinvext']) ||
+                    !isset($response['musictheory_answer_hfsecondary'])) {
+                return false;
+            }
+        } else {
+            if (!isset($response['musictheory_answer_hfprimary']) ||
+                    !isset($response['musictheory_answer_hfinvext'])) {
+                return false;
+            }
+        }
 
-		if ($this->hftypesinresponsehavesectonic()) {
-			return (!empty($response['musictheory_answer_hfprimary']) &&
-					!empty($response['musictheory_answer_hfinvext']) &&
-					!empty($response['musictheory_answer_hfsecondary']));
-		} else {
-			return (!empty($response['musictheory_answer_hfprimary']) &&
-					!empty($response['musictheory_answer_hfinvext']));
-		}
-	}
+        if ($this->hftypesinresponsehavesectonic()) {
+            return (!empty($response['musictheory_answer_hfprimary']) &&
+                    !empty($response['musictheory_answer_hfinvext']) &&
+                    !empty($response['musictheory_answer_hfsecondary']));
+        } else {
+            return (!empty($response['musictheory_answer_hfprimary']) &&
+                    !empty($response['musictheory_answer_hfinvext']));
+        }
+    }
 
-	public function is_same_response(array $prevresponse, array $newresponse) {
-		$samehfprimary = question_utils::arrays_same_at_key_missing_is_blank(
-						$prevresponse, $newresponse, 'musictheory_answer_hfprimary');
-		$samehfinvext = question_utils::arrays_same_at_key_missing_is_blank(
-						$prevresponse, $newresponse, 'musictheory_answer_hfinvext');
-		if ($this->hftypesinresponsehavesectonic()) {
-			$samehfsecondary = question_utils::arrays_same_at_key_missing_is_blank(
-							$prevresponse, $newresponse, 'musictheory_answer_hfsecondary');
-			return ($samehfprimary && $samehfinvext && $samehfsecondary);
-		} else {
-			return ($samehfprimary && $samehfinvext);
-		}
-	}
+    public function is_same_response(array $prevresponse, array $newresponse) {
+        $samehfprimary = question_utils::arrays_same_at_key_missing_is_blank(
+                        $prevresponse, $newresponse, 'musictheory_answer_hfprimary');
+        $samehfinvext = question_utils::arrays_same_at_key_missing_is_blank(
+                        $prevresponse, $newresponse, 'musictheory_answer_hfinvext');
+        if ($this->hftypesinresponsehavesectonic()) {
+            $samehfsecondary = question_utils::arrays_same_at_key_missing_is_blank(
+                            $prevresponse, $newresponse, 'musictheory_answer_hfsecondary');
+            return ($samehfprimary && $samehfinvext && $samehfsecondary);
+        } else {
+            return ($samehfprimary && $samehfinvext);
+        }
+    }
 
-	public function get_validation_error(array $response) {
-		return get_string('validationerror_harmonicfunction_identify', 'qtype_musictheory');
-	}
+    public function get_validation_error(array $response) {
+        return get_string('validationerror_harmonicfunction_identify', 'qtype_musictheory');
+    }
 
-	public function summarise_response(array $response) {
-		if ($this->hftypesinresponsehavesectonic()) {
-			if (!isset($response['musictheory_answer_hfprimary']) ||
-					!isset($response['musictheory_answer_hfinvext']) ||
-					!isset($response['musictheory_answer_hfsecondary']) ||
-					empty($response['musictheory_answer_hfprimary']) ||
-					empty($response['musictheory_answer_hfinvext']) ||
-					empty($response['musictheory_answer_hfsecondary'])) {
-				return '';
-			}
-		} else {
-			if (!isset($response['musictheory_answer_hfprimary']) ||
-					!isset($response['musictheory_answer_hfinvext']) ||
-					empty($response['musictheory_answer_hfprimary']) ||
-					empty($response['musictheory_answer_hfinvext'])) {
-				return '';
-			}
-		}
+    public function summarise_response(array $response) {
+        if ($this->hftypesinresponsehavesectonic()) {
+            if (!isset($response['musictheory_answer_hfprimary']) ||
+                    !isset($response['musictheory_answer_hfinvext']) ||
+                    !isset($response['musictheory_answer_hfsecondary']) ||
+                    empty($response['musictheory_answer_hfprimary']) ||
+                    empty($response['musictheory_answer_hfinvext']) ||
+                    empty($response['musictheory_answer_hfsecondary'])) {
+                return '';
+            }
+        } else {
+            if (!isset($response['musictheory_answer_hfprimary']) ||
+                    !isset($response['musictheory_answer_hfinvext']) ||
+                    empty($response['musictheory_answer_hfprimary']) ||
+                    empty($response['musictheory_answer_hfinvext'])) {
+                return '';
+            }
+        }
 
-		$invext = ($response['musictheory_answer_hfinvext'] === 'r') ? '' :
-				$response['musictheory_answer_hfinvext'];
-		if ($this->hftypesinresponsehavesectonic()) {
-			$hfsecondary = ($response['musictheory_answer_hfsecondary'] === 'none') ? '' :
-					$response['musictheory_answer_hfsecondary'];
-		} else {
-			$hfsecondary = '';
-		}
+        $invext = ($response['musictheory_answer_hfinvext'] === 'r') ? '' :
+                $response['musictheory_answer_hfinvext'];
+        if ($this->hftypesinresponsehavesectonic()) {
+            $hfsecondary = ($response['musictheory_answer_hfsecondary'] === 'none') ? '' :
+                    $response['musictheory_answer_hfsecondary'];
+        } else {
+            $hfsecondary = '';
+        }
+        $harmonicfunction = $response['musictheory_answer_hfprimary'] . $invext . $hfsecondary;
+        $harmonicfunction = str_replace('-o', '&#248;', $harmonicfunction);
+        return $harmonicfunction;
+    }
 
-		return $response['musictheory_answer_hfprimary'] . $invext . $hfsecondary;
-	}
+    public function get_question_text() {
+        $qtext = get_string('questiontext_harmonicfunction_identify', 'qtype_musictheory');
+        return $qtext . ':';
+    }
 
-	public function get_question_text() {
-		$qtext = get_string('questiontext_harmonicfunction_identify', 'qtype_musictheory');
-		return $qtext . ':';
-	}
-
-	/**
-	 * Determines whether the harmonic function types to be available as answers
-	 * include a secondary tonic.
-	 *
-	 * @return boolean Returns true if at least one harmonic function type includes
-	 * a secondary tonic.
-	 */
-	public function hftypesinresponsehavesectonic() {
-		$ret = false;
-		foreach ($this->musictheory_hfidentifyresponsetypes as $hftype) {
-			if ($hftype === 'secdomtriad' ||
-					$hftype === 'secdom7th' ||
-					$hftype === 'secnondomtriad' ||
-					$hftype === 'seclttriad' ||
-					$hftype === 'secnondom7th' ||
-					$hftype === 'seclthalfdim' ||
-					$hftype === 'secltfullydim') {
-				$ret = true;
-			}
-		}
-		return $ret;
-	}
+    /**
+     * Determines whether the harmonic function types to be available as answers
+     * include a secondary tonic.
+     *
+     * @return boolean Returns true if at least one harmonic function type includes
+     * a secondary tonic.
+     */
+    public function hftypesinresponsehavesectonic() {
+        $ret = false;
+        foreach ($this->musictheory_hfidentifyresponsetypes as $hftype) {
+            if ($hftype === 'secdomtriad' ||
+                    $hftype === 'secdom7th' ||
+                    $hftype === 'secnondomtriad' ||
+                    $hftype === 'seclttriad' ||
+                    $hftype === 'secnondom7th' ||
+                    $hftype === 'seclthalfdim' ||
+                    $hftype === 'secltfullydim') {
+                $ret = true;
+            }
+        }
+        return $ret;
+    }
 
 }
 
@@ -336,39 +344,39 @@ class qtype_musictheory_harmonicfunction_identify extends qtype_musictheory_ques
 
 class qtype_musictheory_harmonicfunction_identify_random extends qtype_musictheory_harmonicfunction_identify {
 
-	public function start_attempt(question_attempt_step $step, $variant) {
-		$this->musictheory_clef = qtype_musictheory_randomiser::get_random_field($this->musictheory_clef_random);
-		$this->musictheory_keymode = qtype_musictheory_randomiser::get_random_key($this->musictheory_mode_random, false);
-		$hftype = qtype_musictheory_randomiser::get_random_field($this->musictheory_harmonicfunctiontype_random);
-		$harmonicfunction = qtype_musictheory_randomiser::get_random_harmonicfunction($hftype, $this->musictheory_keymode);
-		$this->musictheory_hfidentifyresponsetypes = $this->musictheory_harmonicfunctiontype_random;
-		$this->musictheory_hfprimary = $harmonicfunction['primary'];
-		$this->musictheory_hfinvext = ($harmonicfunction['invext'] === '') ? 'r' : $harmonicfunction['invext'];
-		$this->musictheory_hfsecondary = $harmonicfunction['secondary'];
-		$this->musictheory_optionsxml = $this->qtype->get_options_xml($this, 'harmonicfunction-identify');
-		$this->questiontext = $this->get_question_text();
-		$step->set_qt_var('_var_clef', $this->musictheory_clef);
-		$step->set_qt_var('_var_keymode', $this->musictheory_keymode);
-		$step->set_qt_var('_var_hfidentifyresponsetypes', implode(',', $this->musictheory_hfidentifyresponsetypes));
-		$step->set_qt_var('_var_hfprimary', $this->musictheory_hfprimary);
-		$step->set_qt_var('_var_hfsecondary', $this->musictheory_hfsecondary);
-		$step->set_qt_var('_var_hfinvext', $this->musictheory_hfinvext);
-		$step->set_qt_var('_var_optionsxml', $this->musictheory_optionsxml);
-		$step->set_qt_var('_var_questiontext', $this->questiontext);
-		parent::start_attempt($step, $variant);
-	}
+    public function start_attempt(question_attempt_step $step, $variant) {
+        $this->musictheory_clef = qtype_musictheory_randomiser::get_random_field($this->musictheory_clef_random);
+        $this->musictheory_keymode = qtype_musictheory_randomiser::get_random_key($this->musictheory_mode_random, false);
+        $hftype = qtype_musictheory_randomiser::get_random_field($this->musictheory_harmonicfunctiontype_random);
+        $harmonicfunction = qtype_musictheory_randomiser::get_random_harmonicfunction($hftype, $this->musictheory_keymode);
+        $this->musictheory_hfidentifyresponsetypes = $this->musictheory_harmonicfunctiontype_random;
+        $this->musictheory_hfprimary = $harmonicfunction['primary'];
+        $this->musictheory_hfinvext = ($harmonicfunction['invext'] === '') ? 'r' : $harmonicfunction['invext'];
+        $this->musictheory_hfsecondary = ($harmonicfunction['secondary'] === '') ? 'none' : $harmonicfunction['secondary'];
+        $this->musictheory_optionsxml = $this->qtype->get_options_xml($this, 'harmonicfunction-identify');
+        $this->questiontext = $this->get_question_text();
+        $step->set_qt_var('_var_clef', $this->musictheory_clef);
+        $step->set_qt_var('_var_keymode', $this->musictheory_keymode);
+        $step->set_qt_var('_var_hfidentifyresponsetypes', implode(',', $this->musictheory_hfidentifyresponsetypes));
+        $step->set_qt_var('_var_hfprimary', $this->musictheory_hfprimary);
+        $step->set_qt_var('_var_hfsecondary', $this->musictheory_hfsecondary);
+        $step->set_qt_var('_var_hfinvext', $this->musictheory_hfinvext);
+        $step->set_qt_var('_var_optionsxml', $this->musictheory_optionsxml);
+        $step->set_qt_var('_var_questiontext', $this->questiontext);
+        parent::start_attempt($step, $variant);
+    }
 
-	public function apply_attempt_state(question_attempt_step $step) {
-		$this->musictheory_clef = $step->get_qt_var('_var_clef');
-		$this->musictheory_keymode = $step->get_qt_var('_var_keymode');
-		$this->musictheory_hfidentifyresponsetypes = explode(',', $step->get_qt_var('_var_hfidentifyresponsetypes'));
-		$this->musictheory_hfprimary = $step->get_qt_var('_var_hfprimary');
-		$this->musictheory_hfsecondary = $step->get_qt_var('_var_hfsecondary');
-		$this->musictheory_hfinvext = $step->get_qt_var('_var_hfinvext');
-		$this->musictheory_optionsxml = $step->get_qt_var('_var_optionsxml');
-		$this->questiontext = $step->get_qt_var('_var_questiontext');
-		parent::apply_attempt_state($step);
-	}
+    public function apply_attempt_state(question_attempt_step $step) {
+        $this->musictheory_clef = $step->get_qt_var('_var_clef');
+        $this->musictheory_keymode = $step->get_qt_var('_var_keymode');
+        $this->musictheory_hfidentifyresponsetypes = explode(',', $step->get_qt_var('_var_hfidentifyresponsetypes'));
+        $this->musictheory_hfprimary = $step->get_qt_var('_var_hfprimary');
+        $this->musictheory_hfsecondary = $step->get_qt_var('_var_hfsecondary');
+        $this->musictheory_hfinvext = $step->get_qt_var('_var_hfinvext');
+        $this->musictheory_optionsxml = $step->get_qt_var('_var_optionsxml');
+        $this->questiontext = $step->get_qt_var('_var_questiontext');
+        parent::apply_attempt_state($step);
+    }
 
 }
 
@@ -381,37 +389,37 @@ class qtype_musictheory_harmonicfunction_identify_random extends qtype_musictheo
  */
 class qtype_musictheory_strategy_harmonicfunctionwrite_allornothing implements qtype_musictheory_grading_strategy {
 
-	public function grade($response, $correctresponse) {
+    public function grade($response, $correctresponse) {
 
-		$fraction = 1;
-		$resp = explode(',', $response['answer']);
-		$corrresp = explode(',', $correctresponse['answer']);
+        $fraction = 1;
+        $resp = explode(',', $response['answer']);
+        $corrresp = explode(',', $correctresponse['answer']);
 
-		$prevnote = null;
-		for ($i = 0; $i < count($resp); $i++) {
-			$ansltr = substr($resp[$i], 0, 1);
-			$ansacc = substr($resp[$i], 1, strlen($resp[$i]) - 2);
-			$ansreg = substr($resp[$i], strlen($resp[$i]) - 1, 1);
-			$respltr = substr($corrresp[$i], 0, 1);
-			$respacc = substr($corrresp[$i], 1, strlen($corrresp[$i]) - 2);
+        $prevnote = null;
+        for ($i = 0; $i < count($resp); $i++) {
+            $ansltr = substr($resp[$i], 0, 1);
+            $ansacc = substr($resp[$i], 1, strlen($resp[$i]) - 2);
+            $ansreg = substr($resp[$i], strlen($resp[$i]) - 1, 1);
+            $respltr = substr($corrresp[$i], 0, 1);
+            $respacc = substr($corrresp[$i], 1, strlen($corrresp[$i]) - 2);
 
-			$currnote = new Note($ansltr, $ansacc, $ansreg);
-			if ($prevnote !== null) {
-				if ($currnote->getSizeDifferential($prevnote) > 4) {
-					$fraction = 0;
-					break;
-				}
-			}
-			$prevnote = $currnote;
+            $currnote = new Note($ansltr, $ansacc, $ansreg);
+            if ($prevnote !== null) {
+                if ($currnote->getSizeDifferential($prevnote) > 4) {
+                    $fraction = 0;
+                    break;
+                }
+            }
+            $prevnote = $currnote;
 
-			if ($ansltr !== $respltr || $ansacc !== $respacc) {
-				$fraction = 0;
-				break;
-			}
-		}
+            if ($ansltr !== $respltr || $ansacc !== $respacc) {
+                $fraction = 0;
+                break;
+            }
+        }
 
-		return array($fraction, question_state::graded_state_for_fraction($fraction));
-	}
+        return array($fraction, question_state::graded_state_for_fraction($fraction));
+    }
 
 }
 
@@ -424,39 +432,60 @@ class qtype_musictheory_strategy_harmonicfunctionwrite_allornothing implements q
  */
 class qtype_musictheory_strategy_harmonicfunctionid_allornothing implements qtype_musictheory_grading_strategy {
 
-	public function grade($response, $correctresponse, $tonality = null) {
+    public function grade($response, $correctresponse, $tonality = null) {
 
-		$fraction = 1;
-		$respfunc = '';
-		$correctrespfunc = '';
-		foreach ($response as $key => $answer) {
-			if (strpos($key, '_var_') === false) {
-				if ($answer !== 'r' && $answer !== 'none') {
-					$respfunc .= $answer;
-				}
-				if ($correctresponse[$key] !== 'r' && $correctresponse[$key] !== 'none') {
-					$correctrespfunc .= $correctresponse[$key];
-				}
-				if ($answer !== $correctresponse[$key]) {
-					$fraction = 0;
-				}
-			}
-		}
+        $fraction = 1;
 
-		if ($fraction === 0) {
-			$tonic = new Note(substr($tonality, 0, 1), substr($tonality, 1, 1));
-			$ismajor = (substr($tonality, 2, 1) === 'M') ? true : false;
-			$tonal = new Tonality($tonic, $ismajor);
-			$resphf = new HarmonicFunction($tonal, $respfunc);
-			if ($resphf->isSupported()) {
-				$correctresphf = new HarmonicFunction($tonal, $correctrespfunc);
-				if ($resphf->equals($correctresphf, true)) {
-					$fraction = 1;
-				}
-			}
-		}
+        if ($response['musictheory_answer_hfprimary'] !==
+                $correctresponse['musictheory_answer_hfprimary'] ||
+                $response['musictheory_answer_hfinvext'] !==
+                $correctresponse['musictheory_answer_hfinvext']) {
+            $fraction = 0;
+        }
+        // Check optional secondary tonic if it is part of the response
+        if (isset($response['musictheory_answer_hfsecondary'])) {
+            if ($response['musictheory_answer_hfsecondary'] !==
+                    $correctresponse['musictheory_answer_hfsecondary']) {
+                $fraction = 0;
+            }
+        }
 
-		return array($fraction, question_state::graded_state_for_fraction($fraction));
-	}
+        // Check if alernate answer is valid
+        if ($fraction === 0) {
+
+            $rinvext = ($response['musictheory_answer_hfinvext'] === 'r') ? '' :
+                    $response['musictheory_answer_hfinvext'];
+            if (isset($response['musictheory_answer_hfsecondary'])) {
+                $rhfsecondary = ($response['musictheory_answer_hfsecondary'] === 'none') ? '' :
+                        $response['musictheory_answer_hfsecondary'];
+            } else {
+                $rhfsecondary = '';
+            }
+            $respfunc = $response['musictheory_answer_hfprimary'] . $rinvext . $rhfsecondary;
+
+            $cinvext = ($correctresponse['musictheory_answer_hfinvext'] === 'r') ? '' :
+                    $correctresponse['musictheory_answer_hfinvext'];
+            if (isset($correctresponse['musictheory_answer_hfsecondary'])) {
+                $chfsecondary = ($correctresponse['musictheory_answer_hfsecondary'] === 'none') ? '' :
+                        $correctresponse['musictheory_answer_hfsecondary'];
+            } else {
+                $chfsecondary = '';
+            }
+            $correctrespfunc = $correctresponse['musictheory_answer_hfprimary'] . $cinvext . $chfsecondary;
+
+            $tonic = new Note(substr($tonality, 0, 1), substr($tonality, 1, 1));
+            $ismajor = (substr($tonality, 2, 1) === 'M') ? true : false;
+            $tonal = new Tonality($tonic, $ismajor);
+            $resphf = new HarmonicFunction($tonal, $respfunc);
+            if ($resphf->isSupported()) {
+                $correctresphf = new HarmonicFunction($tonal, $correctrespfunc);
+                if ($resphf->equals($correctresphf, true)) {
+                    $fraction = 1;
+                }
+            }
+        }
+
+        return array($fraction, question_state::graded_state_for_fraction($fraction));
+    }
 
 }

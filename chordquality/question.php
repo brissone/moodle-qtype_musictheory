@@ -65,12 +65,11 @@ class qtype_musictheory_chordquality_write extends qtype_musictheory_question im
             default:
                 $quality = 'M';
         }
-		if ($this->musictheory_clef === 'treble') {
-			$reg = 4;
-		}
-		else {
-			$reg = 3;
-		}
+        if ($this->musictheory_clef === 'treble') {
+            $reg = 4;
+        } else {
+            $reg = 3;
+        }
         $root = new Note($this->musictheory_givennoteletter, $this->musictheory_givennoteaccidental, $reg);
         $chord = new Chord($root, $quality, 0);
         return array('answer' => (string) $chord);
@@ -132,7 +131,7 @@ class qtype_musictheory_chordquality_write extends qtype_musictheory_question im
                 $acc = get_string('acc_sharp', 'qtype_musictheory');
                 break;
         }
-        $chord = get_string('note' . $this->musictheory_givennoteletter, 'qtype_musictheory');
+        $chord = get_string('note' . strtolower($this->musictheory_givennoteletter), 'qtype_musictheory');
         $quality = get_string($this->musictheory_chordquality, 'qtype_musictheory');
         $chord .= $acc . ' ' . strtolower($quality);
 
@@ -264,7 +263,7 @@ class qtype_musictheory_chordquality_identify extends qtype_musictheory_question
                 empty($response['musictheory_answer_chordquality'])) {
             return '';
         }
-        $root = get_string('note' . $response['musictheory_answer_rootletter'], 'qtype_musictheory');
+        $root = get_string('note' . strtolower($response['musictheory_answer_rootletter']), 'qtype_musictheory');
         $acckey = 'acc_' . str_replace('#', 'sharp', $response['musictheory_answer_rootacc']);
         $acc = get_string($acckey, 'qtype_musictheory');
         $quality = get_string($response['musictheory_answer_chordquality'], 'qtype_musictheory');

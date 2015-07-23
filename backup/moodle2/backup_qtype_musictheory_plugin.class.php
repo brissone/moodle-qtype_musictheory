@@ -50,7 +50,8 @@ class backup_qtype_musictheory_plugin extends backup_qtype_plugin {
         $this->add_question_question_answers($pluginwrapper);
 
         // Now create the qtype own structures.
-        $musictheory = new backup_nested_element('musictheory', array('id'), array(
+        $musictheory = new backup_nested_element('musictheory', array('id'),
+                                                 array(
             'musictheory_musicqtype', 'musictheory_gradingstrategy', 'musictheory_optionsxml', 'musictheory_randomoptionsxml'));
 
         // Now the own qtype tree.

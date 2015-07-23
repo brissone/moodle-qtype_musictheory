@@ -50,8 +50,7 @@ class qtype_musictheory_randomiser {
      * empty key signatures should be considered.
      * @return string The randomly selected key.
      */
-    public static function get_random_key($possiblemodes,
-            $includeemptykeysignature) {
+    public static function get_random_key($possiblemodes, $includeemptykeysignature) {
         $modeid = rand(0, count($possiblemodes) - 1);
         $mode = $possiblemodes[$modeid];
         $possiblekeys = Tonality::getValidKeys($mode);
@@ -70,13 +69,14 @@ class qtype_musictheory_randomiser {
      * @param string $clef The clef to work with - used to determine the
      * given note's register, to ensure that a randomly chosen interval
      * fits in the staff.
+     * @param string $quality The interval's quality
+     * @param string $size The interval's quality
      * @param string $direction The direction to work with - used to determine
      * the given note's register, to ensure that a randomly chosen interval
      * fits in the staff.
      * @return string The randomly selected key.
      */
-    public static function get_random_interval_givennote($clef, $direction) {
-        $tonic = self::get_random_tonic('M');
+    public static function get_random_interval_givennote($clef, $quality, $size, $direction) {
         if ($direction == 'above') {
             switch ($clef) {
                 case 'treble':
@@ -104,7 +104,38 @@ class qtype_musictheory_randomiser {
                     break;
             }
         }
-        $givennote = new Note($tonic->getLetter(), $tonic->getAccidental(), $reg);
+
+        $possiblegivennotes = array('Cn', 'Gn', 'Dn', 'An', 'En', 'Bn', 'F#', 'C#',
+            'Fn', 'Bb', 'Eb', 'Ab', 'Db', 'Gb', 'Cb');
+        // Remove cases when the inverval doesn't exist above the given note
+        switch ($quality . $size . '-' . $direction) {
+            case 'A2-below':
+            case 'D7-above':
+            case 'A9-below':
+                $possiblegivennotes = array_slice($possiblegivennotes, 0, 14);
+                break;
+            case 'D3-above':
+            case 'A6-below':
+            case 'D10-above':
+            case 'A13-below':
+                $possiblegivennotes = array_slice($possiblegivennotes, 0, 13);
+                break;
+            case 'A3-below':
+            case 'D6-above':
+            case 'A10-below':
+            case 'D13-above':
+                $possiblegivennotes = array_slice($possiblegivennotes, 0, 12);
+                break;
+            case 'D2-above':
+            case 'A7-below':
+            case 'D9-above':
+                $possiblegivennotes = array_slice($possiblegivennotes, 0, 11);
+                break;
+        }
+
+        $givennotename = self::get_random_field($possiblegivennotes);
+        $givennote = new Note(substr($givennotename, 0, 1), substr($givennotename, 1, 1), $reg);
+
         return $givennote;
     }
 
@@ -118,8 +149,7 @@ class qtype_musictheory_randomiser {
      * @return array The randomly selected interval, with two keys,
      * 'quality' and 'size'.
      */
-    public static function get_random_interval($possiblequalities,
-            $possiblesizes) {
+    public static function get_random_interval($possiblequalities, $possiblesizes) {
         $validcombos = array();
 
         foreach ($possiblequalities as $quality) {
@@ -241,7 +271,7 @@ class qtype_musictheory_randomiser {
      * Returns a randomly selected harmonic function.
      *
      * @param string $hftype The type of harmonic function to return.
-     * @param string $mode The mode.
+     * @param string $keymode The key and mode.
      * @return array An array with three indices ('hfprimary', 'hfinvext' and
      * 'hfsecondary') describing the randomly generated harmonic function.
      */

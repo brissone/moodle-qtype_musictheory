@@ -17,13 +17,20 @@
 /**
  * @package    qtype
  * @subpackage musictheory
- * @copyright  2013 Eric Brisson
+ * @copyright  2015 Eric Brisson
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->component = 'qtype_musictheory';
-$plugin->version = 2015072200;
-$plugin->requires = 2014051200;
-$plugin->maturity = MATURITY_STABLE;
-$plugin->release = '1.2.1';
+/**
+ * Upgrade code for the music theory question type.
+ * @param int $oldversion the version we are upgrading from.
+ */
+function xmldb_qtype_musictheory_upgrade($oldversion) {
+    global $CFG, $DB;
+
+    // No database upgrades needed at this point - this file is included for
+    // future updates
+
+    return true;
+}

@@ -35,8 +35,7 @@ require_once(dirname(dirname(__FILE__)) . '/renderer.php');
  */
 class qtype_musictheory_harmonicfunction_write_renderer extends qtype_musictheory_renderer {
 
-    public function formulation_and_controls(question_attempt $qa,
-            question_display_options $options) {
+    public function formulation_and_controls(question_attempt $qa, question_display_options $options) {
 
         global $PAGE, $OUTPUT;
 
@@ -60,7 +59,7 @@ class qtype_musictheory_harmonicfunction_write_renderer extends qtype_musictheor
                 'readonly'         => $options->readonly,
                 'initialinput'     => $initialinput,
                 'correctresponse'  => $correctresponse,
-                'correctrespstr'   => get_string('correctansweris_morethanone', 'qtype_musictheory'),
+                'correctrespstr'   => get_string('correctansweris', 'qtype_musictheory'),
                 'additionalparams' => array(
                     'maxnotes' => $maxnotes
                 )
@@ -112,7 +111,8 @@ class qtype_musictheory_harmonicfunction_write_renderer extends qtype_musictheor
 
         if ($qa->get_state() == question_state::$invalid) {
 
-            $result .= html_writer::nonempty_tag('div', $question->get_validation_error(array('answer' => $initialinput)), array('class' => 'validationerror'));
+            $result .= html_writer::nonempty_tag('div', $question->get_validation_error(array('answer' => $initialinput)),
+                                                                                        array('class' => 'validationerror'));
         }
 
         return $result;
@@ -121,7 +121,7 @@ class qtype_musictheory_harmonicfunction_write_renderer extends qtype_musictheor
     public function correct_response(question_attempt $qa) {
         $question = $qa->get_question();
         $correctresponsearray = $question->get_correct_response();
-        return get_string('correctansweris_morethanone', 'qtype_musictheory') . ' ' .
+        return get_string('correctansweris', 'qtype_musictheory') . ' ' .
                 $correctresponsearray['answer'];
     }
 
@@ -135,8 +135,7 @@ class qtype_musictheory_harmonicfunction_write_renderer extends qtype_musictheor
  */
 class qtype_musictheory_harmonicfunction_identify_renderer extends qtype_musictheory_renderer {
 
-    public function formulation_and_controls(question_attempt $qa,
-            question_display_options $options) {
+    public function formulation_and_controls(question_attempt $qa, question_display_options $options) {
 
         global $PAGE;
 
@@ -253,13 +252,22 @@ class qtype_musictheory_harmonicfunction_identify_renderer extends qtype_musicth
 
         $currhfinvext = $qa->get_last_qt_var('musictheory_answer_hfinvext');
         $currhfprimary = $qa->get_last_qt_var('musictheory_answer_hfprimary');
-        $key = get_string(str_replace('#', 'sharp', $question->musictheory_keymode), 'qtype_musictheory');
+
+        $keyindex = str_replace('#', 'sharp', $question->musictheory_keymode);
+        if (strpos($keyindex, 'M') !== false) {
+            $keyindex = str_replace('M', 'major', $keyindex);
+        } else {
+            $keyindex = str_replace('m', 'minor', $keyindex);
+        }
+        $key = get_string(strtolower($keyindex), 'qtype_musictheory');
+
         $currhfsecondary = $qa->get_last_qt_var('musictheory_answer_hfsecondary');
         $input = html_writer::start_span() . '<b>' . $key . ':</b> ' . html_writer::end_span();
         $input .= html_writer::select($selectoptionshfprimary, $hfprimaryselectid, $currhfprimary, true, $hfprimaryselectattributes);
         $input .= html_writer::select($selectoptionsinvext, $hfinvextselectid, $currhfinvext, true, $hfinvextselectattributes);
         if ($question->hftypesinresponsehavesectonic()) {
-            $input .= html_writer::select($selectoptionshfsecondary, $hfsecondaryselectid, $currhfsecondary, true, $hfsecondaryselectattributes);
+            $input .= html_writer::select($selectoptionshfsecondary, $hfsecondaryselectid, $currhfsecondary, true,
+                                          $hfsecondaryselectattributes);
         }
         $result .= html_writer::start_tag('div', array('class' => 'ablock'));
         $result .= $input;
@@ -276,7 +284,8 @@ class qtype_musictheory_harmonicfunction_identify_renderer extends qtype_musicth
             if ($question->hftypesinresponsehavesectonic()) {
                 $answerarray['musictheory_answer_hfsecondary'] = $currenthfsecondary;
             }
-            $result .= html_writer::nonempty_tag('div', $question->get_validation_error($answerarray), array('class' => 'validationerror'));
+            $result .= html_writer::nonempty_tag('div', $question->get_validation_error($answerarray),
+                                                                                        array('class' => 'validationerror'));
         }
 
         return $result;
@@ -295,6 +304,7 @@ class qtype_musictheory_harmonicfunction_identify_renderer extends qtype_musicth
                     $correctresponsearray['musictheory_answer_hfsecondary'];
             $harmonicfunction .= $hfsecondary;
         }
+        $harmonicfunction = str_replace('-o', '&#248;', $harmonicfunction);
         return get_string('correctansweris', 'qtype_musictheory') . ' <b>' . $harmonicfunction . '</b>';
     }
 
@@ -333,15 +343,15 @@ class qtype_musictheory_harmonicfunction_identify_renderer extends qtype_musicth
                     $hfprimary['750_viio'] = 'viio';
                     $hfinvext['10_r'] = get_string('rootposition', 'qtype_musictheory');
                     $hfinvext['20_6'] = '6';
-                    $hfinvext['30_64'] = '64';
+                    $hfinvext['30_64'] = '6/4';
                     $hfsecondary['100_none'] = get_string('nosectonic', 'qtype_musictheory');
                     break;
                 case 'dom7th';
                     $hfprimary['500_V'] = 'V';
                     $hfinvext['40_7'] = '7';
-                    $hfinvext['50_65'] = '65';
-                    $hfinvext['60_43'] = '43';
-                    $hfinvext['70_42'] = '42';
+                    $hfinvext['50_65'] = '6/5';
+                    $hfinvext['60_43'] = '4/3';
+                    $hfinvext['70_42'] = '4/2';
                     $hfsecondary['100_none'] = get_string('nosectonic', 'qtype_musictheory');
                     break;
                 case 'nondom7th':
@@ -357,32 +367,32 @@ class qtype_musictheory_harmonicfunction_identify_renderer extends qtype_musicth
                     $hfprimary['650_vi'] = 'vi';
                     $hfprimary['680_vi-o'] = 'vi&#248;';
                     $hfinvext['40_7'] = '7';
-                    $hfinvext['50_65'] = '65';
-                    $hfinvext['60_43'] = '43';
-                    $hfinvext['70_42'] = '42';
+                    $hfinvext['50_65'] = '6/5';
+                    $hfinvext['60_43'] = '4/3';
+                    $hfinvext['70_42'] = '4/2';
                     $hfsecondary['100_none'] = get_string('nosectonic', 'qtype_musictheory');
                     break;
                 case 'leadingtone7thhalfdim':
                     $hfprimary['775_vii-o'] = 'vii&#248;';
                     $hfinvext['40_7'] = '7';
-                    $hfinvext['50_65'] = '65';
-                    $hfinvext['60_43'] = '43';
-                    $hfinvext['70_42'] = '42';
+                    $hfinvext['50_65'] = '6/5';
+                    $hfinvext['60_43'] = '4/3';
+                    $hfinvext['70_42'] = '4/2';
                     $hfsecondary['100_none'] = get_string('nosectonic', 'qtype_musictheory');
                     break;
                 case 'leadingtone7thfullydim':
                     $hfprimary['775_viio'] = 'viio';
                     $hfinvext['40_7'] = '7';
-                    $hfinvext['50_65'] = '65';
-                    $hfinvext['60_43'] = '43';
-                    $hfinvext['70_42'] = '42';
+                    $hfinvext['50_65'] = '6/5';
+                    $hfinvext['60_43'] = '4/3';
+                    $hfinvext['70_42'] = '4/2';
                     $hfsecondary['100_none'] = get_string('nosectonic', 'qtype_musictheory');
                     break;
                 case 'secdomtriad':
                     $hfprimary['500_V'] = 'V';
                     $hfinvext['10_r'] = get_string('rootposition', 'qtype_musictheory');
                     $hfinvext['20_6'] = '6';
-                    $hfinvext['30_64'] = '64';
+                    $hfinvext['30_64'] = '6/4';
                     $hfsecondary['100_none'] = get_string('nosectonic', 'qtype_musictheory');
                     $hfsecondary['200_/ii'] = '/ii';
                     $hfsecondary['300_/III'] = '/III';
@@ -397,9 +407,9 @@ class qtype_musictheory_harmonicfunction_identify_renderer extends qtype_musicth
                 case 'secdom7th':
                     $hfprimary['500_V'] = 'V';
                     $hfinvext['40_7'] = '7';
-                    $hfinvext['50_65'] = '65';
-                    $hfinvext['60_43'] = '43';
-                    $hfinvext['70_42'] = '42';
+                    $hfinvext['50_65'] = '6/5';
+                    $hfinvext['60_43'] = '4/3';
+                    $hfinvext['70_42'] = '4/2';
                     $hfsecondary['100_none'] = get_string('nosectonic', 'qtype_musictheory');
                     $hfsecondary['200_/ii'] = '/ii';
                     $hfsecondary['300_/III'] = '/III';
@@ -423,7 +433,7 @@ class qtype_musictheory_harmonicfunction_identify_renderer extends qtype_musicth
                     $hfprimary['675_vio'] = 'vi&#248;';
                     $hfinvext['10_r'] = get_string('rootposition', 'qtype_musictheory');
                     $hfinvext['20_6'] = '6';
-                    $hfinvext['30_64'] = '64';
+                    $hfinvext['30_64'] = '6/4';
                     $hfsecondary['100_none'] = get_string('nosectonic', 'qtype_musictheory');
                     $hfsecondary['200_/ii'] = '/ii';
                     $hfsecondary['300_/III'] = '/III';
@@ -446,9 +456,9 @@ class qtype_musictheory_harmonicfunction_identify_renderer extends qtype_musicth
                     $hfprimary['650_vi'] = 'vi';
                     $hfprimary['680_vi-o'] = 'vi&#248;';
                     $hfinvext['40_7'] = '7';
-                    $hfinvext['50_65'] = '65';
-                    $hfinvext['60_43'] = '43';
-                    $hfinvext['70_42'] = '42';
+                    $hfinvext['50_65'] = '6/5';
+                    $hfinvext['60_43'] = '4/3';
+                    $hfinvext['70_42'] = '4/2';
                     $hfsecondary['100_none'] = get_string('nosectonic', 'qtype_musictheory');
                     $hfsecondary['200_/ii'] = '/ii';
                     $hfsecondary['300_/III'] = '/III';
@@ -464,7 +474,7 @@ class qtype_musictheory_harmonicfunction_identify_renderer extends qtype_musicth
                     $hfprimary['750_viio'] = 'viio';
                     $hfinvext['10_r'] = get_string('rootposition', 'qtype_musictheory');
                     $hfinvext['20_6'] = '6';
-                    $hfinvext['30_64'] = '64';
+                    $hfinvext['30_64'] = '6/4';
                     $hfsecondary['100_none'] = get_string('nosectonic', 'qtype_musictheory');
                     $hfsecondary['200_/ii'] = '/ii';
                     $hfsecondary['300_/III'] = '/III';
@@ -479,9 +489,9 @@ class qtype_musictheory_harmonicfunction_identify_renderer extends qtype_musicth
                 case 'seclthalfdim':
                     $hfprimary['775_vii-o'] = 'vii&#248;';
                     $hfinvext['40_7'] = '7';
-                    $hfinvext['50_65'] = '65';
-                    $hfinvext['60_43'] = '43';
-                    $hfinvext['70_42'] = '42';
+                    $hfinvext['50_65'] = '6/5';
+                    $hfinvext['60_43'] = '4/3';
+                    $hfinvext['70_42'] = '4/2';
                     $hfsecondary['100_none'] = get_string('nosectonic', 'qtype_musictheory');
                     $hfsecondary['200_/ii'] = '/ii';
                     $hfsecondary['300_/III'] = '/III';
@@ -496,9 +506,9 @@ class qtype_musictheory_harmonicfunction_identify_renderer extends qtype_musicth
                 case 'secltfullydim':
                     $hfprimary['750_viio'] = 'viio';
                     $hfinvext['40_7'] = '7';
-                    $hfinvext['50_65'] = '65';
-                    $hfinvext['60_43'] = '43';
-                    $hfinvext['70_42'] = '42';
+                    $hfinvext['50_65'] = '6/5';
+                    $hfinvext['60_43'] = '4/3';
+                    $hfinvext['70_42'] = '4/2';
                     $hfsecondary['100_none'] = get_string('nosectonic', 'qtype_musictheory');
                     $hfsecondary['200_/ii'] = '/ii';
                     $hfsecondary['300_/III'] = '/III';
@@ -514,7 +524,7 @@ class qtype_musictheory_harmonicfunction_identify_renderer extends qtype_musicth
                     $hfprimary['280_N'] = 'N';
                     $hfinvext['10_r'] = get_string('rootposition', 'qtype_musictheory');
                     $hfinvext['20_6'] = '6';
-                    $hfinvext['30_64'] = '64';
+                    $hfinvext['30_64'] = '6/4';
                     $hfsecondary['100_none'] = get_string('nosectonic', 'qtype_musictheory');
                     break;
                 case 'aug6th':

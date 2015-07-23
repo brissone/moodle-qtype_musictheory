@@ -35,8 +35,7 @@ require_once(dirname(dirname(__FILE__)) . '/renderer.php');
  */
 class qtype_musictheory_chordquality_write_renderer extends qtype_musictheory_renderer {
 
-    public function formulation_and_controls(question_attempt $qa,
-            question_display_options $options) {
+    public function formulation_and_controls(question_attempt $qa, question_display_options $options) {
 
         global $PAGE, $OUTPUT;
 
@@ -112,7 +111,8 @@ class qtype_musictheory_chordquality_write_renderer extends qtype_musictheory_re
 
         if ($qa->get_state() == question_state::$invalid) {
 
-            $result .= html_writer::nonempty_tag('div', $question->get_validation_error(array('answer' => $initialinput)), array('class' => 'validationerror'));
+            $result .= html_writer::nonempty_tag('div', $question->get_validation_error(array('answer' => $initialinput)),
+                                                                                        array('class' => 'validationerror'));
         }
 
         return $result;
@@ -135,8 +135,7 @@ class qtype_musictheory_chordquality_write_renderer extends qtype_musictheory_re
  */
 class qtype_musictheory_chordquality_identify_renderer extends qtype_musictheory_renderer {
 
-    public function formulation_and_controls(question_attempt $qa,
-            question_display_options $options) {
+    public function formulation_and_controls(question_attempt $qa, question_display_options $options) {
 
         global $PAGE;
 
@@ -199,34 +198,34 @@ class qtype_musictheory_chordquality_identify_renderer extends qtype_musictheory
         $PAGE->requires->yui_module($qtypemod, $rendernamespace, $moduleparams);
 
         $selectoptionsrootletter = array(
-            ''           => get_string('selectanoption', 'qtype_musictheory'),
-            'A'      => get_string('noteA', 'qtype_musictheory'),
-            'B'      => get_string('noteB', 'qtype_musictheory'),
-            'C'      => get_string('noteC', 'qtype_musictheory'),
-            'D'      => get_string('noteD', 'qtype_musictheory'),
-            'E'      => get_string('noteE', 'qtype_musictheory'),
-            'F'      => get_string('noteF', 'qtype_musictheory'),
-            'G'      => get_string('noteG', 'qtype_musictheory')
+            ''  => get_string('selectanoption', 'qtype_musictheory'),
+            'A' => get_string('notea', 'qtype_musictheory'),
+            'B' => get_string('noteb', 'qtype_musictheory'),
+            'C' => get_string('notec', 'qtype_musictheory'),
+            'D' => get_string('noted', 'qtype_musictheory'),
+            'E' => get_string('notee', 'qtype_musictheory'),
+            'F' => get_string('notef', 'qtype_musictheory'),
+            'G' => get_string('noteg', 'qtype_musictheory')
         );
 
         $rootletterselectattributes = array(
-            'name' => $rootletterselectid,
-            'id'   => $rootletterselectid,
+            'name'  => $rootletterselectid,
+            'id'    => $rootletterselectid,
             'style' => 'margin-right:3px'
         );
 
         $selectoptionsrootacc = array(
-            ''           => get_string('selectanoption', 'qtype_musictheory'),
-            'n'      => get_string('acc_n', 'qtype_musictheory'),
-            '#'      => get_string('acc_sharp', 'qtype_musictheory'),
-            'b'      => get_string('acc_b', 'qtype_musictheory'),
-            'x'      => get_string('acc_x', 'qtype_musictheory'),
-            'bb'      => get_string('acc_bb', 'qtype_musictheory'),
+            ''   => get_string('selectanoption', 'qtype_musictheory'),
+            'n'  => get_string('acc_n', 'qtype_musictheory'),
+            '#'  => get_string('acc_sharp', 'qtype_musictheory'),
+            'b'  => get_string('acc_b', 'qtype_musictheory'),
+            'x'  => get_string('acc_x', 'qtype_musictheory'),
+            'bb' => get_string('acc_bb', 'qtype_musictheory'),
         );
 
         $rootaccselectattributes = array(
-            'name' => $rootaccselectid,
-            'id'   => $rootaccselectid,
+            'name'  => $rootaccselectid,
+            'id'    => $rootaccselectid,
             'style' => 'margin-right:3px'
         );
 
@@ -246,7 +245,7 @@ class qtype_musictheory_chordquality_identify_renderer extends qtype_musictheory
         if ($options->readonly) {
             $chordqualityselectattributes['disabled'] = 'true';
             $rootletterselectattributes['disabled'] = 'true';
-			$rootaccselectattributes['disabled'] = 'true';
+            $rootaccselectattributes['disabled'] = 'true';
         }
 
         $questiontext = $question->format_questiontext($qa);
@@ -277,9 +276,11 @@ class qtype_musictheory_chordquality_identify_renderer extends qtype_musictheory
         $currrootletter = $qa->get_last_qt_var('musictheory_answer_rootletter');
         $currrootacc = $qa->get_last_qt_var('musictheory_answer_rootacc');
         $result .= html_writer::tag('div', '', $javascriptdivattr);
-        $input = html_writer::select($selectoptionsrootletter, $rootletterselectid, $currrootletter, true, $rootletterselectattributes);
+        $input = html_writer::select($selectoptionsrootletter, $rootletterselectid, $currrootletter, true,
+                                     $rootletterselectattributes);
         $input .= html_writer::select($selectoptionsrootacc, $rootaccselectid, $currrootacc, true, $rootaccselectattributes);
-        $input .= html_writer::select($selectoptionschordquality, $chordqualityselectid, $currquality, true, $chordqualityselectattributes);
+        $input .= html_writer::select($selectoptionschordquality, $chordqualityselectid, $currquality, true,
+                                      $chordqualityselectattributes);
         $result .= html_writer::start_tag('div', array('class' => 'ablock'));
         $result .= $input;
         $result .= html_writer::end_tag('div');
@@ -290,10 +291,11 @@ class qtype_musictheory_chordquality_identify_renderer extends qtype_musictheory
             $currentrootacc = $qa->get_last_qt_var('musictheory_answer_rootacc');
             $answerarray = array(
                 'musictheory_answer_chordquality' => $currentchordquality,
-                'musictheory_answer_rootletter' => $currentrootletter,
-                'musictheory_answer_rootacc' => $currentrootacc
+                'musictheory_answer_rootletter'   => $currentrootletter,
+                'musictheory_answer_rootacc'      => $currentrootacc
             );
-            $result .= html_writer::nonempty_tag('div', $question->get_validation_error($answerarray), array('class' => 'validationerror'));
+            $result .= html_writer::nonempty_tag('div', $question->get_validation_error($answerarray),
+                                                                                        array('class' => 'validationerror'));
         }
 
         return $result;
@@ -302,9 +304,9 @@ class qtype_musictheory_chordquality_identify_renderer extends qtype_musictheory
     public function correct_response(question_attempt $qa) {
         $question = $qa->get_question();
         $correctresponsearray = $question->get_correct_response();
-		$ltr = get_string('note' . $correctresponsearray['musictheory_answer_rootletter'], 'qtype_musictheory');
-		$acckey = str_replace('#', 'sharp', $correctresponsearray['musictheory_answer_rootacc']);
-		$acc = get_string('acc_' . $acckey, 'qtype_musictheory');
+        $ltr = get_string('note' . strtolower($correctresponsearray['musictheory_answer_rootletter']), 'qtype_musictheory');
+        $acckey = str_replace('#', 'sharp', $correctresponsearray['musictheory_answer_rootacc']);
+        $acc = get_string('acc_' . $acckey, 'qtype_musictheory');
         $quality = get_string($correctresponsearray['musictheory_answer_chordquality'], 'qtype_musictheory');
         return get_string('correctansweris', 'qtype_musictheory') . ' <b>' . $ltr . $acc . ' ' . $quality . '</b>';
     }

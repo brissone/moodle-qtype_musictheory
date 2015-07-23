@@ -196,7 +196,7 @@ class Chord {
 		for ($i = 0; $i < count($fac); $i++) {
 			$noteIsThere = false;
 			for ($j = 0; $j < count($notes); $j++) {
-				if (typeof($notes[j]) !== 'undefined') {
+				if (isset($notes[j])) {
 					$n = $notes[j];
 					if ($fac[$i]->getLetter() === $n->getLetter() &&
 							$fac[$i]->getAccidental() === $n->getAccidental()) {
