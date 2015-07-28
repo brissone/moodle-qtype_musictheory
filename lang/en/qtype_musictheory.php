@@ -302,8 +302,8 @@ $string['validation_scale_invalidtonic'] = 'Invalid tonic for the specified type
 $string['validation_scaleoutsidestaff'] = "The given tonic's register produces a scale that doesn't
  fit within the staff in the given clef.";
 $string['validation_possiblescaletypenotselected'] = 'The scale type for the specified type of scale must be selected.';
-$string['validation_possiblescaletypesnotselected_random'] = 'The possible scale types in the response ' .
-        'must include all possible scale types in the question';
+$string['validation_possiblescaletypesnotselected_random'] = 'The possible scale types in the response
+ must include all possible scale types in the question.';
 
 // Question rendering.
 $string['correctansweris'] = 'The correct answer is:';
