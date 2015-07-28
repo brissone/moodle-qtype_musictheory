@@ -16,6 +16,8 @@
       <xs:element name="Toolbars" type="Toolbars" minOccurs="0" />
       <xs:element name="InputDialog" type="InputDialog" minOccurs="0" />
     </xs:all>
+    <xs:attribute name="canvasEditable" type="xs:boolean" use="required" />
+    <xs:attribute name="accidentalCarryOver" type="xs:boolean" use="required" />
   </xs:complexType>
 
   <xs:complexType name="StaffSystem">
@@ -103,7 +105,7 @@
     <xs:attribute name="symbol" type="accidental" use="required" />
   </xs:complexType>
 
-   <xs:complexType name="NoteValueToolbar">
+  <xs:complexType name="NoteValueToolbar">
     <xs:sequence>
       <xs:element name="Button" type="NoteValueToolbarButton" minOccurs="2" maxOccurs="3"/>
     </xs:sequence>

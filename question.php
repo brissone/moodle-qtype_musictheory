@@ -104,6 +104,9 @@ abstract class qtype_musictheory_question extends question_graded_automatically 
             case 'scale-write':
             case 'scale-write-random':
                 return new qtype_musictheory_scale_write_renderer($page, null);
+            case 'scale-identify':
+            case 'scale-identify-random':
+                return new qtype_musictheory_scale_identify_renderer($page, null);
             case 'chordquality-write':
             case 'chordquality-write-random':
                 return new qtype_musictheory_chordquality_write_renderer($page, null);

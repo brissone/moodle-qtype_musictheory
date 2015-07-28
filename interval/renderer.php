@@ -155,6 +155,9 @@ class qtype_musictheory_interval_identify_renderer extends qtype_musictheory_ren
         $givennote = new Note($ltr, $acc, $reg);
         $notefrominterval = $givennote->getNoteFromInterval($interval);
 
+        $currqual = $qa->get_last_qt_var('musictheory_answer_quality');
+        $currsize = $qa->get_last_qt_var('musictheory_answer_size');
+
         $initialinput = (string) $notefrominterval;
 
         $moduleparams = array(
@@ -214,6 +217,24 @@ class qtype_musictheory_interval_identify_renderer extends qtype_musictheory_ren
             $qualityselectattributes['disabled'] = 'true';
         }
 
+        if ($options->correctness) {
+            $corrresp = $question->get_correct_response();
+            if (!is_null($currqual)) {
+                if ($currqual === $corrresp['musictheory_answer_quality']) {
+                    $qualityselectattributes['class'] = $this->feedback_class(1);
+                } else {
+                    $qualityselectattributes['class'] = $this->feedback_class(0);
+                }
+            }
+            if (!is_null($currsize)) {
+                if ($currsize === $corrresp['musictheory_answer_size']) {
+                    $sizeselectattributes['class'] = $this->feedback_class(1);
+                } else {
+                    $sizeselectattributes['class'] = $this->feedback_class(0);
+                }
+            }
+        }
+
         $questiontext = $question->format_questiontext($qa);
         $result = html_writer::tag('div', $questiontext, array('class' => 'qtext'));
 
@@ -240,8 +261,6 @@ class qtype_musictheory_interval_identify_renderer extends qtype_musictheory_ren
         );
         $result .= html_writer::tag('div', '', $javascriptdivattr);
 
-        $currqual = $qa->get_last_qt_var('musictheory_answer_quality');
-        $currsize = $qa->get_last_qt_var('musictheory_answer_size');
         $input = html_writer::select($selectoptionsquality, $qualityselectid, $currqual, true, $qualityselectattributes);
         $input .= html_writer::select($selectoptionssize, $sizeselectid, $currsize, true, $sizeselectattributes);
         $result .= html_writer::start_tag('div', array('class' => 'ablock'));

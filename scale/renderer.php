@@ -126,3 +126,203 @@ class qtype_musictheory_scale_write_renderer extends qtype_musictheory_renderer 
     }
 
 }
+
+/**
+ * Renders music theory scale identification questions.
+ *
+ * @copyright  2015 Eric Brisson
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+class qtype_musictheory_scale_identify_renderer extends qtype_musictheory_renderer {
+
+    public function formulation_and_controls(question_attempt $qa, question_display_options $options) {
+
+        global $PAGE;
+
+        $PAGE->requires->yui_module('moodle-qtype_musictheory-musictheoryui', 'M.qtype_musictheory.musictheoryui.init');
+        $question = $qa->get_question();
+        $tonicletterselectid = $qa->get_qt_field_name('musictheory_answer_tonicletter');
+        $tonicaccselectid = $qa->get_qt_field_name('musictheory_answer_tonicacc');
+        $scaletypeselectid = $qa->get_qt_field_name('musictheory_answer_scaletype');
+
+        $currtonicletter = $qa->get_last_qt_var('musictheory_answer_tonicletter');
+        $currtonicacc = $qa->get_last_qt_var('musictheory_answer_tonicacc');
+        $currscaletype = $qa->get_last_qt_var('musictheory_answer_scaletype');
+
+        $corrresp = $question->get_correct_response();
+        $tonic = new Note($question->musictheory_givennoteletter, $question->musictheory_givennoteaccidental,
+                          $question->musictheory_givennoteregister);
+        $scale = null;
+        switch ($question->musictheory_scaletype) {
+            case 'major':
+                $scale = new MajorScale($tonic);
+                break;
+            case 'natural':
+                $scale = new NaturalMinorScale($tonic);
+                break;
+            case 'harmonic':
+                $scale = new HarmonicMinorScale($tonic);
+                break;
+            case 'melodic':
+                $scale = new MelodicMinorScale($tonic);
+                break;
+            default:
+                $scale = new MajorScale($tonic);
+        }
+
+        $initialinput = (string) $scale;
+
+        $moduleparams = array(
+            array(
+                'inputname'        => $tonicletterselectid,
+                'optionsxml'       => $question->musictheory_optionsxml,
+                'readonly'         => true,
+                'initialinput'     => $initialinput,
+                'correctresponse'  => null,
+                'correctrespstr'   => get_string('correctansweris', 'qtype_musictheory'),
+                'additionalparams' => array(
+                )
+            )
+        );
+
+        $qtypemod = 'moodle-qtype_musictheory-musictheoryqtype';
+        $rendernamespace = 'M.qtype_musictheory.musictheoryqtype.initQuestionRender';
+        $PAGE->requires->yui_module($qtypemod, $rendernamespace, $moduleparams);
+
+        $selectoptionsletter = array(
+            ''  => get_string('selectanoption', 'qtype_musictheory'),
+            'A' => get_string('notea', 'qtype_musictheory'),
+            'B' => get_string('noteb', 'qtype_musictheory'),
+            'C' => get_string('notec', 'qtype_musictheory'),
+            'D' => get_string('noted', 'qtype_musictheory'),
+            'E' => get_string('notee', 'qtype_musictheory'),
+            'F' => get_string('notef', 'qtype_musictheory'),
+            'G' => get_string('noteg', 'qtype_musictheory'),
+        );
+
+        $letterselectattributes = array(
+            'name' => $tonicletterselectid,
+            'id'   => $tonicletterselectid,
+        );
+
+        $feedbackimg = $this->feedback_image(1);
+
+        $selectoptionsacc = array(
+            ''  => get_string('selectanoption', 'qtype_musictheory'),
+            'n' => '(' . '&#9838;' . ')',
+            '#' => '&#9839;',
+            'b' => '&#9837;',
+        );
+
+        $accselectattributes = array(
+            'name' => $tonicaccselectid,
+            'id'   => $tonicaccselectid
+        );
+
+        $selectoptionsscaletype = array();
+        $selectoptionsscaletype[''] = get_string('selectanoption', 'qtype_musictheory');
+        foreach ($question->musictheory_possiblescalesinresponse as $scaletype) {
+            $selectoptionsscaletype[$scaletype] = strtolower(get_string('scaletype_' . $scaletype, 'qtype_musictheory'));
+        }
+
+        $scaletypeselectattributes = array(
+            'name' => $scaletypeselectid,
+            'id'   => $scaletypeselectid
+        );
+
+        if ($options->correctness) {
+            if (!is_null($currtonicletter)) {
+               if ($currtonicletter === $corrresp['musictheory_answer_tonicletter']) {
+                   $letterselectattributes['class'] = $this->feedback_class(1);
+               }
+               else {
+                   $letterselectattributes['class'] = $this->feedback_class(0);
+               }
+            }
+            if (!is_null($currtonicacc)) {
+               if ($currtonicacc === $corrresp['musictheory_answer_tonicacc']) {
+                   $accselectattributes['class'] = $this->feedback_class(1);
+               }
+               else {
+                   $accselectattributes['class'] = $this->feedback_class(0);
+               }
+            }
+            if (!is_null($currscaletype)) {
+               if ($currscaletype === $corrresp['musictheory_answer_scaletype']) {
+                   $scaletypeselectattributes['class'] = $this->feedback_class(1);
+               }
+               else {
+                   $scaletypeselectattributes['class'] = $this->feedback_class(0);
+               }
+            }
+        }
+
+        if ($options->readonly) {
+            $letterselectattributes['disabled'] = 'true';
+            $accselectattributes['disabled'] = 'true';
+            $scaletypeselectattributes['disabled'] = 'true';
+        }
+
+        $questiontext = $question->format_questiontext($qa);
+        $result = html_writer::tag('div', $questiontext, array('class' => 'qtext'));
+
+        $nonjavascriptdivattr = array(
+            'id' => 'musictheory_div_replacedbycanvas_' . $tonicletterselectid
+        );
+
+        $musicquestionastext = $initialinput;
+        $musicquestionastext = str_replace('#', get_string('acc_sharp', 'qtype_musictheory'), $musicquestionastext);
+        $musicquestionastext = str_replace('b', get_string('acc_b', 'qtype_musictheory'), $musicquestionastext);
+        $musicquestionastext = str_replace('n', get_string('acc_n', 'qtype_musictheory'), $musicquestionastext);
+        $musicquestionastext = str_replace('x', get_string('acc_x', 'qtype_musictheory'), $musicquestionastext);
+        $musicquestionastext = str_replace('bb', get_string('acc_bb', 'qtype_musictheory'), $musicquestionastext);
+
+        $result .= html_writer::tag('div', '<b>' . $musicquestionastext . '</b>', $nonjavascriptdivattr);
+
+        $javascriptdivattr = array(
+            'id'    => 'musictheory_div_canvas_' . $tonicletterselectid,
+            'class' => 'ablock',
+            'style' => 'display:none'
+        );
+        $result .= html_writer::tag('div', '', $javascriptdivattr);
+
+        $input = html_writer::select($selectoptionsletter, $tonicletterselectid, $currtonicletter, true, $letterselectattributes);
+        $input .= html_writer::select($selectoptionsacc, $tonicaccselectid, $currtonicacc, true, $accselectattributes);
+        $input .= html_writer::select($selectoptionsscaletype, $scaletypeselectid, $currscaletype, true, $scaletypeselectattributes);
+
+        $result .= html_writer::start_tag('div', array('class' => 'ablock'));
+        $result .= $input;
+        $result .= html_writer::end_tag('div');
+
+        if ($qa->get_state() == question_state::$invalid) {
+            $currenttonicletter = $qa->get_last_qt_var('musictheory_answer_tonicletter');
+            $currenttonicacc = $qa->get_last_qt_var('musictheory_answer_tonicacc');
+            $currentscaletype = $qa->get_last_qt_var('musictheory_answer_scaletype');
+            $answerarray = array(
+                'musictheory_answer_tonicletter' => $currenttonicletter,
+                'musictheory_answer_tonicacc'    => $currenttonicacc,
+                'musictheory_answer_scaletype'   => $currentscaletype,
+            );
+            $result .= html_writer::nonempty_tag('div', $question->get_validation_error($answerarray),
+                                                                                        array('class' => 'validationerror'));
+        }
+
+        return $result;
+    }
+
+    public function correct_response(question_attempt $qa) {
+        $question = $qa->get_question();
+        $correctresponsearray = $question->get_correct_response();
+        $letter = get_string('note' . strtolower($correctresponsearray['musictheory_answer_tonicletter']), 'qtype_musictheory');
+        $acc = ($correctresponsearray['musictheory_answer_tonicacc'] === '#') ? 'sharp' : $correctresponsearray['musictheory_answer_tonicacc'];
+        if ($correctresponsearray['musictheory_answer_tonicacc'] !== 'n') {
+            $accstr = get_string('acc_' . $acc, 'qtype_musictheory');
+        } else {
+            $accstr = '';
+        }
+        $scaletype = get_string('scaletype_' . $correctresponsearray['musictheory_answer_scaletype'], 'qtype_musictheory');
+        return get_string('correctansweris', 'qtype_musictheory') . ' ' .
+                $letter . $accstr . ' ' . strtolower($scaletype);
+    }
+
+}

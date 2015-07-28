@@ -23,6 +23,8 @@
         <xs:element name="interval-identify-random" type="interval-identify-random" />
         <xs:element name="scale-write" type="scale-write" />
         <xs:element name="scale-write-random" type="scale-write-random" />
+        <xs:element name="scale-identify" type="scale-identify" />
+        <xs:element name="scale-identify-random" type="scale-identify-random" />
         <xs:element name="chordquality-write" type="chordquality-write-identify" />
         <xs:element name="chordquality-write-random" type="chordquality-write-identify-random" />
         <xs:element name="chordquality-identify" type="chordquality-write-identify" />
@@ -63,8 +65,8 @@
 
   <xs:complexType name="keyboard-input-identify">
     <xs:all>
-	  <xs:element name="includestaticnote" type="xs:boolean" minOccurs="1" maxOccurs="1"/>
-	  <xs:element name="staticnote" type="note-regoptional" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="includestaticnote" type="xs:boolean" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="staticnote" type="note-regoptional" minOccurs="0" maxOccurs="1"/>
       <xs:element name="considerregister" type="xs:boolean" minOccurs="1" maxOccurs="1"/>
       <xs:element name="note" type="note-regoptional" minOccurs="1" maxOccurs="1"/>
     </xs:all>
@@ -157,16 +159,16 @@
   </xs:complexType>
 
   <xs:complexType name="scale-write">
-    <xs:all>
+    <xs:sequence>
       <xs:element name="clef" type="clef" minOccurs="1" maxOccurs="1" />
       <xs:element name="tonic" type="notereg" minOccurs="1" maxOccurs="1"/>
       <xs:element name="displaykeysignature" type="xs:boolean" minOccurs="1" maxOccurs="1"/>
       <xs:element name="scaletype" type="scaletype" minOccurs="1" maxOccurs="1" />
-    </xs:all>
+    </xs:sequence>
   </xs:complexType>
 
   <xs:complexType name="scale-write-random">
-    <xs:all>
+    <xs:sequence>
       <xs:element name="displaykeysignature" type="xs:boolean" minOccurs="1" maxOccurs="1"/>
       <xs:element name="clef-random" type="clef-random-choice" minOccurs="1" maxOccurs="1">
         <xs:unique name="unique-scale-clef">
@@ -180,7 +182,37 @@
           <xs:field xpath="."/>
         </xs:unique>
       </xs:element>
-    </xs:all>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="scale-identify">
+    <xs:complexContent>
+      <xs:extension base="scale-write">
+        <xs:sequence>
+          <xs:element name="possiblescalesinresponse" type="possible-scale-types" minOccurs="1" maxOccurs="1">
+            <xs:unique name="unique-scaleid-possiblescalesinresponse">
+              <xs:selector xpath="scaletype"/>
+              <xs:field xpath="."/>
+            </xs:unique>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="scale-identify-random">
+    <xs:complexContent>
+      <xs:extension base="scale-write-random">
+        <xs:sequence>
+          <xs:element name="possiblescalesinresponse" type="possible-scale-types" minOccurs="1" maxOccurs="1">
+            <xs:unique name="unique-scaleidrandom-possiblescalesinresponse">
+              <xs:selector xpath="scaletype"/>
+              <xs:field xpath="."/>
+            </xs:unique>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
   </xs:complexType>
 
   <xs:complexType name="chordquality-write-identify">
@@ -200,7 +232,7 @@
     </xs:sequence>
   </xs:complexType>
 
-    <xs:complexType name="chordquality-write-identify-random">
+  <xs:complexType name="chordquality-write-identify-random">
     <xs:all>
       <xs:element name="clef-random" type="clef-random-choice" minOccurs="1" maxOccurs="1">
         <xs:unique name="unique-chordquality-clef">
@@ -316,6 +348,12 @@
   <xs:complexType name="scaletype-random-choice">
     <xs:sequence>
       <xs:element name="scaletype" type="scaletype" minOccurs="1" maxOccurs="4" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="possible-scale-types">
+    <xs:sequence>
+      <xs:element name="possiblescaletype" type="scaletype" minOccurs="1" maxOccurs="4" />
     </xs:sequence>
   </xs:complexType>
 

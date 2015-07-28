@@ -19,13 +19,14 @@ below a given note.
 7) Interval identification: The respondent is asked to identify the quality and
 size of a given interval.
 8) Scale writing: The respondent is asked to enter a given scale.
-9) Chord quality writing: Given a chord root and quality (e.g. 'G major', 'D minor'),
+9) Scale identification: The respondent is asked to identify a given scale.
+10) Chord quality writing: Given a chord root and quality (e.g. 'G major', 'D minor'),
 the respondent is asked to enter corresponding chord on the staff.
-10) Chord quality identification: The respondent is asked to identify the quality
+11) Chord quality identification: The respondent is asked to identify the quality
 of a given chord (e.g. 'major', 'minor', etc.).
-11) Harmonic function writing: The respondent is asked to enter a given harmonic
+12) Harmonic function writing: The respondent is asked to enter a given harmonic
 function in a given key (e.g. 'IV in D minor').
-12) Harmonic function identification: The respondent is asked to identify the
+13) Harmonic function identification: The respondent is asked to identify the
 harmonic function of a given chord in a given key.
 
 When Javascript is enabled, answers are entered and displayed in an HTML5 graphical

@@ -32,16 +32,19 @@
  * provider.
  * @param {GUIState.Staff} staff The staff to be rendered.
  * @param {Number} staffID The zero-based ID of the staff to be rendered.
+ * @param {Boolean} accCarryOver Indicates whether accidentals are to carry
+ * over
  * @return {undefined}
  */
 MusThGUI.Render.StaffRend = function(can, coordMgr, glyphProvider, staff,
-    staffID) {
+    staffID, accCarryOver) {
 
   this.can = can;
   this.staff = staff;
   this.coordMgr = coordMgr;
   this.staffID = staffID;
   this.glyphProvider = glyphProvider;
+  this.accCarryOver = accCarryOver;
 
 };
 
@@ -150,7 +153,8 @@ MusThGUI.Render.StaffRend.prototype.drawNoteColumns = function() {
   var i;
   for (i = 0; i < this.staff.noteColumns.length; i++) {
     noteColRend = new MusThGUI.Render.NoteColRend(parent.can, parent.coordMgr,
-        parent.glyphProvider, parent.staff, parent.staffID, i);
+        parent.glyphProvider, parent.staff, parent.staffID, i,
+        parent.accCarryOver);
     noteColRend.draw();
   }
 

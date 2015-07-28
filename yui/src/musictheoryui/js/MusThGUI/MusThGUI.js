@@ -35,7 +35,7 @@
  2) Define an XML string that will describe the interface's initial state. Here
  is an example that would be well-suited for a scale question:
 
-	var initXML = '<MusThGUI>' +
+	var initXML = '<MusThGUI canvasEditable="true" accidentalCarryOver="true">' +
 	'<StaffSystem maxLedgerLines="3">' +
 	'<Staff clef="treble">' +
 	'<KeySign totalAccColumns="7" >' +

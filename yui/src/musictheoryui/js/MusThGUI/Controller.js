@@ -33,19 +33,16 @@
  * to send the current canvas state back the caller, whenever the state changes.
  * This function should accept one argument which provides the current state of
  * the canvas, as an xml string.
- * @param {Boolean} editable Specifies whether the user can change the UI
- * after initialization.
  * @return {undefined}
  */
-MusThGUI.Control.Controller = function(canID, stateXML, callBackFunc,
-		editable) {
+MusThGUI.Control.Controller = function(canID, stateXML, callBackFunc) {
 
 	this.canID = canID;
 	this.canNode = Y.one('#' + canID);
 	this.html5Can = this.canNode.getDOMNode();
 	this.ctx = this.html5Can.getContext('2d');
 	this.stateXML = Y.XML.parse(stateXML);
-	this.state = new MusThGUI.GUIState.State(editable);
+	this.state = new MusThGUI.GUIState.State();
 	this.state.setState(this.stateXML);
 	this.coordMgr = new MusThGUI.Render.CoordManager(this.state);
 	this.html5Can.width = this.coordMgr.canvasWidth;

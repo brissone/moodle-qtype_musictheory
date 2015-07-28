@@ -41,11 +41,11 @@ $string['chordquality-random'] = "Espèces d'accord possibles";
 $string['clef'] = 'Clef';
 $string['clef-random'] = 'Clefs possibles';
 $string['considerregister'] = 'Inclure le registre';
-$string['considerregister_help'] = "Indique si le registre de la note devrait
-    être inclu dans la question.";
+$string['considerregister_help'] = 'Indique si le registre de la note devrait
+    être inclu dans la question.';
 $string['includealterations'] = 'Inclure les altérations';
-$string['includealterations_help'] = "Indique si les altérations devraient être
- inclues dans la question.";
+$string['includealterations_help'] = 'Indique si les altérations devraient être
+ inclues dans la question.';
 $string['includestaticnote'] = 'Inclure une note fixe';
 $string['displaykeysignature'] = "Afficher l'armature";
 $string['direction'] = 'Direction';
@@ -69,6 +69,7 @@ $string['questiontext_help'] = "Ce champ n'est pas requis. Si vous le laissez vi
  ce texte replacera celui généré automatiquement.";
 $string['rootposition'] = '[Position fondamentale]';
 $string['scaletype-random'] = 'Types de gamme possibles';
+$string['scaletype-random'] = 'Types de gamme possibles dans la réponse';
 $string['size-random'] = 'Noms possibles';
 $string['tonic'] = 'Tonique';
 $string['updatemusicqtype'] = 'Mettre les options à jour';
@@ -89,6 +90,8 @@ $string['qtype_interval-identify'] = 'Identifier un intervalle';
 $string['qtype_interval-identify-random'] = 'Identifier un intervalle (aléatoire)';
 $string['qtype_scale-write'] = 'Entrer une gamme';
 $string['qtype_scale-write-random'] = 'Entrer une gamme (aléatoire)';
+$string['qtype_scale-identify'] = 'Identifier une gamme';
+$string['qtype_scale-identify-random'] = 'Identifier une gamme (aléatoire)';
 $string['qtype_chordquality-write'] = "Entrer une espèce d'accord";
 $string['qtype_chordquality-write-random'] = "Entrer une espèce d'accord (aléatoire)";
 $string['qtype_chordquality-identify'] = "Identifier une espèce d'accord";
@@ -99,27 +102,27 @@ $string['qtype_harmonicfunction-identify'] = 'Identifier une fonction harmonique
 $string['qtype_harmonicfunction-identify-random'] = 'Identifier une fonction harmonique (aléatoire)';
 
 // Edit form - grading strategy options and help.
-$string['musictheory_gradingstrategy'] = "Stragégie de correction";
-$string['musictheory_gradingstrategy_help'] = "<p>La stratégie de correction indique comment
+$string['musictheory_gradingstrategy'] = 'Stragégie de correction';
+$string['musictheory_gradingstrategy_help'] = '<p>La stratégie de correction indique comment
  la réponse sera corrigée.</p>
  <p><b>Tout ou rien</b>: La réponse est comparée à la solution. Si la réponse est correcte,
  une note parfaite est donnée. Si la réponse est incorrecte, une note de zéro est donnée.
- </p>";
-$string['musictheory_gradingstrategy_scale-write'] = "Stragégie de correction";
-$string['musictheory_gradingstrategy_scale-write_help'] = "<p>La stratégie de correction indique comment
+ </p>';
+$string['musictheory_gradingstrategy_scale-write'] = 'Stragégie de correction';
+$string['musictheory_gradingstrategy_scale-write_help'] = '<p>La stratégie de correction indique comment
  la réponse sera corrigée.</p>
  <p><b>Tout ou rien</b>: La réponse est comparée à la solution. Si la réponse est correcte,
  une note parfaite est accordée. Si la réponse est incorrecte, une note de zéro est donnée.
  </p>
  <p><b>Crédit partiel pour chaque note de gamme correcte</b>:
  Cette stratégie de correction divise la note de question par le nombre de notes de gamme à
- entrer, et accorde une note partielle pour chaque note de gamme correcte.</p>";
-$string['qtype_musictheory_strategy_all_or_nothing'] = "Tout ou rien";
-$string['qtype_musictheory_strategy_chordqualitywrite_allornothing'] = "Tout ou rien";
-$string['qtype_musictheory_strategy_harmonicfunctionwrite_allornothing'] = "Tout ou rien";
-$string['qtype_musictheory_strategy_harmonicfunctionid_allornothing'] = "Tout ou rien";
-$string['qtype_musictheory_strategy_note_allornothing'] = "Tout ou rien";
-$string['qtype_musictheory_strategy_scale_creditbynote'] = "Crédit partiel pour chaque note de gamme correcte";
+ entrer, et accorde une note partielle pour chaque note de gamme correcte.</p>';
+$string['qtype_musictheory_strategy_all_or_nothing'] = 'Tout ou rien';
+$string['qtype_musictheory_strategy_chordqualitywrite_allornothing'] = 'Tout ou rien';
+$string['qtype_musictheory_strategy_harmonicfunctionwrite_allornothing'] = 'Tout ou rien';
+$string['qtype_musictheory_strategy_harmonicfunctionid_allornothing'] = 'Tout ou rien';
+$string['qtype_musictheory_strategy_note_allornothing'] = 'Tout ou rien';
+$string['qtype_musictheory_strategy_scale_creditbynote'] = 'Crédit partiel pour chaque note de gamme correcte';
 
 // Note names.
 $string['notec'] = 'Do';
@@ -280,33 +283,38 @@ $string['hftype_aug6th'] = 'Sixte augmentée';
 $string['hftype_extendeddom'] = 'Neuvième, onzième ou treizième de dominante';
 
 // Edit form validation.
-$string['validation_noteoutsidestaff'] = "Le registre de cette note se situe en
- dehors de la portée avec la clef indiquée.";
-$string['validation_noteoutsidekeyboard'] = "Cette note est hors des limites du clavier.";
+$string['validation_noteoutsidestaff'] = 'Le registre de cette note se situe en
+ dehors de la portée avec la clef indiquée.';
+$string['validation_noteoutsidekeyboard'] = 'Cette note est hors des limites du clavier.';
+$string['validation_samestaticandgivennote'] = 'La note de départ et la réponse ne peuvent pas correspondre à la même touche ' .
+        'sur le clavier.';
 $string['validation_qualitymismatch'] = "Cette combinaison de nom d'intervalle et de qualificatif est non valide.";
 $string['validation_harmonicfunctionnotsupported'] = "Cette fonction harmonique n'est pas supportée ou est invalide.";
 $string['validation_harmonicfunctiontypenotselected'] = 'Le type de fonction correspondant à la fonction harmonique spécifée doit être sélectionné.';
 $string['validation_invalidchordquality'] = "Cette espèce d'accord ne peut pas être construit sur cette fondamentale.";
-$string['validation_invalidinterval_above'] = "Cet intervalle ne peut être écrit au-dessus de la note de départ.";
-$string['validation_invalidinterval_below'] = "Cet intervalle ne peut être écrit au-dessous de la note de départ.";
-$string['validation_intervaloutsidestaff'] = "Le registre de la note de départ produit un
- intervalle qui en dehors de la portée avec la clef indiquée.";
+$string['validation_invalidinterval_above'] = 'Cet intervalle ne peut être écrit au-dessus de la note de départ.';
+$string['validation_invalidinterval_below'] = 'Cet intervalle ne peut être écrit au-dessous de la note de départ.';
+$string['validation_intervaloutsidestaff'] = 'Le registre de la note de départ produit un
+ intervalle qui en dehors de la portée avec la clef indiquée.';
 $string['validation_interval_novalidcombo'] = "Les options d'intervalles possibles sélectionnées
  ne produisent pas au moins un type d'interval valide.";
-$string['validation_scale_invalidtonic'] = "Tonique non valide pour le type de gamme sélectionné.";
-$string['validation_scaleoutsidestaff'] = "Le registre de la note de départ produit une gamme
- qui en dehors de la portée avec la clef indiquée";
+$string['validation_scale_invalidtonic'] = 'Tonique non valide pour le type de gamme sélectionné.';
+$string['validation_scaleoutsidestaff'] = 'Le registre de la note de départ produit une gamme
+ qui en dehors de la portée avec la clef indiquée';
+$string['validation_possiblescaletypenotselected'] = 'Le type de gamme correspondant au type de gamme spécifé doit être sélectionné.';
+$string['validation_possiblescaletypesnotselected_random'] = 'Les types de gamme possibles dans la réponse ' .
+        'doivent inclure tous les types de gamme possibles';
 
 // Question rendering.
 $string['correctansweris'] = 'La réponse correcte est:';
 $string['correctansweris_morethanone'] = "L'une des réponses correctes possibles est:";
-$string['javascriptrequired'] = "Ce texte est normalement remplacé par un interface
- graphique, qui requiert que Javascript sois activé dans votre navigateur.";
-$string['selectanoption'] = "[Pas de tonique secondaire]";
-$string['selectanoption'] = "Sélectionnez";
-$string['selectakey'] = "Sélectionnez une tonalité";
-$string['selectasize'] = "Sélectionnez un nom";
-$string['selectaquality'] = "Sélectionnez un qualificatif";
+$string['javascriptrequired'] = 'Ce texte est normalement remplacé par un interface
+ graphique, qui requiert que Javascript sois activé dans votre navigateur.';
+$string['selectanoption'] = '[Pas de tonique secondaire]';
+$string['selectanoption'] = 'Sélectionnez';
+$string['selectakey'] = 'Sélectionnez une tonalité';
+$string['selectasize'] = 'Sélectionnez un nom';
+$string['selectaquality'] = 'Sélectionnez un qualificatif';
 $string['trebleclef'] = 'Clef de sol';
 $string['bassclef'] = 'Clef de fa';
 $string['altoclef'] = "Clef d'ut (alto)";
@@ -327,6 +335,7 @@ $string['questiontext_interval_identify'] = "Identifiez l'intervalle suivant";
 $string['questiontext_scale_write'] = 'Entrez la gamme suivante en direction ascendante';
 $string['questiontext_scale_write_melodic'] = 'Entrez la gamme suivante en direction
  ascendante et descendante';
+$string['questiontext_scale_identify'] = 'Identifiez la gamme suivante';
 $string['questiontext_chordquality_write'] = "Entrez l'accord suivant";
 $string['questiontext_chordquality_identify'] = "Identifiez la note fondamentale et l'espèce de l'accord suivant";
 $string['questiontext_harmonicfunction_write'] = 'Entrez la fonction harmonique suivante';
@@ -348,13 +357,13 @@ $string['chordquality_write_questionasui'] = "Entrée de réponse réponse d'esp
 $string['chordquality_write_questionasui_help'] = "<p>Entrez les notes de l'accord en cliquant sur la
  portée, après avoir sélectionné l'altération voulue avec la barre d'outils de droite. Pour
  effacer une note, cliquez sur celle-ci à nouveau.</p>";
-$string['harmonicfunction_write_questionastext'] = "Entrée de réponse de fonction harmonique";
+$string['harmonicfunction_write_questionastext'] = 'Entrée de réponse de fonction harmonique';
 $string['harmonicfunction_write_questionastext_help'] = "<p>Entrez les notes de la fonction harmonique, séparées par des
  virgules, sans espaces. Utilisez la syntaxe suivante:</p>
  <p>[Nom de note en majuscule (do = 'C', ré = 'D', mi = 'E', fa = 'F', sol = 'G', la = 'A', si = 'B')][Altération
  (bécarre = 'n', dièse = '#', bémol = 'b', double-dièse = 'x', double-bémol = 'bb')]4, ... </p>
  <p>Exemple aléatoire: <b>réponse=>Cn4,En4,G#4</b></p>";
-$string['harmonicfunction_write_questionasui'] = "Entrée de réponse de fonction harmonique";
+$string['harmonicfunction_write_questionasui'] = 'Entrée de réponse de fonction harmonique';
 $string['harmonicfunction_write_questionasui_help'] = "<p>Entrez les notes de la fonction harmonique en cliquant sur la
  portée, après avoir sélectionné l'altération voulue avec la barre d'outils de droite. Pour
  effacer une note, cliquez sur celle-ci à nouveau.</p>";
@@ -395,7 +404,7 @@ $string['interval_write_questionasui'] = "Entrée de réponse d'intervalle";
 $string['interval_write_questionasui_help'] = "<p>Entrez la note de réponse en cliquant sur la
  portée, après avoir sélectionné l'altération voulue avec la barre d'outils de droite. Pour
  effacer la note, cliquez sur celle-ci à nouveau.</p>";
-$string['scale_write_questionastext'] = "Entrée de réponse de gamme";
+$string['scale_write_questionastext'] = 'Entrée de réponse de gamme';
 $string['scale_write_questionastext_help'] = "<p>Entrez les notes de la gamme, séparées par des
  virgules, sans espaces, et en incluant la tonique déjà affichée. Utilisez la syntaxe
  suivante:</p>
@@ -404,7 +413,7 @@ $string['scale_write_questionastext_help'] = "<p>Entrez les notes de la gamme, s
  [Registre (un chiffre entre 2 et 6, suivant la numérotation
  américaine, e.g. La 440Hz = 4)], ... </p>
  <p>Exemple aléatoire: <b>Tonique = An4,  réponse=>An4,Bb4,C#5,D#5,E#5,F#5,G#5,An5</b></p>";
-$string['scale_write_questionasui'] = "Entrée de réponse de gamme";
+$string['scale_write_questionasui'] = 'Entrée de réponse de gamme';
 $string['scale_write_questionasui_help'] = "<p>Entrez les notes de la gamme en cliquant sur la
  portée, après avoir sélectionné l'altération voulue avec la barre d'outils de droite. Pour
  effacer une note, cliquez sur celle-ci à nouveau.</p>
@@ -418,8 +427,8 @@ $string['validationerror_note_identify'] = "Réponse incomplète. Il faut sélec
  nom de la note, l'altération et le registre.";
 $string['validationerror_note_identify_ltr_acc'] = "Réponse incomplète. Il faut sélectionner le
  nom de la note et l'altération.";
-$string['validationerror_note_identify_ltr_reg'] = "Réponse incomplète. Il faut sélectionner le
- nom de la note et le registre.";
+$string['validationerror_note_identify_ltr_reg'] = 'Réponse incomplète. Il faut sélectionner le
+ nom de la note et le registre.';
 $string['validationerror_empty'] = 'Veuillez entrer une réponse.';
 $string['validationerror_incompletechordquality'] = 'Réponse incomplète. Nombre de notes dans cet accord';
 $string['validationerror_harmonicfunction_identify'] = 'Réponse incomplète. Tous les menus déroulants doivent être sélectionnés.';
@@ -431,5 +440,6 @@ $string['validationerror_scale_incomplete'] = 'Réponse incomplète. Il faut ent
  8 notes, incluant la tonique fournie.';
 $string['validationerror_scale_incomplete_melodic'] = 'Réponse incomplète. Il faut entrer une total de
  15 notes, incluant la tonique fournie.';
+$string['validationerror_scale_identify'] = 'Réponse incomplète. Tous les menus déroulants doivent être sélectionnés.';
 $string['validationerror_whitespace'] = 'Syntaxe de réponse non valide: veuillez enlever tous les
     espaces dans votre réponse.';

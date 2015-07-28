@@ -43,10 +43,13 @@
  * @param {Number} accPos A number indicating whether and how much an
  * accidental should be offset to the left of the note (e.g. 0 = no offset, 1 =
  * one offset level to the left, 2 = two offset levels to teh left, etc.).
+ * @param {Boolean} displayAccPar Indicates whether the note's accidental should
+ * be parenthesized.
  * @return {undefined}
  */
 MusThGUI.Render.NoteRend = function(can, coordMgr, glyphProvider, note,
-    noteColID, staffID, clef, keySignTotalAccColumns, displayAcc, accPos) {
+    noteColID, staffID, clef, keySignTotalAccColumns, displayAcc, accPos,
+    displayAccPar) {
 
   this.can = can;
   this.coordMgr = coordMgr;
@@ -57,6 +60,7 @@ MusThGUI.Render.NoteRend = function(can, coordMgr, glyphProvider, note,
   this.keySignTotalAccColumns = keySignTotalAccColumns;
   this.displayAcc = displayAcc;
   this.accPos = accPos;
+  this.displayAccPar = displayAccPar;
   this.accColWidth = 15;
   this.glyphProvider = glyphProvider;
 
@@ -139,7 +143,7 @@ MusThGUI.Render.NoteRend.prototype.draw = function(noteOffset) {
 
   // Draw accidental
   img = this.glyphProvider.getAccidental(this.note.accidental,
-      this.note.editable, false);
+      this.note.editable, false, this.displayAccPar);
   if (this.displayAcc) {
     if (this.note.accidental === '#') {
       ctx.drawImage(img, notePos.x - (img.width) - 6 -
@@ -158,7 +162,7 @@ MusThGUI.Render.NoteRend.prototype.draw = function(noteOffset) {
           this.accPos * this.accColWidth, notePos.y - 5);
     }
     else if (this.note.accidental === 'n') {
-      ctx.drawImage(img, notePos.x - (img.width) - 7 -
+      ctx.drawImage(img, notePos.x - (img.width) - 4 -
           this.accPos * this.accColWidth, notePos.y - 15);
     }
   }

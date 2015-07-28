@@ -48,7 +48,7 @@ NS.questionRender = {};
  * @param {Array} params An array containing various rendering parameters.
  * @return {Undefined}
  */
-NS.initQuestionRender = function(params) {
+NS.initQuestionRender = function (params) {
 
   var HTMLInputID = params.inputname,
       optionsXML = params.optionsxml,
@@ -58,12 +58,12 @@ NS.initQuestionRender = function(params) {
       correctRespStr = params.correctrespstr,
       additionalParams = params.additionalparams,
       options = NS.questionRender.convertOptionsXMLtoObjectLiteral(optionsXML,
-      additionalParams);
+          additionalParams);
 
   NS.questionRender.renderQuestion(HTMLInputID, options,
       readOnly, initialInput);
 
-  if (correctResponse !== null && typeof(correctResponse) !== 'undefined' &&
+  if (correctResponse !== null && typeof (correctResponse) !== 'undefined' &&
       correctResponse !== '') {
     NS.questionRender.renderCorrectResponse(HTMLInputID, options,
         correctResponse,
@@ -85,7 +85,7 @@ NS.initQuestionRender = function(params) {
  * MusThGUI canvas, formatted in accordance with the music question type.
  * @return {Undefined}
  */
-NS.questionRender.renderQuestion = function(HTMLInputID, options,
+NS.questionRender.renderQuestion = function (HTMLInputID, options,
     readOnly, initialInput) {
 
   var YInput,
@@ -130,19 +130,17 @@ NS.questionRender.renderQuestion = function(HTMLInputID, options,
   options.containsUserInput = true;
 
   xmlConverter = new NS.XMLConverter(options);
-  callBack = function(stateXML) {
+  callBack = function (stateXML) {
     YInput.set('value', xmlConverter.getCanvasTextOutput(stateXML));
   };
 
   stateXML = xmlConverter.getCanvasXML(initialInput);
 
   if (options.musicQType === 'keyboard-input') {
-    new KeyboardInput(displayCanvasID, stateXML, callBack,
-        options.editable);
+    new KeyboardInput(displayCanvasID, stateXML, callBack);
   }
   else {
-    new MusThGUI(displayCanvasID, stateXML, callBack,
-        options.editable);
+    new MusThGUI(displayCanvasID, stateXML, callBack);
   }
 
   canvasDiv.show();
@@ -162,7 +160,7 @@ NS.questionRender.renderQuestion = function(HTMLInputID, options,
  * answer is rendered.
  * @return {Undefined}
  */
-NS.questionRender.renderCorrectResponse = function(HTMLInputID, options,
+NS.questionRender.renderCorrectResponse = function (HTMLInputID, options,
     correctResponse, correctResponseStr) {
 
   var YInput,
@@ -194,17 +192,15 @@ NS.questionRender.renderCorrectResponse = function(HTMLInputID, options,
   options.containsUserInput = false;
 
   xmlConverter = new NS.XMLConverter(options);
-  callBack = function() {
+  callBack = function () {
   };
 
   stateXML = xmlConverter.getCanvasXML(correctResponse);
   if (options.musicQType === 'keyboard-input') {
-    new KeyboardInput(correctCanvasID, stateXML, callBack,
-        options.editable);
+    new KeyboardInput(correctCanvasID, stateXML, callBack);
   }
   else {
-    new MusThGUI(correctCanvasID, stateXML, callBack,
-        options.editable);
+    new MusThGUI(correctCanvasID, stateXML, callBack);
   }
 
 };
@@ -219,7 +215,7 @@ NS.questionRender.renderCorrectResponse = function(HTMLInputID, options,
  * not stored in the saved question settings
  * @return {Object literal}
  */
-NS.questionRender.convertOptionsXMLtoObjectLiteral = function(optionsXML,
+NS.questionRender.convertOptionsXMLtoObjectLiteral = function (optionsXML,
     additionalParams) {
 
   var parsedXML = Y.XML.parse(optionsXML),
@@ -262,11 +258,12 @@ NS.questionRender.convertOptionsXMLtoObjectLiteral = function(optionsXML,
           optionsNode.getElementsByTagName('letter')[0].firstChild.nodeValue;
       options.givenNote.acc =
           optionsNode.getElementsByTagName(
-          'accidental')[0].firstChild.nodeValue;
+              'accidental')[0].firstChild.nodeValue;
       options.givenNote.reg =
           optionsNode.getElementsByTagName('register')[0].firstChild.nodeValue;
       break;
     case 'scale-write':
+    case 'scale-identify':
       options.clef = optionsNode.getElementsByTagName(
           'clef')[0].firstChild.nodeValue;
       options.givenNote = [];
@@ -274,12 +271,12 @@ NS.questionRender.convertOptionsXMLtoObjectLiteral = function(optionsXML,
           optionsNode.getElementsByTagName('letter')[0].firstChild.nodeValue;
       options.givenNote.acc =
           optionsNode.getElementsByTagName(
-          'accidental')[0].firstChild.nodeValue;
+              'accidental')[0].firstChild.nodeValue;
       options.givenNote.reg =
           optionsNode.getElementsByTagName('register')[0].firstChild.nodeValue;
       options.includeKS =
           optionsNode.getElementsByTagName(
-          'displaykeysignature')[0].firstChild.nodeValue;
+              'displaykeysignature')[0].firstChild.nodeValue;
       options.includeKS = (options.includeKS === 'true');
       options.scaleType = optionsNode.getElementsByTagName(
           'scaletype')[0].firstChild.nodeValue;
@@ -298,7 +295,7 @@ NS.questionRender.convertOptionsXMLtoObjectLiteral = function(optionsXML,
           'key')[0].firstChild.nodeValue;
       options.includeKS =
           optionsNode.getElementsByTagName(
-          'displaykeysignature')[0].firstChild.nodeValue;
+              'displaykeysignature')[0].firstChild.nodeValue;
       options.includeKS = (options.includeKS === 'true');
       break;
     case 'harmonicfunction-identify':
@@ -308,7 +305,7 @@ NS.questionRender.convertOptionsXMLtoObjectLiteral = function(optionsXML,
           'key')[0].firstChild.nodeValue;
       options.includeKS =
           optionsNode.getElementsByTagName(
-          'displaykeysignature')[0].firstChild.nodeValue;
+              'displaykeysignature')[0].firstChild.nodeValue;
       options.includeKS = (options.includeKS === 'true');
       break;
   }
@@ -326,7 +323,7 @@ NS.editForm = {};
  * @method initEditForm
  * @return {Undefined}
  */
-NS.initEditForm = function() {
+NS.initEditForm = function () {
 
   NS.editForm.setOptionVisibility();
   NS.editForm.setFormOptionListeners();
@@ -339,10 +336,10 @@ NS.initEditForm = function() {
  * @method setFormOptionListeners
  * @return {Undefined}
  */
-NS.editForm.setFormOptionListeners = function() {
+NS.editForm.setFormOptionListeners = function () {
 
   Y.all(
-      '#id_musictheory_musicqtype').on('change', function() {
+      '#id_musictheory_musicqtype').on('change', function () {
     var typeBtnNode = Y.one('#' + 'id_musictheory_updatemusicqtype');
     if (typeBtnNode) {
       typeBtnNode.simulate('click');
@@ -357,7 +354,7 @@ NS.editForm.setFormOptionListeners = function() {
  * @method setOptionVisibility
  * @return {Undefined}
  */
-NS.editForm.setOptionVisibility = function() {
+NS.editForm.setOptionVisibility = function () {
 
   var typeBtnNode = Y.one('#' + 'id_musictheory_updatemusicqtype');
   if (typeBtnNode) {
@@ -377,86 +374,86 @@ NS.editForm.setOptionVisibility = function() {
  * @return {Array} Returns an array of note names listing the accidentals in
  * the key signature. If the tonic and mode are invalid, returns null.
  */
-NS.getKeySign = function(key, clef) {
+NS.getKeySign = function (key, clef) {
 
-	var tonic = key.substring(0, key.length - 1),
-			mode = key.substr(key.length - 1, 1),
-			trebleSharp = new Array('F#5', 'C#5', 'G#5', 'D#5', 'A#4', 'E#5', 'B#4'),
-			bassSharp = new Array('F#3', 'C#3', 'G#3', 'D#3', 'A#2', 'E#3', 'B#2'),
-			altoSharp = new Array('F#4', 'C#4', 'G#4', 'D#4', 'A#3', 'E#4', 'B#3'),
-			tenorSharp = new Array('F#3', 'C#4', 'G#3', 'D#4', 'A#3', 'E#4', 'B#3'),
-			trebleFlat = new Array('Bb4', 'Eb5', 'Ab4', 'Db5', 'Gb4', 'Cb5', 'Fb4'),
-			bassFlat = new Array('Bb2', 'Eb3', 'Ab2', 'Db3', 'Gb2', 'Cb3', 'Fb2'),
-			altoFlat = new Array('Bb3', 'Eb4', 'Ab3', 'Db4', 'Gb3', 'Cb4', 'Fb3'),
-			tenorFlat = new Array('Bb3', 'Eb4', 'Ab3', 'Db4', 'Gb3', 'Cb4', 'Fb3'),
-			sharpOrFlat = [],
-			accList = [],
-			numAccMajor = [],
-			relativeMajorKeys = [],
-			majorTonic,
-			acc;
+  var tonic = key.substring(0, key.length - 1),
+      mode = key.substr(key.length - 1, 1),
+      trebleSharp = new Array('F#5', 'C#5', 'G#5', 'D#5', 'A#4', 'E#5', 'B#4'),
+      bassSharp = new Array('F#3', 'C#3', 'G#3', 'D#3', 'A#2', 'E#3', 'B#2'),
+      altoSharp = new Array('F#4', 'C#4', 'G#4', 'D#4', 'A#3', 'E#4', 'B#3'),
+      tenorSharp = new Array('F#3', 'C#4', 'G#3', 'D#4', 'A#3', 'E#4', 'B#3'),
+      trebleFlat = new Array('Bb4', 'Eb5', 'Ab4', 'Db5', 'Gb4', 'Cb5', 'Fb4'),
+      bassFlat = new Array('Bb2', 'Eb3', 'Ab2', 'Db3', 'Gb2', 'Cb3', 'Fb2'),
+      altoFlat = new Array('Bb3', 'Eb4', 'Ab3', 'Db4', 'Gb3', 'Cb4', 'Fb3'),
+      tenorFlat = new Array('Bb3', 'Eb4', 'Ab3', 'Db4', 'Gb3', 'Cb4', 'Fb3'),
+      sharpOrFlat = [],
+      accList = [],
+      numAccMajor = [],
+      relativeMajorKeys = [],
+      majorTonic,
+      acc;
 
-	sharpOrFlat.Cn = 'sharp';
-	sharpOrFlat.Gn = 'sharp';
-	sharpOrFlat.Dn = 'sharp';
-	sharpOrFlat.An = 'sharp';
-	sharpOrFlat.En = 'sharp';
-	sharpOrFlat.Bn = 'sharp';
-	sharpOrFlat['F#'] = 'sharp';
-	sharpOrFlat['C#'] = 'sharp';
-	sharpOrFlat.Fn = 'flat';
-	sharpOrFlat.Bb = 'flat';
-	sharpOrFlat.Eb = 'flat';
-	sharpOrFlat.Ab = 'flat';
-	sharpOrFlat.Db = 'flat';
-	sharpOrFlat.Gb = 'flat';
-	sharpOrFlat.Cb = 'flat';
+  sharpOrFlat.Cn = 'sharp';
+  sharpOrFlat.Gn = 'sharp';
+  sharpOrFlat.Dn = 'sharp';
+  sharpOrFlat.An = 'sharp';
+  sharpOrFlat.En = 'sharp';
+  sharpOrFlat.Bn = 'sharp';
+  sharpOrFlat['F#'] = 'sharp';
+  sharpOrFlat['C#'] = 'sharp';
+  sharpOrFlat.Fn = 'flat';
+  sharpOrFlat.Bb = 'flat';
+  sharpOrFlat.Eb = 'flat';
+  sharpOrFlat.Ab = 'flat';
+  sharpOrFlat.Db = 'flat';
+  sharpOrFlat.Gb = 'flat';
+  sharpOrFlat.Cb = 'flat';
 
-	accList.treblesharp = trebleSharp;
-	accList.basssharp = bassSharp;
-	accList.altosharp = altoSharp;
-	accList.tenorsharp = tenorSharp;
-	accList.trebleflat = trebleFlat;
-	accList.bassflat = bassFlat;
-	accList.altoflat = altoFlat;
-	accList.tenorflat = tenorFlat;
+  accList.treblesharp = trebleSharp;
+  accList.basssharp = bassSharp;
+  accList.altosharp = altoSharp;
+  accList.tenorsharp = tenorSharp;
+  accList.trebleflat = trebleFlat;
+  accList.bassflat = bassFlat;
+  accList.altoflat = altoFlat;
+  accList.tenorflat = tenorFlat;
 
-	numAccMajor.Cn = 0;
-	numAccMajor.Gn = 1;
-	numAccMajor.Dn = 2;
-	numAccMajor.An = 3;
-	numAccMajor.En = 4;
-	numAccMajor.Bn = 5;
-	numAccMajor['F#'] = 6;
-	numAccMajor['C#'] = 7;
-	numAccMajor.Fn = 1;
-	numAccMajor.Bb = 2;
-	numAccMajor.Eb = 3;
-	numAccMajor.Ab = 4;
-	numAccMajor.Db = 5;
-	numAccMajor.Gb = 6;
-	numAccMajor.Cb = 7;
+  numAccMajor.Cn = 0;
+  numAccMajor.Gn = 1;
+  numAccMajor.Dn = 2;
+  numAccMajor.An = 3;
+  numAccMajor.En = 4;
+  numAccMajor.Bn = 5;
+  numAccMajor['F#'] = 6;
+  numAccMajor['C#'] = 7;
+  numAccMajor.Fn = 1;
+  numAccMajor.Bb = 2;
+  numAccMajor.Eb = 3;
+  numAccMajor.Ab = 4;
+  numAccMajor.Db = 5;
+  numAccMajor.Gb = 6;
+  numAccMajor.Cb = 7;
 
-	relativeMajorKeys.An = 'Cn';
-	relativeMajorKeys.En = 'Gn';
-	relativeMajorKeys.Bn = 'Dn';
-	relativeMajorKeys['F#'] = 'An';
-	relativeMajorKeys['C#'] = 'En';
-	relativeMajorKeys['G#'] = 'Bn';
-	relativeMajorKeys['D#'] = 'F#';
-	relativeMajorKeys['A#'] = 'C#';
-	relativeMajorKeys.Dn = 'Fn';
-	relativeMajorKeys.Gn = 'Bb';
-	relativeMajorKeys.Cn = 'Eb';
-	relativeMajorKeys.Fn = 'Ab';
-	relativeMajorKeys.Bb = 'Db';
-	relativeMajorKeys.Eb = 'Gb';
-	relativeMajorKeys.Ab = 'Cb';
+  relativeMajorKeys.An = 'Cn';
+  relativeMajorKeys.En = 'Gn';
+  relativeMajorKeys.Bn = 'Dn';
+  relativeMajorKeys['F#'] = 'An';
+  relativeMajorKeys['C#'] = 'En';
+  relativeMajorKeys['G#'] = 'Bn';
+  relativeMajorKeys['D#'] = 'F#';
+  relativeMajorKeys['A#'] = 'C#';
+  relativeMajorKeys.Dn = 'Fn';
+  relativeMajorKeys.Gn = 'Bb';
+  relativeMajorKeys.Cn = 'Eb';
+  relativeMajorKeys.Fn = 'Ab';
+  relativeMajorKeys.Bb = 'Db';
+  relativeMajorKeys.Eb = 'Gb';
+  relativeMajorKeys.Ab = 'Cb';
 
-	majorTonic = (mode === 'M') ? tonic : relativeMajorKeys[tonic];
-	acc = accList[clef + sharpOrFlat[majorTonic]];
-	acc = acc.slice(0, numAccMajor[majorTonic]);
+  majorTonic = (mode === 'M') ? tonic : relativeMajorKeys[tonic];
+  acc = accList[clef + sharpOrFlat[majorTonic]];
+  acc = acc.slice(0, numAccMajor[majorTonic]);
 
-	return acc;
+  return acc;
 
 };

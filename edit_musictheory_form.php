@@ -190,6 +190,8 @@ class qtype_musictheory_edit_form extends question_edit_form {
                 'interval-identify-random'         => get_string('qtype_interval-identify-random', 'qtype_musictheory'),
                 'scale-write'                      => get_string('qtype_scale-write', 'qtype_musictheory'),
                 'scale-write-random'               => get_string('qtype_scale-write-random', 'qtype_musictheory'),
+                'scale-identify'                   => get_string('qtype_scale-identify', 'qtype_musictheory'),
+                'scale-identify-random'            => get_string('qtype_scale-identify-random', 'qtype_musictheory'),
                 'chordquality-write'               => get_string('qtype_chordquality-write', 'qtype_musictheory'),
                 'chordquality-write-random'        => get_string('qtype_chordquality-write-random', 'qtype_musictheory'),
                 'chordquality-identify'            => get_string('qtype_chordquality-identify', 'qtype_musictheory'),
@@ -302,6 +304,13 @@ class qtype_musictheory_edit_form extends question_edit_form {
             case 'scale-write-random':
                 $this->add_scale_write_random_options($mform);
                 break;
+            case 'scale-identify':
+                $this->add_scale_id_options($mform);
+                break;
+            case 'scale-identify-random':
+                $this->add_scale_id_random_options($mform);
+                break;
+
             case 'chordquality-write':
                 $this->add_chordquality_write_options($mform);
                 break;
@@ -502,6 +511,26 @@ class qtype_musictheory_edit_form extends question_edit_form {
         $this->add_includekeysignature_option($mform);
         $this->add_clef_option($mform, 'musictheory_clef_random', true, 'clef-random');
         $this->add_scaletype_option($mform, 'musictheory_scaletype_random', true, 'scaletype-random');
+    }
+
+    /**
+     * Adds form options for the scale identification subtype.
+     *
+     * @param object $mform the form being built.
+     */
+    private function add_scale_id_options($mform) {
+        $this->add_scale_write_options($mform);
+        $this->add_scaletype_option($mform, 'musictheory_possiblescalesinresponse', true, 'possiblescalesinresponse');
+    }
+
+    /**
+     * Adds form options for the scale identification subtype.
+     *
+     * @param object $mform the form being built.
+     */
+    private function add_scale_id_random_options($mform) {
+        $this->add_scale_write_random_options($mform);
+        $this->add_scaletype_option($mform, 'musictheory_possiblescalesinresponse', true, 'possiblescalesinresponse');
     }
 
     /**
@@ -1117,7 +1146,10 @@ class qtype_musictheory_validation {
             case 'interval-identify-random':
                 return self::validate_interval_write_random_options($data);
             case 'scale-write':
-                return self::validate_scale_write_options($data);
+            case 'scale-identify':
+                return self::validate_scale_options($data);
+            case 'scale-identify-random':
+                return self::validate_scale_id_random_options($data);
             case 'chordquality-write':
                 return self::validate_chordquality_options($data);
             case 'harmonicfunction-write':
@@ -1172,31 +1204,39 @@ class qtype_musictheory_validation {
     public static function validate_keyboard_input_options($data) {
         $errors = array();
 
-        if ($data['musictheory_considerregister'] !== "1") {
-            return $errors;
+        $ansltr = $data['musictheory_givennoteletter'];
+        $ansacc = $data['musictheory_givennoteaccidental'];
+        if ($data['musictheory_considerregister'] === "1") {
+            $ansreg = $data['musictheory_givennoteregister'];
+        } else {
+            $ansreg = 4;
+        }
+        $answernote = new Note($ansltr, $ansacc, $ansreg);
+        $answernote_pc_kr = $answernote->getPitchClassKeyboardRegister();
+        $answernote_pc = $answernote_pc_kr['pitchclass'];
+        $answernote_reg = $answernote_pc_kr['register'];
+        if ($answernote_reg === 8 && $answernote_pc > 0 ||
+                $answernote_reg === 0 && $answernote_pc < 9) {
+            $errors['musictheory_givennoteelementgroup'] = get_string('validation_noteoutsidekeyboard', 'qtype_musictheory');
         }
 
-        $ltr = $data['musictheory_givennoteletter'];
-        $acc = $data['musictheory_givennoteaccidental'];
-        $reg = $data['musictheory_givennoteregister'];
+        if ($data['musictheory_includestaticnote'] === "1") {
+            $staticltr = $data['musictheory_staticnoteletter'];
+            $staticacc = $data['musictheory_staticnoteaccidental'];
+            $staticreg = $data['musictheory_staticnoteregister'];
+            $staticnote = new Note($staticltr, $staticacc, $staticreg);
+            $staticnote_pc_kr = $staticnote->getPitchClassKeyboardRegister();
+            $staticnote_pc = $staticnote_pc_kr['pitchclass'];
+            $staticnote_reg = $staticnote_pc_kr['register'];
+            if ($staticnote_reg === 8 && $staticnote_pc > 0 ||
+                    $staticnote_reg === 0 && $staticnote_pc < 9) {
+                $errors['musictheory_staticnoteelementgroup'] = get_string('validation_noteoutsidekeyboard', 'qtype_musictheory');
+            }
 
-        $answernote = new Note($ltr, $acc, $reg);
-
-        $ltr = $data['musictheory_staticnoteletter'];
-        $acc = $data['musictheory_staticnoteaccidental'];
-        $reg = $data['musictheory_staticnoteregister'];
-
-        $staticnote = new Note($ltr, $acc, $reg);
-
-        $notes = array($answernote, $staticnote);
-        for ($i = 0; $i < count($notes); $i++) {
-            $pcreg = $notes[$i]->getPitchClassKeyboardRegister();
-            $pitchclass = $pcreg['pitchclass'];
-            $register = $pcreg['register'];
-
-            if ($register === 8 && $pitchclass > 0 ||
-                    $register === 0 && $pitchclass < 9) {
-                $errors['musictheory_givennoteelementgroup'] = get_string('validation_noteoutsidekeyboard', 'qtype_musictheory');
+            if ($data['musictheory_considerregister'] === "1" &&
+                    $answernote_pc === $staticnote_pc &&
+                    $answernote_reg === $staticnote_reg) {
+                $errors['musictheory_staticnoteelementgroup'] = get_string('validation_samestaticandgivennote', 'qtype_musictheory');
             }
         }
 
@@ -1278,16 +1318,18 @@ class qtype_musictheory_validation {
     }
 
     /**
-     * Validates scale writing form options.
+     * Validates scale form options.
      *
      * It makes sure that the requested scale can be written in the requested
      * key and mode. It also makes sure that the scale fits in the staff in the
-     * requested clef.
+     * requested clef. Finally, for scale identification, it makes sure that the
+     * scale type selected for identification is included in the list of possible
+     * responses.
      *
      * @param array $data The form data.
      * @return array The validation errors.
      */
-    public static function validate_scale_write_options($data) {
+    public static function validate_scale_options($data) {
         $errors = array();
 
         $comptonic = new Note($data['musictheory_givennoteletter'], $data['musictheory_givennoteaccidental'], 4);
@@ -1311,6 +1353,53 @@ class qtype_musictheory_validation {
         $scaletopnote = $tonic->getNoteFromInterval(new Interval('+', 'P', 8));
         if (!$staff->noteFitsInStaff($tonic, 4) || !$staff->noteFitsInStaff($scaletopnote, 4)) {
             $errors['musictheory_givennoteelementgroup'] = get_string('validation_scaleoutsidestaff', 'qtype_musictheory');
+        }
+
+        $scaletypeselected = false;
+        if ($data['musictheory_musicqtype'] === 'scale-identify') {
+            foreach ($data['musictheory_possiblescalesinresponse'] as $scaletype) {
+                if ($scaletype === $data['musictheory_scaletype']) {
+                    $scaletypeselected = true;
+                }
+            }
+            if (!$scaletypeselected) {
+                $errors['musictheory_possiblescalesinresponse'] = get_string('validation_possiblescaletypenotselected',
+                                                                             'qtype_musictheory');
+            }
+        }
+
+        return $errors;
+    }
+
+    /**
+     * Validates random scale identification form options.
+     *
+     * It makes sure that all possible scale types selected in the question
+     * are included in the list of possible responses.
+     *
+     * @param array $data The form data.
+     * @return array The validation errors.
+     */
+    public static function validate_scale_id_random_options($data) {
+
+        $errors = array();
+
+        $allscaletypesinresponselist = true;
+        foreach ($data['musictheory_scaletype_random'] as $scaletype) {
+            $scaletypeselected = false;
+            foreach ($data['musictheory_possiblescalesinresponse'] as $scaletypeinresponse) {
+                if ($scaletype === $scaletypeinresponse) {
+                    $scaletypeselected = true;
+                }
+            }
+            if (!$scaletypeselected) {
+                $allscaletypesinresponselist = false;
+                break;
+            }
+        }
+        if (!$allscaletypesinresponselist) {
+            $errors['musictheory_possiblescalesinresponse'] = get_string('validation_possiblescaletypesnotselected_random',
+                                                                         'qtype_musictheory');
         }
 
         return $errors;

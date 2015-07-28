@@ -25,14 +25,11 @@
  * @namespace GUIState
  *
  * @constructor
- * @param {String} editable Specifies whether the state can be changed after
- * initialization.
  * @return {undefined}
  */
-KeyboardInput.GUIState.State = function(editable) {
+KeyboardInput.GUIState.State = function() {
 
   this.keyboard = new KeyboardInput.GUIState.Keyboard();
-  this.editable = editable;
 
 };
 
@@ -50,6 +47,7 @@ KeyboardInput.GUIState.State.prototype.setState = function(stateXML) {
 
   var keyboardInput = this.stateXML.getElementsByTagName('keyboardinput');
   var maxKeys = parseInt(keyboardInput[0].getAttribute('maxkeys'), 10);
+  this.editable = keyboardInput[0].getAttribute('canvasEditable') === 'true';
 
   this.keyboard.maxKeys = maxKeys;
 

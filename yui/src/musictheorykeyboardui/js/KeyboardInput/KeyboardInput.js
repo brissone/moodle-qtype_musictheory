@@ -35,7 +35,7 @@
  2) Define an XML string that will describe the interface's initial state. Here
  is an example:
 
-	var initXML = '<keyboardinput maxkeys="2">' +
+	var initXML = '<keyboardinput maxkeys="2" canvasEditable="true">' +
 	'<givenkeys>' +
 	'<givenkey pitchclass="4" register="5" />' +
 	'</givenkeys>' +

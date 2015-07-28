@@ -287,6 +287,49 @@ MusThGUI.Render.GlyphProvider = function(imagesLoadedCallback) {
     parent.imgLoaded();
   };
 
+  this.naturalPar = new Image();
+  this.naturalPar.src = 'data:image/png;base64, ' +
+      'iVBORw0KGgoAAAANSUhEUgAAABMAAAAeCAYAAADOziUSAAAABmJLR0QA/wD/AP+gvaeTAAAA' +
+      'CXBIWXMAAFxGAABcRgEUlENBAAAAB3RJTUUH3wcaDykVgP9TjAAAAm5JREFUSMel1s2LV2UU' +
+      'B/DPXO+MSpo6qTmMyNjAaJhoC3VhLgohwiwK3IW4kVy5dq3gRlf+AZW0cVNgviwUF0qLcKFI' +
+      'o0KJvViKRYQvqY05Pxd9L1wuvzvzqzlweZ5zn3PPc873+Z7zXLrLOtzASv9Bipb3I1iG5TNx' +
+      'thHv4ykm87TJx1jV5mw2DuN1dHoIZAs+bVvcmUiG8S7uY/MUzl7LprubC4txDucT4fYenMF3' +
+      'GMeceppr8RZO4O+acTPdBcFpQfRjWI0PK2f9+CCLlxofzw+Gu3AIn+AMdmT9JGbhbfSXGMBH' +
+      'uI3fGo6OJO2Xq1Qiy1HiWvRNGC3xKhbhKv5spDfWgtUk+jCBbwPTSIE3YnA7oE8lT7s4vZr5' +
+      'aIn1Uf7AXw3jCfye9H/Iye0MTlUGt+rOXolyv8b4vhgezglfxz0sxLYaCzo1nFeUGIzypBHV' +
+      'AxzHxdq7uV1K8FHGl4rGLnXpC22mk38ylgWeRZnl/8lAdThFAK4KfTqZ6NJJ5mW8W6YJvpkS' +
+      'KWthd/Aw8zVplBsyPqtBsTTzn8taCS3GCzk1eBEHs/NwiD1Y41dVjiOZ3yhxIcpwHNyrHcY7' +
+      '2b1N+hJ1BzcL/IRfMZrdm8Zt0gnOY7iCH4uA+jmWYKhLB66IOY6vw78iqW6IzTe4WabevsK+' +
+      '3AFnE+nl4Dme7jAegp4JjSbxXvrf6TpP58fhpbC8TJsZaKQ2FJv90e8kqqKezgN8lr6+IvT4' +
+      'JRC0dY+tuQ4PVKdbx+bL3AN7eiDvY+zFqTz/1lPDaG+Pt/gcfJFGoM3Z93mmk9k42uvvwVQk' +
+      'rb7pn6mzh+msj7r9OjwHDDOOLnjafMoAAAAASUVORK5CYII=';
+    this.naturalPar.onload = function() {
+    parent.imgLoaded();
+  };
+
+  this.naturalParColor = new Image();
+  this.naturalParColor.src = 'data:image/png;base64, ' +
+      'iVBORw0KGgoAAAANSUhEUgAAABMAAAAeCAYAAADOziUSAAAABmJLR0QA/wD/AP+gvaeTAAAA' +
+      'CXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3wcaEBAyPAuPEAAAAB1pVFh0Q29tbWVudAAA' +
+      'AAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAC1UlEQVRIx5XVS4gdVRAG4O82d5wYdSLpiaL4' +
+      'wCxCDCiIoqKodMxGESQBV9Ki4saFiru4EFyIoiBkqQtRaEQxBAwIJtm0QQQRGR/4gIiCSALR' +
+      'nFmMMeqM5rpItZ7puddcC5o+dR7/qVP1V9VAT6o6wb14Dbe1TfmVKaXogWibEi7DHNafDaA7' +
+      'B8Mxi1diBaP4JgFcghNtU65UddI25RnLOqWq0zM4jF+meNFbeDx7zRmwANqKR/HhOIt7MsIn' +
+      '2F3Vadsan+FBXITXMftfSG1TjrAP89he1WlQ1emMBVWdtuC+uPEwHo5zf2V+KnBFBOczHMWP' +
+      'eBZ726Y8XlR1GuAObMbbbVMuZ0+5uqpTXdXpCbyBvTiIXQH2PjZgZxfNWdwVAIciUiPMYA/O' +
+      'xTnxdXJV25R/VnX6IvSH8PIQ63B3TH7cc8+mCW47Hf8fcAo3VnW6sMAtYd1RLE0RxVyO4KcY' +
+      '3z/EjlAWg6x9OYmEr8OKndnaiViHHUNcE8rP6Jw/iP9zEd1FfI6bMv8K8O7MtUOUYzjX0WJf' +
+      '25QLGT1ms4u6Szt9rsB1Y542CP8Uppf5YoKfJlWGicmP0wW+PRtYl8jBy0nWLg3xPbZl3Mmt' +
+      'WKzqdHE4/eYIwLrens7SY0N8insiEDPZphl8EMw/L0AGvQs3RIbAQoFDoVya3TrK5ubjwGDM' +
+      '0zbh/Bi/VwR/lmNhzv+Ty7Exxge6aO6PiesnlPMVLEThzGVzuOCjtikXC/yRPXVXRO4bfBdl' +
+      '5xHcHh3rRfwWdBnihjj36j9pE8VxP7bigkiT9WHRclRWVZ224108HxX5ywDf0jbl0jB4dKSq' +
+      '0zvYjVvbpjyYJXA/MzrZGD5+smtARcbuPVGGn5qy3z4Wlh3oLC86drdNeRwv4PcpI3kSL7VN' +
+      'eWxVd8qsewUPTAE0Cpe82e/qa9r8msV/5++s6nSqqtPT4/YWY5J51bgnCb9mBXHV3r8BTYTp' +
+      'IcgiIbUAAAAASUVORK5CYII=';
+  this.naturalParColor.onload = function() {
+    parent.imgLoaded();
+  };
+
   this.naturalFigBass = new Image();
   this.naturalFigBass.src = 'data:image/png;base64, ' +
       'iVBORw0KGgoAAAANSUhEUgAAAAYAAAAPCAMAAADwHU6yAAAAilBMVEWVlZUSEhIAAACsrKw4' +
@@ -358,7 +401,7 @@ MusThGUI.Render.GlyphProvider = function(imagesLoadedCallback) {
 MusThGUI.Render.GlyphProvider.prototype.imgLoaded = function() {
 
   this.numImagesLoaded += 1;
-  if (this.numImagesLoaded === 24) {
+  if (this.numImagesLoaded === 26) {
     this.imagesLoadedCallback();
   }
 
@@ -374,15 +417,20 @@ MusThGUI.Render.GlyphProvider.prototype.imgLoaded = function() {
  * accidental.
  * @param {Boolean} figuredBass If true, returns a version to display within the
  * figured bass (only available for sharps, flat and naturals).
+ * @param {Boolean} parenthesized If true, returns a parenthesized version of
+ * the accidental
  * @return {Image} Returns the accidental image.
  */
 MusThGUI.Render.GlyphProvider.prototype.getAccidental = function(accType,
-    inColor, figuredBass) {
+    inColor, figuredBass, parenthesized) {
 
   switch (accType) {
     case 'n':
       if (figuredBass) {
         return this.naturalFigBass;
+      }
+      else if (parenthesized) {
+        return (inColor) ? this.naturalParColor : this.naturalPar;
       }
       else {
         return (inColor) ? this.naturalColor : this.natural;

@@ -150,10 +150,13 @@ class qtype_musictheory_note_identify_renderer extends qtype_musictheory_rendere
             $regselectid = $qa->get_qt_field_name('musictheory_answer_reg');
         }
 
-
         $ltr = $question->musictheory_givennoteletter;
         $acc = $question->musictheory_givennoteaccidental;
         $reg = $question->musictheory_givennoteregister;
+
+        $currltr = $qa->get_last_qt_var('musictheory_answer_ltr');
+        $curracc = $qa->get_last_qt_var('musictheory_answer_acc');
+        $currreg = $qa->get_last_qt_var('musictheory_answer_reg');
 
         $moduleparams = array(
             array(
@@ -230,6 +233,31 @@ class qtype_musictheory_note_identify_renderer extends qtype_musictheory_rendere
             }
         }
 
+        if ($options->correctness) {
+            $corrresp = $question->get_correct_response();
+            if (!is_null($currltr)) {
+                if ($currltr === $corrresp['musictheory_answer_ltr']) {
+                    $ltrselectattributes['class'] = $this->feedback_class(1);
+                } else {
+                    $ltrselectattributes['class'] = $this->feedback_class(0);
+                }
+            }
+            if ($question->musictheory_includealterations && !is_null($curracc)) {
+                if ($curracc === $corrresp['musictheory_answer_acc']) {
+                    $accselectattributes['class'] = $this->feedback_class(1);
+                } else {
+                    $accselectattributes['class'] = $this->feedback_class(0);
+                }
+            }
+            if ($question->musictheory_considerregister && !is_null($currreg)) {
+                if ($currreg === $corrresp['musictheory_answer_reg']) {
+                    $regselectattributes['class'] = $this->feedback_class(1);
+                } else {
+                    $regselectattributes['class'] = $this->feedback_class(0);
+                }
+            }
+        }
+
         $questiontext = $question->format_questiontext($qa);
         $result = html_writer::tag('div', $questiontext, array('class' => 'qtext'));
 
@@ -250,9 +278,6 @@ class qtype_musictheory_note_identify_renderer extends qtype_musictheory_rendere
         );
         $result .= html_writer::tag('div', '', $javascriptdivattr);
 
-        $currltr = $qa->get_last_qt_var('musictheory_answer_ltr');
-        $curracc = $qa->get_last_qt_var('musictheory_answer_acc');
-        $currreg = $qa->get_last_qt_var('musictheory_answer_reg');
         $input = html_writer::select($selectoptionsltr, $ltrselectid, $currltr, true, $ltrselectattributes);
         if ($question->musictheory_includealterations) {
             $input .= html_writer::select($selectoptionsacc, $accselectid, $curracc, true, $accselectattributes);

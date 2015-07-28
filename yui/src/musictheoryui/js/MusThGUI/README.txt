@@ -19,6 +19,12 @@ A description of basic use is provided in the following documentation file:
 
 *******************************************************************************
 
+VERSION
+
+1.1
+
+*******************************************************************************
+
 DEPENDENCIES
 
 This component is dependent on the YUI Javascript Library

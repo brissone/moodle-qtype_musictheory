@@ -340,7 +340,7 @@
             "tag": "module",
             "file": "TwoVoiceNoteCol.js",
             "line": 21,
-            "description": "The Music Theory GUI module allows for display and entry of notes in various\ncontexts that are suitable for music theory exercises.\n\nThe user interface is created by instantiating a {{#crossLink \"MusThGUI\"}}\n{{/crossLink}} object.\n\nHere is an example describing how to use this module:\n\n1) Add an HTMLtag for a small canvas in the web page source, with a unique 'id'\nattribute.\n\n\t<canvas id=\"myUniqueID\" width=\"1\" height=\"1\"/>\n\n2) Define an XML string that will describe the interface's initial state. Here\nis an example that would be well-suited for a scale question:\n\n\tvar initXML = '<MusThGUI>' +\n\t'<StaffSystem maxLedgerLines=\"3\">' +\n\t'<Staff clef=\"treble\">' +\n\t'<KeySign totalAccColumns=\"7\" >' +\n\t'<Accidental type=\"#\" letter=\"F\" register=\"5\" editable=\"false\" />' +\n\t'<Accidental type=\"#\" letter=\"C\" register=\"5\" editable=\"false\" />' +\n\t'<Accidental type=\"#\" letter=\"G\" register=\"5\" editable=\"false\" />' +\n\t'</KeySign>' +\n\t'<NoteColumns>' +\n\t'<NoteColumn maxNotes=\"1\" />' +\n\t'<NoteColumn maxNotes=\"1\" />' +\n\t'<NoteColumn maxNotes=\"1\" />' +\n\t'<NoteColumn maxNotes=\"1\" />' +\n\t'<NoteColumn maxNotes=\"1\" />' +\n\t'<NoteColumn maxNotes=\"1\" />' +\n\t'<NoteColumn maxNotes=\"1\" />' +\n\t'<NoteColumn maxNotes=\"1\" />' +\n\t'</NoteColumns>' +\n\t'</Staff>' +\n\t'</StaffSystem>' +\n\t'<Toolbars>' +\n\t'<AccidentalToolbar>' +\n\t'<Button symbol=\"n\" />' +\n\t'<Button symbol=\"#\" />' +\n\t'<Button symbol=\"b\" />' +\n\t'<Button symbol=\"##\" />' +\n\t'<Button symbol=\"bb\" />' +\n\t'</AccidentalToolbar>' +\n\t'</Toolbars>' +\n\t'</MusThGUI>';\n\nFor more details on the XML schema that the interface will accept and return,\nsee the 'valid_input_xml.xsd' file in the module's XML directory.\n\n3) Define a callback function that the interface will use to message back its\ncurrent state. This function will be called whenever the user changes the\ninterface's state (i.e. by adding or deleting notes on the staff).\n\n\tvar callBack = function(stateXML) {\n\t//stateXML will contain the most up-to-date canvas state.\n\t};\n\n4) Create a {{#crossLink \"MusThGUI\"}}{{/crossLink}} object using the canvas id\nfrom step 1, the XML string from step 2 and the callback function from step 3:\n\n\tvar musicCanvas = new MusThGUI('myUniqueID', initXML, callBack, true);\n\nArgument 4 specifies whether the interface should be editable after\ninitialization. Use a false value to display a static interface.\n\nOnce instantiated, the MusThGUI object will display an interactive music canvas\non the web page. Whenever the user makes any changes, the callback function will\nbe called and the most up-to-date canvas state will be returned, as an XML\nstring."
+            "description": "The Music Theory GUI module allows for display and entry of notes in various\ncontexts that are suitable for music theory exercises.\n\nThe user interface is created by instantiating a {{#crossLink \"MusThGUI\"}}\n{{/crossLink}} object.\n\nHere is an example describing how to use this module:\n\n1) Add an HTMLtag for a small canvas in the web page source, with a unique 'id'\nattribute.\n\n\t<canvas id=\"myUniqueID\" width=\"1\" height=\"1\"/>\n\n2) Define an XML string that will describe the interface's initial state. Here\nis an example that would be well-suited for a scale question:\n\n\tvar initXML = '<MusThGUI canvasEditable=\"true\" accidentalCarryOver=\"true\">' +\n\t'<StaffSystem maxLedgerLines=\"3\">' +\n\t'<Staff clef=\"treble\">' +\n\t'<KeySign totalAccColumns=\"7\" >' +\n\t'<Accidental type=\"#\" letter=\"F\" register=\"5\" editable=\"false\" />' +\n\t'<Accidental type=\"#\" letter=\"C\" register=\"5\" editable=\"false\" />' +\n\t'<Accidental type=\"#\" letter=\"G\" register=\"5\" editable=\"false\" />' +\n\t'</KeySign>' +\n\t'<NoteColumns>' +\n\t'<NoteColumn maxNotes=\"1\" />' +\n\t'<NoteColumn maxNotes=\"1\" />' +\n\t'<NoteColumn maxNotes=\"1\" />' +\n\t'<NoteColumn maxNotes=\"1\" />' +\n\t'<NoteColumn maxNotes=\"1\" />' +\n\t'<NoteColumn maxNotes=\"1\" />' +\n\t'<NoteColumn maxNotes=\"1\" />' +\n\t'<NoteColumn maxNotes=\"1\" />' +\n\t'</NoteColumns>' +\n\t'</Staff>' +\n\t'</StaffSystem>' +\n\t'<Toolbars>' +\n\t'<AccidentalToolbar>' +\n\t'<Button symbol=\"n\" />' +\n\t'<Button symbol=\"#\" />' +\n\t'<Button symbol=\"b\" />' +\n\t'<Button symbol=\"##\" />' +\n\t'<Button symbol=\"bb\" />' +\n\t'</AccidentalToolbar>' +\n\t'</Toolbars>' +\n\t'</MusThGUI>';\n\nFor more details on the XML schema that the interface will accept and return,\nsee the 'valid_input_xml.xsd' file in the module's XML directory.\n\n3) Define a callback function that the interface will use to message back its\ncurrent state. This function will be called whenever the user changes the\ninterface's state (i.e. by adding or deleting notes on the staff).\n\n\tvar callBack = function(stateXML) {\n\t//stateXML will contain the most up-to-date canvas state.\n\t};\n\n4) Create a {{#crossLink \"MusThGUI\"}}{{/crossLink}} object using the canvas id\nfrom step 1, the XML string from step 2 and the callback function from step 3:\n\n\tvar musicCanvas = new MusThGUI('myUniqueID', initXML, callBack, true);\n\nArgument 4 specifies whether the interface should be editable after\ninitialization. Use a false value to display a static interface.\n\nOnce instantiated, the MusThGUI object will display an interactive music canvas\non the web page. Whenever the user makes any changes, the callback function will\nbe called and the most up-to-date canvas state will be returned, as an XML\nstring."
         }
     },
     "classes": {
@@ -373,11 +373,6 @@
                     "name": "callBackFunc",
                     "description": "A function that the controller will use\nto send the current canvas state back the caller, whenever the state changes.\nThis function should accept one argument which provides the current state of\nthe canvas, as an xml string.",
                     "type": "Function"
-                },
-                {
-                    "name": "editable",
-                    "description": "Specifies whether the user can change the UI\nafter initialization.",
-                    "type": "Boolean"
                 }
             ],
             "return": {
@@ -859,6 +854,11 @@
                     "name": "noteColID",
                     "description": "The zero-based ID of this note column.",
                     "type": "Number"
+                },
+                {
+                    "name": "accCarryOver",
+                    "description": "Indicates whether accidentals are to carry\nover",
+                    "type": "Boolean"
                 }
             ],
             "return": {
@@ -930,6 +930,11 @@
                     "name": "accPos",
                     "description": "A number indicating whether and how much an\naccidental should be offset to the left of the note (e.g. 0 = no offset, 1 =\none offset level to the left, 2 = two offset levels to teh left, etc.).",
                     "type": "Number"
+                },
+                {
+                    "name": "displayAccPar",
+                    "description": "Indicates whether the note's accidental should\nbe parenthesized.",
+                    "type": "Boolean"
                 }
             ],
             "return": {
@@ -1048,6 +1053,11 @@
                     "name": "staffID",
                     "description": "The zero-based ID of the staff to be rendered.",
                     "type": "Number"
+                },
+                {
+                    "name": "accCarryOver",
+                    "description": "Indicates whether accidentals are to carry\nover",
+                    "type": "Boolean"
                 }
             ],
             "return": {
@@ -1108,6 +1118,11 @@
                     "name": "staffSystem",
                     "description": "The staff system to be\nrendered.",
                     "type": "GUIState.StaffSystem"
+                },
+                {
+                    "name": "accCarryOver",
+                    "description": "Indicates whether accidentals are to carry\nover",
+                    "type": "Boolean"
                 }
             ],
             "return": {
@@ -1129,13 +1144,6 @@
             "line": 21,
             "description": "The State object stores the canvas context\n(e.g. number of staves, clefs, key signature, notes, toolbars, input dialog,\netc).",
             "is_constructor": 1,
-            "params": [
-                {
-                    "name": "editable",
-                    "description": "Specifies whether the state can be changed after\ninitialization.",
-                    "type": "String"
-                }
-            ],
             "return": {
                 "description": "",
                 "type": "Undefined"
@@ -1357,7 +1365,7 @@
     "classitems": [
         {
             "file": "Controller.js",
-            "line": 66,
+            "line": 63,
             "description": "Callback function indicating that canvas images have been loaded. Finishes\ncanvases initialization.",
             "itemtype": "method",
             "name": "onImagesLoaded",
@@ -1370,7 +1378,7 @@
         },
         {
             "file": "Controller.js",
-            "line": 81,
+            "line": 78,
             "description": "Translates the window-based point location of a mouse event into a\ncanvas-based location.",
             "itemtype": "method",
             "name": "getLocalCoord",
@@ -1390,7 +1398,7 @@
         },
         {
             "file": "Controller.js",
-            "line": 98,
+            "line": 95,
             "description": "Binds listener functions to mouse events.",
             "itemtype": "method",
             "name": "bindEventListeners",
@@ -1403,7 +1411,7 @@
         },
         {
             "file": "Controller.js",
-            "line": 133,
+            "line": 130,
             "description": "Handles a canvas mouse click event.",
             "itemtype": "method",
             "name": "onMouseClick",
@@ -1423,7 +1431,7 @@
         },
         {
             "file": "Controller.js",
-            "line": 224,
+            "line": 221,
             "description": "Handles a canvas mouse move event.",
             "itemtype": "method",
             "name": "onMouseMove",
@@ -1443,7 +1451,7 @@
         },
         {
             "file": "Controller.js",
-            "line": 295,
+            "line": 292,
             "description": "Given a mouse event location, determine if a canvas element (note,\nkey signature accidental, toolbar button, text input) was involved, and if\nso, return the element.",
             "itemtype": "method",
             "name": "getElementFromPoint",
@@ -1463,7 +1471,7 @@
         },
         {
             "file": "Controller.js",
-            "line": 329,
+            "line": 326,
             "description": "Deletes the current ghost note (if displayed) from the canvas state.",
             "itemtype": "method",
             "name": "removeGhostNote",
@@ -1476,7 +1484,7 @@
         },
         {
             "file": "Controller.js",
-            "line": 345,
+            "line": 342,
             "description": "Deletes the current ghost accidental (if displayed) from the canvas state.",
             "itemtype": "method",
             "name": "removeGhostAcc",
@@ -1489,7 +1497,7 @@
         },
         {
             "file": "Controller.js",
-            "line": 365,
+            "line": 362,
             "description": "Disables the overlay effect for all toolbar buttons for which it is enabled.",
             "itemtype": "method",
             "name": "clearToolbarOverlays",
@@ -1502,7 +1510,7 @@
         },
         {
             "file": "Controller.js",
-            "line": 382,
+            "line": 379,
             "description": "Draws the canvas state.",
             "itemtype": "method",
             "name": "drawState",
@@ -1515,7 +1523,7 @@
         },
         {
             "file": "Controller.js",
-            "line": 401,
+            "line": 398,
             "description": "Given a column ID and a text input value, sets the value of the column's text\ninput to the given value.",
             "itemtype": "method",
             "name": "setColTextInput",
@@ -2400,7 +2408,7 @@
         },
         {
             "file": "GlyphProvider.js",
-            "line": 350,
+            "line": 393,
             "description": "Callback function called whenever an image has finished loading. Once\nall images have loaded, call the controller's callback function so that\ncanvas initialization can complete.",
             "itemtype": "method",
             "name": "imgLoaded",
@@ -2413,7 +2421,7 @@
         },
         {
             "file": "GlyphProvider.js",
-            "line": 367,
+            "line": 410,
             "description": "Returns the specified accidental image.",
             "itemtype": "method",
             "name": "getAccidental",
@@ -2432,6 +2440,11 @@
                     "name": "figuredBass",
                     "description": "If true, returns a version to display within the\nfigured bass (only available for sharps, flat and naturals).",
                     "type": "Boolean"
+                },
+                {
+                    "name": "parenthesized",
+                    "description": "If true, returns a parenthesized version of\nthe accidental",
+                    "type": "Boolean"
                 }
             ],
             "return": {
@@ -2443,7 +2456,7 @@
         },
         {
             "file": "GlyphProvider.js",
-            "line": 415,
+            "line": 463,
             "description": "Returns the specified accidental image.",
             "itemtype": "method",
             "name": "getNoteValue",
@@ -2473,7 +2486,7 @@
         },
         {
             "file": "GlyphProvider.js",
-            "line": 452,
+            "line": 500,
             "description": "Returns the specified clef image.",
             "itemtype": "method",
             "name": "getClef",
@@ -2827,7 +2840,7 @@
         },
         {
             "file": "NoteColRend.js",
-            "line": 57,
+            "line": 60,
             "description": "Draws the note column's elements  on the staff.",
             "itemtype": "method",
             "name": "draw",
@@ -2841,7 +2854,7 @@
         },
         {
             "file": "NoteColRend.js",
-            "line": 165,
+            "line": 183,
             "description": "Indicates whether a given note's accidental should be displayed. Accidentals\nare assumed to carry over from one note column to the next.",
             "itemtype": "method",
             "name": "displayAccidental",
@@ -2872,7 +2885,7 @@
         },
         {
             "file": "NoteRend.js",
-            "line": 65,
+            "line": 69,
             "description": "Draws the note on the staff.",
             "itemtype": "method",
             "name": "draw",
@@ -2928,7 +2941,7 @@
         },
         {
             "file": "StaffRend.js",
-            "line": 48,
+            "line": 51,
             "description": "Draws the staff.",
             "itemtype": "method",
             "name": "draw",
@@ -2942,7 +2955,7 @@
         },
         {
             "file": "StaffRend.js",
-            "line": 63,
+            "line": 66,
             "description": "Draws staff lines.",
             "itemtype": "method",
             "name": "drawLines",
@@ -2956,7 +2969,7 @@
         },
         {
             "file": "StaffRend.js",
-            "line": 89,
+            "line": 92,
             "description": "Draws the staff's clef.",
             "itemtype": "method",
             "name": "drawClef",
@@ -2970,7 +2983,7 @@
         },
         {
             "file": "StaffRend.js",
-            "line": 126,
+            "line": 129,
             "description": "Draws the staff's key signature.",
             "itemtype": "method",
             "name": "drawKeySign",
@@ -2984,7 +2997,7 @@
         },
         {
             "file": "StaffRend.js",
-            "line": 140,
+            "line": 143,
             "description": "Draws the staff's note columns.",
             "itemtype": "method",
             "name": "drawNoteColumns",
@@ -3033,7 +3046,7 @@
         },
         {
             "file": "StaffSystemRend.js",
-            "line": 47,
+            "line": 50,
             "description": "Draws the staff system.",
             "itemtype": "method",
             "name": "draw",
@@ -3047,7 +3060,7 @@
         },
         {
             "file": "State.js",
-            "line": 42,
+            "line": 39,
             "description": "Sets the state after instantiation.",
             "itemtype": "method",
             "name": "setState",
@@ -3068,7 +3081,7 @@
         },
         {
             "file": "State.js",
-            "line": 186,
+            "line": 189,
             "description": "Returns the canvas state.",
             "itemtype": "method",
             "name": "getState",
@@ -3082,7 +3095,7 @@
         },
         {
             "file": "State.js",
-            "line": 306,
+            "line": 309,
             "description": "Indicates whether the state contains a toolbar, given the toolbar name.",
             "itemtype": "method",
             "name": "hasToolbar",
@@ -3102,7 +3115,7 @@
         },
         {
             "file": "State.js",
-            "line": 325,
+            "line": 328,
             "description": "Returns a toolbar, given the toolbar name.",
             "itemtype": "method",
             "name": "getToolbar",
@@ -3123,7 +3136,7 @@
         },
         {
             "file": "State.js",
-            "line": 345,
+            "line": 348,
             "description": "Returns the number of buttons for the longest toolbar in the state.",
             "itemtype": "method",
             "name": "getMaxNumToolbarButtons",

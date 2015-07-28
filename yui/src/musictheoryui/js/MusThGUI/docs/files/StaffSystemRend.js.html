@@ -174,15 +174,18 @@
  * provider.
  * @param {GUIState.StaffSystem} staffSystem The staff system to be
  * rendered.
+ * @param {Boolean} accCarryOver Indicates whether accidentals are to carry
+ * over
  * @return {undefined}
  */
 MusThGUI.Render.StaffSystemRend = function(can, coordMgr, glyphProvider,
-    staffSystem) {
+    staffSystem, accCarryOver) {
 
   this.can = can;
   this.staffSystem = staffSystem;
   this.coordMgr = coordMgr;
   this.glyphProvider = glyphProvider;
+  this.accCarryOver = accCarryOver;
 
 };
 
@@ -200,7 +203,7 @@ MusThGUI.Render.StaffSystemRend.prototype.draw = function() {
   for (i = 0; i &lt; this.staffSystem.staves.length; i++) {
     var staff = this.staffSystem.staves[i];
     var staffRend = new MusThGUI.Render.StaffRend(parent.can, parent.coordMgr,
-        parent.glyphProvider, staff, i);
+        parent.glyphProvider, staff, i, parent.accCarryOver);
     staffRend.draw();
   }
 

@@ -36,10 +36,12 @@
  * @param {Number} staffID The zero-based ID of the staff where containing the
  * note column.
  * @param {Number} noteColID The zero-based ID of this note column.
+ * @param {Boolean} accCarryOver Indicates whether accidentals are to carry
+ * over
  * @return {undefined}
  */
 MusThGUI.Render.NoteColRend = function(can, coordMgr, glyphProvider, staff,
-    staffID, noteColID) {
+    staffID, noteColID, accCarryOver) {
 
   this.can = can;
   this.coordMgr = coordMgr;
@@ -47,6 +49,7 @@ MusThGUI.Render.NoteColRend = function(can, coordMgr, glyphProvider, staff,
   this.noteColID = noteColID;
   this.staff = staff;
   this.staffID = staffID;
+  this.accCarryOver = accCarryOver;
   this.clef = staff.clef;
   this.keySign = staff.keySign;
   this.maxNotes = this.noteCol.maxNotes;
@@ -72,7 +75,8 @@ MusThGUI.Render.NoteColRend.prototype.draw = function() {
   var noteName, accPos;
   var noteRends = [];
 
-  var i, note;
+  var i, note, displayAcc;
+  var displayAccPar = false;
   var prevColNote = null;
   var nextColNote = null;
   for (i = 0; i < this.noteCol.notes.length; i++) {
@@ -81,7 +85,20 @@ MusThGUI.Render.NoteColRend.prototype.draw = function() {
       nextColNote = this.noteCol.notes[i + 1];
     }
     noteName = note.letter + note.register;
-    var displayAcc = parent.displayAccidental(note, prevColNote, nextColNote);
+    if (!this.accCarryOver) {
+      if (note.accidental !== 'n') {
+        displayAcc  = true;
+      }
+      else {
+        displayAcc = parent.displayAccidental(note, prevColNote, nextColNote);
+        if (displayAcc) {
+          displayAccPar = true;
+        }
+      }
+    }
+    else {
+      displayAcc = parent.displayAccidental(note, prevColNote, nextColNote);
+    }
     if (displayAcc) {
       if (accResetNote === null) {
         accPos = 0;
@@ -97,7 +114,8 @@ MusThGUI.Render.NoteColRend.prototype.draw = function() {
     }
     noteRend = new MusThGUI.Render.NoteRend(parent.can, parent.coordMgr,
         parent.glyphProvider, note, parent.noteColID, parent.staffID,
-        parent.clef, parent.keySign.totalAccColumns, displayAcc, accPos);
+        parent.clef, parent.keySign.totalAccColumns, displayAcc, accPos,
+        displayAccPar);
     noteRends.push(noteRend);
     prevColNote = note;
   }

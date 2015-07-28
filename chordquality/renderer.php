@@ -145,6 +145,10 @@ class qtype_musictheory_chordquality_identify_renderer extends qtype_musictheory
         $rootletterselectid = $qa->get_qt_field_name('musictheory_answer_rootletter');
         $rootaccselectid = $qa->get_qt_field_name('musictheory_answer_rootacc');
 
+        $currquality = $qa->get_last_qt_var('musictheory_answer_chordquality');
+        $currrootletter = $qa->get_last_qt_var('musictheory_answer_rootletter');
+        $currrootacc = $qa->get_last_qt_var('musictheory_answer_rootacc');
+
         switch ($question->musictheory_clef) {
             case 'treble':
                 $reg = 4;
@@ -248,6 +252,31 @@ class qtype_musictheory_chordquality_identify_renderer extends qtype_musictheory
             $rootaccselectattributes['disabled'] = 'true';
         }
 
+        if ($options->correctness) {
+            $corrresp = $question->get_correct_response();
+            if (!is_null($currquality)) {
+                if ($currquality === $corrresp['musictheory_answer_chordquality']) {
+                    $chordqualityselectattributes['class'] = $this->feedback_class(1);
+                } else {
+                    $chordqualityselectattributes['class'] = $this->feedback_class(0);
+                }
+            }
+            if (!is_null($currrootletter)) {
+                if ($currrootletter === $corrresp['musictheory_answer_rootletter']) {
+                    $rootletterselectattributes['class'] = $this->feedback_class(1);
+                } else {
+                    $rootletterselectattributes['class'] = $this->feedback_class(0);
+                }
+            }
+            if (!is_null($currrootacc)) {
+                if ($currrootacc === $corrresp['musictheory_answer_rootacc']) {
+                    $rootaccselectattributes['class'] = $this->feedback_class(1);
+                } else {
+                    $rootaccselectattributes['class'] = $this->feedback_class(0);
+                }
+            }
+        }
+
         $questiontext = $question->format_questiontext($qa);
         $result = html_writer::tag('div', $questiontext, array('class' => 'qtext'));
 
@@ -272,9 +301,6 @@ class qtype_musictheory_chordquality_identify_renderer extends qtype_musictheory
             'style' => 'display:none'
         );
 
-        $currquality = $qa->get_last_qt_var('musictheory_answer_chordquality');
-        $currrootletter = $qa->get_last_qt_var('musictheory_answer_rootletter');
-        $currrootacc = $qa->get_last_qt_var('musictheory_answer_rootacc');
         $result .= html_writer::tag('div', '', $javascriptdivattr);
         $input = html_writer::select($selectoptionsrootletter, $rootletterselectid, $currrootletter, true,
                                      $rootletterselectattributes);

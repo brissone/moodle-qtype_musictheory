@@ -27,15 +27,12 @@
  * @namespace GUIState
  *
  * @constructor
- * @param {String} editable Specifies whether the state can be changed after
- * initialization.
  * @return {undefined}
  */
-MusThGUI.GUIState.State = function(editable) {
+MusThGUI.GUIState.State = function() {
 
   this.staffSystem = null;
   this.toolbars = [];
-  this.editable = editable;
 
 };
 
@@ -50,9 +47,15 @@ MusThGUI.GUIState.State = function(editable) {
 MusThGUI.GUIState.State.prototype.setState = function(stateXML) {
 
   this.stateXML = stateXML;
-  this.staffSystem = new MusThGUI.GUIState.StaffSystem();
+
+  // Canvas editable
+  var musThGUI = this.stateXML.getElementsByTagName('MusThGUI');
+  this.editable = musThGUI[0].getAttribute('canvasEditable') === 'true';
+  this.accCarryOver = musThGUI[0].getAttribute('accidentalCarryOver') ===
+      'true';
 
   // Staff System
+  this.staffSystem = new MusThGUI.GUIState.StaffSystem();
   var i, j, k, l, editable, acc;
   var sSys = this.stateXML.getElementsByTagName('StaffSystem');
   for (i = 0; i < sSys.length; i++) {

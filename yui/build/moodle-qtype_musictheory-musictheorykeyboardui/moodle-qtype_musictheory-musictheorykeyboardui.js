@@ -66,7 +66,7 @@ M.qtype_musictheory.musictheorykeyboardui = {
  2) Define an XML string that will describe the interface's initial state. Here
  is an example:
 
-	var initXML = '<keyboardinput maxkeys="2">' +
+	var initXML = '<keyboardinput maxkeys="2" canvasEditable="true">' +
 	'<givenkeys>' +
 	'<givenkey pitchclass="4" register="5" />' +
 	'</givenkeys>' +
@@ -295,19 +295,16 @@ KeyboardInput.Control = {};/* Copyright (c) 2014 Eric Brisson
  * to send the current canvas state back the caller, whenever the state changes.
  * This function should accept one argument which provides the current state of
  * the canvas, as an xml string.
- * @param {Boolean} editable Specifies whether the user can change the UI
- * after initialization.
  * @return {undefined}
  */
-KeyboardInput.Control.Controller = function(canID, stateXML, callBackFunc,
-    editable) {
+KeyboardInput.Control.Controller = function(canID, stateXML, callBackFunc) {
 
   this.canID = canID;
   this.canNode = Y.one('#' + canID);
   this.html5Can = this.canNode.getDOMNode();
   this.ctx = this.html5Can.getContext('2d');
   this.stateXML = Y.XML.parse(stateXML);
-  this.state = new KeyboardInput.GUIState.State(editable);
+  this.state = new KeyboardInput.GUIState.State();
   this.state.setState(this.stateXML);
   this.coordMgr = new KeyboardInput.Render.CoordManager(this.state);
   this.html5Can.width = this.coordMgr.CANVAS_WIDTH;
@@ -875,14 +872,11 @@ KeyboardInput.GUIState.Key.prototype.getSubsetIDWithinRegister = function() {
  * @namespace GUIState
  *
  * @constructor
- * @param {String} editable Specifies whether the state can be changed after
- * initialization.
  * @return {undefined}
  */
-KeyboardInput.GUIState.State = function(editable) {
+KeyboardInput.GUIState.State = function() {
 
   this.keyboard = new KeyboardInput.GUIState.Keyboard();
-  this.editable = editable;
 
 };
 
@@ -900,6 +894,7 @@ KeyboardInput.GUIState.State.prototype.setState = function(stateXML) {
 
   var keyboardInput = this.stateXML.getElementsByTagName('keyboardinput');
   var maxKeys = parseInt(keyboardInput[0].getAttribute('maxkeys'), 10);
+  this.editable = keyboardInput[0].getAttribute('canvasEditable') === 'true';
 
   this.keyboard.maxKeys = maxKeys;
 

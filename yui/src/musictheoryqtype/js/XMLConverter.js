@@ -66,7 +66,7 @@
  *   editable after initialization. Mandatory for all canvas types.
  *   </li>
  *   <li><b>{Boolean} containsUserInput</b>: Indicates whether the canvas
- *   display elements that were added by the user. If not, display all notes
+ *   display elements were added by the user. If not, display all notes
  *   in black (to indicate that Moodle has generated them).
  *   </li>
  *   <li><b>{Boolean} maxNotes</b>: Indicates the maximum number of notes the
@@ -117,6 +117,8 @@ NS.XMLConverter.prototype.getCanvasXML = function(input) {
       return this.getIntervalIdentifyXML(input);
     case 'scale-write':
       return this.getScaleWriteXML(input);
+    case 'scale-identify':
+      return this.getScaleIdentifyXML(input);
     case 'chordquality-write':
       return this.getChordQualityWriteXML(input);
     case 'harmonicfunction-write':
@@ -225,7 +227,8 @@ NS.XMLConverter.prototype.getNoteWriteXML = function(input) {
       bassNotes = [],
       i;
 
-  stateXML = '<MusThGUI>\n';
+  stateXML = '<MusThGUI canvasEditable="' + this.options.editable +
+      '" accidentalCarryOver="true">\n';
 
   if (this.options.clef !== 'grandstaff') {
     stateXML += '<StaffSystem maxLedgerLines="4">\n';
@@ -335,7 +338,8 @@ NS.XMLConverter.prototype.getNoteIdentifyXML = function(input) {
   inputParts = this.noteNameToParts(input);
 
   if (this.options.clef !== 'grandstaff') {
-    stateXML = '<MusThGUI>\n';
+    stateXML = '<MusThGUI canvasEditable="' + this.options.editable +
+        '" accidentalCarryOver="true">\n';
     stateXML += '<StaffSystem maxLedgerLines="4">\n';
     stateXML += '<Staff clef="' + this.options.clef + '">\n';
     stateXML += '<KeySign totalAccColumns="0" >';
@@ -357,7 +361,8 @@ NS.XMLConverter.prototype.getNoteIdentifyXML = function(input) {
     stateXML += '</MusThGUI>';
   }
   else {
-    stateXML = '<MusThGUI>\n';
+    stateXML = '<MusThGUI canvasEditable="' + this.options.editable +
+        '" accidentalCarryOver="true">\n';
     stateXML += '<StaffSystem maxLedgerLines="4">\n';
     stateXML += '<Staff clef="treble">\n';
     stateXML += '<KeySign totalAccColumns="0" >';
@@ -452,7 +457,8 @@ NS.XMLConverter.prototype.getKeyboardInputXML = function(input) {
 
   var stateXML;
 
-  stateXML = '<keyboardinput maxkeys="1">\n';
+  stateXML = '<keyboardinput maxkeys="1" canvasEditable="' +
+      this.options.editable + '">\n';
   stateXML += '<givenkeys>\n';
   if (this.options.includestaticnote === 'true') {
     stateXML += '<givenkey pitchclass="' + this.options.staticnotepitchclass +
@@ -519,7 +525,8 @@ NS.XMLConverter.prototype.getKSWriteXML = function(input) {
       resp,
       i;
 
-  stateXML = '<MusThGUI>\n';
+  stateXML = '<MusThGUI canvasEditable="' + this.options.editable +
+      '" accidentalCarryOver="true">\n';
   stateXML += '<StaffSystem maxLedgerLines="0">\n';
   stateXML += '<Staff clef="' + this.options.clef + '">\n';
   stateXML += '<KeySign totalAccColumns="7">\n';
@@ -569,7 +576,8 @@ NS.XMLConverter.prototype.getKSIdentifyXML = function(input) {
       resp,
       i;
 
-  stateXML = '<MusThGUI>\n';
+  stateXML = '<MusThGUI canvasEditable="' + this.options.editable +
+      '" accidentalCarryOver="true">\n';
   stateXML += '<StaffSystem maxLedgerLines="0">\n';
   stateXML += '<Staff clef="' + this.options.clef + '">\n';
   stateXML += '<KeySign totalAccColumns="7">\n';
@@ -672,7 +680,8 @@ NS.XMLConverter.prototype.getScaleWriteXML = function(input) {
     keySign = [];
   }
 
-  stateXML = '<MusThGUI>\n';
+  stateXML = '<MusThGUI canvasEditable="' + this.options.editable +
+      '" accidentalCarryOver="' + this.options.includeKS + '">\n';
   stateXML += '<StaffSystem maxLedgerLines="4">\n';
   stateXML += '<Staff clef="' + this.options.clef + '">\n';
   stateXML += '<KeySign totalAccColumns="' + keySign.length + '">\n';
@@ -757,6 +766,109 @@ NS.XMLConverter.prototype.getScaleWriteXML = function(input) {
 };
 
 /**
+ * Converts the options and initial input for a scale identification
+ * question into an XML string that can be passed to a MusThGUI instance.
+ *
+ * @method getScaleIdentifyXML
+ * @param {String} input Provides the initial input as a string, formatted
+ * as a Moodle scale writing response.
+ * @return {String} A MusThGUI compatible XML string.
+ */
+NS.XMLConverter.prototype.getScaleIdentifyXML = function(input) {
+
+  var i,
+      noteParts,
+      keySign,
+      key = this.options.givenNote.ltr + this.options.givenNote.acc,
+      stateXML,
+      resp,
+      scaleLength;
+
+  if (this.options.scaleType === 'major') {
+    key += 'M';
+  }
+  else {
+    key += 'm';
+  }
+  console.log(this.options.scaleType);
+  if (this.options.includeKS) {
+    keySign = new NS.getKeySign(key, this.options.clef);
+  }
+  else {
+    keySign = [];
+  }
+
+  stateXML = '<MusThGUI canvasEditable="' + this.options.editable +
+      '" accidentalCarryOver="' + this.options.includeKS + '">\n';
+  stateXML += '<StaffSystem maxLedgerLines="4">\n';
+  stateXML += '<Staff clef="' + this.options.clef + '">\n';
+  stateXML += '<KeySign totalAccColumns="' + keySign.length + '">\n';
+  for (i = 0; i < keySign.length; i++) {
+    noteParts = this.noteNameToParts(keySign[i]);
+    stateXML += '<Accidental type="' + noteParts.acc + '" letter="' +
+        noteParts.ltr + '" register="' + noteParts.reg + '" ' +
+        'editable="false" />';
+  }
+  stateXML += '</KeySign>\n';
+
+  if (input === '' || input === null || typeof(input) === 'undefined') {
+    resp = null;
+  }
+  else {
+    resp = input.split(',');
+  }
+
+  stateXML += '<NoteColumns>';
+
+  if (resp !== null) {
+
+    for (i = 0; i < resp.length; i++) {
+      if (resp[i] !== '') {
+        noteParts = this.noteNameToParts(resp[i]);
+        stateXML += '<NoteColumn maxNotes="1" >';
+        stateXML += '<Note letter="' + noteParts.ltr + '" ';
+        stateXML += 'register="' + noteParts.reg + '" ';
+        stateXML += 'accidental="' + noteParts.acc + '" ';
+        stateXML += 'noteValue="whole" editable="false" />';
+        stateXML += '</NoteColumn>';
+      }
+      else {
+        stateXML += '<NoteColumn maxNotes="1" />';
+      }
+    }
+  }
+  else {
+    if (this.options.scaleType === 'melodic') {
+      scaleLength = 15;
+    }
+    else {
+      scaleLength = 8;
+    }
+    for (i = 0; i < scaleLength; i++) {
+      if (i === 0) {
+        stateXML += '<NoteColumn maxNotes="1">';
+        stateXML += '<Note letter="' + this.options.givenNote.ltr + '" ';
+        stateXML += 'register="' + this.options.givenNote.reg + '" ';
+        stateXML += 'accidental="' + this.options.givenNote.acc + '" ';
+        stateXML += 'noteValue="whole" editable="false" />';
+        stateXML += '</NoteColumn>';
+      }
+      else {
+        stateXML += '<NoteColumn maxNotes="1" />';
+      }
+    }
+  }
+  stateXML += '</NoteColumns>';
+
+  stateXML += '</Staff>\n';
+  stateXML += '</StaffSystem>\n';
+  stateXML += '</MusThGUI>';
+
+  return stateXML;
+
+};
+
+/**
  * Converts the MusThGUI's state from a XML to a simpler string describing
  * the state in a format suited for interval writing questions.
  *
@@ -805,7 +917,8 @@ NS.XMLConverter.prototype.getIntervalWriteXML = function(input) {
   var stateXML,
       inputParts;
 
-  stateXML = '<MusThGUI>';
+  stateXML = '<MusThGUI canvasEditable="' + this.options.editable +
+      '" accidentalCarryOver="true">\n';
   stateXML += '<StaffSystem maxLedgerLines="4">';
   stateXML += '<Staff clef="' + this.options.clef + '">';
   stateXML += '<KeySign totalAccColumns="0" >';
@@ -860,7 +973,8 @@ NS.XMLConverter.prototype.getIntervalIdentifyXML = function(input) {
   var stateXML,
       inputParts;
 
-  stateXML = '<MusThGUI>';
+  stateXML = '<MusThGUI canvasEditable="' + this.options.editable +
+      '" accidentalCarryOver="true">\n';
   stateXML += '<StaffSystem maxLedgerLines="4">';
   stateXML += '<Staff clef="' + this.options.clef + '">';
   stateXML += '<KeySign totalAccColumns="0" >';
@@ -917,7 +1031,8 @@ NS.XMLConverter.prototype.getChordQualityWriteXML = function(input) {
       stateXML,
       resp;
 
-  stateXML = '<MusThGUI>';
+  stateXML = '<MusThGUI canvasEditable="' + this.options.editable +
+      '" accidentalCarryOver="true">\n';
   stateXML += '<StaffSystem maxLedgerLines="4">';
   stateXML += '<Staff clef="' + this.options.clef + '">';
 
@@ -1015,7 +1130,8 @@ NS.XMLConverter.prototype.getHarmonicFunctionWriteXML = function(input) {
       stateXML,
       resp;
 
-  stateXML = '<MusThGUI>';
+  stateXML = '<MusThGUI canvasEditable="' + this.options.editable +
+      '" accidentalCarryOver="true">\n';
   stateXML += '<StaffSystem maxLedgerLines="4">';
   stateXML += '<Staff clef="' + this.options.clef + '">';
 
@@ -1087,7 +1203,8 @@ NS.XMLConverter.prototype.getHarmonicFunctionIdentifyXML = function(input) {
       stateXML,
       resp;
 
-  stateXML = '<MusThGUI>';
+  stateXML = '<MusThGUI canvasEditable="' + this.options.editable +
+      '" accidentalCarryOver="true">\n';
   stateXML += '<StaffSystem maxLedgerLines="4">';
   stateXML += '<Staff clef="' + this.options.clef + '">';
 

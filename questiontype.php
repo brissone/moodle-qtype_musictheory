@@ -89,6 +89,12 @@ class qtype_musictheory extends question_type {
             case 'scale-write-random':
                 $class = 'qtype_musictheory_scale_write_random';
                 break;
+            case 'scale-identify':
+                $class = 'qtype_musictheory_scale_identify';
+                break;
+            case 'scale-identify-random':
+                $class = 'qtype_musictheory_scale_identify_random';
+                break;
             case 'chordquality-write':
                 $class = 'qtype_musictheory_chordquality_write';
                 break;
@@ -223,6 +229,12 @@ class qtype_musictheory extends question_type {
                 $question->musictheory_quality = (string) $options->quality;
                 $question->musictheory_size = (string) $options->size;
                 break;
+            case 'scale-identify':
+                $question->musictheory_possiblescalesinresponse = array();
+                $possiblescales = 'possiblescalesinresponse';
+                foreach ($options->$possiblescales->children() as $scaletype) {
+                    array_push($question->musictheory_possiblescalesinresponse, (string) $scaletype);
+                }
             case 'scale-write':
                 $question->musictheory_clef = (string) $options->clef;
                 $question->musictheory_givennoteletter = (string) $options->tonic[0]->letter;
@@ -330,6 +342,12 @@ class qtype_musictheory extends question_type {
                     array_push($question->musictheory_size_random, (string) $size);
                 }
                 break;
+            case 'scale-identify-random':
+                $question->musictheory_possiblescalesinresponse = array();
+                $possiblescales = 'possiblescalesinresponse';
+                foreach ($options->$possiblescales->children() as $scaletype) {
+                    array_push($question->musictheory_possiblescalesinresponse, (string) $scaletype);
+                }
             case 'scale-write-random':
                 $displayks = (((string) $options->displaykeysignature) == 'true') ? 1 : 0;
                 $question->musictheory_displaykeysignature = $displayks;
@@ -491,7 +509,13 @@ class qtype_musictheory extends question_type {
                 $outxml .= '<size>' . $question->musictheory_size . '</size>';
                 $outxml .= '<quality>' . $question->musictheory_quality . '</quality>';
                 break;
-            case 'scale-write';
+            case 'scale-identify':
+                $outxml .= '<possiblescalesinresponse>';
+                foreach ($question->musictheory_possiblescalesinresponse as $scaletype) {
+                    $outxml .= '<possiblescaletype>' . $scaletype . '</possiblescaletype>';
+                }
+                $outxml .= '</possiblescalesinresponse>';
+            case 'scale-write':
                 $outxml .= '<clef>' . $question->musictheory_clef . '</clef>';
                 $outxml .= '<tonic>';
                 $outxml .= '<letter>' . $question->musictheory_givennoteletter . '</letter>';
@@ -502,7 +526,7 @@ class qtype_musictheory extends question_type {
                 $outxml .= '<displaykeysignature>' . $displayks . '</displaykeysignature>';
                 $outxml .= '<scaletype>' . $question->musictheory_scaletype . '</scaletype>';
                 break;
-            case 'chordquality-write';
+            case 'chordquality-write':
             case 'chordquality-identify':
                 $outxml .= '<clef>' . $question->musictheory_clef . '</clef>';
                 $outxml .= '<chordroot>';
@@ -511,13 +535,13 @@ class qtype_musictheory extends question_type {
                 $outxml .= '</chordroot>';
                 $outxml .= '<chordquality>' . $question->musictheory_chordquality . '</chordquality>';
                 break;
-            case 'harmonicfunction-identify';
+            case 'harmonicfunction-identify':
                 $outxml .= '<harmonicfunction-responsetypes>';
                 foreach ($question->musictheory_hfidentifyresponsetypes as $hftype) {
                     $outxml .= '<harmonicfunctiontype>' . $hftype . '</harmonicfunctiontype>';
                 }
                 $outxml .= '</harmonicfunction-responsetypes>';
-            case 'harmonicfunction-write';
+            case 'harmonicfunction-write':
                 $outxml .= '<clef>' . $question->musictheory_clef . '</clef>';
                 $outxml .= '<key>' . $question->musictheory_keymode . '</key>';
                 $displayks = ($question->musictheory_displaykeysignature == 1) ? 'true' : 'false';
@@ -616,6 +640,12 @@ class qtype_musictheory extends question_type {
                 }
                 $outxml .= '</size-random>';
                 break;
+            case 'scale-identify-random':
+                $outxml .= '<possiblescalesinresponse>';
+                foreach ($question->musictheory_possiblescalesinresponse as $scaletype) {
+                    $outxml .= '<possiblescaletype>' . $scaletype . '</possiblescaletype>';
+                }
+                $outxml .= '</possiblescalesinresponse>';
             case 'scale-write-random':
                 $displayks = ($question->musictheory_displaykeysignature == 1) ? 'true' : 'false';
                 $outxml .= '<displaykeysignature>' . $displayks . '</displaykeysignature>';

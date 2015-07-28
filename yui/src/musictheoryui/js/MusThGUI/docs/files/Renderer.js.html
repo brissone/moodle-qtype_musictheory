@@ -193,7 +193,8 @@ MusThGUI.Render.Renderer = function(can, state, coordMgr, glyphProvider) {
 MusThGUI.Render.Renderer.prototype.draw = function() {
 
   var staffSystemRend = new MusThGUI.Render.StaffSystemRend(this.can,
-      this.coordMgr, this.glyphProvider, this.state.staffSystem);
+      this.coordMgr, this.glyphProvider, this.state.staffSystem,
+      this.state.accCarryOver);
   staffSystemRend.draw();
 
   var i;

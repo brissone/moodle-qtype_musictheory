@@ -2,7 +2,7 @@
 
 <MusThGUI
   xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
-  xsi:noNamespaceSchemaLocation='valid_input_xml.xsd'>
+  xsi:noNamespaceSchemaLocation='valid_input_xml.xsd' canvasEditable="true" accidentalCarryOver="true">
   <StaffSystem maxLedgerLines="3">
     <Staff clef="treble">
       <KeySign totalAccColumns="7" >

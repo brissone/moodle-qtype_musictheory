@@ -43,8 +43,8 @@ $string['considerregister'] = 'Include register';
 $string['considerregister_help'] = "Indicates whether the note's register is to be
  included as part of the question.";
 $string['includealterations'] = 'Include alterations';
-$string['includealterations_help'] = "Indicates whether accidentals are to be
- included as part of the question.";
+$string['includealterations_help'] = 'Indicates whether accidentals are to be
+ included as part of the question.';
 $string['includestaticnote'] = 'Include given note';
 $string['displaykeysignature'] = 'Display key signature';
 $string['direction'] = 'Direction';
@@ -69,6 +69,7 @@ $string['questiontext_help'] = "This field isn't required. If left empty, a ques
  generated question text.";
 $string['rootposition'] = '[root]';
 $string['scaletype-random'] = 'Possible scale types';
+$string['possiblescalesinresponse'] = 'Possible scale types in response';
 $string['size-random'] = 'Possible sizes';
 $string['tonic'] = 'Tonic';
 $string['updatemusicqtype'] = 'Update options';
@@ -89,6 +90,8 @@ $string['qtype_interval-identify'] = 'Interval identification';
 $string['qtype_interval-identify-random'] = 'Interval identification (random)';
 $string['qtype_scale-write'] = 'Scale writing';
 $string['qtype_scale-write-random'] = 'Scale writing (random)';
+$string['qtype_scale-identify'] = 'Scale identification';
+$string['qtype_scale-identify-random'] = 'Scale identification (random)';
 $string['qtype_chordquality-write'] = 'Chord quality writing';
 $string['qtype_chordquality-write-random'] = 'Chord quality writing (random)';
 $string['qtype_chordquality-identify'] = 'Chord quality identification';
@@ -99,28 +102,28 @@ $string['qtype_harmonicfunction-identify'] = 'Harmonic function identification';
 $string['qtype_harmonicfunction-identify-random'] = 'Harmonic function identification (random)';
 
 // Edit form - grading strategy options and help.
-$string['musictheory_gradingstrategy'] = "Grading strategy";
-$string['musictheory_gradingstrategy_help'] = "<p>The grading strategy specifies how the question
+$string['musictheory_gradingstrategy'] = 'Grading strategy';
+$string['musictheory_gradingstrategy_help'] = '<p>The grading strategy specifies how the question
  will be graded.</p>
  <p><b>All or nothing</b>: The response is compared to the correct answer. If the response
  is correct, full marks are given. If the answer is incorrect, a mark of zero is given.</p>
-";
-$string['musictheory_gradingstrategy_scale-write'] = "Grading strategy";
-$string['musictheory_gradingstrategy_scale-write_help'] = "<p>The grading strategy specifies how
+';
+$string['musictheory_gradingstrategy_scale-write'] = 'Grading strategy';
+$string['musictheory_gradingstrategy_scale-write_help'] = '<p>The grading strategy specifies how
  the question will be graded.</p>
  <p><b>All or nothing</b>: The response is compared to the correct answer. If the response
  is correct, full marks are given. If the answer is incorrect, a mark of zero is given.</p>
  <p><b>Partial credit for each correct note</b>:
  A grading strategy that divides the grade evenly by the number of scale notes the user has
  to enter, and awards partial grade for each correct note.</p>
-";
-$string['qtype_musictheory_strategy_all_or_nothing'] = "All or nothing";
-$string['qtype_musictheory_strategy_chordqualitywrite_allornothing'] = "All or nothing";
-$string['qtype_musictheory_strategy_harmonicfunctionwrite_allornothing'] = "All or nothing";
-$string['qtype_musictheory_strategy_harmonicfunctionid_allornothing'] = "All or nothing";
-$string['qtype_musictheory_strategy_note_allornothing'] = "All or nothing";
-$string['qtype_musictheory_strategy_keyboard_allornothing'] = "All or nothing";
-$string['qtype_musictheory_strategy_scale_creditbynote'] = "Partial credit for each correct note";
+';
+$string['qtype_musictheory_strategy_all_or_nothing'] = 'All or nothing';
+$string['qtype_musictheory_strategy_chordqualitywrite_allornothing'] = 'All or nothing';
+$string['qtype_musictheory_strategy_harmonicfunctionwrite_allornothing'] = 'All or nothing';
+$string['qtype_musictheory_strategy_harmonicfunctionid_allornothing'] = 'All or nothing';
+$string['qtype_musictheory_strategy_note_allornothing'] = 'All or nothing';
+$string['qtype_musictheory_strategy_keyboard_allornothing'] = 'All or nothing';
+$string['qtype_musictheory_strategy_scale_creditbynote'] = 'Partial credit for each correct note';
 
 // Note names.
 $string['notec'] = 'C';
@@ -283,31 +286,35 @@ $string['hftype_extendeddom'] = 'Extended dominant (9, 11 or 13)';
 // Edit form validation.
 $string['validation_noteoutsidestaff'] = "This note's register doesn't fit within the staff
  in the specified clef.";
-$string['validation_noteoutsidekeyboard'] = "This note is outside the range of the piano keyboard.";
-$string['validation_qualitymismatch'] = "This combination of interval size and quality is invalid.";
+$string['validation_noteoutsidekeyboard'] = 'This note is outside the range of the piano keyboard.';
+$string['validation_samestaticandgivennote'] = 'The given note and the answer cannot correspond to the same key on the keyboard.';
+$string['validation_qualitymismatch'] = 'This combination of interval size and quality is invalid.';
 $string['validation_harmonicfunctionnotsupported'] = 'This harmonic function is not supported or is invalid.';
 $string['validation_harmonicfunctiontypenotselected'] = 'The function type for the specified harmonic function must be selected.';
 $string['validation_invalidchordquality'] = 'This type of chord cannot be built on the specified root.';
-$string['validation_invalidinterval_above'] = "This interval cannot be written above the given note.";
-$string['validation_invalidinterval_below'] = "This interval cannot be written below the given note.";
+$string['validation_invalidinterval_above'] = 'This interval cannot be written above the given note.';
+$string['validation_invalidinterval_below'] = 'This interval cannot be written below the given note.';
 $string['validation_intervaloutsidestaff'] = "The given note's register produces an interval that
  doesn't fit within the staff in the given clef.";
-$string['validation_interval_novalidcombo'] = "The selected possible qualities and sizes do not
- produce at least one valid interval.";
-$string['validation_scale_invalidtonic'] = "Invalid tonic for the specified type of scale.";
+$string['validation_interval_novalidcombo'] = 'The selected possible qualities and sizes do not
+ produce at least one valid interval.';
+$string['validation_scale_invalidtonic'] = 'Invalid tonic for the specified type of scale.';
 $string['validation_scaleoutsidestaff'] = "The given tonic's register produces a scale that doesn't
  fit within the staff in the given clef.";
+$string['validation_possiblescaletypenotselected'] = 'The scale type for the specified type of scale must be selected.';
+$string['validation_possiblescaletypesnotselected_random'] = 'The possible scale types in the response ' .
+        'must include all possible scale types in the question';
 
 // Question rendering.
 $string['correctansweris'] = 'The correct answer is:';
 $string['correctansweris_morethanone'] = 'One possible correct answer is:';
-$string['javascriptrequired'] = "This text is to be replaced by a graphical user
- interface, which requires Javascript to be enabled in your browser.";
-$string['selectanoption'] = "[No secondary tonic]";
-$string['selectanoption'] = "Select";
-$string['selectakey'] = "Select a key";
-$string['selectasize'] = "Select a size";
-$string['selectaquality'] = "Select a quality";
+$string['javascriptrequired'] = 'This text is to be replaced by a graphical user
+ interface, which requires Javascript to be enabled in your browser.';
+$string['selectanoption'] = '[No secondary tonic]';
+$string['selectanoption'] = 'Select';
+$string['selectakey'] = 'Select a key';
+$string['selectasize'] = 'Select a size';
+$string['selectaquality'] = 'Select a quality';
 $string['trebleclef'] = 'Treble clef';
 $string['bassclef'] = 'Bass clef';
 $string['altoclef'] = 'Alto clef';
@@ -328,6 +335,7 @@ $string['questiontext_interval_identify'] = 'Identify the following interval';
 $string['questiontext_scale_write'] = 'Write the following scale in ascending direction';
 $string['questiontext_scale_write_melodic'] = 'Write the following scale in both ascending and
      descending directions';
+$string['questiontext_scale_identify'] = 'Identify the following scale';
 $string['questiontext_chordquality_write'] = 'Enter the following chord';
 $string['questiontext_chordquality_identify'] = 'Identify the root and quality of the following chord';
 $string['questiontext_harmonicfunction_write'] = 'Enter the following harmonic function';
@@ -417,4 +425,5 @@ $string['validationerror_scale_incomplete'] = 'Incomplete answer. A total of 8 n
  including the given tonic.';
 $string['validationerror_scale_incomplete_melodic'] = 'Incomplete answer. A total of 15 notes is
  required, including the given tonic.';
+$string['validationerror_scale_identify'] = 'Incomplete answer. All dropdown menus must be selected.';
 $string['validationerror_whitespace'] = 'Invalid answer syntax: remove all spaces from your answer.';

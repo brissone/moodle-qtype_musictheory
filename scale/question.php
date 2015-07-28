@@ -220,3 +220,140 @@ class qtype_musictheory_strategy_scale_creditbynote implements qtype_musictheory
     }
 
 }
+
+/**
+ * The music theory scale identification question subtype.
+ *
+ * @copyright  2015 Eric Brisson
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+class qtype_musictheory_scale_identify extends qtype_musictheory_question implements qtype_musictheory_subtype {
+
+    public function get_supported_grading_strategies() {
+        return array(
+            'qtype_musictheory_strategy_all_or_nothing',
+        );
+    }
+
+    public function get_expected_data() {
+        return array(
+            'musictheory_answer_tonicletter' => PARAM_TEXT,
+            'musictheory_answer_tonicacc'    => PARAM_TEXT,
+            'musictheory_answer_scaletype'   => PARAM_TEXT
+        );
+    }
+
+    public function grade_response(array $response) {
+        $correctresponse = $this->get_correct_response();
+        return $this->gradingstrategy->grade($response, $correctresponse);
+    }
+
+    public function get_correct_response() {
+        $ltr = $this->musictheory_givennoteletter;
+        $acc = $this->musictheory_givennoteaccidental;
+        $corrresp = array(
+            'musictheory_answer_tonicletter' => $this->musictheory_givennoteletter,
+            'musictheory_answer_tonicacc'    => $this->musictheory_givennoteaccidental,
+            'musictheory_answer_scaletype'   => $this->musictheory_scaletype
+        );
+
+        return $corrresp;
+    }
+
+    public function is_complete_response(array $response) {
+        if (!isset($response['musictheory_answer_tonicletter']) ||
+                !isset($response['musictheory_answer_tonicacc']) ||
+                !isset($response['musictheory_answer_scaletype'])) {
+            return false;
+        }
+        return (!empty($response['musictheory_answer_tonicletter']) &&
+                !empty($response['musictheory_answer_tonicacc']) &&
+                !empty($response['musictheory_answer_scaletype']));
+    }
+
+    public function is_same_response(array $prevresponse, array $newresponse) {
+        $sametonicletter = question_utils::arrays_same_at_key_missing_is_blank(
+                        $prevresponse, $newresponse, 'musictheory_answer_tonicletter');
+        $sametonicacc = question_utils::arrays_same_at_key_missing_is_blank(
+                        $prevresponse, $newresponse, 'musictheory_answer_tonicacc');
+        $samescaletype = question_utils::arrays_same_at_key_missing_is_blank(
+                        $prevresponse, $newresponse, 'musictheory_answer_scaletype');
+        return ($sametonicletter && $sametonicacc && $samescaletype);
+    }
+
+    public function summarise_response(array $response) {
+
+        if (!isset($response['musictheory_answer_tonicletter']) ||
+                !isset($response['musictheory_answer_tonicacc']) ||
+                !isset($response['musictheory_answer_scaletype']) ||
+                empty($response['musictheory_answer_tonicletter']) ||
+                empty($response['musictheory_answer_tonicacc']) ||
+                empty($response['musictheory_answer_scaletype'])) {
+            return '';
+        }
+
+        $letter = get_string('note' . strtolower($response['musictheory_answer_tonicletter']), 'qtype_musictheory');
+        $acc = ($response['musictheory_answer_tonicacc'] === '#') ? 'sharp' : $response['musictheory_answer_tonicacc'];
+        if ($response['musictheory_answer_tonicacc'] !== 'n') {
+            $accstr = get_string('acc_' . $acc, 'qtype_musictheory');
+        } else {
+            $accstr = '';
+        }
+        $scaletype = get_string('scaletype_' . $response['musictheory_answer_scaletype'], 'qtype_musictheory');
+        return $letter . $accstr . ' ' . strtolower($scaletype);
+    }
+
+    public function get_validation_error(array $response) {
+        return get_string('validationerror_scale_identify', 'qtype_musictheory');
+    }
+
+    public function get_question_text() {
+        $qtext = get_string('questiontext_scale_identify', 'qtype_musictheory');
+        return $qtext . ':';
+    }
+
+}
+
+/**
+ * The music theory random scale identification question subtype.
+ *
+ * @copyright  2015 Eric Brisson
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+class qtype_musictheory_scale_identify_random extends qtype_musictheory_scale_identify {
+
+    public function start_attempt(question_attempt_step $step, $variant) {
+
+        $this->musictheory_clef = qtype_musictheory_randomiser::get_random_field($this->musictheory_clef_random);
+        $this->musictheory_scaletype = qtype_musictheory_randomiser::get_random_field($this->musictheory_scaletype_random);
+        $mode = ($this->musictheory_scaletype == 'major') ? 'M' : 'm';
+        $givennote = qtype_musictheory_randomiser::get_random_scale_tonic($mode, $this->musictheory_clef);
+        $this->musictheory_givennoteletter = $givennote->getLetter();
+        $this->musictheory_givennoteaccidental = $givennote->getAccidental();
+        $this->musictheory_givennoteregister = $givennote->getRegister();
+        $this->musictheory_optionsxml = $this->qtype->get_options_xml($this, 'scale-identify');
+        $this->questiontext = $this->get_question_text();
+        $step->set_qt_var('_var_clef', $this->musictheory_clef);
+        $step->set_qt_var('_var_scaletype', $this->musictheory_scaletype);
+        $step->set_qt_var('_var_givennoteletter', $this->musictheory_givennoteletter);
+        $step->set_qt_var('_var_givennoteaccidental', $this->musictheory_givennoteaccidental);
+        $step->set_qt_var('_var_givennoteregister', $this->musictheory_givennoteregister);
+        $step->set_qt_var('_var_possiblescalesinresponse', serialize($this->musictheory_possiblescalesinresponse));
+        $step->set_qt_var('_var_optionsxml', $this->musictheory_optionsxml);
+        $step->set_qt_var('_var_questiontext', $this->questiontext);
+        parent::start_attempt($step, $variant);
+    }
+
+    public function apply_attempt_state(question_attempt_step $step) {
+        $this->musictheory_clef = $step->get_qt_var('_var_clef');
+        $this->musictheory_scaletype = $step->get_qt_var('_var_scaletype');
+        $this->musictheory_givennoteletter = $step->get_qt_var('_var_givennoteletter');
+        $this->musictheory_givennoteaccidental = $step->get_qt_var('_var_givennoteaccidental');
+        $this->musictheory_givennoteregister = $step->get_qt_var('_var_givennoteregister');
+        $this->musictheory_possiblescalesinresponse = unserialize($step->get_qt_var('_var_possiblescalesinresponse'));
+        $this->musictheory_optionsxml = $step->get_qt_var('_var_optionsxml');
+        $this->questiontext = $step->get_qt_var('_var_questiontext');
+        parent::apply_attempt_state($step);
+    }
+
+}

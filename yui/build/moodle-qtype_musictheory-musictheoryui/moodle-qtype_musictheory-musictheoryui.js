@@ -66,7 +66,7 @@ M.qtype_musictheory.musictheoryui = {
  2) Define an XML string that will describe the interface's initial state. Here
  is an example that would be well-suited for a scale question:
 
-	var initXML = '<MusThGUI>' +
+	var initXML = '<MusThGUI canvasEditable="true" accidentalCarryOver="true">' +
 	'<StaffSystem maxLedgerLines="3">' +
 	'<Staff clef="treble">' +
 	'<KeySign totalAccColumns="7" >' +
@@ -243,7 +243,8 @@ MusThGUI.Render.Renderer = function(can, state, coordMgr, glyphProvider) {
 MusThGUI.Render.Renderer.prototype.draw = function() {
 
   var staffSystemRend = new MusThGUI.Render.StaffSystemRend(this.can,
-      this.coordMgr, this.glyphProvider, this.state.staffSystem);
+      this.coordMgr, this.glyphProvider, this.state.staffSystem,
+      this.state.accCarryOver);
   staffSystemRend.draw();
 
   var i;
@@ -308,19 +309,16 @@ MusThGUI.Control = {};/* Copyright (c) 2013 Eric Brisson
  * to send the current canvas state back the caller, whenever the state changes.
  * This function should accept one argument which provides the current state of
  * the canvas, as an xml string.
- * @param {Boolean} editable Specifies whether the user can change the UI
- * after initialization.
  * @return {undefined}
  */
-MusThGUI.Control.Controller = function(canID, stateXML, callBackFunc,
-		editable) {
+MusThGUI.Control.Controller = function(canID, stateXML, callBackFunc) {
 
 	this.canID = canID;
 	this.canNode = Y.one('#' + canID);
 	this.html5Can = this.canNode.getDOMNode();
 	this.ctx = this.html5Can.getContext('2d');
 	this.stateXML = Y.XML.parse(stateXML);
-	this.state = new MusThGUI.GUIState.State(editable);
+	this.state = new MusThGUI.GUIState.State();
 	this.state.setState(this.stateXML);
 	this.coordMgr = new MusThGUI.Render.CoordManager(this.state);
 	this.html5Can.width = this.coordMgr.canvasWidth;
@@ -2522,15 +2520,12 @@ MusThGUI.GUIState.Note.compare = function(note1, note2) {
  * @namespace GUIState
  *
  * @constructor
- * @param {String} editable Specifies whether the state can be changed after
- * initialization.
  * @return {undefined}
  */
-MusThGUI.GUIState.State = function(editable) {
+MusThGUI.GUIState.State = function() {
 
   this.staffSystem = null;
   this.toolbars = [];
-  this.editable = editable;
 
 };
 
@@ -2545,9 +2540,15 @@ MusThGUI.GUIState.State = function(editable) {
 MusThGUI.GUIState.State.prototype.setState = function(stateXML) {
 
   this.stateXML = stateXML;
-  this.staffSystem = new MusThGUI.GUIState.StaffSystem();
+
+  // Canvas editable
+  var musThGUI = this.stateXML.getElementsByTagName('MusThGUI');
+  this.editable = musThGUI[0].getAttribute('canvasEditable') === 'true';
+  this.accCarryOver = musThGUI[0].getAttribute('accidentalCarryOver') ===
+      'true';
 
   // Staff System
+  this.staffSystem = new MusThGUI.GUIState.StaffSystem();
   var i, j, k, l, editable, acc;
   var sSys = this.stateXML.getElementsByTagName('StaffSystem');
   for (i = 0; i < sSys.length; i++) {
@@ -2885,15 +2886,18 @@ MusThGUI.GUIState.State.prototype.getMaxNumToolbarButtons = function() {
  * provider.
  * @param {GUIState.StaffSystem} staffSystem The staff system to be
  * rendered.
+ * @param {Boolean} accCarryOver Indicates whether accidentals are to carry
+ * over
  * @return {undefined}
  */
 MusThGUI.Render.StaffSystemRend = function(can, coordMgr, glyphProvider,
-    staffSystem) {
+    staffSystem, accCarryOver) {
 
   this.can = can;
   this.staffSystem = staffSystem;
   this.coordMgr = coordMgr;
   this.glyphProvider = glyphProvider;
+  this.accCarryOver = accCarryOver;
 
 };
 
@@ -2911,7 +2915,7 @@ MusThGUI.Render.StaffSystemRend.prototype.draw = function() {
   for (i = 0; i < this.staffSystem.staves.length; i++) {
     var staff = this.staffSystem.staves[i];
     var staffRend = new MusThGUI.Render.StaffRend(parent.can, parent.coordMgr,
-        parent.glyphProvider, staff, i);
+        parent.glyphProvider, staff, i, parent.accCarryOver);
     staffRend.draw();
   }
 
@@ -2972,16 +2976,19 @@ MusThGUI.Render.StaffSystemRend.prototype.draw = function() {
  * provider.
  * @param {GUIState.Staff} staff The staff to be rendered.
  * @param {Number} staffID The zero-based ID of the staff to be rendered.
+ * @param {Boolean} accCarryOver Indicates whether accidentals are to carry
+ * over
  * @return {undefined}
  */
 MusThGUI.Render.StaffRend = function(can, coordMgr, glyphProvider, staff,
-    staffID) {
+    staffID, accCarryOver) {
 
   this.can = can;
   this.staff = staff;
   this.coordMgr = coordMgr;
   this.staffID = staffID;
   this.glyphProvider = glyphProvider;
+  this.accCarryOver = accCarryOver;
 
 };
 
@@ -3090,7 +3097,8 @@ MusThGUI.Render.StaffRend.prototype.drawNoteColumns = function() {
   var i;
   for (i = 0; i < this.staff.noteColumns.length; i++) {
     noteColRend = new MusThGUI.Render.NoteColRend(parent.can, parent.coordMgr,
-        parent.glyphProvider, parent.staff, parent.staffID, i);
+        parent.glyphProvider, parent.staff, parent.staffID, i,
+        parent.accCarryOver);
     noteColRend.draw();
   }
 
@@ -3219,10 +3227,12 @@ MusThGUI.Render.KeySignRend.prototype.draw = function() {
  * @param {Number} staffID The zero-based ID of the staff where containing the
  * note column.
  * @param {Number} noteColID The zero-based ID of this note column.
+ * @param {Boolean} accCarryOver Indicates whether accidentals are to carry
+ * over
  * @return {undefined}
  */
 MusThGUI.Render.NoteColRend = function(can, coordMgr, glyphProvider, staff,
-    staffID, noteColID) {
+    staffID, noteColID, accCarryOver) {
 
   this.can = can;
   this.coordMgr = coordMgr;
@@ -3230,6 +3240,7 @@ MusThGUI.Render.NoteColRend = function(can, coordMgr, glyphProvider, staff,
   this.noteColID = noteColID;
   this.staff = staff;
   this.staffID = staffID;
+  this.accCarryOver = accCarryOver;
   this.clef = staff.clef;
   this.keySign = staff.keySign;
   this.maxNotes = this.noteCol.maxNotes;
@@ -3255,7 +3266,8 @@ MusThGUI.Render.NoteColRend.prototype.draw = function() {
   var noteName, accPos;
   var noteRends = [];
 
-  var i, note;
+  var i, note, displayAcc;
+  var displayAccPar = false;
   var prevColNote = null;
   var nextColNote = null;
   for (i = 0; i < this.noteCol.notes.length; i++) {
@@ -3264,7 +3276,20 @@ MusThGUI.Render.NoteColRend.prototype.draw = function() {
       nextColNote = this.noteCol.notes[i + 1];
     }
     noteName = note.letter + note.register;
-    var displayAcc = parent.displayAccidental(note, prevColNote, nextColNote);
+    if (!this.accCarryOver) {
+      if (note.accidental !== 'n') {
+        displayAcc  = true;
+      }
+      else {
+        displayAcc = parent.displayAccidental(note, prevColNote, nextColNote);
+        if (displayAcc) {
+          displayAccPar = true;
+        }
+      }
+    }
+    else {
+      displayAcc = parent.displayAccidental(note, prevColNote, nextColNote);
+    }
     if (displayAcc) {
       if (accResetNote === null) {
         accPos = 0;
@@ -3280,7 +3305,8 @@ MusThGUI.Render.NoteColRend.prototype.draw = function() {
     }
     noteRend = new MusThGUI.Render.NoteRend(parent.can, parent.coordMgr,
         parent.glyphProvider, note, parent.noteColID, parent.staffID,
-        parent.clef, parent.keySign.totalAccColumns, displayAcc, accPos);
+        parent.clef, parent.keySign.totalAccColumns, displayAcc, accPos,
+        displayAccPar);
     noteRends.push(noteRend);
     prevColNote = note;
   }
@@ -3466,10 +3492,13 @@ MusThGUI.Render.NoteColRend.prototype.displayAccidental = function(note,
  * @param {Number} accPos A number indicating whether and how much an
  * accidental should be offset to the left of the note (e.g. 0 = no offset, 1 =
  * one offset level to the left, 2 = two offset levels to teh left, etc.).
+ * @param {Boolean} displayAccPar Indicates whether the note's accidental should
+ * be parenthesized.
  * @return {undefined}
  */
 MusThGUI.Render.NoteRend = function(can, coordMgr, glyphProvider, note,
-    noteColID, staffID, clef, keySignTotalAccColumns, displayAcc, accPos) {
+    noteColID, staffID, clef, keySignTotalAccColumns, displayAcc, accPos,
+    displayAccPar) {
 
   this.can = can;
   this.coordMgr = coordMgr;
@@ -3480,6 +3509,7 @@ MusThGUI.Render.NoteRend = function(can, coordMgr, glyphProvider, note,
   this.keySignTotalAccColumns = keySignTotalAccColumns;
   this.displayAcc = displayAcc;
   this.accPos = accPos;
+  this.displayAccPar = displayAccPar;
   this.accColWidth = 15;
   this.glyphProvider = glyphProvider;
 
@@ -3562,7 +3592,7 @@ MusThGUI.Render.NoteRend.prototype.draw = function(noteOffset) {
 
   // Draw accidental
   img = this.glyphProvider.getAccidental(this.note.accidental,
-      this.note.editable, false);
+      this.note.editable, false, this.displayAccPar);
   if (this.displayAcc) {
     if (this.note.accidental === '#') {
       ctx.drawImage(img, notePos.x - (img.width) - 6 -
@@ -3581,7 +3611,7 @@ MusThGUI.Render.NoteRend.prototype.draw = function(noteOffset) {
           this.accPos * this.accColWidth, notePos.y - 5);
     }
     else if (this.note.accidental === 'n') {
-      ctx.drawImage(img, notePos.x - (img.width) - 7 -
+      ctx.drawImage(img, notePos.x - (img.width) - 4 -
           this.accPos * this.accColWidth, notePos.y - 15);
     }
   }
@@ -4480,6 +4510,49 @@ MusThGUI.Render.GlyphProvider = function(imagesLoadedCallback) {
     parent.imgLoaded();
   };
 
+  this.naturalPar = new Image();
+  this.naturalPar.src = 'data:image/png;base64, ' +
+      'iVBORw0KGgoAAAANSUhEUgAAABMAAAAeCAYAAADOziUSAAAABmJLR0QA/wD/AP+gvaeTAAAA' +
+      'CXBIWXMAAFxGAABcRgEUlENBAAAAB3RJTUUH3wcaDykVgP9TjAAAAm5JREFUSMel1s2LV2UU' +
+      'B/DPXO+MSpo6qTmMyNjAaJhoC3VhLgohwiwK3IW4kVy5dq3gRlf+AZW0cVNgviwUF0qLcKFI' +
+      'o0KJvViKRYQvqY05Pxd9L1wuvzvzqzlweZ5zn3PPc873+Z7zXLrLOtzASv9Bipb3I1iG5TNx' +
+      'thHv4ykm87TJx1jV5mw2DuN1dHoIZAs+bVvcmUiG8S7uY/MUzl7LprubC4txDucT4fYenMF3' +
+      'GMeceppr8RZO4O+acTPdBcFpQfRjWI0PK2f9+CCLlxofzw+Gu3AIn+AMdmT9JGbhbfSXGMBH' +
+      'uI3fGo6OJO2Xq1Qiy1HiWvRNGC3xKhbhKv5spDfWgtUk+jCBbwPTSIE3YnA7oE8lT7s4vZr5' +
+      'aIn1Uf7AXw3jCfye9H/Iye0MTlUGt+rOXolyv8b4vhgezglfxz0sxLYaCzo1nFeUGIzypBHV' +
+      'AxzHxdq7uV1K8FHGl4rGLnXpC22mk38ylgWeRZnl/8lAdThFAK4KfTqZ6NJJ5mW8W6YJvpkS' +
+      'KWthd/Aw8zVplBsyPqtBsTTzn8taCS3GCzk1eBEHs/NwiD1Y41dVjiOZ3yhxIcpwHNyrHcY7' +
+      '2b1N+hJ1BzcL/IRfMZrdm8Zt0gnOY7iCH4uA+jmWYKhLB66IOY6vw78iqW6IzTe4WabevsK+' +
+      '3AFnE+nl4Dme7jAegp4JjSbxXvrf6TpP58fhpbC8TJsZaKQ2FJv90e8kqqKezgN8lr6+IvT4' +
+      'JRC0dY+tuQ4PVKdbx+bL3AN7eiDvY+zFqTz/1lPDaG+Pt/gcfJFGoM3Z93mmk9k42uvvwVQk' +
+      'rb7pn6mzh+msj7r9OjwHDDOOLnjafMoAAAAASUVORK5CYII=';
+    this.naturalPar.onload = function() {
+    parent.imgLoaded();
+  };
+
+  this.naturalParColor = new Image();
+  this.naturalParColor.src = 'data:image/png;base64, ' +
+      'iVBORw0KGgoAAAANSUhEUgAAABMAAAAeCAYAAADOziUSAAAABmJLR0QA/wD/AP+gvaeTAAAA' +
+      'CXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3wcaEBAyPAuPEAAAAB1pVFh0Q29tbWVudAAA' +
+      'AAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAC1UlEQVRIx5XVS4gdVRAG4O82d5wYdSLpiaL4' +
+      'wCxCDCiIoqKodMxGESQBV9Ki4saFiru4EFyIoiBkqQtRaEQxBAwIJtm0QQQRGR/4gIiCSALR' +
+      'nFmMMeqM5rpItZ7puddcC5o+dR7/qVP1V9VAT6o6wb14Dbe1TfmVKaXogWibEi7DHNafDaA7' +
+      'B8Mxi1diBaP4JgFcghNtU65UddI25RnLOqWq0zM4jF+meNFbeDx7zRmwANqKR/HhOIt7MsIn' +
+      '2F3Vadsan+FBXITXMftfSG1TjrAP89he1WlQ1emMBVWdtuC+uPEwHo5zf2V+KnBFBOczHMWP' +
+      'eBZ726Y8XlR1GuAObMbbbVMuZ0+5uqpTXdXpCbyBvTiIXQH2PjZgZxfNWdwVAIciUiPMYA/O' +
+      'xTnxdXJV25R/VnX6IvSH8PIQ63B3TH7cc8+mCW47Hf8fcAo3VnW6sMAtYd1RLE0RxVyO4KcY' +
+      '3z/EjlAWg6x9OYmEr8OKndnaiViHHUNcE8rP6Jw/iP9zEd1FfI6bMv8K8O7MtUOUYzjX0WJf' +
+      '25QLGT1ms4u6Szt9rsB1Y542CP8Uppf5YoKfJlWGicmP0wW+PRtYl8jBy0nWLg3xPbZl3Mmt' +
+      'WKzqdHE4/eYIwLrens7SY0N8insiEDPZphl8EMw/L0AGvQs3RIbAQoFDoVya3TrK5ubjwGDM' +
+      '0zbh/Bi/VwR/lmNhzv+Ty7Exxge6aO6PiesnlPMVLEThzGVzuOCjtikXC/yRPXVXRO4bfBdl' +
+      '5xHcHh3rRfwWdBnihjj36j9pE8VxP7bigkiT9WHRclRWVZ224108HxX5ywDf0jbl0jB4dKSq' +
+      '0zvYjVvbpjyYJXA/MzrZGD5+smtARcbuPVGGn5qy3z4Wlh3oLC86drdNeRwv4PcpI3kSL7VN' +
+      'eWxVd8qsewUPTAE0Cpe82e/qa9r8msV/5++s6nSqqtPT4/YWY5J51bgnCb9mBXHV3r8BTYTp' +
+      'IcgiIbUAAAAASUVORK5CYII=';
+  this.naturalParColor.onload = function() {
+    parent.imgLoaded();
+  };
+
   this.naturalFigBass = new Image();
   this.naturalFigBass.src = 'data:image/png;base64, ' +
       'iVBORw0KGgoAAAANSUhEUgAAAAYAAAAPCAMAAADwHU6yAAAAilBMVEWVlZUSEhIAAACsrKw4' +
@@ -4551,7 +4624,7 @@ MusThGUI.Render.GlyphProvider = function(imagesLoadedCallback) {
 MusThGUI.Render.GlyphProvider.prototype.imgLoaded = function() {
 
   this.numImagesLoaded += 1;
-  if (this.numImagesLoaded === 24) {
+  if (this.numImagesLoaded === 26) {
     this.imagesLoadedCallback();
   }
 
@@ -4567,15 +4640,20 @@ MusThGUI.Render.GlyphProvider.prototype.imgLoaded = function() {
  * accidental.
  * @param {Boolean} figuredBass If true, returns a version to display within the
  * figured bass (only available for sharps, flat and naturals).
+ * @param {Boolean} parenthesized If true, returns a parenthesized version of
+ * the accidental
  * @return {Image} Returns the accidental image.
  */
 MusThGUI.Render.GlyphProvider.prototype.getAccidental = function(accType,
-    inColor, figuredBass) {
+    inColor, figuredBass, parenthesized) {
 
   switch (accType) {
     case 'n':
       if (figuredBass) {
         return this.naturalFigBass;
+      }
+      else if (parenthesized) {
+        return (inColor) ? this.naturalParColor : this.naturalPar;
       }
       else {
         return (inColor) ? this.naturalColor : this.natural;

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<keyboardinput maxkeys="2"
+<keyboardinput maxkeys="2" canvasEditable="true"
                xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
                xsi:noNamespaceSchemaLocation='valid_input_xml.xsd'>
   <givenkeys>

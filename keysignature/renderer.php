@@ -148,6 +148,8 @@ class qtype_musictheory_keysignature_identify_renderer extends qtype_musictheory
         $keysign = new KeySignature($tonic, $ismajor, $question->musictheory_clef);
         $correctanswer = (string) $keysign;
 
+        $currans = $qa->get_last_qt_var('answer');
+
         $moduleparams = array(
             array(
                 'inputname'        => $inputname,
@@ -214,6 +216,17 @@ class qtype_musictheory_keysignature_identify_renderer extends qtype_musictheory
             );
         }
 
+        if ($options->correctness) {
+            $corrresp = $question->get_correct_response();
+            if (!is_null($currans)) {
+                if ($currans === $corrresp['answer']) {
+                    $selectattributes['class'] = $this->feedback_class(1);
+                } else {
+                    $selectattributes['class'] = $this->feedback_class(0);
+                }
+            }
+        }
+
         $questiontext = $question->format_questiontext($qa);
         $result = html_writer::tag('div', $questiontext, array('class' => 'qtext'));
 
@@ -236,8 +249,7 @@ class qtype_musictheory_keysignature_identify_renderer extends qtype_musictheory
         );
         $result .= html_writer::tag('div', '', $javascriptdivattr);
 
-        $ansf = $qa->get_last_qt_var('answer');
-        $input = html_writer::select($selectoptionskeymode, $inputname, $ansf, true, $selectattributes);
+        $input = html_writer::select($selectoptionskeymode, $inputname, $currans, true, $selectattributes);
         $result .= html_writer::start_tag('div', array('class' => 'ablock'));
         $result .= $input;
         $result .= html_writer::end_tag('div');
