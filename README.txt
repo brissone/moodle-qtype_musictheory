@@ -74,13 +74,10 @@ INSTALLATION
 
 Requirements:
 
-1) 	Moodle 2.7, 2.8 or 2.9 (it may work with later versions but has only been
-with tested with these versions)
-
-2) 	PHP 5: the plugin was coded with version 5.5.3. It hasn't been tested with
+1) 	PHP 5: the plugin was coded with version 5.5.3. It hasn't been tested with
 earlier versions of PHP.
 
-3)	Javascript is used for the graphical user interface, but the question type
+2)	Javascript is used for the graphical user interface, but the question type
 is fully functional without it, with the exception of the note writing, note
 identification and keyboard input exercises.
 
