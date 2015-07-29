@@ -144,7 +144,7 @@ class qtype_musictheory_scale_write extends qtype_musictheory_question implement
         }
         $scale = get_string('note' . strtolower($this->musictheory_givennoteletter), 'qtype_musictheory');
         $scale .= $acc;
-        $scale .= ' ' . strtolower(get_string('scaletype_' . $this->musictheory_scaletype, 'qtype_musictheory'));
+        $scale .= ' ' . get_string('scaletype_' . $this->musictheory_scaletype, 'qtype_musictheory');
         return $qtext . ': <b>' . $scale . '</b>';
     }
 
@@ -300,7 +300,7 @@ class qtype_musictheory_scale_identify extends qtype_musictheory_question implem
             $accstr = '';
         }
         $scaletype = get_string('scaletype_' . $response['musictheory_answer_scaletype'], 'qtype_musictheory');
-        return $letter . $accstr . ' ' . strtolower($scaletype);
+        return $letter . $accstr . ' ' . $scaletype;
     }
 
     public function get_validation_error(array $response) {

@@ -222,7 +222,7 @@ class qtype_musictheory_scale_identify_renderer extends qtype_musictheory_render
         $selectoptionsscaletype = array();
         $selectoptionsscaletype[''] = get_string('selectanoption', 'qtype_musictheory');
         foreach ($question->musictheory_possiblescalesinresponse as $scaletype) {
-            $selectoptionsscaletype[$scaletype] = strtolower(get_string('scaletype_' . $scaletype, 'qtype_musictheory'));
+            $selectoptionsscaletype[$scaletype] = get_string('scaletype_' . $scaletype, 'qtype_musictheory');
         }
 
         $scaletypeselectattributes = array(
@@ -322,7 +322,7 @@ class qtype_musictheory_scale_identify_renderer extends qtype_musictheory_render
         }
         $scaletype = get_string('scaletype_' . $correctresponsearray['musictheory_answer_scaletype'], 'qtype_musictheory');
         return get_string('correctansweris', 'qtype_musictheory') . ' ' .
-                $letter . $accstr . ' ' . strtolower($scaletype);
+                $letter . $accstr . ' ' . $scaletype;
     }
 
 }

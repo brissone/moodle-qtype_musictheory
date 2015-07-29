@@ -133,7 +133,7 @@ class qtype_musictheory_chordquality_write extends qtype_musictheory_question im
         }
         $chord = get_string('note' . strtolower($this->musictheory_givennoteletter), 'qtype_musictheory');
         $quality = get_string($this->musictheory_chordquality, 'qtype_musictheory');
-        $chord .= $acc . ' ' . strtolower($quality);
+        $chord .= $acc . ' ' . $quality;
 
         return $qtext . ': <b>' . $chord . '</b>';
     }
