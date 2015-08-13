@@ -110,7 +110,7 @@
  after initialization.
  @return {undefined}
  **/
-MusThGUI = function(canID, stateXML, respCallBack, editable) {
+MusThGUI = function(canID, stateXML, respCallBack) {
   this.callBack = function(cBack) {
     return function(stateXML) {
       cBack(stateXML);
@@ -118,5 +118,5 @@ MusThGUI = function(canID, stateXML, respCallBack, editable) {
   };
 
   this.UI = new MusThGUI.Control.Controller(canID, stateXML,
-      this.callBack(respCallBack), editable);
+      this.callBack(respCallBack));
 };

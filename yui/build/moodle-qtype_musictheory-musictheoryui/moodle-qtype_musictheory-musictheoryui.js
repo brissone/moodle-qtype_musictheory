@@ -141,7 +141,7 @@ M.qtype_musictheory.musictheoryui = {
  after initialization.
  @return {undefined}
  **/
-MusThGUI = function(canID, stateXML, respCallBack, editable) {
+MusThGUI = function(canID, stateXML, respCallBack) {
   this.callBack = function(cBack) {
     return function(stateXML) {
       cBack(stateXML);
@@ -149,7 +149,7 @@ MusThGUI = function(canID, stateXML, respCallBack, editable) {
   };
 
   this.UI = new MusThGUI.Control.Controller(canID, stateXML,
-      this.callBack(respCallBack), editable);
+      this.callBack(respCallBack));
 };/* Copyright (c) 2013 Eric Brisson
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -2687,8 +2687,10 @@ MusThGUI.GUIState.State.prototype.setState = function(stateXML) {
  */
 MusThGUI.GUIState.State.prototype.getState = function() {
 
-  var outXML = '<MusThGUI>\n';
-  outXML += '    <StaffSystem>\n';
+  var outXML = '<MusThGUI canvasEditable="' + this.editable +
+      '" accidentalCarryOver="' + this.accCarryOver + '">\n';
+  outXML += '    <StaffSystem maxLedgerLines="' +
+      this.staffSystem.maxLedgerLines + '">\n';
 
   // Staves
   Y.Array.each(this.staffSystem.staves, function(staff) {

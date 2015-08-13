@@ -3095,7 +3095,7 @@
         },
         {
             "file": "State.js",
-            "line": 309,
+            "line": 311,
             "description": "Indicates whether the state contains a toolbar, given the toolbar name.",
             "itemtype": "method",
             "name": "hasToolbar",
@@ -3115,7 +3115,7 @@
         },
         {
             "file": "State.js",
-            "line": 328,
+            "line": 330,
             "description": "Returns a toolbar, given the toolbar name.",
             "itemtype": "method",
             "name": "getToolbar",
@@ -3136,7 +3136,7 @@
         },
         {
             "file": "State.js",
-            "line": 348,
+            "line": 350,
             "description": "Returns the number of buttons for the longest toolbar in the state.",
             "itemtype": "method",
             "name": "getMaxNumToolbarButtons",

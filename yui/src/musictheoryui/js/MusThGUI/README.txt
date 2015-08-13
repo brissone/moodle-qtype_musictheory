@@ -21,7 +21,7 @@ A description of basic use is provided in the following documentation file:
 
 VERSION
 
-1.1
+1.1.1
 
 *******************************************************************************
 

@@ -194,8 +194,10 @@ MusThGUI.GUIState.State.prototype.setState = function(stateXML) {
  */
 MusThGUI.GUIState.State.prototype.getState = function() {
 
-  var outXML = '<MusThGUI>\n';
-  outXML += '    <StaffSystem>\n';
+  var outXML = '<MusThGUI canvasEditable="' + this.editable +
+      '" accidentalCarryOver="' + this.accCarryOver + '">\n';
+  outXML += '    <StaffSystem maxLedgerLines="' +
+      this.staffSystem.maxLedgerLines + '">\n';
 
   // Staves
   Y.Array.each(this.staffSystem.staves, function(staff) {

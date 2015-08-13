@@ -8,6 +8,10 @@ concepts.
 
 *******************************************************************************
 
+Version 1.0.1
+
+*******************************************************************************
+
 This library was created by Eric Brisson. The source code is
 available under the following license (MIT License):
 

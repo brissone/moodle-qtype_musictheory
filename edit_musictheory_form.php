@@ -37,7 +37,7 @@ class qtype_musictheory_edit_form extends question_edit_form {
      *
      * Overridden to remove required field validation for question text.
      */
-    protected function definition() {
+protected function definition() {
         global $COURSE, $CFG, $DB, $PAGE;
 
         $qtype = $this->qtype();
@@ -56,29 +56,37 @@ class qtype_musictheory_edit_form extends question_edit_form {
             }
 
             // Adding question.
-            $mform->addElement('questioncategory', 'category', get_string('category', 'question'), array('contexts' => $contexts));
+            $mform->addElement('questioncategory', 'category', get_string('category', 'question'),
+                    array('contexts' => $contexts));
         } else if (!($this->question->formoptions->canmove ||
                 $this->question->formoptions->cansaveasnew)) {
             // Editing question with no permission to move from category.
             $mform->addElement('questioncategory', 'category', get_string('category', 'question'),
-                                                                          array('contexts' => array($this->categorycontext)));
+                    array('contexts' => array($this->categorycontext)));
+            $mform->addElement('hidden', 'usecurrentcat', 1);
+            $mform->setType('usecurrentcat', PARAM_BOOL);
+            $mform->setConstant('usecurrentcat', 1);
         } else {
             // Editing question with permission to move from category or save as new q.
             $currentgrp = array();
-            $currentgrp[0] = $mform->createElement('questioncategory', 'category', get_string('categorycurrent', 'question'),
-                                                                                              array('contexts' => array($this->categorycontext)));
+            $currentgrp[0] = $mform->createElement('questioncategory', 'category',
+                    get_string('categorycurrent', 'question'),
+                    array('contexts' => array($this->categorycontext)));
             if ($this->question->formoptions->canedit ||
                     $this->question->formoptions->cansaveasnew) {
                 // Not move only form.
-                $currentgrp[1] = $mform->createElement('checkbox', 'usecurrentcat', '', get_string('categorycurrentuse', 'question'));
+                $currentgrp[1] = $mform->createElement('checkbox', 'usecurrentcat', '',
+                        get_string('categorycurrentuse', 'question'));
                 $mform->setDefault('usecurrentcat', 1);
             }
             $currentgrp[0]->freeze();
             $currentgrp[0]->setPersistantFreeze(false);
-            $mform->addGroup($currentgrp, 'currentgrp', get_string('categorycurrent', 'question'), null, false);
+            $mform->addGroup($currentgrp, 'currentgrp',
+                    get_string('categorycurrent', 'question'), null, false);
 
-            $mform->addElement('questioncategory', 'categorymoveto', get_string('categorymoveto', 'question'),
-                                                                                array('contexts' => array($this->categorycontext)));
+            $mform->addElement('questioncategory', 'categorymoveto',
+                    get_string('categorymoveto', 'question'),
+                    array('contexts' => array($this->categorycontext)));
             if ($this->question->formoptions->canedit ||
                     $this->question->formoptions->cansaveasnew) {
                 // Not move only form.
@@ -86,24 +94,26 @@ class qtype_musictheory_edit_form extends question_edit_form {
             }
         }
 
-        $mform->addElement('text', 'name', get_string('questionname', 'question'), array('size' => 50, 'maxlength' => 255));
+        $mform->addElement('text', 'name', get_string('questionname', 'question'),
+                array('size' => 50, 'maxlength' => 255));
         $mform->setType('name', PARAM_TEXT);
         $mform->addRule('name', null, 'required', null, 'client');
 
-        $mform->addElement('editor', 'questiontext', get_string('questiontext', 'question'), array('rows' => 15),
-                                                                $this->editoroptions);
+        $mform->addElement('editor', 'questiontext', get_string('questiontext', 'question'),
+                array('rows' => 15), $this->editoroptions);
         $mform->setType('questiontext', PARAM_RAW);
 
         //Override
         //$mform->addRule('questiontext', null, 'required', null, 'client');
 
-        $mform->addElement('text', 'defaultmark', get_string('defaultmark', 'question'), array('size' => 7));
+        $mform->addElement('text', 'defaultmark', get_string('defaultmark', 'question'),
+                array('size' => 7));
         $mform->setType('defaultmark', PARAM_FLOAT);
         $mform->setDefault('defaultmark', 1);
         $mform->addRule('defaultmark', null, 'required', null, 'client');
 
-        $mform->addElement('editor', 'generalfeedback', get_string('generalfeedback', 'question'), array('rows' => 10),
-                                                                   $this->editoroptions);
+        $mform->addElement('editor', 'generalfeedback', get_string('generalfeedback', 'question'),
+                array('rows' => 10), $this->editoroptions);
         $mform->setType('generalfeedback', PARAM_RAW);
         $mform->addHelpButton('generalfeedback', 'generalfeedback', 'question');
 
@@ -116,23 +126,26 @@ class qtype_musictheory_edit_form extends question_edit_form {
         }
 
         if (!empty($this->question->id)) {
-            $mform->addElement('header', 'createdmodifiedheader', get_string('createdmodifiedheader', 'question'));
+            $mform->addElement('header', 'createdmodifiedheader',
+                    get_string('createdmodifiedheader', 'question'));
             $a = new stdClass();
             if (!empty($this->question->createdby)) {
                 $a->time = userdate($this->question->timecreated);
                 $a->user = fullname($DB->get_record(
-                                'user', array('id' => $this->question->createdby)));
+                        'user', array('id' => $this->question->createdby)));
             } else {
                 $a->time = get_string('unknown', 'question');
                 $a->user = get_string('unknown', 'question');
             }
-            $mform->addElement('static', 'created', get_string('created', 'question'), get_string('byandon', 'question', $a));
+            $mform->addElement('static', 'created', get_string('created', 'question'),
+                     get_string('byandon', 'question', $a));
             if (!empty($this->question->modifiedby)) {
                 $a = new stdClass();
                 $a->time = userdate($this->question->timemodified);
                 $a->user = fullname($DB->get_record(
-                                'user', array('id' => $this->question->modifiedby)));
-                $mform->addElement('static', 'modified', get_string('modified', 'question'), get_string('byandon', 'question', $a));
+                        'user', array('id' => $this->question->modifiedby)));
+                $mform->addElement('static', 'modified', get_string('modified', 'question'),
+                        get_string('byandon', 'question', $a));
             }
         }
 
@@ -145,7 +158,8 @@ class qtype_musictheory_edit_form extends question_edit_form {
         $mform->setType('makecopy', PARAM_INT);
 
         $buttonarray = array();
-        $buttonarray[] = $mform->createElement('submit', 'updatebutton', get_string('savechangesandcontinueediting', 'question'));
+        $buttonarray[] = $mform->createElement('submit', 'updatebutton',
+                             get_string('savechangesandcontinueediting', 'question'));
         if ($this->can_preview()) {
             $previewlink = $PAGE->get_renderer('core_question')->question_preview_link(
                     $this->question->id, $this->context, true);

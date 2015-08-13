@@ -78,8 +78,7 @@ class qtype_musictheory_harmonicfunction_write extends qtype_musictheory_questio
             return false;
         }
 
-        $numnotes = $this->get_answer_num_notes();
-        $regex = '/^([A-G](n|\#|b|x|bb)[1-6],){' . ($numnotes - 1) . '}([A-G](n|\#|b|x|bb)[1-6]){1}$/';
+        $regex = '/^([A-G](n|\#|b|x|bb)[1-6]){1}(,[A-G](n|\#|b|x|bb)[1-6])*$/';
         return preg_match($regex, $response['answer']);
     }
 
@@ -101,12 +100,6 @@ class qtype_musictheory_harmonicfunction_write extends qtype_musictheory_questio
             return get_string('validationerror_empty', 'qtype_musictheory');
         } else if (preg_match('/\s/', $response['answer'])) {
             return get_string('validationerror_whitespace', 'qtype_musictheory');
-        }
-
-        $numnotes = $this->get_answer_num_notes();
-        $regex = '/^([A-G](n|\#|b|x|bb)[1-6],){0,' . ($numnotes - 2) . '}?([A-G](n|\#|b|x|bb)[1-6]){1}$/';
-        if (preg_match($regex, $response['answer'])) {
-            return get_string('validationerror_incompleteharmonicfunction', 'qtype_musictheory') . ': ' . $numnotes;
         }
 
         global $OUTPUT;
@@ -394,6 +387,10 @@ class qtype_musictheory_strategy_harmonicfunctionwrite_allornothing implements q
         $fraction = 1;
         $resp = explode(',', $response['answer']);
         $corrresp = explode(',', $correctresponse['answer']);
+
+        if (count($resp) !== count($corrresp)) {
+            return array(0, question_state::graded_state_for_fraction(0));
+        }
 
         $prevnote = null;
         for ($i = 0; $i < count($resp); $i++) {
