@@ -24,6 +24,6 @@ defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'qtype_musictheory';
 $plugin->version = 2015081200;
-$plugin->requires = 2014051200;
+$plugin->requires = 2014041100;
 $plugin->maturity = MATURITY_STABLE;
 $plugin->release = '1.3.3';
