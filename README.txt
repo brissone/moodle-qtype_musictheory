@@ -1,4 +1,4 @@
-Readme file for the MUSIC THEORY question type
+README file for the MUSIC THEORY question type
 
 ================================================================================
 
