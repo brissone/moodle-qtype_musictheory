@@ -203,13 +203,13 @@ class qtype_musictheory_chordquality_identify_renderer extends qtype_musictheory
 
         $selectoptionsrootletter = array(
             ''  => get_string('selectanoption', 'qtype_musictheory'),
-            'A' => get_string('notea', 'qtype_musictheory'),
-            'B' => get_string('noteb', 'qtype_musictheory'),
-            'C' => get_string('notec', 'qtype_musictheory'),
-            'D' => get_string('noted', 'qtype_musictheory'),
-            'E' => get_string('notee', 'qtype_musictheory'),
-            'F' => get_string('notef', 'qtype_musictheory'),
-            'G' => get_string('noteg', 'qtype_musictheory')
+            'A' => get_string('note_a', 'qtype_musictheory'),
+            'B' => get_string('note_b', 'qtype_musictheory'),
+            'C' => get_string('note_c', 'qtype_musictheory'),
+            'D' => get_string('note_d', 'qtype_musictheory'),
+            'E' => get_string('note_e', 'qtype_musictheory'),
+            'F' => get_string('note_f', 'qtype_musictheory'),
+            'G' => get_string('note_g', 'qtype_musictheory')
         );
 
         $rootletterselectattributes = array(
@@ -330,7 +330,7 @@ class qtype_musictheory_chordquality_identify_renderer extends qtype_musictheory
     public function correct_response(question_attempt $qa) {
         $question = $qa->get_question();
         $correctresponsearray = $question->get_correct_response();
-        $ltr = get_string('note' . strtolower($correctresponsearray['musictheory_answer_rootletter']), 'qtype_musictheory');
+        $ltr = get_string('note_' . strtolower($correctresponsearray['musictheory_answer_rootletter']), 'qtype_musictheory');
         $acckey = str_replace('#', 'sharp', $correctresponsearray['musictheory_answer_rootacc']);
         $acc = get_string('acc_' . $acckey, 'qtype_musictheory');
         $quality = get_string($correctresponsearray['musictheory_answer_chordquality'], 'qtype_musictheory');

@@ -82,7 +82,7 @@ class qtype_musictheory_interval_write_renderer extends qtype_musictheory_render
 
         $questiontext = $question->format_questiontext($qa);
         $input = '<b>' . get_string('givennoteelementgroup', 'qtype_musictheory') . ': ';
-        $input .= get_string('note' . strtolower($question->musictheory_givennoteletter), 'qtype_musictheory');
+        $input .= get_string('note_' . strtolower($question->musictheory_givennoteletter), 'qtype_musictheory');
         $acc = str_replace('#', 'sharp', $question->musictheory_givennoteaccidental);
         $input .= get_string('acc_' . $acc, 'qtype_musictheory') . $question->musictheory_givennoteregister . '</b> ';
         $input .= html_writer::empty_tag('input', $inputattributes);
@@ -242,11 +242,11 @@ class qtype_musictheory_interval_identify_renderer extends qtype_musictheory_ren
             'id' => 'musictheory_div_replacedbycanvas_' . $sizeselectid
         );
 
-        $givennotestr = get_string('note' . strtolower($question->musictheory_givennoteletter), 'qtype_musictheory');
+        $givennotestr = get_string('note_' . strtolower($question->musictheory_givennoteletter), 'qtype_musictheory');
         $acc = str_replace('#', 'sharp', $question->musictheory_givennoteaccidental);
         $givennotestr .= get_string('acc_' . $acc, 'qtype_musictheory') . $question->musictheory_givennoteregister;
 
-        $notefromintervalstr = get_string('note' . strtolower($notefrominterval->getLetter()), 'qtype_musictheory');
+        $notefromintervalstr = get_string('note_' . strtolower($notefrominterval->getLetter()), 'qtype_musictheory');
         $acc = str_replace('#', 'sharp', $notefrominterval->getAccidental());
         $notefromintervalstr .= get_string('acc_' . $acc, 'qtype_musictheory') . $notefrominterval->getRegister();
 

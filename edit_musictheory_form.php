@@ -821,13 +821,13 @@ protected function definition() {
     private function add_note_option($mform, $elemname, $label, $required, $includedoubleaccidentals, $includeregister = true,
                                      $reglimits = array(2, 6)) {
         $selectoptionsletter = array(
-            'A' => get_string('notea', 'qtype_musictheory'),
-            'B' => get_string('noteb', 'qtype_musictheory'),
-            'C' => get_string('notec', 'qtype_musictheory'),
-            'D' => get_string('noted', 'qtype_musictheory'),
-            'E' => get_string('notee', 'qtype_musictheory'),
-            'F' => get_string('notef', 'qtype_musictheory'),
-            'G' => get_string('noteg', 'qtype_musictheory'),
+            'A' => get_string('note_a', 'qtype_musictheory'),
+            'B' => get_string('note_b', 'qtype_musictheory'),
+            'C' => get_string('note_c', 'qtype_musictheory'),
+            'D' => get_string('note_d', 'qtype_musictheory'),
+            'E' => get_string('note_e', 'qtype_musictheory'),
+            'F' => get_string('note_f', 'qtype_musictheory'),
+            'G' => get_string('note_g', 'qtype_musictheory'),
         );
 
         $givennoteletter = $mform->createElement('select', 'musictheory_' . $elemname . 'letter', '', $selectoptionsletter);
