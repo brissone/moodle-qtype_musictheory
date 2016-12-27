@@ -37,11 +37,11 @@ class qtype_musictheory_edit_form extends question_edit_form {
      *
      * Overridden to remove required field validation for question text.
      */
-protected function definition() {
+ protected function definition() {
         global $COURSE, $CFG, $DB, $PAGE;
 
         $qtype = $this->qtype();
-        $langfile = "qtype_$qtype";
+        $langfile = "qtype_{$qtype}";
 
         $mform = $this->_form;
 
@@ -120,10 +120,11 @@ protected function definition() {
         // Any questiontype specific fields.
         $this->definition_inner($mform);
 
-        if (!empty($CFG->usetags)) {
+        if (core_tag_tag::is_enabled('core_question', 'question')) {
             $mform->addElement('header', 'tagsheader', get_string('tags'));
-            $mform->addElement('tags', 'tags', get_string('tags'));
         }
+        $mform->addElement('tags', 'tags', get_string('tags'),
+                array('itemtype' => 'question', 'component' => 'core_question'));
 
         if (!empty($this->question->id)) {
             $mform->addElement('header', 'createdmodifiedheader',

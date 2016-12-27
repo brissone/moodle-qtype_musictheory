@@ -23,7 +23,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'qtype_musictheory';
-$plugin->version = 2015081400;
-$plugin->requires = 2014041100;
+$plugin->version = 2016122700;
+$plugin->requires = 2016052300;
 $plugin->maturity = MATURITY_STABLE;
-$plugin->release = '1.3.3';
+$plugin->release = '1.3.4 for Moodle 3.1+';
