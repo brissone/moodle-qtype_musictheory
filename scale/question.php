@@ -142,7 +142,7 @@ class qtype_musictheory_scale_write extends qtype_musictheory_question implement
                 $acc = get_string('acc_sharp', 'qtype_musictheory');
                 break;
         }
-        $scale = get_string('note_' . strtolower($this->musictheory_givennoteletter), 'qtype_musictheory');
+        $scale = get_string('note' . strtolower($this->musictheory_givennoteletter), 'qtype_musictheory');
         $scale .= $acc;
         $scale .= ' ' . get_string('scaletype_' . $this->musictheory_scaletype, 'qtype_musictheory');
         return $qtext . ': <b>' . $scale . '</b>';
@@ -292,7 +292,7 @@ class qtype_musictheory_scale_identify extends qtype_musictheory_question implem
             return '';
         }
 
-        $letter = get_string('note_' . strtolower($response['musictheory_answer_tonicletter']), 'qtype_musictheory');
+        $letter = get_string('note' . strtolower($response['musictheory_answer_tonicletter']), 'qtype_musictheory');
         $acc = ($response['musictheory_answer_tonicacc'] === '#') ? 'sharp' : $response['musictheory_answer_tonicacc'];
         if ($response['musictheory_answer_tonicacc'] !== 'n') {
             $accstr = get_string('acc_' . $acc, 'qtype_musictheory');

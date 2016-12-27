@@ -124,7 +124,7 @@ class qtype_musictheory_keyboard_input extends qtype_musictheory_question implem
                 break;
         }
 
-        $note = get_string('note_' . strtolower($this->musictheory_givennoteletter), 'qtype_musictheory');
+        $note = get_string('note' . strtolower($this->musictheory_givennoteletter), 'qtype_musictheory');
 
         $note .= $acc;
 

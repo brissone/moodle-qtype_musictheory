@@ -191,13 +191,13 @@ class qtype_musictheory_scale_identify_renderer extends qtype_musictheory_render
 
         $selectoptionsletter = array(
             ''  => get_string('selectanoption', 'qtype_musictheory'),
-            'A' => get_string('note_a', 'qtype_musictheory'),
-            'B' => get_string('note_b', 'qtype_musictheory'),
-            'C' => get_string('note_c', 'qtype_musictheory'),
-            'D' => get_string('note_d', 'qtype_musictheory'),
-            'E' => get_string('note_e', 'qtype_musictheory'),
-            'F' => get_string('note_f', 'qtype_musictheory'),
-            'G' => get_string('note_g', 'qtype_musictheory'),
+            'A' => get_string('notea', 'qtype_musictheory'),
+            'B' => get_string('noteb', 'qtype_musictheory'),
+            'C' => get_string('notec', 'qtype_musictheory'),
+            'D' => get_string('noted', 'qtype_musictheory'),
+            'E' => get_string('notee', 'qtype_musictheory'),
+            'F' => get_string('notef', 'qtype_musictheory'),
+            'G' => get_string('noteg', 'qtype_musictheory'),
         );
 
         $letterselectattributes = array(
@@ -313,7 +313,7 @@ class qtype_musictheory_scale_identify_renderer extends qtype_musictheory_render
     public function correct_response(question_attempt $qa) {
         $question = $qa->get_question();
         $correctresponsearray = $question->get_correct_response();
-        $letter = get_string('note_' . strtolower($correctresponsearray['musictheory_answer_tonicletter']), 'qtype_musictheory');
+        $letter = get_string('note' . strtolower($correctresponsearray['musictheory_answer_tonicletter']), 'qtype_musictheory');
         $acc = ($correctresponsearray['musictheory_answer_tonicacc'] === '#') ? 'sharp' : $correctresponsearray['musictheory_answer_tonicacc'];
         if ($correctresponsearray['musictheory_answer_tonicacc'] !== 'n') {
             $accstr = get_string('acc_' . $acc, 'qtype_musictheory');

@@ -151,7 +151,7 @@ class qtype_musictheory_note_write extends qtype_musictheory_question implements
                 break;
         }
 
-        $note = get_string('note_' . strtolower($this->musictheory_givennoteletter), 'qtype_musictheory');
+        $note = get_string('note' . strtolower($this->musictheory_givennoteletter), 'qtype_musictheory');
 
         if ($this->musictheory_includealterations) {
             $note .= $acc;
@@ -326,7 +326,7 @@ class qtype_musictheory_note_identify extends qtype_musictheory_question impleme
             }
         }
 
-        $note = get_string('note_' . strtolower($response['musictheory_answer_ltr']), 'qtype_musictheory');
+        $note = get_string('note' . strtolower($response['musictheory_answer_ltr']), 'qtype_musictheory');
         $acc = '';
         if ($this->musictheory_includealterations) {
             $acckey = 'acc_' . str_replace('#', 'sharp', $response['musictheory_answer_acc']);

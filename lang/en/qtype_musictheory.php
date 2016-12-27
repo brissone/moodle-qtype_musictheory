@@ -126,13 +126,13 @@ $string['qtype_musictheory_strategy_keyboard_allornothing'] = 'All or nothing';
 $string['qtype_musictheory_strategy_scale_creditbynote'] = 'Partial credit for each correct note';
 
 // Note names.
-$string['note_c'] = 'C';
-$string['note_d'] = 'D';
-$string['note_e'] = 'E';
-$string['note_f'] = 'F';
-$string['note_g'] = 'G';
-$string['note_a'] = 'A';
-$string['note_b'] = 'B';
+$string['notec'] = 'C';
+$string['noted'] = 'D';
+$string['notee'] = 'E';
+$string['notef'] = 'F';
+$string['noteg'] = 'G';
+$string['notea'] = 'A';
+$string['noteb'] = 'B';
 
 // Clef options.
 $string['treble'] = 'Treble';
