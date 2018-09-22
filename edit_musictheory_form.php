@@ -32,156 +32,20 @@ require_once(__DIR__ . '/question.php');
  */
 class qtype_musictheory_edit_form extends question_edit_form {
 
-    /**
-     * Build the form definition.
-     *
-     * Overridden to remove required field validation for question text.
-     */
-protected function definition() {
-        global $COURSE, $CFG, $DB, $PAGE;
-
-        $qtype = $this->qtype();
-        $langfile = "qtype_$qtype";
-
-        $mform = $this->_form;
-
-        // Standard fields at the start of the form.
-        $mform->addElement('header', 'generalheader', get_string("general", 'form'));
-
-        if (!isset($this->question->id)) {
-            if (!empty($this->question->formoptions->mustbeusable)) {
-                $contexts = $this->contexts->having_add_and_use();
-            } else {
-                $contexts = $this->contexts->having_cap('moodle/question:add');
-            }
-
-            // Adding question.
-            $mform->addElement('questioncategory', 'category', get_string('category', 'question'),
-                    array('contexts' => $contexts));
-        } else if (!($this->question->formoptions->canmove ||
-                $this->question->formoptions->cansaveasnew)) {
-            // Editing question with no permission to move from category.
-            $mform->addElement('questioncategory', 'category', get_string('category', 'question'),
-                    array('contexts' => array($this->categorycontext)));
-            $mform->addElement('hidden', 'usecurrentcat', 1);
-            $mform->setType('usecurrentcat', PARAM_BOOL);
-            $mform->setConstant('usecurrentcat', 1);
-        } else {
-            // Editing question with permission to move from category or save as new q.
-            $currentgrp = array();
-            $currentgrp[0] = $mform->createElement('questioncategory', 'category',
-                    get_string('categorycurrent', 'question'),
-                    array('contexts' => array($this->categorycontext)));
-            if ($this->question->formoptions->canedit ||
-                    $this->question->formoptions->cansaveasnew) {
-                // Not move only form.
-                $currentgrp[1] = $mform->createElement('checkbox', 'usecurrentcat', '',
-                        get_string('categorycurrentuse', 'question'));
-                $mform->setDefault('usecurrentcat', 1);
-            }
-            $currentgrp[0]->freeze();
-            $currentgrp[0]->setPersistantFreeze(false);
-            $mform->addGroup($currentgrp, 'currentgrp',
-                    get_string('categorycurrent', 'question'), null, false);
-
-            $mform->addElement('questioncategory', 'categorymoveto',
-                    get_string('categorymoveto', 'question'),
-                    array('contexts' => array($this->categorycontext)));
-            if ($this->question->formoptions->canedit ||
-                    $this->question->formoptions->cansaveasnew) {
-                // Not move only form.
-                $mform->disabledIf('categorymoveto', 'usecurrentcat', 'checked');
-            }
-        }
-
-        $mform->addElement('text', 'name', get_string('questionname', 'question'),
-                array('size' => 50, 'maxlength' => 255));
-        $mform->setType('name', PARAM_TEXT);
-        $mform->addRule('name', null, 'required', null, 'client');
-
-        $mform->addElement('editor', 'questiontext', get_string('questiontext', 'question'),
-                array('rows' => 15), $this->editoroptions);
-        $mform->setType('questiontext', PARAM_RAW);
-
-        //Override
-        //$mform->addRule('questiontext', null, 'required', null, 'client');
-
-        $mform->addElement('text', 'defaultmark', get_string('defaultmark', 'question'),
-                array('size' => 7));
-        $mform->setType('defaultmark', PARAM_FLOAT);
-        $mform->setDefault('defaultmark', 1);
-        $mform->addRule('defaultmark', null, 'required', null, 'client');
-
-        $mform->addElement('editor', 'generalfeedback', get_string('generalfeedback', 'question'),
-                array('rows' => 10), $this->editoroptions);
-        $mform->setType('generalfeedback', PARAM_RAW);
-        $mform->addHelpButton('generalfeedback', 'generalfeedback', 'question');
-
-        // Any questiontype specific fields.
-        $this->definition_inner($mform);
-
-        if (!empty($CFG->usetags)) {
-            $mform->addElement('header', 'tagsheader', get_string('tags'));
-            $mform->addElement('tags', 'tags', get_string('tags'));
-        }
-
-        if (!empty($this->question->id)) {
-            $mform->addElement('header', 'createdmodifiedheader',
-                    get_string('createdmodifiedheader', 'question'));
-            $a = new stdClass();
-            if (!empty($this->question->createdby)) {
-                $a->time = userdate($this->question->timecreated);
-                $a->user = fullname($DB->get_record(
-                        'user', array('id' => $this->question->createdby)));
-            } else {
-                $a->time = get_string('unknown', 'question');
-                $a->user = get_string('unknown', 'question');
-            }
-            $mform->addElement('static', 'created', get_string('created', 'question'),
-                     get_string('byandon', 'question', $a));
-            if (!empty($this->question->modifiedby)) {
-                $a = new stdClass();
-                $a->time = userdate($this->question->timemodified);
-                $a->user = fullname($DB->get_record(
-                        'user', array('id' => $this->question->modifiedby)));
-                $mform->addElement('static', 'modified', get_string('modified', 'question'),
-                        get_string('byandon', 'question', $a));
-            }
-        }
-
-        $this->add_hidden_fields();
-
-        $mform->addElement('hidden', 'qtype');
-        $mform->setType('qtype', PARAM_ALPHA);
-
-        $mform->addElement('hidden', 'makecopy');
-        $mform->setType('makecopy', PARAM_INT);
-
-        $buttonarray = array();
-        $buttonarray[] = $mform->createElement('submit', 'updatebutton',
-                             get_string('savechangesandcontinueediting', 'question'));
-        if ($this->can_preview()) {
-            $previewlink = $PAGE->get_renderer('core_question')->question_preview_link(
-                    $this->question->id, $this->context, true);
-            $buttonarray[] = $mform->createElement('static', 'previewlink', '', $previewlink);
-        }
-
-        $mform->addGroup($buttonarray, 'updatebuttonar', '', array(' '), false);
-        $mform->closeHeaderBefore('updatebuttonar');
-
-        $this->add_action_buttons(true, get_string('savechanges'));
-
-        if ((!empty($this->question->id)) && (!($this->question->formoptions->canedit ||
-                $this->question->formoptions->cansaveasnew))) {
-            $mform->hardFreezeAllVisibleExcept(array('categorymoveto', 'buttonar', 'currentgrp'));
-        }
-    }
-
     protected function definition_inner($mform) {
 
         global $PAGE;
 
         $PAGE->requires->yui_module('moodle-qtype_musictheory-musictheoryqtype', 'M.qtype_musictheory.musictheoryqtype.initEditForm');
+
+        /*  Removes the required rule for the question text.
+            This overrides the private variables _rules and _required in the PEAR 
+            Quickform library ([moodle]\lib\pear\HTML\QuickForm.php). It isn't ideal, 
+            but it is likely to require less plugin upgrades than overriding definition() 
+            in edit_question_form. */
+            
+        unset($mform->_rules['questiontext']);
+        $mform->_required = array_diff($mform->_required,array('questiontext'));
 
         $mform->addElement('header', 'hdrquestionoptions', get_string('questionoptions', 'qtype_musictheory'));
 
