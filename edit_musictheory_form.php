@@ -42,8 +42,7 @@ class qtype_musictheory_edit_form extends question_edit_form {
             This overrides the private variables _rules and _required in the PEAR 
             Quickform library ([moodle]\lib\pear\HTML\QuickForm.php). It isn't ideal, 
             but it is likely to require less plugin upgrades than overriding definition() 
-            in edit_question_form. */
-            
+            in edit_question_form. */            
         unset($mform->_rules['questiontext']);
         $mform->_required = array_diff($mform->_required,array('questiontext'));
 
