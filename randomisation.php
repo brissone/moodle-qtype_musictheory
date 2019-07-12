@@ -107,7 +107,7 @@ class qtype_musictheory_randomiser {
 
         $possiblegivennotes = array('Cn', 'Gn', 'Dn', 'An', 'En', 'Bn', 'F#', 'C#',
             'Fn', 'Bb', 'Eb', 'Ab', 'Db', 'Gb', 'Cb');
-        // Remove cases when the inverval doesn't exist above the given note
+        // Remove cases when the inverval doesn't exist above the given note.
         switch ($quality . $size . '-' . $direction) {
             case 'A2-below':
             case 'D7-above':

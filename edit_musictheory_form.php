@@ -36,16 +36,16 @@ class qtype_musictheory_edit_form extends question_edit_form {
 
         global $PAGE;
 
-        $PAGE->requires->yui_module('moodle-qtype_musictheory-musictheoryqtype', 'M.qtype_musictheory.musictheoryqtype.initEditForm');
+        $PAGE->requires->yui_module('moodle-qtype_musictheory-musictheoryqtype',
+                'M.qtype_musictheory.musictheoryqtype.initEditForm');
 
         /*  Removes the required rule for the question text.
-            This overrides the private variables _rules and _required in the PEAR 
-            Quickform library ([moodle]\lib\pear\HTML\QuickForm.php). It isn't ideal, 
-            but it is likely to require less plugin upgrades than overriding definition() 
+            This overrides the private variables _rules and _required in the PEAR
+            Quickform library ([moodle]\lib\pear\HTML\QuickForm.php). It isn't ideal,
+            but it is likely to require less plugin upgrades than overriding definition()
             in edit_question_form. */
-            
         unset($mform->_rules['questiontext']);
-        $mform->_required = array_diff($mform->_required,array('questiontext'));
+        $mform->_required = array_diff($mform->_required, array('questiontext'));
 
         $mform->addElement('header', 'hdrquestionoptions', get_string('questionoptions', 'qtype_musictheory'));
 
@@ -718,7 +718,8 @@ class qtype_musictheory_edit_form extends question_edit_form {
             for ($i = $reglimits[0]; $i <= $reglimits[1]; $i++) {
                 $selectoptionsregister[$i] = $i;
             }
-            $givennoteregister = $mform->createElement('select', 'musictheory_' . $elemname . 'register', '', $selectoptionsregister);
+            $givennoteregister = $mform->createElement('select', 'musictheory_' . $elemname . 'register', '',
+                    $selectoptionsregister);
             $givennotearray[] = & $givennoteregister;
         }
 
@@ -784,7 +785,8 @@ class qtype_musictheory_edit_form extends question_edit_form {
             $mform->addRule($labelkey, null, 'required', null, 'client');
         } else {
             $lblq = get_string('quality-random', 'qtype_musictheory');
-            $elemquality = $mform->createElement('select', $questionfields['quality'], $lblq, $selectoptionsquality, $qualselectattr);
+            $elemquality = $mform->createElement('select', $questionfields['quality'], $lblq, $selectoptionsquality,
+                    $qualselectattr);
             $lbls = get_string('size-random', 'qtype_musictheory');
             $elemsize = $mform->createElement('select', $questionfields['size'], $lbls, $selectoptionssize, $sizeselectattr);
             $mform->addElement($elemquality);
@@ -1029,6 +1031,7 @@ class qtype_musictheory_validation {
             case 'scale-identify-random':
                 return self::validate_scale_id_random_options($data);
             case 'chordquality-write':
+            case 'chordquality-identify':
                 return self::validate_chordquality_options($data);
             case 'harmonicfunction-write':
             case 'harmonicfunction-identify':
@@ -1090,11 +1093,11 @@ class qtype_musictheory_validation {
             $ansreg = 4;
         }
         $answernote = new Note($ansltr, $ansacc, $ansreg);
-        $answernote_pc_kr = $answernote->getPitchClassKeyboardRegister();
-        $answernote_pc = $answernote_pc_kr['pitchclass'];
-        $answernote_reg = $answernote_pc_kr['register'];
-        if ($answernote_reg === 8 && $answernote_pc > 0 ||
-                $answernote_reg === 0 && $answernote_pc < 9) {
+        $answernotepckr = $answernote->getPitchClassKeyboardRegister();
+        $answernotepc = $answernotepckr['pitchclass'];
+        $answernotereg = $answernotepckr['register'];
+        if ($answernotereg === 8 && $answernotepc > 0 ||
+                $answernotereg === 0 && $answernotepc < 9) {
             $errors['musictheory_givennoteelementgroup'] = get_string('validation_noteoutsidekeyboard', 'qtype_musictheory');
         }
 
@@ -1103,18 +1106,19 @@ class qtype_musictheory_validation {
             $staticacc = $data['musictheory_staticnoteaccidental'];
             $staticreg = $data['musictheory_staticnoteregister'];
             $staticnote = new Note($staticltr, $staticacc, $staticreg);
-            $staticnote_pc_kr = $staticnote->getPitchClassKeyboardRegister();
-            $staticnote_pc = $staticnote_pc_kr['pitchclass'];
-            $staticnote_reg = $staticnote_pc_kr['register'];
-            if ($staticnote_reg === 8 && $staticnote_pc > 0 ||
-                    $staticnote_reg === 0 && $staticnote_pc < 9) {
+            $staticnotepckr = $staticnote->getPitchClassKeyboardRegister();
+            $staticnotepc = $staticnotepckr['pitchclass'];
+            $staticnotereg = $staticnotepckr['register'];
+            if ($staticnotereg === 8 && $staticnotepc > 0 ||
+                    $staticnotereg === 0 && $staticnotepc < 9) {
                 $errors['musictheory_staticnoteelementgroup'] = get_string('validation_noteoutsidekeyboard', 'qtype_musictheory');
             }
 
             if ($data['musictheory_considerregister'] === "1" &&
-                    $answernote_pc === $staticnote_pc &&
-                    $answernote_reg === $staticnote_reg) {
-                $errors['musictheory_staticnoteelementgroup'] = get_string('validation_samestaticandgivennote', 'qtype_musictheory');
+                    $answernotepc === $staticnotepc &&
+                    $answernotereg === $staticnotereg) {
+                $errors['musictheory_staticnoteelementgroup'] = get_string('validation_samestaticandgivennote',
+                        'qtype_musictheory');
             }
         }
 

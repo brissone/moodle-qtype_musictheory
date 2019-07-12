@@ -43,7 +43,7 @@ class restore_qtype_musictheory_plugin extends restore_qtype_plugin {
 
         // Add own qtype stuff.
         $elename = 'musictheory';
-        $elepath = $this->get_pathfor('/musictheory'); // we used get_recommended_name() so this works
+        $elepath = $this->get_pathfor('/musictheory'); // We used get_recommended_name() so this works.
         $paths[] = new restore_path_element($elename, $elepath);
 
         return $paths; // And we return the interesting paths.

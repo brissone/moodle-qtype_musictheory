@@ -439,7 +439,7 @@ class qtype_musictheory_strategy_harmonicfunctionid_allornothing implements qtyp
                 $correctresponse['musictheory_answer_hfinvext']) {
             $fraction = 0;
         }
-        // Check optional secondary tonic if it is part of the response
+        // Check optional secondary tonic if it is part of the response.
         if (isset($response['musictheory_answer_hfsecondary'])) {
             if ($response['musictheory_answer_hfsecondary'] !==
                     $correctresponse['musictheory_answer_hfsecondary']) {
@@ -447,7 +447,7 @@ class qtype_musictheory_strategy_harmonicfunctionid_allornothing implements qtyp
             }
         }
 
-        // Check if alernate answer is valid
+        // Check if alernate answer is valid.
         if ($fraction === 0) {
 
             $rinvext = ($response['musictheory_answer_hfinvext'] === 'r') ? '' :

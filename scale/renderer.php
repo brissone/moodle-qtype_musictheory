@@ -53,12 +53,12 @@ class qtype_musictheory_scale_write_renderer extends qtype_musictheory_renderer 
 
         $moduleparams = array(
             array(
-                'inputname'        => $inputname,
-                'optionsxml'       => $question->musictheory_optionsxml,
-                'readonly'         => $options->readonly,
-                'initialinput'     => $initialinput,
-                'correctresponse'  => $correctresponse,
-                'correctrespstr'   => get_string('correctansweris', 'qtype_musictheory'),
+                'inputname' => $inputname,
+                'optionsxml' => $question->musictheory_optionsxml,
+                'readonly' => $options->readonly,
+                'initialinput' => $initialinput,
+                'correctresponse' => $correctresponse,
+                'correctrespstr' => get_string('correctansweris', 'qtype_musictheory'),
                 'additionalparams' => array(
                 )
             )
@@ -69,11 +69,11 @@ class qtype_musictheory_scale_write_renderer extends qtype_musictheory_renderer 
         $PAGE->requires->yui_module($qtypemod, $rendernamespace, $moduleparams);
 
         $inputattributes = array(
-            'type'  => 'text',
-            'name'  => $inputname,
+            'type' => 'text',
+            'name' => $inputname,
             'value' => $initialinput,
-            'id'    => $inputname,
-            'size'  => 70
+            'id' => $inputname,
+            'size' => 70
         );
 
         if ($options->readonly) {
@@ -85,7 +85,7 @@ class qtype_musictheory_scale_write_renderer extends qtype_musictheory_renderer 
         $result = html_writer::tag('div', $questiontext, array('class' => 'qtext'));
 
         $nonjavascriptdivattr = array(
-            'id'    => 'musictheory_div_replacedbycanvas_' . $inputname,
+            'id' => 'musictheory_div_replacedbycanvas_' . $inputname,
             'class' => 'ablock'
         );
 
@@ -100,7 +100,7 @@ class qtype_musictheory_scale_write_renderer extends qtype_musictheory_renderer 
         $result .= html_writer::end_tag('div');
 
         $javascriptdivattr = array(
-            'id'    => 'musictheory_div_canvas_' . $inputname,
+            'id' => 'musictheory_div_canvas_' . $inputname,
             'class' => 'ablock',
             'style' => 'display:none'
         );
@@ -112,7 +112,7 @@ class qtype_musictheory_scale_write_renderer extends qtype_musictheory_renderer 
 
         if ($qa->get_state() == question_state::$invalid) {
             $result .= html_writer::nonempty_tag('div', $question->get_validation_error(array('answer' => $initialinput)),
-                                                                                        array('class' => 'validationerror'));
+                    array('class' => 'validationerror'));
         }
 
         return $result;
@@ -151,7 +151,7 @@ class qtype_musictheory_scale_identify_renderer extends qtype_musictheory_render
 
         $corrresp = $question->get_correct_response();
         $tonic = new Note($question->musictheory_givennoteletter, $question->musictheory_givennoteaccidental,
-                          $question->musictheory_givennoteregister);
+                $question->musictheory_givennoteregister);
         $scale = null;
         switch ($question->musictheory_scaletype) {
             case 'major':
@@ -174,12 +174,12 @@ class qtype_musictheory_scale_identify_renderer extends qtype_musictheory_render
 
         $moduleparams = array(
             array(
-                'inputname'        => $tonicletterselectid,
-                'optionsxml'       => $question->musictheory_optionsxml,
-                'readonly'         => true,
-                'initialinput'     => $initialinput,
-                'correctresponse'  => null,
-                'correctrespstr'   => get_string('correctansweris', 'qtype_musictheory'),
+                'inputname' => $tonicletterselectid,
+                'optionsxml' => $question->musictheory_optionsxml,
+                'readonly' => true,
+                'initialinput' => $initialinput,
+                'correctresponse' => null,
+                'correctrespstr' => get_string('correctansweris', 'qtype_musictheory'),
                 'additionalparams' => array(
                 )
             )
@@ -190,7 +190,7 @@ class qtype_musictheory_scale_identify_renderer extends qtype_musictheory_render
         $PAGE->requires->yui_module($qtypemod, $rendernamespace, $moduleparams);
 
         $selectoptionsletter = array(
-            ''  => get_string('selectanoption', 'qtype_musictheory'),
+            '' => get_string('selectanoption', 'qtype_musictheory'),
             'A' => get_string('notea', 'qtype_musictheory'),
             'B' => get_string('noteb', 'qtype_musictheory'),
             'C' => get_string('notec', 'qtype_musictheory'),
@@ -202,13 +202,13 @@ class qtype_musictheory_scale_identify_renderer extends qtype_musictheory_render
 
         $letterselectattributes = array(
             'name' => $tonicletterselectid,
-            'id'   => $tonicletterselectid,
+            'id' => $tonicletterselectid,
         );
 
         $feedbackimg = $this->feedback_image(1);
 
         $selectoptionsacc = array(
-            ''  => get_string('selectanoption', 'qtype_musictheory'),
+            '' => get_string('selectanoption', 'qtype_musictheory'),
             'n' => '(' . '&#9838;' . ')',
             '#' => '&#9839;',
             'b' => '&#9837;',
@@ -216,7 +216,7 @@ class qtype_musictheory_scale_identify_renderer extends qtype_musictheory_render
 
         $accselectattributes = array(
             'name' => $tonicaccselectid,
-            'id'   => $tonicaccselectid
+            'id' => $tonicaccselectid
         );
 
         $selectoptionsscaletype = array();
@@ -227,33 +227,30 @@ class qtype_musictheory_scale_identify_renderer extends qtype_musictheory_render
 
         $scaletypeselectattributes = array(
             'name' => $scaletypeselectid,
-            'id'   => $scaletypeselectid
+            'id' => $scaletypeselectid
         );
 
         if ($options->correctness) {
             if (!is_null($currtonicletter)) {
-               if ($currtonicletter === $corrresp['musictheory_answer_tonicletter']) {
-                   $letterselectattributes['class'] = $this->feedback_class(1);
-               }
-               else {
-                   $letterselectattributes['class'] = $this->feedback_class(0);
-               }
+                if ($currtonicletter === $corrresp['musictheory_answer_tonicletter']) {
+                    $letterselectattributes['class'] = $this->feedback_class(1);
+                } else {
+                    $letterselectattributes['class'] = $this->feedback_class(0);
+                }
             }
             if (!is_null($currtonicacc)) {
-               if ($currtonicacc === $corrresp['musictheory_answer_tonicacc']) {
-                   $accselectattributes['class'] = $this->feedback_class(1);
-               }
-               else {
-                   $accselectattributes['class'] = $this->feedback_class(0);
-               }
+                if ($currtonicacc === $corrresp['musictheory_answer_tonicacc']) {
+                    $accselectattributes['class'] = $this->feedback_class(1);
+                } else {
+                    $accselectattributes['class'] = $this->feedback_class(0);
+                }
             }
             if (!is_null($currscaletype)) {
-               if ($currscaletype === $corrresp['musictheory_answer_scaletype']) {
-                   $scaletypeselectattributes['class'] = $this->feedback_class(1);
-               }
-               else {
-                   $scaletypeselectattributes['class'] = $this->feedback_class(0);
-               }
+                if ($currscaletype === $corrresp['musictheory_answer_scaletype']) {
+                    $scaletypeselectattributes['class'] = $this->feedback_class(1);
+                } else {
+                    $scaletypeselectattributes['class'] = $this->feedback_class(0);
+                }
             }
         }
 
@@ -280,7 +277,7 @@ class qtype_musictheory_scale_identify_renderer extends qtype_musictheory_render
         $result .= html_writer::tag('div', '<b>' . $musicquestionastext . '</b>', $nonjavascriptdivattr);
 
         $javascriptdivattr = array(
-            'id'    => 'musictheory_div_canvas_' . $tonicletterselectid,
+            'id' => 'musictheory_div_canvas_' . $tonicletterselectid,
             'class' => 'ablock',
             'style' => 'display:none'
         );
@@ -288,7 +285,8 @@ class qtype_musictheory_scale_identify_renderer extends qtype_musictheory_render
 
         $input = html_writer::select($selectoptionsletter, $tonicletterselectid, $currtonicletter, true, $letterselectattributes);
         $input .= html_writer::select($selectoptionsacc, $tonicaccselectid, $currtonicacc, true, $accselectattributes);
-        $input .= html_writer::select($selectoptionsscaletype, $scaletypeselectid, $currscaletype, true, $scaletypeselectattributes);
+        $input .= html_writer::select($selectoptionsscaletype, $scaletypeselectid, $currscaletype, true,
+                $scaletypeselectattributes);
 
         $result .= html_writer::start_tag('div', array('class' => 'ablock'));
         $result .= $input;
@@ -300,11 +298,11 @@ class qtype_musictheory_scale_identify_renderer extends qtype_musictheory_render
             $currentscaletype = $qa->get_last_qt_var('musictheory_answer_scaletype');
             $answerarray = array(
                 'musictheory_answer_tonicletter' => $currenttonicletter,
-                'musictheory_answer_tonicacc'    => $currenttonicacc,
-                'musictheory_answer_scaletype'   => $currentscaletype,
+                'musictheory_answer_tonicacc' => $currenttonicacc,
+                'musictheory_answer_scaletype' => $currentscaletype,
             );
             $result .= html_writer::nonempty_tag('div', $question->get_validation_error($answerarray),
-                                                                                        array('class' => 'validationerror'));
+                    array('class' => 'validationerror'));
         }
 
         return $result;
@@ -314,7 +312,9 @@ class qtype_musictheory_scale_identify_renderer extends qtype_musictheory_render
         $question = $qa->get_question();
         $correctresponsearray = $question->get_correct_response();
         $letter = get_string('note' . strtolower($correctresponsearray['musictheory_answer_tonicletter']), 'qtype_musictheory');
-        $acc = ($correctresponsearray['musictheory_answer_tonicacc'] === '#') ? 'sharp' : $correctresponsearray['musictheory_answer_tonicacc'];
+        $acc = ($correctresponsearray['musictheory_answer_tonicacc'] === '#') ?
+                'sharp' :
+                $correctresponsearray['musictheory_answer_tonicacc'];
         if ($correctresponsearray['musictheory_answer_tonicacc'] !== 'n') {
             $accstr = get_string('acc_' . $acc, 'qtype_musictheory');
         } else {

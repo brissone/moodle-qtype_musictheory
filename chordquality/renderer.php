@@ -292,7 +292,6 @@ class qtype_musictheory_chordquality_identify_renderer extends qtype_musictheory
         $musicquestionastext = str_replace('x', get_string('acc_x', 'qtype_musictheory'), $musicquestionastext);
         $musicquestionastext = str_replace('bb', get_string('acc_bb', 'qtype_musictheory'), $musicquestionastext);
 
-
         $result .= html_writer::tag('div', '<b>' . $musicquestionastext . '</b>', $nonjavascriptdivattr);
 
         $javascriptdivattr = array(

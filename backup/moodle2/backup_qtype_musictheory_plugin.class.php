@@ -42,7 +42,7 @@ class backup_qtype_musictheory_plugin extends backup_qtype_plugin {
         // Create one standard named plugin element (the visible container).
         $pluginwrapper = new backup_nested_element($this->get_recommended_name());
 
-        // connect the visible container ASAP.
+        // Connect the visible container ASAP.
         $plugin->add_child($pluginwrapper);
 
         // This qtype uses standard question_answers, add them here

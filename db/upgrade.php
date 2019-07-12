@@ -30,7 +30,7 @@ function xmldb_qtype_musictheory_upgrade($oldversion) {
     global $CFG, $DB;
 
     // No database upgrades needed at this point - this file is included for
-    // future updates
+    // future updates.
 
     return true;
 }
