@@ -52,7 +52,6 @@ class qtype_musictheory_keyboard_input_renderer extends qtype_musictheory_render
             $correctresponse = null;
         }
 
-
         $correctansstr = ($question->musictheory_considerregister) ? 'correctansweris' : 'correctansweris_morethanone';
 
         $additionalparams = array();

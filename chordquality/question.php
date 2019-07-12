@@ -158,6 +158,10 @@ class qtype_musictheory_chordquality_write_random extends qtype_musictheory_chor
         $this->musictheory_chordquality = qtype_musictheory_randomiser::get_random_field($this->musictheory_chordquality_random);
         $this->musictheory_givennoteletter = qtype_musictheory_randomiser::get_random_letter_name();
         $this->musictheory_givennoteaccidental = qtype_musictheory_randomiser::get_random_accidental(false);
+        if ($this->musictheory_chordquality == 'augmented' && $this->musictheory_givennoteletter == 'B' &&
+                $this->musictheory_givennoteaccidental == '#') {
+            $this->musictheory_givennoteaccidental = 'n';
+        }
         $this->musictheory_optionsxml = $this->qtype->get_options_xml($this, 'chordquality-write');
         $this->questiontext = $this->get_question_text();
         $step->set_qt_var('_var_clef', $this->musictheory_clef);
@@ -285,6 +289,10 @@ class qtype_musictheory_chordquality_identify_random extends qtype_musictheory_c
         $this->musictheory_chordquality = qtype_musictheory_randomiser::get_random_field($this->musictheory_chordquality_random);
         $this->musictheory_givennoteletter = qtype_musictheory_randomiser::get_random_letter_name();
         $this->musictheory_givennoteaccidental = qtype_musictheory_randomiser::get_random_accidental(false);
+        if ($this->musictheory_chordquality == 'augmented' && $this->musictheory_givennoteletter == 'B' &&
+                $this->musictheory_givennoteaccidental == '#') {
+            $this->musictheory_givennoteaccidental = 'n';
+        }
         $this->musictheory_optionsxml = $this->qtype->get_options_xml($this, 'chordquality-identify');
         $this->questiontext = $this->get_question_text();
         $step->set_qt_var('_var_clef', $this->musictheory_clef);

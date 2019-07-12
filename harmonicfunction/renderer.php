@@ -264,7 +264,8 @@ class qtype_musictheory_harmonicfunction_identify_renderer extends qtype_musicth
         $key = get_string(strtolower($keyindex), 'qtype_musictheory');
 
         $input = html_writer::start_span() . '<b>' . $key . ':</b> ' . html_writer::end_span();
-        $input .= html_writer::select($selectoptionshfprimary, $hfprimaryselectid, $currhfprimary, true, $hfprimaryselectattributes);
+        $input .= html_writer::select($selectoptionshfprimary, $hfprimaryselectid, $currhfprimary, true,
+                $hfprimaryselectattributes);
         $input .= html_writer::select($selectoptionsinvext, $hfinvextselectid, $currhfinvext, true, $hfinvextselectattributes);
         if ($question->hftypesinresponsehavesectonic()) {
             $input .= html_writer::select($selectoptionshfsecondary, $hfsecondaryselectid, $currhfsecondary, true,

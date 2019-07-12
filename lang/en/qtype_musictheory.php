@@ -203,7 +203,7 @@ $string['size11'] = '11th';
 $string['size12'] = '12th';
 $string['size13'] = '13th';
 
-// Intervals
+// Intervals.
 $string['dim2'] = 'Diminished 2nd';
 $string['min2'] = 'Minor 2nd';
 $string['maj2'] = 'Major 2nd';
@@ -427,3 +427,6 @@ $string['validationerror_scale_incomplete_melodic'] = 'Incomplete answer. A tota
  required, including the given tonic.';
 $string['validationerror_scale_identify'] = 'Incomplete answer. All dropdown menus must be selected.';
 $string['validationerror_whitespace'] = 'Invalid answer syntax: remove all spaces from your answer.';
+
+// Privacy.
+$string['privacy:metadata'] = 'The Music Theory question type plugin does not store any personal data.';

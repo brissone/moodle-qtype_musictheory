@@ -1,3 +1,4 @@
+<?php
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -14,11 +15,27 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Privacy implementation for the music theory question type.
+ *
  * @package    qtype
  * @subpackage musictheory
- * @copyright  2013 Eric Brisson
+ * @copyright  2018 Eric Brisson
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-The moodle-qtype_musictheory-musictheoryui module is a simple wrapper that allows
-the MusThGUI component to be used within a Moodle question type.
+namespace qtype_musictheory\privacy;
+
+defined('MOODLE_INTERNAL') || die();
+
+// This plugin does not store any personal user data.
+class provider implements \core_privacy\local\metadata\null_provider {
+    /**
+     * Get the language string identifier with the component's language
+     * file to explain why this plugin stores no data.
+     *
+     * @return  string
+     */
+    public static function get_reason() : string {
+        return 'privacy:metadata';
+    }
+}

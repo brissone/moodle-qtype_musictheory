@@ -154,8 +154,8 @@ class qtype_musictheory extends question_type {
         parent::initialise_question_instance($question, $questiondata);
         $this->initialise_options_from_xml($question);
         $this->initialise_random_options_from_xml($question);
-        // The generated question text for random sybtypes is set in
-        // [random_question_class]->start_attempt().
+        /* The generated question text for random sybtypes is set in
+           [random_question_class]->start_attempt(). */
         if (strpos($question->musictheory_musicqtype, 'random') === false) {
             if (empty($question->questiontext)) {
                 $question->questiontext = '<p>' . $question->get_question_text() . '</p>';

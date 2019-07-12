@@ -93,9 +93,9 @@ class qtype_musictheory_keyboard_input extends qtype_musictheory_question implem
             return '';
         } else {
             $ans = str_replace(' ', '', $response['answer']);
-            $resp_exp = explode('-', $response['answer']);
-            $resp = $resp_exp[0];
-            $register = $resp_exp[1];
+            $respexp = explode('-', $response['answer']);
+            $resp = $respexp[0];
+            $register = $respexp[1];
             $resp .= ($this->musictheory_considerregister) ? '-' . $register : '';
             return $resp;
         }
