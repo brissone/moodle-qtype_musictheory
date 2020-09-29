@@ -353,7 +353,7 @@
 
   <xs:complexType name="possible-scale-types">
     <xs:sequence>
-      <xs:element name="possiblescaletype" type="scaletype" minOccurs="1" maxOccurs="4" />
+      <xs:element name="possiblescaletype" type="scaletype" minOccurs="1" maxOccurs="7" />
     </xs:sequence>
   </xs:complexType>
 
@@ -437,7 +437,7 @@
 
   <xs:simpleType name="scaletype">
     <xs:restriction base="xs:string">
-      <xs:pattern value="major|natural|harmonic|melodic"/>
+      <xs:pattern value="major|natural|harmonic|melodic|pentatonic_major|pentatonic_minor|blues"/>
     </xs:restriction>
   </xs:simpleType>
 

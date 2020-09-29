@@ -265,6 +265,9 @@ $string['scaletype_major'] = 'Major';
 $string['scaletype_natural'] = 'Natural minor';
 $string['scaletype_harmonic'] = 'Harmonic minor';
 $string['scaletype_melodic'] = 'Melodic minor';
+$string['scaletype_pentatonic_major'] = 'Pentatonic major';
+$string['scaletype_pentatonic_minor'] = 'Pentatonic minor';
+$string['scaletype_blues'] = 'Blues';
 
 // Harmonic function types.
 $string['hftype_diatonictriad'] = 'Diatonic triad';
@@ -424,6 +427,10 @@ $string['validationerror_invalidsyntax'] = 'Invalid answer syntax.';
 $string['validationerror_scale_incomplete'] = 'Incomplete answer. A total of 8 notes is required,
  including the given tonic.';
 $string['validationerror_scale_incomplete_melodic'] = 'Incomplete answer. A total of 15 notes is
+ required, including the given tonic.';
+$string['validationerror_scale_incomplete_pentatonic'] = 'Incomplete answer. A total of 6 notes is
+ required, including the given tonic.';
+$string['validationerror_scale_incomplete_blues'] = 'Incomplete answer. A total of 7 notes is
  required, including the given tonic.';
 $string['validationerror_scale_identify'] = 'Incomplete answer. All dropdown menus must be selected.';
 $string['validationerror_whitespace'] = 'Invalid answer syntax: remove all spaces from your answer.';

@@ -812,6 +812,9 @@ class qtype_musictheory_edit_form extends question_edit_form {
             'natural'  => get_string('scaletype_natural', 'qtype_musictheory'),
             'harmonic' => get_string('scaletype_harmonic', 'qtype_musictheory'),
             'melodic'  => get_string('scaletype_melodic', 'qtype_musictheory'),
+            'pentatonic_major'  => get_string('scaletype_pentatonic_major', 'qtype_musictheory'),
+            'pentatonic_minor'  => get_string('scaletype_pentatonic_minor', 'qtype_musictheory'),
+            'blues'  => get_string('scaletype_blues', 'qtype_musictheory'),
         );
 
         if ($multiselect) {
@@ -1215,7 +1218,7 @@ class qtype_musictheory_validation {
         $errors = array();
 
         $comptonic = new Note($data['musictheory_givennoteletter'], $data['musictheory_givennoteaccidental'], 4);
-        $mode = ($data['musictheory_scaletype'] == 'major') ? 'M' : 'm';
+        $mode = ($data['musictheory_scaletype'] == 'major' || $data['musictheory_scaletype'] == 'pentatonic_major') ? 'M' : 'm';
         $validkeys = Tonality::getValidKeys($mode);
         $isvalidtonic = false;
         foreach ($validkeys as $key) {

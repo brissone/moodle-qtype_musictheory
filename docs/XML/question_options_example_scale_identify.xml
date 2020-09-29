@@ -16,6 +16,9 @@
       <possiblescaletype>major</possiblescaletype>
       <possiblescaletype>natural</possiblescaletype>
       <possiblescaletype>melodic</possiblescaletype>
+      <possiblescaletype>pentatonic_major</possiblescaletype>
+      <possiblescaletype>pentatonic_minor</possiblescaletype>
+      <possiblescaletype>blues</possiblescaletype>
     </possiblescalesinresponse>
   </scale-identify>
 </options>
