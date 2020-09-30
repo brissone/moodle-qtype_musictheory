@@ -353,7 +353,7 @@
 
   <xs:complexType name="possible-scale-types">
     <xs:sequence>
-      <xs:element name="possiblescaletype" type="scaletype" minOccurs="1" maxOccurs="4" />
+      <xs:element name="possiblescaletype" type="scaletype" minOccurs="1" maxOccurs="7" />
     </xs:sequence>
   </xs:complexType>
 
@@ -437,13 +437,13 @@
 
   <xs:simpleType name="scaletype">
     <xs:restriction base="xs:string">
-      <xs:pattern value="major|natural|harmonic|melodic"/>
+      <xs:pattern value="major|natural|harmonic|melodic|pentatonic_major|pentatonic_minor|blues"/>
     </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="chordquality">
     <xs:restriction base="xs:string">
-      <xs:pattern value="major|minor|augmented|diminished"/>
+      <xs:pattern value="major|minor|augmented|diminished|major6|minor6|major7|minor7|dom7|halfdiminished|diminished7|minor_major7|power|sus2|sus4|six|sixb5|dom7a5|major7a5|dom7b5|dom9|domb9|dom11|domb911|dom13|domb9b13"/> // TODO:
     </xs:restriction>
   </xs:simpleType>
 

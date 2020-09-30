@@ -1100,9 +1100,11 @@ NS.XMLConverter.prototype.getScaleWriteTextOutput =
         }
         respString += ',';
       }
+      /*
       for (i; i < 8; i++) {
         respString += ',';
       }
+       */
       respString = respString.substr(0, respString.length - 1);
       return respString;
 
@@ -1188,6 +1190,15 @@ NS.XMLConverter.prototype.getScaleWriteXML = function(input) {
   else {
     if (this.options.scaleType === 'melodic') {
       scaleLength = 15;
+    }
+    else if (this.options.scaleType === 'pentatonic_major') {
+      scaleLength = 6;
+    }
+    else if (this.options.scaleType === 'pentatonic_minor') {
+      scaleLength = 6;
+    }
+    else if (this.options.scaleType === 'blues') {
+      scaleLength = 7;
     }
     else {
       scaleLength = 8;
@@ -1300,6 +1311,15 @@ NS.XMLConverter.prototype.getScaleIdentifyXML = function(input) {
   else {
     if (this.options.scaleType === 'melodic') {
       scaleLength = 15;
+    }
+    else if (this.options.scaleType === 'pentatonic_major') {
+      scaleLength = 6;
+    }
+    else if (this.options.scaleType === 'pentatonic_minor') {
+      scaleLength = 6;
+    }
+    else if (this.options.scaleType === 'blues') {
+      scaleLength = 7;
     }
     else {
       scaleLength = 8;

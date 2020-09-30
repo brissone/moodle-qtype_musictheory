@@ -189,6 +189,30 @@ $string['perfect'] = 'Perfect';
 $string['augmented'] = 'Augmented';
 $string['diminished'] = 'Diminished';
 
+// Chord qualities.
+$string['major6'] = 'Major 6 (German Augmented 6th)';
+$string['minor6'] = 'Minor 6';
+$string['major7'] = 'Major 7';
+$string['minor7'] = 'Minor 7';
+$string['dom7'] = 'Dominant 7';
+$string['halfdiminished'] = 'Half-diminished (Minor 7 b5)';
+$string['diminished7'] = 'Diminished 7';
+$string['minor_major7'] = 'Minor Major 7';
+$string['power'] = 'Power Chord';
+$string['sus2'] = 'Sus2';
+$string['sus4'] = 'Sus4';
+$string['six'] = 'Sixth Triad (Italian Augmented 6th)';
+$string['sixb5'] = 'Major 6 b5 (French Augmented 6th)';
+$string['dom7a5'] = 'Dominant 7 #5';
+$string['major7a5'] = 'Major 7 #5';
+$string['dom7b5'] = 'Dominant 7 b5';
+$string['dom9'] = 'Dominant 9';
+$string['domb9'] = 'Dominant b9';
+$string['dom11'] = 'Dominant 11';
+$string['domb911'] = 'Dominant b9 11';
+$string['dom13'] = 'Dominant 13';
+$string['domb9b13'] = 'Dominant b9 b13';
+
 // Interval sizes.
 $string['size2'] = '2nd';
 $string['size3'] = '3rd';
@@ -265,6 +289,9 @@ $string['scaletype_major'] = 'Major';
 $string['scaletype_natural'] = 'Natural minor';
 $string['scaletype_harmonic'] = 'Harmonic minor';
 $string['scaletype_melodic'] = 'Melodic minor';
+$string['scaletype_pentatonic_major'] = 'Pentatonic major';
+$string['scaletype_pentatonic_minor'] = 'Pentatonic minor';
+$string['scaletype_blues'] = 'Blues';
 
 // Harmonic function types.
 $string['hftype_diatonictriad'] = 'Diatonic triad';
@@ -424,6 +451,10 @@ $string['validationerror_invalidsyntax'] = 'Invalid answer syntax.';
 $string['validationerror_scale_incomplete'] = 'Incomplete answer. A total of 8 notes is required,
  including the given tonic.';
 $string['validationerror_scale_incomplete_melodic'] = 'Incomplete answer. A total of 15 notes is
+ required, including the given tonic.';
+$string['validationerror_scale_incomplete_pentatonic'] = 'Incomplete answer. A total of 6 notes is
+ required, including the given tonic.';
+$string['validationerror_scale_incomplete_blues'] = 'Incomplete answer. A total of 7 notes is
  required, including the given tonic.';
 $string['validationerror_scale_identify'] = 'Incomplete answer. All dropdown menus must be selected.';
 $string['validationerror_whitespace'] = 'Invalid answer syntax: remove all spaces from your answer.';

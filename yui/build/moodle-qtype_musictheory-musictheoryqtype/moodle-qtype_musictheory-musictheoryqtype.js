@@ -1301,6 +1301,15 @@ NS.XMLConverter.prototype.getScaleIdentifyXML = function(input) {
     if (this.options.scaleType === 'melodic') {
       scaleLength = 15;
     }
+    else if (this.options.scaleType === 'pentatonic_major') {
+      scaleLength = 6;
+    }
+    else if (this.options.scaleType === 'pentatonic_minor') {
+      scaleLength = 6;
+    }
+    else if (this.options.scaleType === 'blues') {
+      scaleLength = 7;
+    }
     else {
       scaleLength = 8;
     }

@@ -164,22 +164,11 @@ class qtype_musictheory_chordquality_identify_renderer extends qtype_musictheory
 
         $root = new Note($question->musictheory_givennoteletter, $question->musictheory_givennoteaccidental, $reg);
 
-        switch ($question->musictheory_chordquality) {
-            case 'major':
-                $quality = 'M';
-                break;
-            case 'minor':
-                $quality = 'm';
-                break;
-            case 'diminished':
-                $quality = 'D';
-                break;
-            case 'augmented':
-                $quality = 'A';
-                break;
-            default:
-                $quality = 'M';
-        }
+        $dataquality = $question->musictheory_chordquality;
+        if (!isset(Chord::$mapping[$dataquality]))
+            $quality = 'M';
+        else
+            $quality = Chord::$mapping[$dataquality];
 
         $chord = new Chord($root, $quality, 0);
         $initialinput = (string) $chord;
@@ -234,12 +223,12 @@ class qtype_musictheory_chordquality_identify_renderer extends qtype_musictheory
         );
 
         $selectoptionschordquality = array(
-            ''           => get_string('selectanoption', 'qtype_musictheory'),
-            'major'      => get_string('major', 'qtype_musictheory'),
-            'minor'      => get_string('minor', 'qtype_musictheory'),
-            'augmented'  => get_string('augmented', 'qtype_musictheory'),
-            'diminished' => get_string('diminished', 'qtype_musictheory')
+            ''  => get_string('selectanoption', 'qtype_musictheory'),
         );
+
+        foreach (Chord::$mapping as $key => $value) {
+            $selectoptionschordquality[$key] = get_string($key, 'qtype_musictheory');
+        }
 
         $chordqualityselectattributes = array(
             'name' => $chordqualityselectid,

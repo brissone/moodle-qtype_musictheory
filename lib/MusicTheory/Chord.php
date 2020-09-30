@@ -29,6 +29,35 @@ class Chord {
 	public $inversion;
 	public $type;
 
+    public static $mapping = array(
+        "major" => "M",
+        "minor" => "m",
+        "augmented" => "A",
+        "diminished" => "D",
+        "major6" => "Gr6",
+        "minor6" => "m6",
+        "major7" => "MM",
+        "minor7" => "mm",
+        "dom7" => "Mm",
+        "halfdiminished" => "Dm",
+        "diminished7" => "DD",
+        "minor_major7" => "Mm",
+        "power" => "PC",
+        "sus2" => "sus2",
+        "sus4" => "sus4",
+        "six" => "It6",
+        "sixb5" => "Fr6",
+        "dom7a5" => "Am",
+        "major7a5" => "AM",
+        "dom7b5" => "7-5b",
+        "dom9" => "dom9",
+        "domb9" => "dom9b",
+        "dom11" => "dom11",
+        "domb911" => "domb911",
+        "dom13" => "dom13",
+        "domb9b13" => "dom9b13",
+    );
+
 	/**
 	 * Constructor.
 	 *
@@ -157,6 +186,23 @@ class Chord {
 				$this->intSequence[4] = new Interval('+', 'P', 11);
 				$this->intSequence[5] = new Interval('+', 'm', 13);
 				break;
+            case 'm6' :
+                $this->intSequence[0] = new Interval('+', 'm', 3);
+                $this->intSequence[1] = new Interval('+', 'P', 5);
+                $this->intSequence[2] = new Interval('+', 'A', 6);
+                break;
+            case 'PC' :
+                $this->intSequence[0] = new Interval('+', 'P', 5);
+                $this->intSequence[0] = new Interval('+', 'P', 8);
+                break;
+            case 'sus2' :
+                $this->intSequence[0] = new Interval('+', 'M', 2);
+                $this->intSequence[1] = new Interval('+', 'P', 5);
+                break;
+            case 'sus4' :
+                $this->intSequence[0] = new Interval('+', 'P', 4);
+                $this->intSequence[1] = new Interval('+', 'P', 5);
+                break;
 		}
 	}
 
