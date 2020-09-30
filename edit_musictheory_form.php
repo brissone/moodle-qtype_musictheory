@@ -840,12 +840,10 @@ class qtype_musictheory_edit_form extends question_edit_form {
      * @param string $labelkey The key to use for the option label.
      */
     private function add_chordquality_option($mform, $questionfield, $multiselect, $labelkey) {
-        $selectoptionsquality = array(
-            'major'      => get_string('major', 'qtype_musictheory'),
-            'minor'      => get_string('minor', 'qtype_musictheory'),
-            'augmented'  => get_string('augmented', 'qtype_musictheory'),
-            'diminished' => get_string('diminished', 'qtype_musictheory'),
-        );
+        $selectoptionsquality = array();
+        foreach (Chord::$mapping as $key => $value) {
+            $selectoptionsquality[$key] = get_string($key, 'qtype_musictheory');
+        }
 
         if ($multiselect) {
             $selectattr = array('multiple'
@@ -1301,22 +1299,12 @@ class qtype_musictheory_validation {
     public static function validate_chordquality_options($data) {
         $errors = array();
 
-        switch ($data['musictheory_chordquality']) {
-            case 'major':
-                $quality = 'M';
-                break;
-            case 'minor':
-                $quality = 'm';
-                break;
-            case 'diminished':
-                $quality = 'D';
-                break;
-            case 'augmented':
-                $quality = 'A';
-                break;
-            default:
-                $quality = 'M';
-        }
+        $dataquality = $data['musictheory_chordquality'];
+        if (!isset(Chord::$mapping[$dataquality]))
+            $quality = 'M';
+        else
+            $quality = Chord::$mapping[$dataquality];
+
         $root = new Note($data['musictheory_givennoteletter'], $data['musictheory_givennoteaccidental']);
         $chord = new Chord($root, $quality, 0);
 

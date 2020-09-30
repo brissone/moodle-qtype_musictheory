@@ -49,22 +49,12 @@ class qtype_musictheory_chordquality_write extends qtype_musictheory_question im
     }
 
     public function get_correct_response() {
-        switch ($this->musictheory_chordquality) {
-            case 'major':
-                $quality = 'M';
-                break;
-            case 'minor':
-                $quality = 'm';
-                break;
-            case 'diminished':
-                $quality = 'D';
-                break;
-            case 'augmented':
-                $quality = 'A';
-                break;
-            default:
-                $quality = 'M';
-        }
+        $dataquality = $this->musictheory_chordquality;
+        if (!isset(Chord::$mapping[$dataquality]))
+            $quality = 'M';
+        else
+            $quality = Chord::$mapping[$dataquality];
+
         if ($this->musictheory_clef === 'treble') {
             $reg = 4;
         } else {
@@ -159,7 +149,7 @@ class qtype_musictheory_chordquality_write_random extends qtype_musictheory_chor
         $this->musictheory_givennoteletter = qtype_musictheory_randomiser::get_random_letter_name();
         $this->musictheory_givennoteaccidental = qtype_musictheory_randomiser::get_random_accidental(false);
         if ($this->musictheory_chordquality == 'augmented' && $this->musictheory_givennoteletter == 'B' &&
-                $this->musictheory_givennoteaccidental == '#') {
+                $this->musictheory_givennoteaccidental == '#') { // TODO: Why ?
             $this->musictheory_givennoteaccidental = 'n';
         }
         $this->musictheory_optionsxml = $this->qtype->get_options_xml($this, 'chordquality-write');
@@ -290,7 +280,7 @@ class qtype_musictheory_chordquality_identify_random extends qtype_musictheory_c
         $this->musictheory_givennoteletter = qtype_musictheory_randomiser::get_random_letter_name();
         $this->musictheory_givennoteaccidental = qtype_musictheory_randomiser::get_random_accidental(false);
         if ($this->musictheory_chordquality == 'augmented' && $this->musictheory_givennoteletter == 'B' &&
-                $this->musictheory_givennoteaccidental == '#') {
+                $this->musictheory_givennoteaccidental == '#') { // TODO: Why ?
             $this->musictheory_givennoteaccidental = 'n';
         }
         $this->musictheory_optionsxml = $this->qtype->get_options_xml($this, 'chordquality-identify');
