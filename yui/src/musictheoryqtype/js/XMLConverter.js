@@ -719,7 +719,7 @@ NS.XMLConverter.prototype.getScaleWriteXML = function (input) {
             scaleLength = 6;
         } else if (this.options.scaleType === 'blues') {
             scaleLength = 7;
-        } else if (this.options.scaleType === 'blues') {
+        } else if (this.options.scaleType === 'chromatic') {
             scaleLength = 13;
         } else {
             scaleLength = 8;
