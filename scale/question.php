@@ -255,7 +255,7 @@ class qtype_musictheory_scale_write_random extends qtype_musictheory_scale_write
         $this->musictheory_clef = qtype_musictheory_randomiser::get_random_field($this->musictheory_clef_random);
         $this->musictheory_scaletype = qtype_musictheory_randomiser::get_random_field($this->musictheory_scaletype_random);
         $mode = ($this->musictheory_scaletype == 'major' ||
-                 $this->musictheory_scaletype == 'pentatonic_major') ? 'M' : 'm'; ||
+                 $this->musictheory_scaletype == 'pentatonic_major') ? 'M' : 'm';
 
         $givennote = qtype_musictheory_randomiser::get_random_scale_tonic($mode, $this->musictheory_clef);
         $this->musictheory_givennoteletter = $givennote->getLetter();

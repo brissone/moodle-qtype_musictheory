@@ -1189,6 +1189,9 @@ NS.XMLConverter.prototype.getScaleWriteXML = function(input) {
     if (this.options.scaleType === 'melodic') {
       scaleLength = 15;
     }
+    else if (this.options.scaleType === 'chromatic') {
+      scaleLength = 13;
+    }
     else {
       scaleLength = 8;
     }

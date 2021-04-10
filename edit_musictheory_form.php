@@ -822,7 +822,8 @@ class qtype_musictheory_edit_form extends question_edit_form {
             'mixolydian'  => get_string('scaletype_mixolydian', 'qtype_musictheory'),
             'aeolian'  => get_string('scaletype_aeolian', 'qtype_musictheory'),
             'locrian'  => get_string('scaletype_locrian', 'qtype_musictheory'),
-            'chromatic'  => get_string('scaletype_chromatic', 'qtype_musictheory'),
+          /*  'chromatic'  => get_string('scaletype_chromatic', 'qtype_musictheory'), */ //TODO
+
         );
 
         if ($multiselect) {
