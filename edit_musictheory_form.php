@@ -815,6 +815,14 @@ class qtype_musictheory_edit_form extends question_edit_form {
             'pentatonic_major'  => get_string('scaletype_pentatonic_major', 'qtype_musictheory'),
             'pentatonic_minor'  => get_string('scaletype_pentatonic_minor', 'qtype_musictheory'),
             'blues'  => get_string('scaletype_blues', 'qtype_musictheory'),
+            'ionian'  => get_string('scaletype_ionian', 'qtype_musictheory'),
+            'dorian'  => get_string('scaletype_dorian', 'qtype_musictheory'),
+            'phrygian'  => get_string('scaletype_phrygian', 'qtype_musictheory'),
+            'lydian'  => get_string('scaletype_lydian', 'qtype_musictheory'),
+            'mixolydian'  => get_string('scaletype_mixolydian', 'qtype_musictheory'),
+            'aeolian'  => get_string('scaletype_aeolian', 'qtype_musictheory'),
+            'locrian'  => get_string('scaletype_locrian', 'qtype_musictheory'),
+            'chromatic'  => get_string('scaletype_chromatic', 'qtype_musictheory'),
         );
 
         if ($multiselect) {
@@ -1217,6 +1225,16 @@ class qtype_musictheory_validation {
 
         $comptonic = new Note($data['musictheory_givennoteletter'], $data['musictheory_givennoteaccidental'], 4);
         $mode = ($data['musictheory_scaletype'] == 'major' || $data['musictheory_scaletype'] == 'pentatonic_major') ? 'M' : 'm';
+      /*
+        $mode = ($data['musictheory_scaletype'] == 'major' || $data['musictheory_scaletype'] == 'ionian') ? 'M' : 'm';
+        $mode = ($data['musictheory_scaletype'] == 'major' || $data['musictheory_scaletype'] == 'dorian') ? 'M' : 'm';
+        $mode = ($data['musictheory_scaletype'] == 'major' || $data['musictheory_scaletype'] == 'phrygian') ? 'M' : 'm';
+        $mode = ($data['musictheory_scaletype'] == 'major' || $data['musictheory_scaletype'] == 'lydian') ? 'M' : 'm';
+        $mode = ($data['musictheory_scaletype'] == 'major' || $data['musictheory_scaletype'] == 'scaletype_mixolydian') ? 'M' : 'm';
+        $mode = ($data['musictheory_scaletype'] == 'major' || $data['musictheory_scaletype'] == 'aeolian') ? 'M' : 'm';
+        $mode = ($data['musictheory_scaletype'] == 'major' || $data['musictheory_scaletype'] == 'locrian') ? 'M' : 'm';
+        $mode = ($data['musictheory_scaletype'] == 'major' || $data['musictheory_scaletype'] == 'chromatic') ? 'M' : 'm';
+      */
         $validkeys = Tonality::getValidKeys($mode);
         $isvalidtonic = false;
         foreach ($validkeys as $key) {

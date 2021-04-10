@@ -19,6 +19,13 @@
       <possiblescaletype>pentatonic_major</possiblescaletype>
       <possiblescaletype>pentatonic_minor</possiblescaletype>
       <possiblescaletype>blues</possiblescaletype>
+      <possiblescaletype>ionian</possiblescaletype>
+      <possiblescaletype>dorian</possiblescaletype>
+      <possiblescaletype>phrygian</possiblescaletype>
+      <possiblescaletype>mixolydian</possiblescaletype>
+      <possiblescaletype>aeolian</possiblescaletype>
+      <possiblescaletype>locrian</possiblescaletype>
+      <possiblescaletype>chromatic</possiblescaletype>
     </possiblescalesinresponse>
   </scale-identify-random>
 </options>

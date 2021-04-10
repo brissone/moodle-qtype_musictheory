@@ -175,6 +175,30 @@ class qtype_musictheory_scale_identify_renderer extends qtype_musictheory_render
             case 'blues':
                 $scale = new BluesScale($tonic);
                 break;
+            case 'ionian':
+                $scale = new IonianScale($tonic);
+                break;
+            case 'dorian':
+                $scale = new DorianScale($tonic);
+                break;
+            case 'phrygian':
+                $scale = new PhrygianScale($tonic);
+                break;
+            case 'lydian':
+                $scale = new LydianScale($tonic);
+                break;
+            case 'mixolydian':
+                $scale = new MixolydianScale($tonic);
+                break;
+            case 'aeolian':
+                $scale = new AeolianScale($tonic);
+                break;
+            case 'locrian':
+                $scale = new LocrianScale($tonic);
+                break;
+            case 'chromatic':
+                $scale = new ChromaticScale($tonic);
+                break;
             default:
                 $scale = new MajorScale($tonic);
         }

@@ -1200,6 +1200,9 @@ NS.XMLConverter.prototype.getScaleWriteXML = function(input) {
     else if (this.options.scaleType === 'blues') {
       scaleLength = 7;
     }
+    else if (this.options.scaleType === 'chromatic') {
+      scaleLength = 13;
+    }
     else {
       scaleLength = 8;
     }
@@ -1320,6 +1323,9 @@ NS.XMLConverter.prototype.getScaleIdentifyXML = function(input) {
     }
     else if (this.options.scaleType === 'blues') {
       scaleLength = 7;
+    }
+    else if (this.options.scaleType === 'chromatic') {
+      scaleLength = 13;
     }
     else {
       scaleLength = 8;

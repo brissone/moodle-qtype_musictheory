@@ -518,3 +518,465 @@ class BluesScale extends Scale {
     }
 
 }
+
+/**
+ * This class represents a ionian mode scale.
+ */
+class IonianScale extends Scale {
+
+    /**
+     * Constructor.
+     *
+     * @param Note $tonic The tonic of the scale.
+     * @return void
+     */
+    public function __construct($tonic) {
+
+        parent::__construct($tonic);
+
+        $int_1 = new Interval('+', 'P', 1);
+        $int_2 = new Interval('+', 'M', 2);
+        $int_3 = new Interval('+', 'M', 3);
+        $int_4 = new Interval('+', 'P', 4);
+        $int_5 = new Interval('+', 'P', 5);
+        $int_6 = new Interval('+', 'M', 6);
+        $int_7 = new Interval('+', 'M', 7);
+				$int_8 = new Interval('+', 'P', 8);
+
+        array_push($this->intSequence, $int_1);
+        array_push($this->intSequence, $int_2);
+        array_push($this->intSequence, $int_3);
+        array_push($this->intSequence, $int_4);
+        array_push($this->intSequence, $int_5);
+        array_push($this->intSequence, $int_6);
+        array_push($this->intSequence, $int_7);
+				array_push($this->intSequence, $int_8);
+    }
+
+    /**
+     * Returns a string describing the name of the scale (e.g. 'C Ionian mode',
+     * 'Ab Ionian mode').
+     *
+     * @return string The scale name.
+     */
+    public function getName() {
+
+        return ((string) $this->tonic . getLetterAccidental()) . ' Ionian mode';
+    }
+
+    /**
+     * Return all notes from the scale.
+     *
+     * @return Note[] The scale notes.
+     */
+    public function getScaleDegrees() {
+
+        $degrees = array();
+        array_push($degrees, $this->getScaleDegree(1));
+        array_push($degrees, $this->getScaleDegree(2));
+        array_push($degrees, $this->getScaleDegree(3));
+        array_push($degrees, $this->getScaleDegree(4));
+        array_push($degrees, $this->getScaleDegree(5));
+        array_push($degrees, $this->getScaleDegree(6));
+        array_push($degrees, $this->getScaleDegree(7));
+				array_push($degrees, $this->getScaleDegree(8));
+        return $degrees;
+    }
+
+}
+
+/**
+ * This class represents a dorian mode scale.
+ */
+class DorianScale extends Scale {
+
+    /**
+     * Constructor.
+     *
+     * @param Note $tonic The tonic of the scale.
+     * @return void
+     */
+    public function __construct($tonic) {
+
+        parent::__construct($tonic);
+
+        $int_1 = new Interval('+', 'P', 1);
+        $int_2 = new Interval('+', 'M', 2);
+        $int_3 = new Interval('+', 'm', 3);
+        $int_4 = new Interval('+', 'P', 4);
+        $int_5 = new Interval('+', 'P', 5);
+        $int_6 = new Interval('+', 'M', 6);
+        $int_7 = new Interval('+', 'm', 7);
+				$int_8 = new Interval('+', 'P', 8);
+
+        array_push($this->intSequence, $int_1);
+        array_push($this->intSequence, $int_2);
+        array_push($this->intSequence, $int_3);
+        array_push($this->intSequence, $int_4);
+        array_push($this->intSequence, $int_5);
+        array_push($this->intSequence, $int_6);
+        array_push($this->intSequence, $int_7);
+				array_push($this->intSequence, $int_8);
+    }
+
+    /**
+     * Returns a string describing the name of the scale (e.g. 'C Dorian mode',
+     * 'Ab Dorian mode').
+     *
+     * @return string The scale name.
+     */
+    public function getName() {
+
+        return ((string) $this->tonic . getLetterAccidental()) . ' Dorian mode';
+    }
+
+    /**
+     * Return all notes from the scale.
+     *
+     * @return Note[] The scale notes.
+     */
+    public function getScaleDegrees() {
+
+        $degrees = array();
+        array_push($degrees, $this->getScaleDegree(1));
+        array_push($degrees, $this->getScaleDegree(2));
+        array_push($degrees, $this->getScaleDegree(3));
+        array_push($degrees, $this->getScaleDegree(4));
+        array_push($degrees, $this->getScaleDegree(5));
+        array_push($degrees, $this->getScaleDegree(6));
+        array_push($degrees, $this->getScaleDegree(7));
+				array_push($degrees, $this->getScaleDegree(8));
+        return $degrees;
+    }
+
+}
+
+/**
+ * This class represents a phryigan mode scale.
+ */
+class PhrygianScale extends Scale {
+
+    /**
+     * Constructor.
+     *
+     * @param Note $tonic The tonic of the scale.
+     * @return void
+     */
+    public function __construct($tonic) {
+
+        parent::__construct($tonic);
+
+        $int_1 = new Interval('+', 'P', 1);
+        $int_2 = new Interval('+', 'm', 2);
+        $int_3 = new Interval('+', 'm', 3);
+        $int_4 = new Interval('+', 'P', 4);
+        $int_5 = new Interval('+', 'P', 5);
+        $int_6 = new Interval('+', 'm', 6);
+        $int_7 = new Interval('+', 'm', 7);
+				$int_8 = new Interval('+', 'P', 8);
+
+        array_push($this->intSequence, $int_1);
+        array_push($this->intSequence, $int_2);
+        array_push($this->intSequence, $int_3);
+        array_push($this->intSequence, $int_4);
+        array_push($this->intSequence, $int_5);
+        array_push($this->intSequence, $int_6);
+        array_push($this->intSequence, $int_7);
+				array_push($this->intSequence, $int_8);
+    }
+
+    /**
+     * Returns a string describing the name of the scale (e.g. 'C Phrygian mode',
+     * 'Ab Phrygian mode').
+     *
+     * @return string The scale name.
+     */
+    public function getName() {
+
+        return ((string) $this->tonic . getLetterAccidental()) . ' Phrygian mode';
+    }
+
+    /**
+     * Return all notes from the scale.
+     *
+     * @return Note[] The scale notes.
+     */
+    public function getScaleDegrees() {
+
+        $degrees = array();
+        array_push($degrees, $this->getScaleDegree(1));
+        array_push($degrees, $this->getScaleDegree(2));
+        array_push($degrees, $this->getScaleDegree(3));
+        array_push($degrees, $this->getScaleDegree(4));
+        array_push($degrees, $this->getScaleDegree(5));
+        array_push($degrees, $this->getScaleDegree(6));
+        array_push($degrees, $this->getScaleDegree(7));
+				array_push($degrees, $this->getScaleDegree(8));
+        return $degrees;
+    }
+
+}
+
+/**
+ * This class represents a lydian mode scale.
+ */
+class LydianScale extends Scale {
+
+    /**
+     * Constructor.
+     *
+     * @param Note $tonic The tonic of the scale.
+     * @return void
+     */
+    public function __construct($tonic) {
+
+        parent::__construct($tonic);
+
+        $int_1 = new Interval('+', 'P', 1);
+        $int_2 = new Interval('+', 'M', 2);
+        $int_3 = new Interval('+', 'M', 3);
+        $int_4 = new Interval('+', 'A', 4);
+        $int_5 = new Interval('+', 'P', 5);
+        $int_6 = new Interval('+', 'M', 6);
+        $int_7 = new Interval('+', 'M', 7);
+				$int_8 = new Interval('+', 'P', 8);
+
+        array_push($this->intSequence, $int_1);
+        array_push($this->intSequence, $int_2);
+        array_push($this->intSequence, $int_3);
+        array_push($this->intSequence, $int_4);
+        array_push($this->intSequence, $int_5);
+        array_push($this->intSequence, $int_6);
+        array_push($this->intSequence, $int_7);
+				array_push($this->intSequence, $int_8);
+    }
+
+    /**
+     * Returns a string describing the name of the scale (e.g. 'C Lydian mode',
+     * 'Ab Lydian mode').
+     *
+     * @return string The scale name.
+     */
+    public function getName() {
+
+        return ((string) $this->tonic . getLetterAccidental()) . ' Lydian mode';
+    }
+
+    /**
+     * Return all notes from the scale.
+     *
+     * @return Note[] The scale notes.
+     */
+    public function getScaleDegrees() {
+
+        $degrees = array();
+        array_push($degrees, $this->getScaleDegree(1));
+        array_push($degrees, $this->getScaleDegree(2));
+        array_push($degrees, $this->getScaleDegree(3));
+        array_push($degrees, $this->getScaleDegree(4));
+        array_push($degrees, $this->getScaleDegree(5));
+        array_push($degrees, $this->getScaleDegree(6));
+        array_push($degrees, $this->getScaleDegree(7));
+				array_push($degrees, $this->getScaleDegree(8));
+        return $degrees;
+    }
+
+}
+
+/**
+ * This class represents a mixolydian mode scale.
+ */
+class MixolydianScale extends Scale {
+
+    /**
+     * Constructor.
+     *
+     * @param Note $tonic The tonic of the scale.
+     * @return void
+     */
+    public function __construct($tonic) {
+
+        parent::__construct($tonic);
+
+        $int_1 = new Interval('+', 'P', 1);
+        $int_2 = new Interval('+', 'M', 2);
+        $int_3 = new Interval('+', 'M', 3);
+        $int_4 = new Interval('+', 'P', 4);
+        $int_5 = new Interval('+', 'P', 5);
+        $int_6 = new Interval('+', 'M', 6);
+        $int_7 = new Interval('+', 'm', 7);
+				$int_8 = new Interval('+', 'P', 8);
+
+        array_push($this->intSequence, $int_1);
+        array_push($this->intSequence, $int_2);
+        array_push($this->intSequence, $int_3);
+        array_push($this->intSequence, $int_4);
+        array_push($this->intSequence, $int_5);
+        array_push($this->intSequence, $int_6);
+        array_push($this->intSequence, $int_7);
+				array_push($this->intSequence, $int_8);
+    }
+
+    /**
+     * Returns a string describing the name of the scale (e.g. 'C Mixolydian mode',
+     * 'Ab Mixolydian mode').
+     *
+     * @return string The scale name.
+     */
+    public function getName() {
+
+        return ((string) $this->tonic . getLetterAccidental()) . ' Mixolydian mode';
+    }
+
+    /**
+     * Return all notes from the scale.
+     *
+     * @return Note[] The scale notes.
+     */
+    public function getScaleDegrees() {
+
+        $degrees = array();
+        array_push($degrees, $this->getScaleDegree(1));
+        array_push($degrees, $this->getScaleDegree(2));
+        array_push($degrees, $this->getScaleDegree(3));
+        array_push($degrees, $this->getScaleDegree(4));
+        array_push($degrees, $this->getScaleDegree(5));
+        array_push($degrees, $this->getScaleDegree(6));
+        array_push($degrees, $this->getScaleDegree(7));
+				array_push($degrees, $this->getScaleDegree(8));
+        return $degrees;
+    }
+
+}
+
+/**
+ * This class represents a aeolian mode scale.
+ */
+class AeolianScale extends Scale {
+
+    /**
+     * Constructor.
+     *
+     * @param Note $tonic The tonic of the scale.
+     * @return void
+     */
+    public function __construct($tonic) {
+
+        parent::__construct($tonic);
+
+        $int_1 = new Interval('+', 'P', 1);
+        $int_2 = new Interval('+', 'M', 2);
+        $int_3 = new Interval('+', 'm', 3);
+        $int_4 = new Interval('+', 'P', 4);
+        $int_5 = new Interval('+', 'P', 5);
+        $int_6 = new Interval('+', 'm', 6);
+        $int_7 = new Interval('+', 'm', 7);
+				$int_8 = new Interval('+', 'P', 8);
+
+        array_push($this->intSequence, $int_1);
+        array_push($this->intSequence, $int_2);
+        array_push($this->intSequence, $int_3);
+        array_push($this->intSequence, $int_4);
+        array_push($this->intSequence, $int_5);
+        array_push($this->intSequence, $int_6);
+        array_push($this->intSequence, $int_7);
+				array_push($this->intSequence, $int_8);
+    }
+
+    /**
+     * Returns a string describing the name of the scale (e.g. 'C Aeolian mode',
+     * 'Ab Aeolian mode').
+     *
+     * @return string The scale name.
+     */
+    public function getName() {
+
+        return ((string) $this->tonic . getLetterAccidental()) . ' Aeolian mode';
+    }
+
+    /**
+     * Return all notes from the scale.
+     *
+     * @return Note[] The scale notes.
+     */
+    public function getScaleDegrees() {
+
+        $degrees = array();
+        array_push($degrees, $this->getScaleDegree(1));
+        array_push($degrees, $this->getScaleDegree(2));
+        array_push($degrees, $this->getScaleDegree(3));
+        array_push($degrees, $this->getScaleDegree(4));
+        array_push($degrees, $this->getScaleDegree(5));
+        array_push($degrees, $this->getScaleDegree(6));
+        array_push($degrees, $this->getScaleDegree(7));
+				array_push($degrees, $this->getScaleDegree(8));
+        return $degrees;
+    }
+
+}
+
+/**
+ * This class represents a Locrian mode scale.
+ */
+class LocrianScale extends Scale {
+
+    /**
+     * Constructor.
+     *
+     * @param Note $tonic The tonic of the scale.
+     * @return void
+     */
+    public function __construct($tonic) {
+
+        parent::__construct($tonic);
+
+        $int_1 = new Interval('+', 'P', 1);
+        $int_2 = new Interval('+', 'm', 2);
+        $int_3 = new Interval('+', 'm', 3);
+        $int_4 = new Interval('+', 'P', 4);
+        $int_5 = new Interval('+', 'D', 5);
+        $int_6 = new Interval('+', 'm', 6);
+        $int_7 = new Interval('+', 'm', 7);
+				$int_8 = new Interval('+', 'P', 8);
+
+        array_push($this->intSequence, $int_1);
+        array_push($this->intSequence, $int_2);
+        array_push($this->intSequence, $int_3);
+        array_push($this->intSequence, $int_4);
+        array_push($this->intSequence, $int_5);
+        array_push($this->intSequence, $int_6);
+        array_push($this->intSequence, $int_7);
+				array_push($this->intSequence, $int_8);
+    }
+
+    /**
+     * Returns a string describing the name of the scale (e.g. 'C Locrian mode',
+     * 'Ab Locrian mode').
+     *
+     * @return string The scale name.
+     */
+    public function getName() {
+
+        return ((string) $this->tonic . getLetterAccidental()) . ' Locrian mode';
+    }
+
+    /**
+     * Return all notes from the scale.
+     *
+     * @return Note[] The scale notes.
+     */
+    public function getScaleDegrees() {
+
+        $degrees = array();
+        array_push($degrees, $this->getScaleDegree(1));
+        array_push($degrees, $this->getScaleDegree(2));
+        array_push($degrees, $this->getScaleDegree(3));
+        array_push($degrees, $this->getScaleDegree(4));
+        array_push($degrees, $this->getScaleDegree(5));
+        array_push($degrees, $this->getScaleDegree(6));
+        array_push($degrees, $this->getScaleDegree(7));
+				array_push($degrees, $this->getScaleDegree(8));
+        return $degrees;
+    }
+
+}
