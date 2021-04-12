@@ -1127,8 +1127,18 @@ NS.XMLConverter.prototype.getScaleWriteXML = function(input) {
       resp,
       scaleLength;
 
-  if (this.options.scaleType === 'major') {
-    key += 'M';
+      if (this.options.scaleType === 'major' ||
+          this.options.scaleType === 'pentatonic_major' ||
+          this.options.scaleType === 'ionian' ||
+          this.options.scaleType === 'dorian' ||
+          this.options.scaleType === 'phrygian' ||
+          this.options.scaleType === 'lydian' ||
+          this.options.scaleType === 'mixolydian' ||
+          this.options.scaleType === 'aeolian' ||
+          this.options.scaleType === 'locrian' ||
+          this.options.scaleType === 'chromatic'
+          ) {
+          key += 'M';
   }
   else {
     key += 'm';
@@ -1247,8 +1257,18 @@ NS.XMLConverter.prototype.getScaleIdentifyXML = function(input) {
       resp,
       scaleLength;
 
-  if (this.options.scaleType === 'major') {
-    key += 'M';
+      if (this.options.scaleType === 'major' ||
+          this.options.scaleType === 'pentatonic_major' ||
+          this.options.scaleType === 'ionian' ||
+          this.options.scaleType === 'dorian' ||
+          this.options.scaleType === 'phrygian' ||
+          this.options.scaleType === 'lydian' ||
+          this.options.scaleType === 'mixolydian' ||
+          this.options.scaleType === 'aeolian' ||
+          this.options.scaleType === 'locrian' ||
+          this.options.scaleType === 'chromatic'
+          ) {
+          key += 'M';
   }
   else {
     key += 'm';

@@ -340,7 +340,7 @@ class MelodicMinorScale extends MinorScale {
 /**
  * This class represents a pentatonic major scale.
  */
-class PentatonicMajorScale extends Scale {
+class PentatonicMajorScale extends MajorScale {
 
     /**
      * Constructor.
@@ -399,7 +399,7 @@ class PentatonicMajorScale extends Scale {
 /**
  * This class represents a pentatonic minor scale.
  */
-class PentatonicMinorScale extends Scale {
+class PentatonicMinorScale extends MinorScale {
 
     /**
      * Constructor.
@@ -522,7 +522,7 @@ class BluesScale extends Scale {
 /**
  * This class represents a ionian mode scale.
  */
-class IonianScale extends Scale {
+class IonianScale extends MajorScale {
 
     /**
      * Constructor.
@@ -588,7 +588,7 @@ class IonianScale extends Scale {
 /**
  * This class represents a dorian mode scale.
  */
-class DorianScale extends Scale {
+class DorianScale extends MajorScale {
 
     /**
      * Constructor.
@@ -654,7 +654,7 @@ class DorianScale extends Scale {
 /**
  * This class represents a phryigan mode scale.
  */
-class PhrygianScale extends Scale {
+class PhrygianScale extends MajorScale {
 
     /**
      * Constructor.
@@ -720,7 +720,7 @@ class PhrygianScale extends Scale {
 /**
  * This class represents a lydian mode scale.
  */
-class LydianScale extends Scale {
+class LydianScale extends MajorScale {
 
     /**
      * Constructor.
@@ -786,7 +786,7 @@ class LydianScale extends Scale {
 /**
  * This class represents a mixolydian mode scale.
  */
-class MixolydianScale extends Scale {
+class MixolydianScale extends MajorScale {
 
     /**
      * Constructor.
@@ -852,7 +852,7 @@ class MixolydianScale extends Scale {
 /**
  * This class represents a aeolian mode scale.
  */
-class AeolianScale extends Scale {
+class AeolianScale extends MajorScale {
 
     /**
      * Constructor.
@@ -918,7 +918,7 @@ class AeolianScale extends Scale {
 /**
  * This class represents a Locrian mode scale.
  */
-class LocrianScale extends Scale {
+class LocrianScale extends MajorScale {
 
     /**
      * Constructor.
@@ -994,128 +994,133 @@ class ChromaticScale extends Scale {
      */
 
     public function __construct($tonic) {
-			define ('chromaticCn', array('Cn4', 'Cn2', 'Cn3', 'Cn4', 'Cn5', 'Cn6'));
-			define ('chromaticDn', array('Dn2', 'Dn3', 'Dn4', 'Dn5', 'Dn6'));
-			define ('chromaticEn', array('En2', 'En3', 'En4', 'En5', 'En6')); //TODO
-        if (in_array($tonic, chromaticCn)) {
-				parent::__construct($tonic);
-				$int_1 = new Interval('+', 'P', 1);
-	        	$int_2 = new Interval('+', 'A', 1);
-	        	$int_3 = new Interval('+', 'M', 2);
-		        $int_4 = new Interval('+', 'A', 2);
-		        $int_5 = new Interval('+', 'M', 3);
-		        $int_6 = new Interval('+', 'P', 4);
-		        $int_7 = new Interval('+', 'A', 4);
-				$int_8 = new Interval('+', 'P', 5);
-				$int_9 = new Interval('+', 'A', 5);
-				$int_10 = new Interval('+', 'M', 6);
-				$int_11 = new Interval('+', 'A', 6);
-				$int_12 = new Interval('+', 'M', 7);
-				$int_13 = new Interval('+', 'P', 8);
 
-		        array_push($this->intSequence, $int_1);
-		        array_push($this->intSequence, $int_2);
-		        array_push($this->intSequence, $int_3);
-		        array_push($this->intSequence, $int_4);
-		        array_push($this->intSequence, $int_5);
-		        array_push($this->intSequence, $int_6);
-		        array_push($this->intSequence, $int_7);
-				array_push($this->intSequence, $int_8);
-				array_push($this->intSequence, $int_9);
-				array_push($this->intSequence, $int_10);
-				array_push($this->intSequence, $int_11);
-				array_push($this->intSequence, $int_12);
-				array_push($this->intSequence, $int_13);
+			$chromaticCn = array('Cn2', 'Cn3', 'Cn4', 'Cn5', 'Cn6');
+			$chromaticDn = array('Dn2', 'Dn3', 'Dn4', 'Dn5', 'Dn6');
+			$chromaticEn = array('En2', 'En3', 'En4', 'En5', 'En6'); //TODO
+
+        if (in_array($tonic, $chromaticCn)) {
+				parent::__construct($tonic);
+					$int_1 = new Interval('+', 'P', 1);
+					$int_2 = new Interval('+', 'A', 1);
+					$int_3 = new Interval('+', 'M', 2);
+					$int_4 = new Interval('+', 'A', 2);
+					$int_5 = new Interval('+', 'M', 3);
+					$int_6 = new Interval('+', 'P', 4);
+					$int_7 = new Interval('+', 'A', 4);
+					$int_8 = new Interval('+', 'P', 5);
+					$int_9 = new Interval('+', 'A', 5);
+					$int_10 = new Interval('+', 'M', 6);
+					$int_11 = new Interval('+', 'A', 6);
+					$int_12 = new Interval('+', 'M', 7);
+					$int_13 = new Interval('+', 'P', 8);
+
+					array_push($this->intSequence, $int_1);
+					array_push($this->intSequence, $int_2);
+					array_push($this->intSequence, $int_3);
+					array_push($this->intSequence, $int_4);
+					array_push($this->intSequence, $int_5);
+					array_push($this->intSequence, $int_6);
+					array_push($this->intSequence, $int_7);
+					array_push($this->intSequence, $int_8);
+					array_push($this->intSequence, $int_9);
+					array_push($this->intSequence, $int_10);
+					array_push($this->intSequence, $int_11);
+					array_push($this->intSequence, $int_12);
+					array_push($this->intSequence, $int_13);
 						}
-			else if (in_array($tonic, chromaticDn)) {
-				parent::__construct($tonic);
-				$int_1 = new Interval('+', 'P', 1);
-			    $int_2 = new Interval('+', 'A', 1);
-			    $int_3 = new Interval('+', 'M', 2);
-			    $int_4 = new Interval('+', 'm', 3);
-			    $int_5 = new Interval('+', 'M', 3);
-			    $int_6 = new Interval('+', 'P', 4);
-			    $int_7 = new Interval('+', 'A', 4);
-				$int_8 = new Interval('+', 'P', 5);
-				$int_9 = new Interval('+', 'A', 5);
-				$int_10 = new Interval('+', 'M', 6);
-				$int_11 = new Interval('+', 'A', 6);
-				$int_12 = new Interval('+', 'M', 7);
-				$int_13 = new Interval('+', 'P', 8);
 
-			    array_push($this->intSequence, $int_1);
-			    array_push($this->intSequence, $int_2);
-			   	array_push($this->intSequence, $int_3);
-			    array_push($this->intSequence, $int_4);
-			    array_push($this->intSequence, $int_5);
-			    array_push($this->intSequence, $int_6);
-			    array_push($this->intSequence, $int_7);
-				array_push($this->intSequence, $int_8);
-				array_push($this->intSequence, $int_9);
-				array_push($this->intSequence, $int_10);
-				array_push($this->intSequence, $int_11);
-				array_push($this->intSequence, $int_12);
-				array_push($this->intSequence, $int_13);
-				}
-			else if (in_array($tonic, chromaticEn)) {
+			else if (in_array($tonic, $chromaticDn)) {
 				parent::__construct($tonic);
-				$int_1 = new Interval('+', 'P', 1);
-			    $int_2 = new Interval('+', 'm', 2);
-			    $int_3 = new Interval('+', 'M', 2);
-			    $int_4 = new Interval('+', 'm', 3);
-			    $int_5 = new Interval('+', 'M', 3);
-			    $int_6 = new Interval('+', 'P', 4);
-			    $int_7 = new Interval('+', 'A', 4);
-				$int_8 = new Interval('+', 'P', 5);
-				$int_9 = new Interval('+', 'm', 6);
-				$int_10 = new Interval('+', 'M', 6);
-				$int_11 = new Interval('+', 'm', 7);
-				$int_12 = new Interval('+', 'M', 7);
-				$int_13 = new Interval('+', 'P', 8);
+					$int_1 = new Interval('+', 'P', 1);
+					$int_2 = new Interval('+', 'A', 1);
+					$int_3 = new Interval('+', 'M', 2);
+					$int_4 = new Interval('+', 'm', 3);
+					$int_5 = new Interval('+', 'M', 3);
+					$int_6 = new Interval('+', 'P', 4);
+					$int_7 = new Interval('+', 'A', 4);
+					$int_8 = new Interval('+', 'P', 5);
+					$int_9 = new Interval('+', 'A', 5);
+					$int_10 = new Interval('+', 'M', 6);
+					$int_11 = new Interval('+', 'A', 6);
+					$int_12 = new Interval('+', 'M', 7);
+					$int_13 = new Interval('+', 'P', 8);
 
-			    array_push($this->intSequence, $int_1);
-			    array_push($this->intSequence, $int_2);
-			    array_push($this->intSequence, $int_3);
-			    array_push($this->intSequence, $int_4);
-			    array_push($this->intSequence, $int_5);
-		     	array_push($this->intSequence, $int_6);
-			    array_push($this->intSequence, $int_7);
-				array_push($this->intSequence, $int_8);
-				array_push($this->intSequence, $int_9);
-				array_push($this->intSequence, $int_10);
-				array_push($this->intSequence, $int_11);
-				array_push($this->intSequence, $int_12);
-						array_push($this->intSequence, $int_13);
-				}
+					array_push($this->intSequence, $int_1);
+					array_push($this->intSequence, $int_2);
+					array_push($this->intSequence, $int_3);
+					array_push($this->intSequence, $int_4);
+					array_push($this->intSequence, $int_5);
+					array_push($this->intSequence, $int_6);
+					array_push($this->intSequence, $int_7);
+					array_push($this->intSequence, $int_8);
+					array_push($this->intSequence, $int_9);
+					array_push($this->intSequence, $int_10);
+					array_push($this->intSequence, $int_11);
+					array_push($this->intSequence, $int_12);
+					array_push($this->intSequence, $int_13);
+						}
+
+			else if (in_array($tonic, $chromaticEn)) {
+				parent::__construct($tonic);
+					$int_1 = new Interval('+', 'P', 1);
+					$int_2 = new Interval('+', 'P', 1);
+					$int_3 = new Interval('+', 'P', 1);
+					$int_4 = new Interval('+', 'm', 3);
+					$int_5 = new Interval('+', 'M', 3);
+					$int_6 = new Interval('+', 'P', 4);
+					$int_7 = new Interval('+', 'A', 4);
+					$int_8 = new Interval('+', 'P', 5);
+					$int_9 = new Interval('+', 'm', 6);
+					$int_10 = new Interval('+', 'M', 6);
+					$int_11 = new Interval('+', 'm', 7);
+					$int_12 = new Interval('+', 'M', 7);
+					$int_13 = new Interval('+', 'P', 8);
+
+					array_push($this->intSequence, $int_1);
+					array_push($this->intSequence, $int_2);
+					array_push($this->intSequence, $int_3);
+					array_push($this->intSequence, $int_4);
+					array_push($this->intSequence, $int_5);
+					array_push($this->intSequence, $int_6);
+					array_push($this->intSequence, $int_7);
+					array_push($this->intSequence, $int_8);
+					array_push($this->intSequence, $int_9);
+					array_push($this->intSequence, $int_10);
+					array_push($this->intSequence, $int_11);
+					array_push($this->intSequence, $int_12);
+					array_push($this->intSequence, $int_13);
+ 					 }
+
 			else {
 				parent::__construct($tonic);
-				$int_1 = new Interval('+', 'P', 1);
-				$int_2 = new Interval('+', 'A', 1);
-				$int_3 = new Interval('+', 'M', 2);
-				$int_4 = new Interval('+', 'A', 2);
-				$int_5 = new Interval('+', 'M', 3);
-				$int_6 = new Interval('+', 'P', 4);
-				$int_7 = new Interval('+', 'A', 4);
-				$int_8 = new Interval('+', 'P', 5);
-				$int_9 = new Interval('+', 'A', 5);
-				$int_10 = new Interval('+', 'M', 6);
-				$int_11 = new Interval('+', 'A', 6);
-				$int_12 = new Interval('+', 'M', 7);
-				$int_13 = new Interval('+', 'P', 8);
+					$int_1 = new Interval('+', 'P', 1);
+					$int_2 = new Interval('+', 'A', 1);
+					$int_3 = new Interval('+', 'M', 2);
+					$int_4 = new Interval('+', 'A', 2);
+					$int_5 = new Interval('+', 'M', 3);
+					$int_6 = new Interval('+', 'P', 4);
+					$int_7 = new Interval('+', 'A', 4);
+					$int_8 = new Interval('+', 'P', 5);
+					$int_9 = new Interval('+', 'A', 5);
+					$int_10 = new Interval('+', 'M', 6);
+					$int_11 = new Interval('+', 'A', 6);
+					$int_12 = new Interval('+', 'M', 7);
+					$int_13 = new Interval('+', 'P', 8);
 
-			    array_push($this->intSequence, $int_1);
-			    array_push($this->intSequence, $int_2);
-			   	array_push($this->intSequence, $int_3);
-			    array_push($this->intSequence, $int_4);
-			    array_push($this->intSequence, $int_5);
-			    array_push($this->intSequence, $int_6);
-			    array_push($this->intSequence, $int_7);
-				array_push($this->intSequence, $int_8);
-				array_push($this->intSequence, $int_9);
-				array_push($this->intSequence, $int_10);
-				array_push($this->intSequence, $int_11);
-				array_push($this->intSequence, $int_12);
-				array_push($this->intSequence, $int_13);
+					array_push($this->intSequence, $int_1);
+					array_push($this->intSequence, $int_2);
+					array_push($this->intSequence, $int_3);
+					array_push($this->intSequence, $int_4);
+					array_push($this->intSequence, $int_5);
+					array_push($this->intSequence, $int_6);
+					array_push($this->intSequence, $int_7);
+					array_push($this->intSequence, $int_8);
+					array_push($this->intSequence, $int_9);
+					array_push($this->intSequence, $int_10);
+					array_push($this->intSequence, $int_11);
+					array_push($this->intSequence, $int_12);
+					array_push($this->intSequence, $int_13);
 						}
     }
 

@@ -796,10 +796,10 @@ NS.XMLConverter.prototype.getScaleIdentifyXML = function (input) {
                 this.options.scaleType === 'locrian' ||
                 this.options.scaleType === 'chromatic'
                 ) {
-        key += 'M';
-    } else {
-        key += 'm';
-    }
+                key += 'M';
+            } else {
+                key += 'm';
+            }
     console.log(this.options.scaleType);
     if (this.options.includeKS) {
         keySign = new NS.getKeySign(key, this.options.clef);
