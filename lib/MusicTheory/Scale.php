@@ -541,7 +541,7 @@ class IonianScale extends Scale {
         $int_5 = new Interval('+', 'P', 5);
         $int_6 = new Interval('+', 'M', 6);
         $int_7 = new Interval('+', 'M', 7);
-				$int_8 = new Interval('+', 'P', 8);
+		$int_8 = new Interval('+', 'P', 8);
 
         array_push($this->intSequence, $int_1);
         array_push($this->intSequence, $int_2);
@@ -550,7 +550,7 @@ class IonianScale extends Scale {
         array_push($this->intSequence, $int_5);
         array_push($this->intSequence, $int_6);
         array_push($this->intSequence, $int_7);
-				array_push($this->intSequence, $int_8);
+		array_push($this->intSequence, $int_8);
     }
 
     /**
@@ -579,7 +579,7 @@ class IonianScale extends Scale {
         array_push($degrees, $this->getScaleDegree(5));
         array_push($degrees, $this->getScaleDegree(6));
         array_push($degrees, $this->getScaleDegree(7));
-				array_push($degrees, $this->getScaleDegree(8));
+		array_push($degrees, $this->getScaleDegree(8));
         return $degrees;
     }
 
@@ -607,7 +607,7 @@ class DorianScale extends Scale {
         $int_5 = new Interval('+', 'P', 5);
         $int_6 = new Interval('+', 'M', 6);
         $int_7 = new Interval('+', 'm', 7);
-				$int_8 = new Interval('+', 'P', 8);
+		$int_8 = new Interval('+', 'P', 8);
 
         array_push($this->intSequence, $int_1);
         array_push($this->intSequence, $int_2);
@@ -616,7 +616,7 @@ class DorianScale extends Scale {
         array_push($this->intSequence, $int_5);
         array_push($this->intSequence, $int_6);
         array_push($this->intSequence, $int_7);
-				array_push($this->intSequence, $int_8);
+		array_push($this->intSequence, $int_8);
     }
 
     /**
@@ -645,7 +645,7 @@ class DorianScale extends Scale {
         array_push($degrees, $this->getScaleDegree(5));
         array_push($degrees, $this->getScaleDegree(6));
         array_push($degrees, $this->getScaleDegree(7));
-				array_push($degrees, $this->getScaleDegree(8));
+		array_push($degrees, $this->getScaleDegree(8));
         return $degrees;
     }
 
@@ -673,7 +673,7 @@ class PhrygianScale extends Scale {
         $int_5 = new Interval('+', 'P', 5);
         $int_6 = new Interval('+', 'm', 6);
         $int_7 = new Interval('+', 'm', 7);
-				$int_8 = new Interval('+', 'P', 8);
+		$int_8 = new Interval('+', 'P', 8);
 
         array_push($this->intSequence, $int_1);
         array_push($this->intSequence, $int_2);
@@ -682,7 +682,7 @@ class PhrygianScale extends Scale {
         array_push($this->intSequence, $int_5);
         array_push($this->intSequence, $int_6);
         array_push($this->intSequence, $int_7);
-				array_push($this->intSequence, $int_8);
+		array_push($this->intSequence, $int_8);
     }
 
     /**
@@ -711,7 +711,7 @@ class PhrygianScale extends Scale {
         array_push($degrees, $this->getScaleDegree(5));
         array_push($degrees, $this->getScaleDegree(6));
         array_push($degrees, $this->getScaleDegree(7));
-				array_push($degrees, $this->getScaleDegree(8));
+		array_push($degrees, $this->getScaleDegree(8));
         return $degrees;
     }
 
@@ -739,7 +739,7 @@ class LydianScale extends Scale {
         $int_5 = new Interval('+', 'P', 5);
         $int_6 = new Interval('+', 'M', 6);
         $int_7 = new Interval('+', 'M', 7);
-				$int_8 = new Interval('+', 'P', 8);
+		$int_8 = new Interval('+', 'P', 8);
 
         array_push($this->intSequence, $int_1);
         array_push($this->intSequence, $int_2);
@@ -748,7 +748,7 @@ class LydianScale extends Scale {
         array_push($this->intSequence, $int_5);
         array_push($this->intSequence, $int_6);
         array_push($this->intSequence, $int_7);
-				array_push($this->intSequence, $int_8);
+		array_push($this->intSequence, $int_8);
     }
 
     /**
@@ -777,7 +777,7 @@ class LydianScale extends Scale {
         array_push($degrees, $this->getScaleDegree(5));
         array_push($degrees, $this->getScaleDegree(6));
         array_push($degrees, $this->getScaleDegree(7));
-				array_push($degrees, $this->getScaleDegree(8));
+		array_push($degrees, $this->getScaleDegree(8));
         return $degrees;
     }
 
@@ -805,7 +805,7 @@ class MixolydianScale extends Scale {
         $int_5 = new Interval('+', 'P', 5);
         $int_6 = new Interval('+', 'M', 6);
         $int_7 = new Interval('+', 'm', 7);
-				$int_8 = new Interval('+', 'P', 8);
+		$int_8 = new Interval('+', 'P', 8);
 
         array_push($this->intSequence, $int_1);
         array_push($this->intSequence, $int_2);
@@ -814,7 +814,7 @@ class MixolydianScale extends Scale {
         array_push($this->intSequence, $int_5);
         array_push($this->intSequence, $int_6);
         array_push($this->intSequence, $int_7);
-				array_push($this->intSequence, $int_8);
+		array_push($this->intSequence, $int_8);
     }
 
     /**
@@ -843,7 +843,7 @@ class MixolydianScale extends Scale {
         array_push($degrees, $this->getScaleDegree(5));
         array_push($degrees, $this->getScaleDegree(6));
         array_push($degrees, $this->getScaleDegree(7));
-				array_push($degrees, $this->getScaleDegree(8));
+		array_push($degrees, $this->getScaleDegree(8));
         return $degrees;
     }
 
@@ -871,7 +871,7 @@ class AeolianScale extends Scale {
         $int_5 = new Interval('+', 'P', 5);
         $int_6 = new Interval('+', 'm', 6);
         $int_7 = new Interval('+', 'm', 7);
-				$int_8 = new Interval('+', 'P', 8);
+		$int_8 = new Interval('+', 'P', 8);
 
         array_push($this->intSequence, $int_1);
         array_push($this->intSequence, $int_2);
@@ -880,7 +880,7 @@ class AeolianScale extends Scale {
         array_push($this->intSequence, $int_5);
         array_push($this->intSequence, $int_6);
         array_push($this->intSequence, $int_7);
-				array_push($this->intSequence, $int_8);
+		array_push($this->intSequence, $int_8);
     }
 
     /**
@@ -909,7 +909,7 @@ class AeolianScale extends Scale {
         array_push($degrees, $this->getScaleDegree(5));
         array_push($degrees, $this->getScaleDegree(6));
         array_push($degrees, $this->getScaleDegree(7));
-				array_push($degrees, $this->getScaleDegree(8));
+		array_push($degrees, $this->getScaleDegree(8));
         return $degrees;
     }
 
@@ -937,7 +937,7 @@ class LocrianScale extends Scale {
         $int_5 = new Interval('+', 'D', 5);
         $int_6 = new Interval('+', 'm', 6);
         $int_7 = new Interval('+', 'm', 7);
-				$int_8 = new Interval('+', 'P', 8);
+		$int_8 = new Interval('+', 'P', 8);
 
         array_push($this->intSequence, $int_1);
         array_push($this->intSequence, $int_2);
@@ -946,7 +946,7 @@ class LocrianScale extends Scale {
         array_push($this->intSequence, $int_5);
         array_push($this->intSequence, $int_6);
         array_push($this->intSequence, $int_7);
-				array_push($this->intSequence, $int_8);
+		array_push($this->intSequence, $int_8);
     }
 
     /**
@@ -975,7 +975,7 @@ class LocrianScale extends Scale {
         array_push($degrees, $this->getScaleDegree(5));
         array_push($degrees, $this->getScaleDegree(6));
         array_push($degrees, $this->getScaleDegree(7));
-				array_push($degrees, $this->getScaleDegree(8));
+		array_push($degrees, $this->getScaleDegree(8));
         return $degrees;
     }
 
@@ -994,24 +994,24 @@ class ChromaticScale extends Scale {
      */
 
     public function __construct($tonic) {
-			define ('chromaticCn', array('Fn4', 'Cn2', 'Cn3', 'Cn4', 'Cn5', 'Cn6'));
+			define ('chromaticCn', array('Cn4', 'Cn2', 'Cn3', 'Cn4', 'Cn5', 'Cn6'));
 			define ('chromaticDn', array('Dn2', 'Dn3', 'Dn4', 'Dn5', 'Dn6'));
 			define ('chromaticEn', array('En2', 'En3', 'En4', 'En5', 'En6')); //TODO
         if (in_array($tonic, chromaticCn)) {
-					parent::__construct($tonic);
-						$int_1 = new Interval('+', 'P', 1);
+				parent::__construct($tonic);
+				$int_1 = new Interval('+', 'P', 1);
 	        	$int_2 = new Interval('+', 'A', 1);
 	        	$int_3 = new Interval('+', 'M', 2);
 		        $int_4 = new Interval('+', 'A', 2);
 		        $int_5 = new Interval('+', 'M', 3);
 		        $int_6 = new Interval('+', 'P', 4);
 		        $int_7 = new Interval('+', 'A', 4);
-						$int_8 = new Interval('+', 'P', 5);
-						$int_9 = new Interval('+', 'A', 5);
-						$int_10 = new Interval('+', 'M', 6);
-						$int_11 = new Interval('+', 'A', 6);
-						$int_12 = new Interval('+', 'M', 7);
-						$int_13 = new Interval('+', 'P', 8);
+				$int_8 = new Interval('+', 'P', 5);
+				$int_9 = new Interval('+', 'A', 5);
+				$int_10 = new Interval('+', 'M', 6);
+				$int_11 = new Interval('+', 'A', 6);
+				$int_12 = new Interval('+', 'M', 7);
+				$int_13 = new Interval('+', 'P', 8);
 
 		        array_push($this->intSequence, $int_1);
 		        array_push($this->intSequence, $int_2);
@@ -1020,72 +1020,102 @@ class ChromaticScale extends Scale {
 		        array_push($this->intSequence, $int_5);
 		        array_push($this->intSequence, $int_6);
 		        array_push($this->intSequence, $int_7);
-						array_push($this->intSequence, $int_8);
-						array_push($this->intSequence, $int_9);
-						array_push($this->intSequence, $int_10);
-						array_push($this->intSequence, $int_11);
-						array_push($this->intSequence, $int_12);
-						array_push($this->intSequence, $int_13);
+				array_push($this->intSequence, $int_8);
+				array_push($this->intSequence, $int_9);
+				array_push($this->intSequence, $int_10);
+				array_push($this->intSequence, $int_11);
+				array_push($this->intSequence, $int_12);
+				array_push($this->intSequence, $int_13);
 						}
-				else if (in_array($tonic, chromaticDn)) {
-					parent::__construct($tonic);
-						$int_1 = new Interval('+', 'P', 1);
-			      $int_2 = new Interval('+', 'A', 1);
-			      $int_3 = new Interval('+', 'M', 2);
-			      $int_4 = new Interval('+', 'm', 3);
-			      $int_5 = new Interval('+', 'M', 3);
-			      $int_6 = new Interval('+', 'P', 4);
-			      $int_7 = new Interval('+', 'A', 4);
-						$int_8 = new Interval('+', 'P', 5);
-						$int_9 = new Interval('+', 'A', 5);
-						$int_10 = new Interval('+', 'M', 6);
-						$int_11 = new Interval('+', 'A', 6);
-						$int_12 = new Interval('+', 'M', 7);
-						$int_13 = new Interval('+', 'P', 8);
+			else if (in_array($tonic, chromaticDn)) {
+				parent::__construct($tonic);
+				$int_1 = new Interval('+', 'P', 1);
+			    $int_2 = new Interval('+', 'A', 1);
+			    $int_3 = new Interval('+', 'M', 2);
+			    $int_4 = new Interval('+', 'm', 3);
+			    $int_5 = new Interval('+', 'M', 3);
+			    $int_6 = new Interval('+', 'P', 4);
+			    $int_7 = new Interval('+', 'A', 4);
+				$int_8 = new Interval('+', 'P', 5);
+				$int_9 = new Interval('+', 'A', 5);
+				$int_10 = new Interval('+', 'M', 6);
+				$int_11 = new Interval('+', 'A', 6);
+				$int_12 = new Interval('+', 'M', 7);
+				$int_13 = new Interval('+', 'P', 8);
 
-			      array_push($this->intSequence, $int_1);
-			      array_push($this->intSequence, $int_2);
-			     	array_push($this->intSequence, $int_3);
-			      array_push($this->intSequence, $int_4);
-			      array_push($this->intSequence, $int_5);
-			      array_push($this->intSequence, $int_6);
-			      array_push($this->intSequence, $int_7);
-						array_push($this->intSequence, $int_8);
-						array_push($this->intSequence, $int_9);
-						array_push($this->intSequence, $int_10);
-						array_push($this->intSequence, $int_11);
-						array_push($this->intSequence, $int_12);
-						array_push($this->intSequence, $int_13);
-						}
-				else if (in_array($tonic, chromaticEn)) {
-					parent::__construct($tonic);
-						$int_1 = new Interval('+', 'P', 1);
-			      $int_2 = new Interval('+', 'm', 2);
-			      $int_3 = new Interval('+', 'M', 2);
-			      $int_4 = new Interval('+', 'm', 3);
-			      $int_5 = new Interval('+', 'M', 3);
-			      $int_6 = new Interval('+', 'P', 4);
-			      $int_7 = new Interval('+', 'A', 4);
-						$int_8 = new Interval('+', 'P', 5);
-						$int_9 = new Interval('+', 'm', 6);
-						$int_10 = new Interval('+', 'M', 6);
-						$int_11 = new Interval('+', 'm', 7);
-						$int_12 = new Interval('+', 'M', 7);
-						$int_13 = new Interval('+', 'P', 8);
+			    array_push($this->intSequence, $int_1);
+			    array_push($this->intSequence, $int_2);
+			   	array_push($this->intSequence, $int_3);
+			    array_push($this->intSequence, $int_4);
+			    array_push($this->intSequence, $int_5);
+			    array_push($this->intSequence, $int_6);
+			    array_push($this->intSequence, $int_7);
+				array_push($this->intSequence, $int_8);
+				array_push($this->intSequence, $int_9);
+				array_push($this->intSequence, $int_10);
+				array_push($this->intSequence, $int_11);
+				array_push($this->intSequence, $int_12);
+				array_push($this->intSequence, $int_13);
+				}
+			else if (in_array($tonic, chromaticEn)) {
+				parent::__construct($tonic);
+				$int_1 = new Interval('+', 'P', 1);
+			    $int_2 = new Interval('+', 'm', 2);
+			    $int_3 = new Interval('+', 'M', 2);
+			    $int_4 = new Interval('+', 'm', 3);
+			    $int_5 = new Interval('+', 'M', 3);
+			    $int_6 = new Interval('+', 'P', 4);
+			    $int_7 = new Interval('+', 'A', 4);
+				$int_8 = new Interval('+', 'P', 5);
+				$int_9 = new Interval('+', 'm', 6);
+				$int_10 = new Interval('+', 'M', 6);
+				$int_11 = new Interval('+', 'm', 7);
+				$int_12 = new Interval('+', 'M', 7);
+				$int_13 = new Interval('+', 'P', 8);
 
-			      array_push($this->intSequence, $int_1);
-			      array_push($this->intSequence, $int_2);
-			     	array_push($this->intSequence, $int_3);
-			      array_push($this->intSequence, $int_4);
-			      array_push($this->intSequence, $int_5);
-			      array_push($this->intSequence, $int_6);
-			      array_push($this->intSequence, $int_7);
-						array_push($this->intSequence, $int_8);
-						array_push($this->intSequence, $int_9);
-						array_push($this->intSequence, $int_10);
-						array_push($this->intSequence, $int_11);
-						array_push($this->intSequence, $int_12);
+			    array_push($this->intSequence, $int_1);
+			    array_push($this->intSequence, $int_2);
+			    array_push($this->intSequence, $int_3);
+			    array_push($this->intSequence, $int_4);
+			    array_push($this->intSequence, $int_5);
+		     	array_push($this->intSequence, $int_6);
+			    array_push($this->intSequence, $int_7);
+				array_push($this->intSequence, $int_8);
+				array_push($this->intSequence, $int_9);
+				array_push($this->intSequence, $int_10);
+				array_push($this->intSequence, $int_11);
+				array_push($this->intSequence, $int_12);
 						array_push($this->intSequence, $int_13);
+				}
+			else {
+				parent::__construct($tonic);
+				$int_1 = new Interval('+', 'P', 1);
+				$int_2 = new Interval('+', 'A', 1);
+				$int_3 = new Interval('+', 'M', 2);
+				$int_4 = new Interval('+', 'A', 2);
+				$int_5 = new Interval('+', 'M', 3);
+				$int_6 = new Interval('+', 'P', 4);
+				$int_7 = new Interval('+', 'A', 4);
+				$int_8 = new Interval('+', 'P', 5);
+				$int_9 = new Interval('+', 'A', 5);
+				$int_10 = new Interval('+', 'M', 6);
+				$int_11 = new Interval('+', 'A', 6);
+				$int_12 = new Interval('+', 'M', 7);
+				$int_13 = new Interval('+', 'P', 8);
+
+			    array_push($this->intSequence, $int_1);
+			    array_push($this->intSequence, $int_2);
+			   	array_push($this->intSequence, $int_3);
+			    array_push($this->intSequence, $int_4);
+			    array_push($this->intSequence, $int_5);
+			    array_push($this->intSequence, $int_6);
+			    array_push($this->intSequence, $int_7);
+				array_push($this->intSequence, $int_8);
+				array_push($this->intSequence, $int_9);
+				array_push($this->intSequence, $int_10);
+				array_push($this->intSequence, $int_11);
+				array_push($this->intSequence, $int_12);
+				array_push($this->intSequence, $int_13);
 						}
     }
 
@@ -1115,12 +1145,12 @@ class ChromaticScale extends Scale {
         array_push($degrees, $this->getScaleDegree(5));
         array_push($degrees, $this->getScaleDegree(6));
         array_push($degrees, $this->getScaleDegree(7));
-				array_push($degrees, $this->getScaleDegree(8));
-	 			array_push($degrees, $this->getScaleDegree(9));
-				array_push($degrees, $this->getScaleDegree(10));
-				array_push($degrees, $this->getScaleDegree(11));
-				array_push($degrees, $this->getScaleDegree(12));
-				array_push($degrees, $this->getScaleDegree(13));
+		array_push($degrees, $this->getScaleDegree(8));
+	 	array_push($degrees, $this->getScaleDegree(9));
+		array_push($degrees, $this->getScaleDegree(10));
+		array_push($degrees, $this->getScaleDegree(11));
+		array_push($degrees, $this->getScaleDegree(12));
+		array_push($degrees, $this->getScaleDegree(13));
         return $degrees;
     }
 

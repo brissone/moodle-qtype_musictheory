@@ -78,19 +78,22 @@ class qtype_musictheory_scale_write extends qtype_musictheory_question implement
             case 'ionian':
                 $scale = new IonianScale($tonic);
                 break;
+            case 'dorian':
+                $scale = new DorianScale($tonic);
+                break;
             case 'phrygian':
                 $scale = new PhrygianScale($tonic);
                 break;
-            case 'Lydian':
+            case 'lydian':
                 $scale = new LydianScale($tonic);
                 break;
             case 'mixolydian':
                 $scale = new MixolydianScale($tonic);
                 break;
-            case 'Aeolian':
+            case 'aeolian':
                 $scale = new AeolianScale($tonic);
                 break;
-            case 'Locrian':
+            case 'locrian':
                 $scale = new LocrianScale($tonic);
                 break;
             case 'chromatic':
