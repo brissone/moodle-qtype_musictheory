@@ -340,7 +340,7 @@ class MelodicMinorScale extends MinorScale {
 /**
  * This class represents a pentatonic major scale.
  */
-class PentatonicMajorScale extends MajorScale {
+class PentatonicMajorScale extends Scale {
 
     /**
      * Constructor.
@@ -356,14 +356,14 @@ class PentatonicMajorScale extends MajorScale {
         $int_2 = new Interval('+', 'M', 2);
         $int_3 = new Interval('+', 'M', 3);
         $int_5 = new Interval('+', 'P', 5);
-        $int_6 = new Interval('+', 'M', 6);
+        $int_7 = new Interval('+', 'M', 6);
         $int_8 = new Interval('+', 'P', 8);
 
         array_push($this->intSequence, $int_1);
         array_push($this->intSequence, $int_2);
         array_push($this->intSequence, $int_3);
         array_push($this->intSequence, $int_5);
-        array_push($this->intSequence, $int_6);
+        array_push($this->intSequence, $int_7);
         array_push($this->intSequence, $int_8);
     }
 
@@ -399,7 +399,7 @@ class PentatonicMajorScale extends MajorScale {
 /**
  * This class represents a pentatonic minor scale.
  */
-class PentatonicMinorScale extends MinorScale {
+class PentatonicMinorScale extends Scale {
 
     /**
      * Constructor.
@@ -416,7 +416,7 @@ class PentatonicMinorScale extends MinorScale {
         $int_4 = new Interval('+', 'P', 4);
         $int_5 = new Interval('+', 'P', 5);
         $int_7 = new Interval('+', 'm', 7);
-        $int_8 = new Interval('+', 'P', 8);
+        $int_6 = new Interval('+', 'P', 8);
 
         array_push($this->intSequence, $int_1);
         array_push($this->intSequence, $int_3);
