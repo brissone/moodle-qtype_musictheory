@@ -459,7 +459,7 @@ class PentatonicMinorScale extends Scale {
 /**
  * This class represents a blues scale.
  */
-class BluesScale extends MinorScale {
+class BluesScale extends Scale {
 
     /**
      * Constructor.
@@ -522,7 +522,7 @@ class BluesScale extends MinorScale {
 /**
  * This class represents a ionian mode scale.
  */
-class IonianScale extends MajorScale {
+class IonianScale extends Scale {
 
     /**
      * Constructor.
@@ -588,7 +588,7 @@ class IonianScale extends MajorScale {
 /**
  * This class represents a dorian mode scale.
  */
-class DorianScale extends MajorScale {
+class DorianScale extends Scale {
 
     /**
      * Constructor.
@@ -654,7 +654,7 @@ class DorianScale extends MajorScale {
 /**
  * This class represents a phryigan mode scale.
  */
-class PhrygianScale extends MajorScale {
+class PhrygianScale extends Scale {
 
     /**
      * Constructor.
@@ -720,7 +720,7 @@ class PhrygianScale extends MajorScale {
 /**
  * This class represents a lydian mode scale.
  */
-class LydianScale extends MajorScale {
+class LydianScale extends Scale {
 
     /**
      * Constructor.
@@ -786,7 +786,7 @@ class LydianScale extends MajorScale {
 /**
  * This class represents a mixolydian mode scale.
  */
-class MixolydianScale extends MajorScale {
+class MixolydianScale extends Scale {
 
     /**
      * Constructor.
@@ -852,7 +852,7 @@ class MixolydianScale extends MajorScale {
 /**
  * This class represents a aeolian mode scale.
  */
-class AeolianScale extends MajorScale {
+class AeolianScale extends Scale {
 
     /**
      * Constructor.
@@ -918,7 +918,7 @@ class AeolianScale extends MajorScale {
 /**
  * This class represents a Locrian mode scale.
  */
-class LocrianScale extends MajorScale {
+class LocrianScale extends Scale {
 
     /**
      * Constructor.
